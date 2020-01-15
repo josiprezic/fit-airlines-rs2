@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitAirlines_API", "FitAirlines_API\FitAirlines_API.csproj", "{5D3CDCDC-C644-473A-AF88-DF87423FDC37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitAirlines_UI", "FitAirlines_UI\FitAirlines_UI.csproj", "{D20350EF-B397-4232-B593-8EA50EA274ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D3CDCDC-C644-473A-AF88-DF87423FDC37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D3CDCDC-C644-473A-AF88-DF87423FDC37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D3CDCDC-C644-473A-AF88-DF87423FDC37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D3CDCDC-C644-473A-AF88-DF87423FDC37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D20350EF-B397-4232-B593-8EA50EA274ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D20350EF-B397-4232-B593-8EA50EA274ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D20350EF-B397-4232-B593-8EA50EA274ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D20350EF-B397-4232-B593-8EA50EA274ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B6B61BA-AF77-4D75-A6EC-8B85CD870032}
+	EndGlobalSection
+EndGlobal
