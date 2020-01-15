@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace FitAirlines_API.Controllers
 {
+    // TODO: JR remove test class and fetch data from the database
     public class User 
     {
         public String name;
