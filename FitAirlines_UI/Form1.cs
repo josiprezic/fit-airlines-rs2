@@ -25,12 +25,18 @@ namespace FitAirlines_UI
             {
                 // List<Object> users = response.Content.ReadAsAsync<List<Object>>().Result;
             
-                MessageBox.Show(response.Content.ReadAsStringAsync().Result);
+                //MessageBox.Show(response.Content.ReadAsStringAsync().Result);
             }
             else 
             {
-                MessageBox.Show("Error Code: " + response.StatusCode + " Message: " + response.ReasonPhrase);
+                //MessageBox.Show("Error Code: " + response.StatusCode + " Message: " + response.ReasonPhrase);
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            
+            
         }
     }
 }
