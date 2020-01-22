@@ -35,8 +35,13 @@ namespace FitAirlines_UI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-            
+
+            // TODO: Move strings
+            Text = "Main Menu";
+            offersButton.Text = "Offers";
+            reservationsButton.Text = "Reservations";
+            usersButton.Text = "Users";
+            settingsButton.Text = "Settings";
         }
     }
 }
