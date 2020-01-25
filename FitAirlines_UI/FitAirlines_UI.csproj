@@ -70,6 +70,11 @@
     <Compile Include="Forms\MainMenu\MainMenuForm.Designer.cs">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MainMenu\MainMenuForm1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainMenuForm.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BaseComponents\BaseButton.resx">
@@ -80,6 +85,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainMenu\MainMenuForm.resx">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainMenuForm1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
