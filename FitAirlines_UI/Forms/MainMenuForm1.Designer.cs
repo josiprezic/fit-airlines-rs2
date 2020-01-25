@@ -61,7 +61,7 @@ namespace FitAirlines_UI.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Main Menu.
+        ///   Looks up a localized string similar to DO.
         /// </summary>
         public static string FormTitle {
             get {
@@ -70,7 +70,7 @@ namespace FitAirlines_UI.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Offers.
+        ///   Looks up a localized string similar to RE.
         /// </summary>
         public static string Offers {
             get {
@@ -79,7 +79,7 @@ namespace FitAirlines_UI.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reservations.
+        ///   Looks up a localized string similar to MI.
         /// </summary>
         public static string Reservations {
             get {
@@ -88,7 +88,7 @@ namespace FitAirlines_UI.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settings.
+        ///   Looks up a localized string similar to FA.
         /// </summary>
         public static string Settings {
             get {
@@ -97,7 +97,7 @@ namespace FitAirlines_UI.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Users.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string Users {
             get {

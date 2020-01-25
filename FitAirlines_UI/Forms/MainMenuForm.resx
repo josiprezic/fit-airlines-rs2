@@ -118,18 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FormTitle" xml:space="preserve">
-    <value>Main Menu</value>
+    <value>DO</value>
   </data>
   <data name="Offers" xml:space="preserve">
-    <value>Offers</value>
+    <value>RE</value>
   </data>
   <data name="Reservations" xml:space="preserve">
-    <value>Reservations</value>
+    <value>MI</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>FA</value>
   </data>
   <data name="Users" xml:space="preserve">
-    <value>Users</value>
+    <value />
   </data>
 </root>

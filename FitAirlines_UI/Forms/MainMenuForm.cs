@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Resources;
-using System.Diagnostics;
+﻿using FitAirlines_UI.Properties;
 
 namespace FitAirlines_UI
 {
@@ -22,11 +11,11 @@ namespace FitAirlines_UI
 
         protected override void SetupStrings()
         {
-            Text = GetString("FormTitle");
-            offersButton.Text = GetString("Offers");
-            reservationsButton.Text = GetString("Reservations");
-            usersButton.Text = GetString("Users");
-            settingsButton.Text = GetString("Settings");
+            Text = Resources.MainMenu_FormName;
+            offersButton.Text = Resources.MainMenu_Offers;
+            reservationsButton.Text = Resources.MainMenu_Reservations;
+            usersButton.Text = Resources.MainMenu_Users;
+            settingsButton.Text = Resources.MainMenu_Settings;
         }   
     }
 }
