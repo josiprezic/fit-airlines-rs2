@@ -13,9 +13,9 @@ using System.Diagnostics;
 
 namespace FitAirlines_UI
 {
-    public partial class Form1 : BaseForm
+    public partial class MainMenuForm : BaseForm
     {
-        public Form1()
+        public MainMenuForm()
         {
             InitializeComponent();
         }

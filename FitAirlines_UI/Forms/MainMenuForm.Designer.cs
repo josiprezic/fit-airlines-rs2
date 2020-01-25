@@ -1,6 +1,6 @@
 ﻿namespace FitAirlines_UI
 {
-    partial class Form1
+    partial class MainMenuForm
     {
         /// <summary>
         /// Required designer variable.
@@ -116,13 +116,13 @@
             this.usersButton.Text = "mainMenuButton3";
             this.usersButton.UseVisualStyleBackColor = false;
             // 
-            // Form1
+            // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Form1";
+            this.Name = "MainMenuForm";
             this.Text = "Main Menu";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
