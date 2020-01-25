@@ -21,8 +21,20 @@ namespace FitAirlines_UI
 
         protected void Configure()
         {
+            SetupForm();
             SetupStrings();
             SetupStyling();
+        }
+
+        private void SetupForm()
+        {
+            // Disable resizing
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MinimizeBox = false;
+            MaximizeBox = false;
+
+            // Set form position to center
+            CenterToParent();
         }
     }
 }
