@@ -17,20 +17,20 @@ namespace FitAirlines_UI
         {
             InitializeComponent();
 
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44338");
-            HttpResponseMessage response = client.GetAsync("/api/user").Result;
+            //HttpClient client = new HttpClient();
+            //client.BaseAddress = new Uri("https://localhost:44338");
+            //HttpResponseMessage response = client.GetAsync("/api/user").Result;
 
-            if (response.IsSuccessStatusCode)
-            {
+            //if (response.IsSuccessStatusCode)
+            //{
                 // List<Object> users = response.Content.ReadAsAsync<List<Object>>().Result;
             
                 //MessageBox.Show(response.Content.ReadAsStringAsync().Result);
-            }
-            else 
-            {
+            //}
+            //else 
+            //{
                 //MessageBox.Show("Error Code: " + response.StatusCode + " Message: " + response.ReasonPhrase);
-            }
+            //}
         }
 
         private void Form1_Load(object sender, EventArgs e)

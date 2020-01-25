@@ -29,5 +29,10 @@ namespace FitAirlines_UI.CustomViews
             ForeColor = Color.White;
             Font = new Font("Microsoft Sans Serif", 20);
         }
+
+        public override string Text {
+            get => base.Text;
+            set => base.Text = value.ToUpper();
+        }
     }
 }
