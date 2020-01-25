@@ -52,11 +52,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseComponents\BaseButton.cs">
+    <Compile Include="Base\Components\BaseButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BaseComponents\BaseButton.Designer.cs">
+    <Compile Include="Base\Components\BaseButton.Designer.cs">
       <DependentUpon>BaseButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Form\BaseForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="CustomComponents\MainMenuButton.cs">
       <SubType>Component</SubType>
@@ -77,7 +80,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="BaseComponents\BaseButton.resx">
+    <EmbeddedResource Include="Base\Components\BaseButton.resx">
       <DependentUpon>BaseButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomComponents\MainMenuButton.resx">

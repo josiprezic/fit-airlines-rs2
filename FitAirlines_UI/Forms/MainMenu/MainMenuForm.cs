@@ -13,44 +13,20 @@ using System.Diagnostics;
 
 namespace FitAirlines_UI
 {
-    public partial class Form1 : Form
+    public partial class Form1 : BaseForm
     {
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            setupStrings();
-
-        }
-
-        private void setupStrings()
+        protected override void SetupStrings()
         {
             Text = GetString("FormTitle");
             offersButton.Text = GetString("Offers");
             reservationsButton.Text = GetString("Reservations");
             usersButton.Text = GetString("Users");
             settingsButton.Text = GetString("Settings");
-        }
-
-        private String GetString(String key)
-        {
-            var resources = new ResourceManager(this.GetType());
-            String result = resources.GetString(key);
-            
-            if (result == null)
-            {
-                Logger(this.GetType().Name + ": Error while getting string for key:" + key);
-                return key;
-            }
-            return result;
-        }
-
-        private void Logger(String message) 
-        {
-            Debug.WriteLine(message);
-        }
+        }   
     }
 }
