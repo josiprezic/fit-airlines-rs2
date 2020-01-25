@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\Form\BaseDataGridViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\Form\BaseDataGridViewForm.Designer.cs">
+      <DependentUpon>BaseDataGridViewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Base\Components\BaseButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Base\Form\BaseDataGridViewForm.resx">
+      <DependentUpon>BaseDataGridViewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Base\Components\BaseButton.resx">
       <DependentUpon>BaseButton.cs</DependentUpon>
     </EmbeddedResource>

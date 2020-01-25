@@ -68,7 +68,7 @@
             this.settingsButton.Name = "settingsButton";
             this.settingsButton.Size = new System.Drawing.Size(382, 207);
             this.settingsButton.TabIndex = 3;
-            this.settingsButton.Text = "mainMenuButton4";
+            this.settingsButton.Text = "MAINMENUBUTTON4";
             this.settingsButton.UseVisualStyleBackColor = false;
             // 
             // reservationsButton
@@ -83,7 +83,7 @@
             this.reservationsButton.Name = "reservationsButton";
             this.reservationsButton.Size = new System.Drawing.Size(382, 207);
             this.reservationsButton.TabIndex = 4;
-            this.reservationsButton.Text = "mainMenuButton2";
+            this.reservationsButton.Text = "MAINMENUBUTTON2";
             this.reservationsButton.UseVisualStyleBackColor = false;
             // 
             // offersButton
@@ -98,8 +98,9 @@
             this.offersButton.Name = "offersButton";
             this.offersButton.Size = new System.Drawing.Size(382, 207);
             this.offersButton.TabIndex = 5;
-            this.offersButton.Text = "mainMenuButton1";
+            this.offersButton.Text = "MAINMENUBUTTON1";
             this.offersButton.UseVisualStyleBackColor = false;
+            this.offersButton.Click += new System.EventHandler(this.offersButton_Click);
             // 
             // usersButton
             // 
@@ -113,7 +114,7 @@
             this.usersButton.Name = "usersButton";
             this.usersButton.Size = new System.Drawing.Size(382, 207);
             this.usersButton.TabIndex = 6;
-            this.usersButton.Text = "mainMenuButton3";
+            this.usersButton.Text = "MAINMENUBUTTON3";
             this.usersButton.UseVisualStyleBackColor = false;
             // 
             // MainMenuForm
@@ -122,6 +123,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainMenuForm";
             this.Text = "Main Menu";
             this.tableLayoutPanel1.ResumeLayout(false);

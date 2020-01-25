@@ -16,6 +16,13 @@ namespace FitAirlines_UI
             reservationsButton.Text = Resources.MainMenu_Reservations;
             usersButton.Text = Resources.MainMenu_Users;
             settingsButton.Text = Resources.MainMenu_Settings;
-        }   
+        }
+
+        private void offersButton_Click(object sender, System.EventArgs e)
+        {
+            // TODO: JR update
+            BaseDataGridViewForm form = new BaseDataGridViewForm();
+            form.Show();
+        }
     }
 }

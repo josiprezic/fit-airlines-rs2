@@ -59,50 +59,5 @@ namespace FitAirlines_UI.Forms {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to DO.
-        /// </summary>
-        public static string FormTitle {
-            get {
-                return ResourceManager.GetString("FormTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to RE.
-        /// </summary>
-        public static string Offers {
-            get {
-                return ResourceManager.GetString("Offers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to MI.
-        /// </summary>
-        public static string Reservations {
-            get {
-                return ResourceManager.GetString("Reservations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to FA.
-        /// </summary>
-        public static string Settings {
-            get {
-                return ResourceManager.GetString("Settings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string Users {
-            get {
-                return ResourceManager.GetString("Users", resourceCulture);
-            }
-        }
     }
 }
