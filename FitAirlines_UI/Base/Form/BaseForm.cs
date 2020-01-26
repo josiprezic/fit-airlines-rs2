@@ -8,9 +8,22 @@ namespace FitAirlines_UI
     public class BaseForm: Form
     {
 
+        //
+        // MARK: - Constants
+        //
+
         static readonly int defaultFormHeight = 700;
         static readonly int defaultFormWidth = 1100;
+        
+        //
+        // MARK: - Constructors
+        //
+
         protected BaseForm() { }
+
+        //
+        // MARK: - Protected methods
+        //
 
         override protected void OnLoad(EventArgs e) { Configure(); }
 
