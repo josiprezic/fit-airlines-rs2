@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.baseDataGridView1 = new FitAirlines_UI.BaseDataGridView(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer
@@ -47,23 +48,24 @@
             // 
             // splitContainer.Panel2
             // 
-            this.splitContainer.Panel2.Controls.Add(this.dataGridView);
+            this.splitContainer.Panel2.Controls.Add(this.baseDataGridView1);
             this.splitContainer.Size = new System.Drawing.Size(800, 450);
             this.splitContainer.SplitterDistance = 87;
             this.splitContainer.TabIndex = 0;
             // 
-            // dataGridView
+            // baseDataGridView1
             // 
-            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.baseDataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(12, 3);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowHeadersWidth = 51;
-            this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(776, 344);
-            this.dataGridView.TabIndex = 0;
+            this.baseDataGridView1.BackgroundColor = System.Drawing.Color.Green;
+            this.baseDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.baseDataGridView1.Location = new System.Drawing.Point(12, 3);
+            this.baseDataGridView1.Name = "baseDataGridView1";
+            this.baseDataGridView1.RowHeadersWidth = 51;
+            this.baseDataGridView1.RowTemplate.Height = 24;
+            this.baseDataGridView1.Size = new System.Drawing.Size(776, 344);
+            this.baseDataGridView1.TabIndex = 0;
             // 
             // BaseDataGridViewForm
             // 
@@ -79,7 +81,7 @@
             this.splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -87,6 +89,6 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer;
-        private System.Windows.Forms.DataGridView dataGridView;
+        private BaseDataGridView baseDataGridView1;
     }
 }

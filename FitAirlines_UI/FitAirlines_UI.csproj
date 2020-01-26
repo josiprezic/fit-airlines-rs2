@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\Components\BaseDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Base\Components\BaseDataGridView.Designer.cs">
+      <DependentUpon>BaseDataGridView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Base\Form\BaseDataGridViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
