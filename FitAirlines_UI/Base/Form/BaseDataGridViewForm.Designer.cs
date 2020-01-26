@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.baseDataGridView1 = new FitAirlines_UI.BaseDataGridView(this.components);
             this.searchNewEditControl1 = new FitAirlines_UI.SearchNewEditControl();
+            this.baseDataGridView1 = new FitAirlines_UI.BaseDataGridView(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -45,7 +45,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer.Location = new System.Drawing.Point(11, 11);
-            this.splitContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer.Name = "splitContainer";
             this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -61,28 +61,28 @@
             this.splitContainer.SplitterWidth = 3;
             this.splitContainer.TabIndex = 0;
             // 
+            // searchNewEditControl1
+            // 
+            this.searchNewEditControl1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.searchNewEditControl1.Location = new System.Drawing.Point(589, 0);
+            this.searchNewEditControl1.Margin = new System.Windows.Forms.Padding(2);
+            this.searchNewEditControl1.Name = "searchNewEditControl1";
+            this.searchNewEditControl1.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.searchNewEditControl1.Size = new System.Drawing.Size(286, 75);
+            this.searchNewEditControl1.TabIndex = 0;
+            // 
             // baseDataGridView1
             // 
             this.baseDataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.baseDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.baseDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.baseDataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.baseDataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.baseDataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.baseDataGridView1.Name = "baseDataGridView1";
             this.baseDataGridView1.RowHeadersWidth = 51;
             this.baseDataGridView1.RowTemplate.Height = 24;
             this.baseDataGridView1.Size = new System.Drawing.Size(875, 491);
             this.baseDataGridView1.TabIndex = 0;
-            // 
-            // searchNewEditControl1
-            // 
-            this.searchNewEditControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.searchNewEditControl1.Location = new System.Drawing.Point(661, 0);
-            this.searchNewEditControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.searchNewEditControl1.Name = "searchNewEditControl1";
-            this.searchNewEditControl1.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.searchNewEditControl1.Size = new System.Drawing.Size(214, 75);
-            this.searchNewEditControl1.TabIndex = 0;
             // 
             // BaseDataGridViewForm
             // 
@@ -91,7 +91,7 @@
             this.ClientSize = new System.Drawing.Size(897, 591);
             this.Controls.Add(this.splitContainer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "BaseDataGridViewForm";

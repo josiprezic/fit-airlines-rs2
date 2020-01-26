@@ -61,6 +61,43 @@ namespace FitAirlines_UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Generic_Add {
+            get {
+                return ResourceManager.GetString("Generic_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Generic_Edit {
+            get {
+                return ResourceManager.GetString("Generic_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Generic_Search {
+            get {
+                return ResourceManager.GetString("Generic_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Icon_Add {
+            get {
+                object obj = ResourceManager.GetObject("Icon_Add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Main Menu.
         /// </summary>
         public static string MainMenu_FormName {
@@ -102,6 +139,15 @@ namespace FitAirlines_UI.Properties {
         public static string MainMenu_Users {
             get {
                 return ResourceManager.GetString("MainMenu_Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offers.
+        /// </summary>
+        public static string Offers_FormName {
+            get {
+                return ResourceManager.GetString("Offers_FormName", resourceCulture);
             }
         }
     }

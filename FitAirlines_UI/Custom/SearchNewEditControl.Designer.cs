@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchNewEditControl));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.imageButton1 = new FitAirlines_UI.ImageButton(this.components);
-            this.imageButton2 = new FitAirlines_UI.ImageButton(this.components);
-            this.imageButton3 = new FitAirlines_UI.ImageButton(this.components);
+            this.searchImageButton = new FitAirlines_UI.ImageButton(this.components);
+            this.newImageButton = new FitAirlines_UI.ImageButton(this.components);
+            this.editImageButton = new FitAirlines_UI.ImageButton(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,57 +43,57 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Controls.Add(this.imageButton1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.imageButton2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.imageButton3, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.searchImageButton, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.newImageButton, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.editImageButton, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(497, 177);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // imageButton1
+            // searchImageButton
             // 
-            this.imageButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageButton1.Image = ((System.Drawing.Image)(resources.GetObject("imageButton1.Image")));
-            this.imageButton1.Location = new System.Drawing.Point(3, 3);
-            this.imageButton1.Name = "imageButton1";
-            this.imageButton1.Size = new System.Drawing.Size(159, 171);
-            this.imageButton1.TabIndex = 0;
-            this.imageButton1.Text = "imageButton1";
-            this.imageButton1.UseVisualStyleBackColor = true;
+            this.searchImageButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.searchImageButton.Image = ((System.Drawing.Image)(resources.GetObject("searchImageButton.Image")));
+            this.searchImageButton.Location = new System.Drawing.Point(3, 3);
+            this.searchImageButton.Name = "searchImageButton";
+            this.searchImageButton.Size = new System.Drawing.Size(159, 171);
+            this.searchImageButton.TabIndex = 0;
+            this.searchImageButton.Text = "imageButton1";
+            this.searchImageButton.UseVisualStyleBackColor = true;
             // 
-            // imageButton2
+            // newImageButton
             // 
-            this.imageButton2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageButton2.Image = ((System.Drawing.Image)(resources.GetObject("imageButton2.Image")));
-            this.imageButton2.Location = new System.Drawing.Point(168, 3);
-            this.imageButton2.Name = "imageButton2";
-            this.imageButton2.Size = new System.Drawing.Size(159, 171);
-            this.imageButton2.TabIndex = 1;
-            this.imageButton2.Text = "imageButton2";
-            this.imageButton2.UseVisualStyleBackColor = true;
+            this.newImageButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.newImageButton.Image = ((System.Drawing.Image)(resources.GetObject("newImageButton.Image")));
+            this.newImageButton.Location = new System.Drawing.Point(168, 3);
+            this.newImageButton.Name = "newImageButton";
+            this.newImageButton.Size = new System.Drawing.Size(159, 171);
+            this.newImageButton.TabIndex = 1;
+            this.newImageButton.Text = "imageButton2";
+            this.newImageButton.UseVisualStyleBackColor = true;
             // 
-            // imageButton3
+            // editImageButton
             // 
-            this.imageButton3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageButton3.Image = ((System.Drawing.Image)(resources.GetObject("imageButton3.Image")));
-            this.imageButton3.Location = new System.Drawing.Point(333, 3);
-            this.imageButton3.Name = "imageButton3";
-            this.imageButton3.Size = new System.Drawing.Size(161, 171);
-            this.imageButton3.TabIndex = 2;
-            this.imageButton3.Text = "imageButton3";
-            this.imageButton3.UseVisualStyleBackColor = true;
+            this.editImageButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.editImageButton.Image = ((System.Drawing.Image)(resources.GetObject("editImageButton.Image")));
+            this.editImageButton.Location = new System.Drawing.Point(333, 3);
+            this.editImageButton.Name = "editImageButton";
+            this.editImageButton.Size = new System.Drawing.Size(161, 171);
+            this.editImageButton.TabIndex = 2;
+            this.editImageButton.Text = "imageButton3";
+            this.editImageButton.UseVisualStyleBackColor = true;
             // 
             // SearchNewEditControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SearchNewEditControl";
             this.Size = new System.Drawing.Size(497, 177);
             this.Load += new System.EventHandler(this.SearchNewEditControl_Load);
@@ -105,8 +105,8 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private ImageButton imageButton1;
-        private ImageButton imageButton2;
-        private ImageButton imageButton3;
+        private ImageButton searchImageButton;
+        private ImageButton newImageButton;
+        private ImageButton editImageButton;
     }
 }
