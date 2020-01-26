@@ -20,9 +20,7 @@ namespace FitAirlines_UI
 
         private void offersButton_Click(object sender, System.EventArgs e)
         {
-            // TODO: JR update
-            BaseDataGridViewForm form = new BaseDataGridViewForm();
-            form.Show();
+            ShowNewForm<OffersForm>();
         }
     }
 }

@@ -8,7 +8,8 @@ namespace FitAirlines_UI
     public class BaseForm: Form
     {
 
-
+        static readonly int defaultFormHeight = 700;
+        static readonly int defaultFormWidth = 1100;
         protected BaseForm() { }
 
         override protected void OnLoad(EventArgs e) { Configure(); }
@@ -18,22 +19,33 @@ namespace FitAirlines_UI
         protected virtual void SetupStyling() { }
 
         protected void Logger(String message) { Debug.WriteLine(message); }
+        
+        protected void ShowNewForm<T>() where T : BaseForm, new()
+        {
+            T form = new T();
+            form.ShowDialog();
+        }
 
-        protected void Configure()
+        //
+        // MARK: - Private methods
+        //
+
+        void Configure()
         {
             SetupForm();
             SetupStrings();
             SetupStyling();
         }
 
-        private void SetupForm()
+        void SetupForm()
         {
             // Disable resizing
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MinimizeBox = false;
             MaximizeBox = false;
 
-            // Set form position to center
+            // Set form size and set form position to center
+            Size = new System.Drawing.Size(defaultFormWidth, defaultFormHeight);
             CenterToParent();
         }
     }
