@@ -32,7 +32,7 @@ namespace FitAirlines_UI
             Configure();
         }
 
-        protected void SetupStyling()
+        protected virtual void SetupStyling()
         {
             // TODO: JR
         }

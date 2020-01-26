@@ -25,6 +25,7 @@ namespace FitAirlines_UI.CustomViews
         //
         // MARK: - Public methods
         //
+
         public override string Text {
             get => base.Text;
             set => base.Text = value.ToUpper();
