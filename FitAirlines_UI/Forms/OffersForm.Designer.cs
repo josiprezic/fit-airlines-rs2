@@ -30,12 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dateTimePickerLabel = new System.Windows.Forms.Label();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.offerNameLabel = new System.Windows.Forms.Label();
             this.offerNameTextBox = new System.Windows.Forms.TextBox();
             this.baseDataGridView1 = new FitAirlines_UI.BaseDataGridView(this.components);
-            this.searchNewEditControl1 = new FitAirlines_UI.SearchNewEditControl();
+            this.offerDateTimePicker = new FitAirlines_UI.BaseDateTimePicker(this.components);
+            this.addImageButton = new FitAirlines_UI.ImageButton(this.components);
+            this.searchImageButton = new FitAirlines_UI.ImageButton(this.components);
+            this.editImageButton = new FitAirlines_UI.ImageButton(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,17 +50,10 @@
             this.dateTimePickerLabel.TabIndex = 6;
             this.dateTimePickerLabel.Text = "label1";
             // 
-            // dateTimePicker
-            // 
-            this.dateTimePicker.Location = new System.Drawing.Point(218, 31);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker.TabIndex = 5;
-            // 
             // isActiveCheckBox
             // 
             this.isActiveCheckBox.AutoSize = true;
-            this.isActiveCheckBox.Location = new System.Drawing.Point(439, 33);
+            this.isActiveCheckBox.Location = new System.Drawing.Point(416, 33);
             this.isActiveCheckBox.Name = "isActiveCheckBox";
             this.isActiveCheckBox.Size = new System.Drawing.Size(80, 17);
             this.isActiveCheckBox.TabIndex = 4;
@@ -93,28 +88,64 @@
             this.baseDataGridView1.Size = new System.Drawing.Size(853, 421);
             this.baseDataGridView1.TabIndex = 7;
             // 
-            // searchNewEditControl1
+            // offerDateTimePicker
             // 
-            this.searchNewEditControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchNewEditControl1.Location = new System.Drawing.Point(561, 17);
-            this.searchNewEditControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.searchNewEditControl1.Name = "searchNewEditControl1";
-            this.searchNewEditControl1.Size = new System.Drawing.Size(308, 44);
-            this.searchNewEditControl1.TabIndex = 8;
+            this.offerDateTimePicker.Location = new System.Drawing.Point(218, 31);
+            this.offerDateTimePicker.Name = "offerDateTimePicker";
+            this.offerDateTimePicker.Size = new System.Drawing.Size(183, 20);
+            this.offerDateTimePicker.TabIndex = 9;
+            // 
+            // addImageButton
+            // 
+            this.addImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addImageButton.Location = new System.Drawing.Point(776, 15);
+            this.addImageButton.Name = "addImageButton";
+            this.addImageButton.Size = new System.Drawing.Size(89, 52);
+            this.addImageButton.TabIndex = 10;
+            this.addImageButton.Text = "imageButton1";
+            this.addImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.addImageButton.UseVisualStyleBackColor = true;
+            // 
+            // searchImageButton
+            // 
+            this.searchImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchImageButton.Location = new System.Drawing.Point(592, 15);
+            this.searchImageButton.Name = "searchImageButton";
+            this.searchImageButton.Size = new System.Drawing.Size(95, 51);
+            this.searchImageButton.TabIndex = 12;
+            this.searchImageButton.Text = "imageButton3";
+            this.searchImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.searchImageButton.UseVisualStyleBackColor = true;
+            this.searchImageButton.Click += new System.EventHandler(this.searchImageButton_Click);
+            // 
+            // editImageButton
+            // 
+            this.editImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.editImageButton.Location = new System.Drawing.Point(689, 15);
+            this.editImageButton.Name = "editImageButton";
+            this.editImageButton.Size = new System.Drawing.Size(85, 51);
+            this.editImageButton.TabIndex = 11;
+            this.editImageButton.Text = "imageButton2";
+            this.editImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.editImageButton.UseVisualStyleBackColor = true;
             // 
             // OffersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(877, 510);
-            this.Controls.Add(this.searchNewEditControl1);
+            this.Controls.Add(this.searchImageButton);
+            this.Controls.Add(this.editImageButton);
+            this.Controls.Add(this.addImageButton);
+            this.Controls.Add(this.offerDateTimePicker);
             this.Controls.Add(this.baseDataGridView1);
             this.Controls.Add(this.dateTimePickerLabel);
-            this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.isActiveCheckBox);
             this.Controls.Add(this.offerNameLabel);
             this.Controls.Add(this.offerNameTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "OffersForm";
             this.Text = "OffersForm";
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).EndInit();
@@ -126,11 +157,13 @@
         #endregion
 
         private System.Windows.Forms.Label dateTimePickerLabel;
-        private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.CheckBox isActiveCheckBox;
         private System.Windows.Forms.Label offerNameLabel;
         private System.Windows.Forms.TextBox offerNameTextBox;
         private BaseDataGridView baseDataGridView1;
-        private SearchNewEditControl searchNewEditControl1;
+        private BaseDateTimePicker offerDateTimePicker;
+        private ImageButton addImageButton;
+        private ImageButton searchImageButton;
+        private ImageButton editImageButton;
     }
 }

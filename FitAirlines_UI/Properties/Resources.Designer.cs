@@ -150,5 +150,32 @@ namespace FitAirlines_UI.Properties {
                 return ResourceManager.GetString("Offers_FormName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string Offers_IsActiveOffer {
+            get {
+                return ResourceManager.GetString("Offers_IsActiveOffer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offer date:.
+        /// </summary>
+        public static string Offers_OfferDate {
+            get {
+                return ResourceManager.GetString("Offers_OfferDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offer name:.
+        /// </summary>
+        public static string Offers_OfferName {
+            get {
+                return ResourceManager.GetString("Offers_OfferName", resourceCulture);
+            }
+        }
     }
 }

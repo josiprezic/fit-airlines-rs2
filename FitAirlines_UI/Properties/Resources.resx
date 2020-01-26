@@ -148,4 +148,13 @@
   <data name="Offers_FormName" xml:space="preserve">
     <value>Offers</value>
   </data>
+  <data name="Offers_IsActiveOffer" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Offers_OfferDate" xml:space="preserve">
+    <value>Offer date:</value>
+  </data>
+  <data name="Offers_OfferName" xml:space="preserve">
+    <value>Offer name:</value>
+  </data>
 </root>
