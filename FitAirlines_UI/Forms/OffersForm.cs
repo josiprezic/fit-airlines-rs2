@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace FitAirlines_UI
 {
-    public partial class OffersForm : BaseDataGridViewForm
+    public partial class OffersForm : BaseForm
     {
         public OffersForm()
         {

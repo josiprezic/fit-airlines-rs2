@@ -64,12 +64,6 @@
     <Compile Include="Base\Components\BaseDataGridView.Designer.cs">
       <DependentUpon>BaseDataGridView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Base\Form\BaseDataGridViewForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Base\Form\BaseDataGridViewForm.Designer.cs">
-      <DependentUpon>BaseDataGridViewForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Base\Components\BaseButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -116,9 +110,6 @@
     <Compile Include="Custom\SearchNewEditControl.Designer.cs">
       <DependentUpon>SearchNewEditControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Base\Form\BaseDataGridViewForm.resx">
-      <DependentUpon>BaseDataGridViewForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Base\Components\BaseButton.resx">
       <DependentUpon>BaseButton.cs</DependentUpon>
     </EmbeddedResource>
@@ -129,6 +120,9 @@
       <DependentUpon>MainMenuForm.cs</DependentUpon>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MainMenuForm1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OffersForm.resx">
+      <DependentUpon>OffersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
