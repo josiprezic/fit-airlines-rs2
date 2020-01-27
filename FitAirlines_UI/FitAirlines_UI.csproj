@@ -58,10 +58,16 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDateTimePicker.cs">
+    <Compile Include="AddOrEditOfferForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddOrEditOfferForm.Designer.cs">
+      <DependentUpon>AddOrEditOfferForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Components\BaseDateTimePicker.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BaseDateTimePicker.Designer.cs">
+    <Compile Include="Base\Components\BaseDateTimePicker.Designer.cs">
       <DependentUpon>BaseDateTimePicker.cs</DependentUpon>
     </Compile>
     <Compile Include="Base\Components\BaseDataGridView.cs">

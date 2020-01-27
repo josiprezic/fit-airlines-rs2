@@ -25,7 +25,11 @@ namespace FitAirlines_UI
         // MARK: - Protected methods
         //
 
-        override protected void OnLoad(EventArgs e) { Configure(); }
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            Configure();
+        }
 
         protected virtual void SetupStrings() { }
 
