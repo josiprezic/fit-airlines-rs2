@@ -58,10 +58,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseCustomSizeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BasePictureBox.cs">
+    <Compile Include="Base\Components\BasePictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\AddOrEditOfferForm.cs">
