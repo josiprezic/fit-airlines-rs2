@@ -130,6 +130,9 @@
   <data name="Icon_Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Image_Placeholder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BaseImagePlaceholder.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="MainMenu_FormName" xml:space="preserve">
     <value>Main Menu</value>
   </data>

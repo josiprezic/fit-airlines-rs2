@@ -14,7 +14,7 @@ namespace FitAirlines_UI
 
         static readonly int defaultFormHeight = 700;
         static readonly int defaultFormWidth = 1100;
-        
+
         //
         // MARK: - Constructors
         //
@@ -30,6 +30,8 @@ namespace FitAirlines_UI
             base.OnHandleCreated(e);
             Configure();
         }
+
+        protected virtual bool ShouldResize() { return true; }
 
         protected virtual void SetupStrings() { }
 
@@ -61,8 +63,14 @@ namespace FitAirlines_UI
             MinimizeBox = false;
             MaximizeBox = false;
 
-            // Set form size and set form position to center
-            Size = new System.Drawing.Size(defaultFormWidth, defaultFormHeight);
+            if (ShouldResize())
+            {
+                // Set form size
+                Size = new System.Drawing.Size(defaultFormWidth, defaultFormHeight);
+                CenterToParent();
+            }
+
+            // Set form position to center
             CenterToParent();
         }
     }

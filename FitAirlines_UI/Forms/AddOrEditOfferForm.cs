@@ -35,7 +35,9 @@ namespace FitAirlines_UI
         }
 
         //
-        // MARK: - JR 
+        // MARK: - Methods
         //
+
+        protected override bool ShouldResize() { return false; }
     }
 }

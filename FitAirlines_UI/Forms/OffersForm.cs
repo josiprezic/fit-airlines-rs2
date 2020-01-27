@@ -23,7 +23,7 @@ namespace FitAirlines_UI
         }
 
         //
-        // MARK: - Methods
+        // MARK: - Protected methods
         //
 
         protected override void SetupStrings()
@@ -51,6 +51,22 @@ namespace FitAirlines_UI
         }
 
         //
+        // MARK: - Private methods
+        //
+
+        private void ShowAddForm()
+        {
+            AddOrEditOfferForm form = new AddOrEditOfferForm();
+            form.ShowDialog();
+        }
+
+        private void ShowEditForm()
+        {
+            AddOrEditOfferForm form = new AddOrEditOfferForm(AddOrEditOfferFormType.Edit);
+            form.ShowDialog();
+        }
+
+        //
         // MARK: - Actions
         //
 
@@ -58,6 +74,16 @@ namespace FitAirlines_UI
         {
             // TODO: JR perform search 
             offerDateTimePicker.Clear();
+        }
+
+        private void addImageButton_Click(object sender, EventArgs e)
+        {
+            ShowAddForm();
+        }
+
+        private void editImageButton_Click(object sender, EventArgs e)
+        {
+            ShowEditForm();
         }
     }
 }

@@ -105,6 +105,7 @@
             this.addImageButton.Text = "imageButton1";
             this.addImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.addImageButton.UseVisualStyleBackColor = true;
+            this.addImageButton.Click += new System.EventHandler(this.addImageButton_Click);
             // 
             // searchImageButton
             // 
@@ -128,6 +129,7 @@
             this.editImageButton.Text = "imageButton2";
             this.editImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.editImageButton.UseVisualStyleBackColor = true;
+            this.editImageButton.Click += new System.EventHandler(this.editImageButton_Click);
             // 
             // OffersForm
             // 

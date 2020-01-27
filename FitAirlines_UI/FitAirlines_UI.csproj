@@ -58,10 +58,16 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddOrEditOfferForm.cs">
+    <Compile Include="BaseCustomSizeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddOrEditOfferForm.Designer.cs">
+    <Compile Include="BasePictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\AddOrEditOfferForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddOrEditOfferForm.Designer.cs">
       <DependentUpon>AddOrEditOfferForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Base\Components\BaseDateTimePicker.cs">
@@ -116,6 +122,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\AddOrEditOfferForm.resx">
+      <DependentUpon>AddOrEditOfferForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Base\Components\BaseButton.resx">
       <DependentUpon>BaseButton.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,6 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BaseImagePlaceholder.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
