@@ -129,7 +129,7 @@
     <Compile Include="Custom\ImageButton.Designer.cs">
       <DependentUpon>ImageButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageUploadHelper.cs" />
+    <Compile Include="Helpers\ImageUploadHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AddOrEditFlightForm.resx">

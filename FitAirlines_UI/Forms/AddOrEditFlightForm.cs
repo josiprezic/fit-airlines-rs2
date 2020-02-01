@@ -64,6 +64,12 @@ namespace FitAirlines_UI
             saveButton.Text = Resources.Generic_Save;
         }
 
+        protected override void SetupStyling()
+        {
+            base.SetupStyling();
+            isActiveCheckBox.Checked = true;
+        }
+
         //
         // MARK: - Actions
         //
