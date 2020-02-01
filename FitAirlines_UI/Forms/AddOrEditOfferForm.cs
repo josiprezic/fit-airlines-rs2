@@ -54,7 +54,7 @@ namespace FitAirlines_UI
             offerDescriptionLabel.Text = Resources.AddOrEditOffer_OfferDescription;
             isActiveCheckBox.Text = Resources.Generic_IsActive;
 
-            uploadofferPictureButton.Text = Resources.AddOrEditOffer_UploadImage;
+            uploadofferPictureButton.Text = Resources.Generic_UploadImage;
             cancelButton.Text = Resources.Generic_Cancel;
             saveOfferButton.Text = Resources.Generic_Save;
         }

@@ -58,7 +58,7 @@
             this.imageGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imageGroupBox.Location = new System.Drawing.Point(342, 3);
             this.imageGroupBox.Name = "imageGroupBox";
-            this.imageGroupBox.Size = new System.Drawing.Size(333, 299);
+            this.imageGroupBox.Size = new System.Drawing.Size(333, 305);
             this.imageGroupBox.TabIndex = 11;
             this.imageGroupBox.TabStop = false;
             this.imageGroupBox.Text = "groupBox2";
@@ -73,7 +73,7 @@
             this.offerPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("offerPictureBox.Image")));
             this.offerPictureBox.Location = new System.Drawing.Point(6, 25);
             this.offerPictureBox.Name = "offerPictureBox";
-            this.offerPictureBox.Size = new System.Drawing.Size(321, 220);
+            this.offerPictureBox.Size = new System.Drawing.Size(321, 230);
             this.offerPictureBox.TabIndex = 10;
             this.offerPictureBox.TabStop = false;
             // 
@@ -81,7 +81,7 @@
             // 
             this.uploadofferPictureButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uploadofferPictureButton.Location = new System.Drawing.Point(6, 253);
+            this.uploadofferPictureButton.Location = new System.Drawing.Point(6, 261);
             this.uploadofferPictureButton.Name = "uploadofferPictureButton";
             this.uploadofferPictureButton.Size = new System.Drawing.Size(321, 40);
             this.uploadofferPictureButton.TabIndex = 7;
@@ -183,7 +183,7 @@
             this.personalInfoGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.personalInfoGroupBox.Location = new System.Drawing.Point(3, 3);
             this.personalInfoGroupBox.Name = "personalInfoGroupBox";
-            this.personalInfoGroupBox.Size = new System.Drawing.Size(333, 299);
+            this.personalInfoGroupBox.Size = new System.Drawing.Size(333, 305);
             this.personalInfoGroupBox.TabIndex = 2;
             this.personalInfoGroupBox.TabStop = false;
             this.personalInfoGroupBox.Text = "groupBox1";
@@ -202,7 +202,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(678, 305);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(678, 311);
             this.tableLayoutPanel1.TabIndex = 12;
             // 
             // tableLayoutPanel2
@@ -213,7 +213,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.cancelButton, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.saveOfferButton, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(363, 323);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(365, 329);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -224,7 +224,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(702, 394);
+            this.ClientSize = new System.Drawing.Size(702, 382);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

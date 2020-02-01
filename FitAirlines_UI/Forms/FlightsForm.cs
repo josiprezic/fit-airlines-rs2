@@ -72,17 +72,19 @@ namespace FitAirlines_UI
 
         private void searchImageButton_Click(object sender, EventArgs e)
         {
-
+            // TODO: JR
         }
 
         private void editImageButton_Click(object sender, EventArgs e)
         {
-
+            AddOrEditFlightForm form = new AddOrEditFlightForm(AddOrEditFlightFormType.Edit);
+            form.ShowDialog();
         }
 
         private void addImageButton_Click(object sender, EventArgs e)
         {
-
+            AddOrEditFlightForm form = new AddOrEditFlightForm(AddOrEditFlightFormType.Add);
+            form.ShowDialog();
         }
     }
 }
