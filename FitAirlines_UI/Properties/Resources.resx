@@ -180,6 +180,9 @@
   <data name="Flights_FormName" xml:space="preserve">
     <value>Flights</value>
   </data>
+  <data name="Flights_Offer" xml:space="preserve">
+    <value>Offer</value>
+  </data>
   <data name="Generic_Add" xml:space="preserve">
     <value>Add</value>
   </data>

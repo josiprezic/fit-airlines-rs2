@@ -250,6 +250,15 @@ namespace FitAirlines_UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Offer.
+        /// </summary>
+        public static string Flights_Offer {
+            get {
+                return ResourceManager.GetString("Flights_Offer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Generic_Add {
