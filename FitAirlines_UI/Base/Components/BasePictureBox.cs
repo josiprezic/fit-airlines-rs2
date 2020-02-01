@@ -18,6 +18,15 @@ namespace FitAirlines_UI
         public BasePictureBox() { }
 
         //
+        // MARK: - Public methods
+        //
+
+        public void UploadAndSetImage() 
+        {
+            ImageLocation = ImageUploadHelper.ShowDialogAndGetImageLocation();
+        }
+
+        //
         // MARK: - Protected methods
         //
 
@@ -31,6 +40,7 @@ namespace FitAirlines_UI
         {
             BorderStyle = BorderStyle.FixedSingle;
             BackColor = Color.Gray;
+            SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         //

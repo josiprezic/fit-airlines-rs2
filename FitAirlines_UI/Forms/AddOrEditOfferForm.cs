@@ -54,9 +54,15 @@ namespace FitAirlines_UI
             offerDescriptionLabel.Text = Resources.AddOrEditOffer_OfferDescription;
             isActiveCheckBox.Text = Resources.Generic_IsActive;
 
-            uploadofferPictureButton.Text = Resources.AddOrEditOffer_UploadImage;
+            uploadofferPictureButton.Text = Resources.Generic_UploadImage;
             cancelButton.Text = Resources.Generic_Cancel;
             saveOfferButton.Text = Resources.Generic_Save;
+        }
+
+        protected override void SetupStyling()
+        {
+            base.SetupStyling();
+            isActiveCheckBox.Checked = true;
         }
 
         //
@@ -65,7 +71,7 @@ namespace FitAirlines_UI
 
         private void uploadofferPictureButton_Click(object sender, EventArgs e)
         {
-            // TODO: JR
+            offerPictureBox.UploadAndSetImage();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

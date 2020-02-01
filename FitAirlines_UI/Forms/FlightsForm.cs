@@ -31,14 +31,20 @@ namespace FitAirlines_UI
             base.SetupStrings();
             Text = Resources.Flights_FormName;
             flightNameLabel.Text = Resources.Flights_FlightName;
-            dateTimePickerLabel.Text = Resources.Flights_FlightDate;
+            countryLabel.Text = Resources.AddOrEditFlight_Country;
+            cityLabel.Text = Resources.AddOrEditFlight_City;
+            
+            startDateTimePickerLabel.Text = Resources.AddOrEditFlight_StartDate;
+            endDateTimePickerLabel.Text = Resources.AddOrEditFlight_EndDate;
+            minMembershipTypeLabel.Text = Resources.AddOrEditOFfer_OfferMembershipLevel;
+            offerLabel.Text = Resources.Flights_Offer;
             isActiveCheckBox.Text = Resources.Generic_IsActive;
         }
 
         protected override void SetupStyling()
         {
             base.SetupStyling();
-            flightDateTimePicker.Clear();
+            startDateTimePicker.Clear();
 
             searchImageButton.Image = Resources.Icon_Add;
             searchImageButton.Text = Resources.Generic_Search;
@@ -51,38 +57,24 @@ namespace FitAirlines_UI
         }
 
         //
-        // MARK: - Private methods
-        //
-
-        private void ShowAddForm()
-        {
-            //AddOrEditOfferForm form = new AddOrEditOfferForm();
-            //form.ShowDialog();
-        }
-
-        private void ShowEditForm()
-        {
-            //AddOrEditOfferForm form = new AddOrEditOfferForm(AddOrEditOfferFormType.Edit);
-            //form.ShowDialog();
-        }
-
-        //
         // MARK: - Actions
         //
 
         private void searchImageButton_Click(object sender, EventArgs e)
         {
-
+            // TODO: JR
         }
 
         private void editImageButton_Click(object sender, EventArgs e)
         {
-
+            AddOrEditFlightForm form = new AddOrEditFlightForm(AddOrEditFlightFormType.Edit);
+            form.ShowDialog();
         }
 
         private void addImageButton_Click(object sender, EventArgs e)
         {
-
+            AddOrEditFlightForm form = new AddOrEditFlightForm(AddOrEditFlightFormType.Add);
+            form.ShowDialog();
         }
     }
 }

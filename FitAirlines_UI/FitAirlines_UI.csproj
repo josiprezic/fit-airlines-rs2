@@ -58,6 +58,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\AddOrEditFlightForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddOrEditFlightForm.Designer.cs">
+      <DependentUpon>AddOrEditFlightForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Base\Components\BasePictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -123,8 +129,12 @@
     <Compile Include="Custom\ImageButton.Designer.cs">
       <DependentUpon>ImageButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ImageUploadHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\AddOrEditFlightForm.resx">
+      <DependentUpon>AddOrEditFlightForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FlightsForm.resx">
       <DependentUpon>FlightsForm.cs</DependentUpon>
     </EmbeddedResource>

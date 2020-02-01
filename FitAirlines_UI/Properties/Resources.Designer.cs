@@ -61,11 +61,101 @@ namespace FitAirlines_UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new flight.
+        /// </summary>
+        public static string AddFlight_FormName {
+            get {
+                return ResourceManager.GetString("AddFlight_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add new offer.
         /// </summary>
         public static string AddOffer_FormName {
             get {
                 return ResourceManager.GetString("AddOffer_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basic info.
+        /// </summary>
+        public static string AddOrEditFlight_BasicInfo {
+            get {
+                return ResourceManager.GetString("AddOrEditFlight_BasicInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Capacity.
+        /// </summary>
+        public static string AddOrEditFlight_Capacity {
+            get {
+                return ResourceManager.GetString("AddOrEditFlight_Capacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string AddOrEditFlight_City {
+            get {
+                return ResourceManager.GetString("AddOrEditFlight_City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string AddOrEditFlight_Country {
+            get {
+                return ResourceManager.GetString("AddOrEditFlight_Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date.
+        /// </summary>
+        public static string AddOrEditFlight_EndDate {
+            get {
+                return ResourceManager.GetString("AddOrEditFlight_EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string AddOrEditFlight_FlightDescription {
+            get {
+                return ResourceManager.GetString("AddOrEditFlight_FlightDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flight name.
+        /// </summary>
+        public static string AddOrEditFlight_FlightName {
+            get {
+                return ResourceManager.GetString("AddOrEditFlight_FlightName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flight offer.
+        /// </summary>
+        public static string AddOrEditFlight_FlightOffer {
+            get {
+                return ResourceManager.GetString("AddOrEditFlight_FlightOffer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start date.
+        /// </summary>
+        public static string AddOrEditFlight_StartDate {
+            get {
+                return ResourceManager.GetString("AddOrEditFlight_StartDate", resourceCulture);
             }
         }
         
@@ -115,11 +205,11 @@ namespace FitAirlines_UI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upload Image....
+        ///   Looks up a localized string similar to Edit flight.
         /// </summary>
-        public static string AddOrEditOffer_UploadImage {
+        public static string EditFlight_FormName {
             get {
-                return ResourceManager.GetString("AddOrEditOffer_UploadImage", resourceCulture);
+                return ResourceManager.GetString("EditFlight_FormName", resourceCulture);
             }
         }
         
@@ -160,6 +250,15 @@ namespace FitAirlines_UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Offer.
+        /// </summary>
+        public static string Flights_Offer {
+            get {
+                return ResourceManager.GetString("Flights_Offer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Generic_Add {
@@ -187,6 +286,15 @@ namespace FitAirlines_UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image options.
+        /// </summary>
+        public static string Generic_ImageOptions {
+            get {
+                return ResourceManager.GetString("Generic_ImageOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active.
         /// </summary>
         public static string Generic_IsActive {
@@ -210,6 +318,15 @@ namespace FitAirlines_UI.Properties {
         public static string Generic_Search {
             get {
                 return ResourceManager.GetString("Generic_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload image....
+        /// </summary>
+        public static string Generic_UploadImage {
+            get {
+                return ResourceManager.GetString("Generic_UploadImage", resourceCulture);
             }
         }
         
