@@ -79,15 +79,6 @@ namespace FitAirlines_UI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Active.
-        /// </summary>
-        public static string AddOrEditOffer_IsActive {
-            get {
-                return ResourceManager.GetString("AddOrEditOffer_IsActive", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string AddOrEditOffer_OfferDescription {
@@ -142,6 +133,33 @@ namespace FitAirlines_UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flight date.
+        /// </summary>
+        public static string Flights_FlightDate {
+            get {
+                return ResourceManager.GetString("Flights_FlightDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flight name.
+        /// </summary>
+        public static string Flights_FlightName {
+            get {
+                return ResourceManager.GetString("Flights_FlightName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flights.
+        /// </summary>
+        public static string Flights_FormName {
+            get {
+                return ResourceManager.GetString("Flights_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Generic_Add {
@@ -165,6 +183,15 @@ namespace FitAirlines_UI.Properties {
         public static string Generic_Edit {
             get {
                 return ResourceManager.GetString("Generic_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string Generic_IsActive {
+            get {
+                return ResourceManager.GetString("Generic_IsActive", resourceCulture);
             }
         }
         
@@ -203,6 +230,15 @@ namespace FitAirlines_UI.Properties {
             get {
                 object obj = ResourceManager.GetObject("Image_Placeholder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flights.
+        /// </summary>
+        public static string MainMenu_Flights {
+            get {
+                return ResourceManager.GetString("MainMenu_Flights", resourceCulture);
             }
         }
         
@@ -257,15 +293,6 @@ namespace FitAirlines_UI.Properties {
         public static string Offers_FormName {
             get {
                 return ResourceManager.GetString("Offers_FormName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Active.
-        /// </summary>
-        public static string Offers_IsActiveOffer {
-            get {
-                return ResourceManager.GetString("Offers_IsActiveOffer", resourceCulture);
             }
         }
         

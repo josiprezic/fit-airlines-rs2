@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace FitAirlines_UI
 {
-    public partial class OffersForm : BaseForm
+    public partial class FlightsForm : BaseForm
     {
         //
         // MARK: - Constructors
         //
 
-        public OffersForm()
+        public FlightsForm()
         {
             InitializeComponent();
         }
@@ -29,16 +29,16 @@ namespace FitAirlines_UI
         protected override void SetupStrings()
         {
             base.SetupStrings();
-            Text = Resources.Offers_FormName;
-            offerNameLabel.Text = Resources.Offers_OfferName;
-            dateTimePickerLabel.Text = Resources.Offers_OfferDate;
+            Text = Resources.Flights_FormName;
+            flightNameLabel.Text = Resources.Flights_FlightName;
+            dateTimePickerLabel.Text = Resources.Flights_FlightDate;
             isActiveCheckBox.Text = Resources.Generic_IsActive;
         }
 
         protected override void SetupStyling()
         {
             base.SetupStyling();
-            offerDateTimePicker.Clear();
+            flightDateTimePicker.Clear();
 
             searchImageButton.Image = Resources.Icon_Add;
             searchImageButton.Text = Resources.Generic_Search;
@@ -56,14 +56,14 @@ namespace FitAirlines_UI
 
         private void ShowAddForm()
         {
-            AddOrEditOfferForm form = new AddOrEditOfferForm();
-            form.ShowDialog();
+            //AddOrEditOfferForm form = new AddOrEditOfferForm();
+            //form.ShowDialog();
         }
 
         private void ShowEditForm()
         {
-            AddOrEditOfferForm form = new AddOrEditOfferForm(AddOrEditOfferFormType.Edit);
-            form.ShowDialog();
+            //AddOrEditOfferForm form = new AddOrEditOfferForm(AddOrEditOfferFormType.Edit);
+            //form.ShowDialog();
         }
 
         //
@@ -72,18 +72,17 @@ namespace FitAirlines_UI
 
         private void searchImageButton_Click(object sender, EventArgs e)
         {
-            // TODO: JR perform search 
-            offerDateTimePicker.Clear();
-        }
 
-        private void addImageButton_Click(object sender, EventArgs e)
-        {
-            ShowAddForm();
         }
 
         private void editImageButton_Click(object sender, EventArgs e)
         {
-            ShowEditForm();
+
+        }
+
+        private void addImageButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

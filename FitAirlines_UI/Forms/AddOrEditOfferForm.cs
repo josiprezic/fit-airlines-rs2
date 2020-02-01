@@ -52,7 +52,7 @@ namespace FitAirlines_UI
             offerNameLabel.Text = Resources.AddOrEditOffer_OfferName;
             requiredMemberLevelLabel.Text = Resources.AddOrEditOFfer_OfferMembershipLevel;
             offerDescriptionLabel.Text = Resources.AddOrEditOffer_OfferDescription;
-            isActiveCheckBox.Text = Resources.AddOrEditOffer_IsActive;
+            isActiveCheckBox.Text = Resources.Generic_IsActive;
 
             uploadofferPictureButton.Text = Resources.AddOrEditOffer_UploadImage;
             cancelButton.Text = Resources.Generic_Cancel;

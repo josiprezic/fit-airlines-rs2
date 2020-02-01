@@ -16,11 +16,17 @@ namespace FitAirlines_UI
             reservationsButton.Text = Resources.MainMenu_Reservations;
             usersButton.Text = Resources.MainMenu_Users;
             settingsButton.Text = Resources.MainMenu_Settings;
+            flightsButton.Text = Resources.MainMenu_Flights;
         }
 
         private void offersButton_Click(object sender, System.EventArgs e)
         {
             ShowNewForm<OffersForm>();
+        }
+
+        private void flightsButton_Click(object sender, System.EventArgs e)
+        {
+            ShowNewForm<FlightsForm>();
         }
     }
 }

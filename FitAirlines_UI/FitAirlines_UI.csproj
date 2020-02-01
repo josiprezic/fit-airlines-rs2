@@ -61,6 +61,12 @@
     <Compile Include="Base\Components\BasePictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\FlightsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FlightsForm.Designer.cs">
+      <DependentUpon>FlightsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddOrEditOfferForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FlightsForm.resx">
+      <DependentUpon>FlightsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddOrEditOfferForm.resx">
       <DependentUpon>AddOrEditOfferForm.cs</DependentUpon>
     </EmbeddedResource>
