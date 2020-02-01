@@ -61,6 +61,188 @@ namespace FitAirlines_UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new offer.
+        /// </summary>
+        public static string AddOffer_FormName {
+            get {
+                return ResourceManager.GetString("AddOffer_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image Options.
+        /// </summary>
+        public static string AddOrEditOffer_ImageOptions {
+            get {
+                return ResourceManager.GetString("AddOrEditOffer_ImageOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string AddOrEditOffer_OfferDescription {
+            get {
+                return ResourceManager.GetString("AddOrEditOffer_OfferDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min membership level.
+        /// </summary>
+        public static string AddOrEditOFfer_OfferMembershipLevel {
+            get {
+                return ResourceManager.GetString("AddOrEditOFfer_OfferMembershipLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offer title.
+        /// </summary>
+        public static string AddOrEditOffer_OfferName {
+            get {
+                return ResourceManager.GetString("AddOrEditOffer_OfferName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal info.
+        /// </summary>
+        public static string AddOrEditOffer_PersonalInfo {
+            get {
+                return ResourceManager.GetString("AddOrEditOffer_PersonalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload Image....
+        /// </summary>
+        public static string AddOrEditOffer_UploadImage {
+            get {
+                return ResourceManager.GetString("AddOrEditOffer_UploadImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit offer.
+        /// </summary>
+        public static string EditOffer_FormName {
+            get {
+                return ResourceManager.GetString("EditOffer_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flight date.
+        /// </summary>
+        public static string Flights_FlightDate {
+            get {
+                return ResourceManager.GetString("Flights_FlightDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flight name.
+        /// </summary>
+        public static string Flights_FlightName {
+            get {
+                return ResourceManager.GetString("Flights_FlightName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flights.
+        /// </summary>
+        public static string Flights_FormName {
+            get {
+                return ResourceManager.GetString("Flights_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Generic_Add {
+            get {
+                return ResourceManager.GetString("Generic_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Generic_Cancel {
+            get {
+                return ResourceManager.GetString("Generic_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Generic_Edit {
+            get {
+                return ResourceManager.GetString("Generic_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string Generic_IsActive {
+            get {
+                return ResourceManager.GetString("Generic_IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Generic_Save {
+            get {
+                return ResourceManager.GetString("Generic_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Generic_Search {
+            get {
+                return ResourceManager.GetString("Generic_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Icon_Add {
+            get {
+                object obj = ResourceManager.GetObject("Icon_Add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Image_Placeholder {
+            get {
+                object obj = ResourceManager.GetObject("Image_Placeholder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flights.
+        /// </summary>
+        public static string MainMenu_Flights {
+            get {
+                return ResourceManager.GetString("MainMenu_Flights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Main Menu.
         /// </summary>
         public static string MainMenu_FormName {
@@ -102,6 +284,33 @@ namespace FitAirlines_UI.Properties {
         public static string MainMenu_Users {
             get {
                 return ResourceManager.GetString("MainMenu_Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offers.
+        /// </summary>
+        public static string Offers_FormName {
+            get {
+                return ResourceManager.GetString("Offers_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offer date:.
+        /// </summary>
+        public static string Offers_OfferDate {
+            get {
+                return ResourceManager.GetString("Offers_OfferDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offer name:.
+        /// </summary>
+        public static string Offers_OfferName {
+            get {
+                return ResourceManager.GetString("Offers_OfferName", resourceCulture);
             }
         }
     }

@@ -36,11 +36,14 @@
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,8 +53,38 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\Components\BasePictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\FlightsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FlightsForm.Designer.cs">
+      <DependentUpon>FlightsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddOrEditOfferForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddOrEditOfferForm.Designer.cs">
+      <DependentUpon>AddOrEditOfferForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Components\BaseDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Base\Components\BaseDateTimePicker.Designer.cs">
+      <DependentUpon>BaseDateTimePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Components\BaseDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Base\Components\BaseDataGridView.Designer.cs">
+      <DependentUpon>BaseDataGridView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Base\Components\BaseButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -78,8 +111,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MainMenuForm.resx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\OffersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OffersForm.Designer.cs">
+      <DependentUpon>OffersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\ImageButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Custom\ImageButton.Designer.cs">
+      <DependentUpon>ImageButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FlightsForm.resx">
+      <DependentUpon>FlightsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddOrEditOfferForm.resx">
+      <DependentUpon>AddOrEditOfferForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Base\Components\BaseButton.resx">
       <DependentUpon>BaseButton.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,6 +141,9 @@
       <DependentUpon>MainMenuForm.cs</DependentUpon>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MainMenuForm1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OffersForm.resx">
+      <DependentUpon>OffersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -114,6 +168,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BaseImagePlaceholder.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

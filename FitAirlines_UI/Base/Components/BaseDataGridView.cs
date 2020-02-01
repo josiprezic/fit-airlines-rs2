@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,15 +10,21 @@ using System.Windows.Forms;
 
 namespace FitAirlines_UI
 {
-    public partial class BaseButton : Button
+    public partial class BaseDataGridView : DataGridView
     {
-        
+
         //
         // MARK: - Constructors
         //
 
-        public BaseButton()
+        public BaseDataGridView()
         {
+            InitializeComponent();
+        }
+
+        public BaseDataGridView(IContainer container)
+        {
+            container.Add(this);
             InitializeComponent();
         }
 
@@ -26,30 +32,31 @@ namespace FitAirlines_UI
         // MARK: - Protected methods
         //
 
+        protected void SetupStyling()
+        {
+            BackgroundColor = Color.White;
+        }
+
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
             Configure();
         }
 
-        protected virtual void SetupStyling()
-        {
-            // TODO: JR
-        }
-
         //
         // MARK: - Private methods
         //
 
-        void Configure()
+        void Configure() 
         {
             BaseSetup();
             SetupStyling();
         }
 
-        void BaseSetup()
+        void BaseSetup() 
         {
             // TODO: JR
         }
+
     }
 }
