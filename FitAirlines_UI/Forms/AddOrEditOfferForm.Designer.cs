@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddOrEditOfferForm));
             this.imageGroupBox = new System.Windows.Forms.GroupBox();
             this.offerPictureBox = new FitAirlines_UI.BasePictureBox();
             this.uploadofferPictureButton = new FitAirlines_UI.BaseButton();
@@ -70,10 +69,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.offerPictureBox.BackColor = System.Drawing.Color.Gray;
             this.offerPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.offerPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("offerPictureBox.Image")));
             this.offerPictureBox.Location = new System.Drawing.Point(6, 25);
             this.offerPictureBox.Name = "offerPictureBox";
             this.offerPictureBox.Size = new System.Drawing.Size(321, 230);
+            this.offerPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.offerPictureBox.TabIndex = 10;
             this.offerPictureBox.TabStop = false;
             // 

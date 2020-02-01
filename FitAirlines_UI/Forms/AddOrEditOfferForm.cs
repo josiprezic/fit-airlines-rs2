@@ -65,7 +65,7 @@ namespace FitAirlines_UI
 
         private void uploadofferPictureButton_Click(object sender, EventArgs e)
         {
-            // TODO: JR
+            offerPictureBox.UploadAndSetImage();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

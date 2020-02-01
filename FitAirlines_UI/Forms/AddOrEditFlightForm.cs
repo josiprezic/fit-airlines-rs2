@@ -70,7 +70,7 @@ namespace FitAirlines_UI
 
         private void uploadFlightPictureButton_Click(object sender, EventArgs e)
         {
-            // TODO: JR
+            flightPictureBox.UploadAndSetImage();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

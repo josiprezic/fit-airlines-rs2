@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddOrEditFlightForm));
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.cancelButton = new FitAirlines_UI.BaseButton();
             this.saveButton = new FitAirlines_UI.BaseButton();
@@ -305,10 +304,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flightPictureBox.BackColor = System.Drawing.Color.Gray;
             this.flightPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flightPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("flightPictureBox.Image")));
             this.flightPictureBox.Location = new System.Drawing.Point(6, 25);
             this.flightPictureBox.Name = "flightPictureBox";
             this.flightPictureBox.Size = new System.Drawing.Size(321, 212);
+            this.flightPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.flightPictureBox.TabIndex = 10;
             this.flightPictureBox.TabStop = false;
             // 
