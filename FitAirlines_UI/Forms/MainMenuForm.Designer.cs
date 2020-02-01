@@ -48,12 +48,13 @@
             this.tableLayoutPanel1.Controls.Add(this.reservationsButton, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.offersButton, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.usersButton, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 10);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(776, 426);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(582, 346);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // settingsButton
@@ -62,11 +63,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsButton.BackColor = System.Drawing.Color.Blue;
-            this.settingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.settingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.settingsButton.ForeColor = System.Drawing.Color.White;
-            this.settingsButton.Location = new System.Drawing.Point(391, 216);
+            this.settingsButton.Location = new System.Drawing.Point(293, 175);
+            this.settingsButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Size = new System.Drawing.Size(382, 207);
+            this.settingsButton.Size = new System.Drawing.Size(287, 169);
             this.settingsButton.TabIndex = 3;
             this.settingsButton.Text = "MAINMENUBUTTON4";
             this.settingsButton.UseVisualStyleBackColor = false;
@@ -77,11 +79,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.reservationsButton.BackColor = System.Drawing.Color.Blue;
-            this.reservationsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.reservationsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.reservationsButton.ForeColor = System.Drawing.Color.White;
-            this.reservationsButton.Location = new System.Drawing.Point(391, 3);
+            this.reservationsButton.Location = new System.Drawing.Point(293, 2);
+            this.reservationsButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.reservationsButton.Name = "reservationsButton";
-            this.reservationsButton.Size = new System.Drawing.Size(382, 207);
+            this.reservationsButton.Size = new System.Drawing.Size(287, 169);
             this.reservationsButton.TabIndex = 4;
             this.reservationsButton.Text = "MAINMENUBUTTON2";
             this.reservationsButton.UseVisualStyleBackColor = false;
@@ -92,11 +95,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.offersButton.BackColor = System.Drawing.Color.Blue;
-            this.offersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.offersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.offersButton.ForeColor = System.Drawing.Color.White;
-            this.offersButton.Location = new System.Drawing.Point(3, 3);
+            this.offersButton.Location = new System.Drawing.Point(2, 2);
+            this.offersButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.offersButton.Name = "offersButton";
-            this.offersButton.Size = new System.Drawing.Size(382, 207);
+            this.offersButton.Size = new System.Drawing.Size(287, 169);
             this.offersButton.TabIndex = 5;
             this.offersButton.Text = "MAINMENUBUTTON1";
             this.offersButton.UseVisualStyleBackColor = false;
@@ -108,22 +112,24 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.usersButton.BackColor = System.Drawing.Color.Blue;
-            this.usersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.usersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.usersButton.ForeColor = System.Drawing.Color.White;
-            this.usersButton.Location = new System.Drawing.Point(3, 216);
+            this.usersButton.Location = new System.Drawing.Point(2, 175);
+            this.usersButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.usersButton.Name = "usersButton";
-            this.usersButton.Size = new System.Drawing.Size(382, 207);
+            this.usersButton.Size = new System.Drawing.Size(287, 169);
             this.usersButton.TabIndex = 6;
             this.usersButton.Text = "MAINMENUBUTTON3";
             this.usersButton.UseVisualStyleBackColor = false;
             // 
             // MainMenuForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainMenuForm";

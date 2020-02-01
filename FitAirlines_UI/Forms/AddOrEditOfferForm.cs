@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitAirlines_UI.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,5 +40,42 @@ namespace FitAirlines_UI
         //
 
         protected override bool ShouldResize() { return false; }
+
+        protected override void SetupStrings()
+        {
+ 
+            Text = type == AddOrEditOfferFormType.Add ? Resources.AddOffer_FormName : Resources.EditOffer_FormName;
+
+            personalInfoGroupBox.Text = Resources.AddOrEditOffer_PersonalInfo;
+            imageGroupBox.Text = Resources.AddOrEditOffer_ImageOptions;
+
+            offerNameLabel.Text = Resources.AddOrEditOffer_OfferName;
+            requiredMemberLevelLabel.Text = Resources.AddOrEditOFfer_OfferMembershipLevel;
+            offerDescriptionLabel.Text = Resources.AddOrEditOffer_OfferDescription;
+            isActiveCheckBox.Text = Resources.AddOrEditOffer_IsActive;
+
+            uploadofferPictureButton.Text = Resources.AddOrEditOffer_UploadImage;
+            cancelButton.Text = Resources.Generic_Cancel;
+            saveOfferButton.Text = Resources.Generic_Save;
+        }
+
+        //
+        // MARK: - Actions
+        //
+
+        private void uploadofferPictureButton_Click(object sender, EventArgs e)
+        {
+            // TODO: JR
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void saveOfferButton_Click(object sender, EventArgs e)
+        {
+            // TODO: JR
+        }
     }
 }

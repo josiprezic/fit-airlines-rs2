@@ -117,11 +117,44 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddOffer_FormName" xml:space="preserve">
+    <value>Add new offer</value>
+  </data>
+  <data name="AddOrEditOffer_ImageOptions" xml:space="preserve">
+    <value>Image Options</value>
+  </data>
+  <data name="AddOrEditOffer_IsActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="AddOrEditOffer_OfferDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="AddOrEditOFfer_OfferMembershipLevel" xml:space="preserve">
+    <value>Min membership level</value>
+  </data>
+  <data name="AddOrEditOffer_OfferName" xml:space="preserve">
+    <value>Offer title</value>
+  </data>
+  <data name="AddOrEditOffer_PersonalInfo" xml:space="preserve">
+    <value>Personal info</value>
+  </data>
+  <data name="AddOrEditOffer_UploadImage" xml:space="preserve">
+    <value>Upload Image...</value>
+  </data>
+  <data name="EditOffer_FormName" xml:space="preserve">
+    <value>Edit offer</value>
+  </data>
   <data name="Generic_Add" xml:space="preserve">
     <value>Add</value>
   </data>
+  <data name="Generic_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="Generic_Edit" xml:space="preserve">
     <value>Edit</value>
+  </data>
+  <data name="Generic_Save" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="Generic_Search" xml:space="preserve">
     <value>Search</value>

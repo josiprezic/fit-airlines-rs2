@@ -29,166 +29,164 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddOrEditOfferForm));
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.basePictureBox1 = new FitAirlines_UI.BasePictureBox();
-            this.baseButton3 = new FitAirlines_UI.BaseButton();
-            this.baseButton2 = new FitAirlines_UI.BaseButton();
-            this.baseButton1 = new FitAirlines_UI.BaseButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.imageGroupBox = new System.Windows.Forms.GroupBox();
+            this.offerPictureBox = new FitAirlines_UI.BasePictureBox();
+            this.uploadofferPictureButton = new FitAirlines_UI.BaseButton();
+            this.saveOfferButton = new FitAirlines_UI.BaseButton();
+            this.cancelButton = new FitAirlines_UI.BaseButton();
+            this.offerNameLabel = new System.Windows.Forms.Label();
+            this.offerNameTextBox = new System.Windows.Forms.TextBox();
+            this.requiredMemberLevelLabel = new System.Windows.Forms.Label();
+            this.offerDescriptionLabel = new System.Windows.Forms.Label();
+            this.offerDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
+            this.offerMemberTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.personalInfoGroupBox = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.basePictureBox1)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.imageGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.offerPictureBox)).BeginInit();
+            this.personalInfoGroupBox.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox2
+            // imageGroupBox
             // 
-            this.groupBox2.Controls.Add(this.basePictureBox1);
-            this.groupBox2.Controls.Add(this.baseButton1);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(342, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(333, 279);
-            this.groupBox2.TabIndex = 11;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.imageGroupBox.Controls.Add(this.offerPictureBox);
+            this.imageGroupBox.Controls.Add(this.uploadofferPictureButton);
+            this.imageGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageGroupBox.Location = new System.Drawing.Point(342, 3);
+            this.imageGroupBox.Name = "imageGroupBox";
+            this.imageGroupBox.Size = new System.Drawing.Size(333, 299);
+            this.imageGroupBox.TabIndex = 11;
+            this.imageGroupBox.TabStop = false;
+            this.imageGroupBox.Text = "groupBox2";
             // 
-            // basePictureBox1
+            // offerPictureBox
             // 
-            this.basePictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.offerPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.basePictureBox1.BackColor = System.Drawing.Color.Gray;
-            this.basePictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.basePictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("basePictureBox1.Image")));
-            this.basePictureBox1.Location = new System.Drawing.Point(6, 25);
-            this.basePictureBox1.Name = "basePictureBox1";
-            this.basePictureBox1.Size = new System.Drawing.Size(321, 200);
-            this.basePictureBox1.TabIndex = 10;
-            this.basePictureBox1.TabStop = false;
+            this.offerPictureBox.BackColor = System.Drawing.Color.Gray;
+            this.offerPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.offerPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("offerPictureBox.Image")));
+            this.offerPictureBox.Location = new System.Drawing.Point(6, 25);
+            this.offerPictureBox.Name = "offerPictureBox";
+            this.offerPictureBox.Size = new System.Drawing.Size(321, 220);
+            this.offerPictureBox.TabIndex = 10;
+            this.offerPictureBox.TabStop = false;
             // 
-            // baseButton3
+            // uploadofferPictureButton
             // 
-            this.baseButton3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.baseButton3.Location = new System.Drawing.Point(163, 3);
-            this.baseButton3.Name = "baseButton3";
-            this.baseButton3.Size = new System.Drawing.Size(155, 42);
-            this.baseButton3.TabIndex = 9;
-            this.baseButton3.Text = "baseButton3";
-            this.baseButton3.UseVisualStyleBackColor = true;
-            // 
-            // baseButton2
-            // 
-            this.baseButton2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.baseButton2.Location = new System.Drawing.Point(3, 3);
-            this.baseButton2.Name = "baseButton2";
-            this.baseButton2.Size = new System.Drawing.Size(154, 42);
-            this.baseButton2.TabIndex = 8;
-            this.baseButton2.Text = "baseButton2";
-            this.baseButton2.UseVisualStyleBackColor = true;
-            // 
-            // baseButton1
-            // 
-            this.baseButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.uploadofferPictureButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.baseButton1.Location = new System.Drawing.Point(6, 233);
-            this.baseButton1.Name = "baseButton1";
-            this.baseButton1.Size = new System.Drawing.Size(321, 40);
-            this.baseButton1.TabIndex = 7;
-            this.baseButton1.Text = "baseButton1";
-            this.baseButton1.UseVisualStyleBackColor = true;
+            this.uploadofferPictureButton.Location = new System.Drawing.Point(6, 253);
+            this.uploadofferPictureButton.Name = "uploadofferPictureButton";
+            this.uploadofferPictureButton.Size = new System.Drawing.Size(321, 40);
+            this.uploadofferPictureButton.TabIndex = 7;
+            this.uploadofferPictureButton.Text = "baseButton1";
+            this.uploadofferPictureButton.UseVisualStyleBackColor = true;
+            this.uploadofferPictureButton.Click += new System.EventHandler(this.uploadofferPictureButton_Click);
             // 
-            // label1
+            // saveOfferButton
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.saveOfferButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.saveOfferButton.Location = new System.Drawing.Point(163, 3);
+            this.saveOfferButton.Name = "saveOfferButton";
+            this.saveOfferButton.Size = new System.Drawing.Size(155, 42);
+            this.saveOfferButton.TabIndex = 9;
+            this.saveOfferButton.Text = "baseButton3";
+            this.saveOfferButton.UseVisualStyleBackColor = true;
+            this.saveOfferButton.Click += new System.EventHandler(this.saveOfferButton_Click);
             // 
-            // textBox1
+            // cancelButton
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(62, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(259, 20);
-            this.textBox1.TabIndex = 1;
+            this.cancelButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cancelButton.Location = new System.Drawing.Point(3, 3);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(154, 42);
+            this.cancelButton.TabIndex = 8;
+            this.cancelButton.Text = "baseButton2";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // label2
+            // offerNameLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 50);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "label2";
+            this.offerNameLabel.AutoSize = true;
+            this.offerNameLabel.Location = new System.Drawing.Point(6, 28);
+            this.offerNameLabel.Name = "offerNameLabel";
+            this.offerNameLabel.Size = new System.Drawing.Size(35, 13);
+            this.offerNameLabel.TabIndex = 0;
+            this.offerNameLabel.Text = "label1";
             // 
-            // label3
+            // offerNameTextBox
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 72);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "label3";
+            this.offerNameTextBox.Location = new System.Drawing.Point(130, 22);
+            this.offerNameTextBox.Name = "offerNameTextBox";
+            this.offerNameTextBox.Size = new System.Drawing.Size(191, 20);
+            this.offerNameTextBox.TabIndex = 1;
             // 
-            // textBox3
+            // requiredMemberLevelLabel
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(62, 69);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(259, 154);
-            this.textBox3.TabIndex = 5;
+            this.requiredMemberLevelLabel.AutoSize = true;
+            this.requiredMemberLevelLabel.Location = new System.Drawing.Point(6, 50);
+            this.requiredMemberLevelLabel.Name = "requiredMemberLevelLabel";
+            this.requiredMemberLevelLabel.Size = new System.Drawing.Size(35, 13);
+            this.requiredMemberLevelLabel.TabIndex = 2;
+            this.requiredMemberLevelLabel.Text = "label2";
             // 
-            // checkBox1
+            // offerDescriptionLabel
             // 
-            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(62, 232);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
-            this.checkBox1.TabIndex = 6;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.offerDescriptionLabel.AutoSize = true;
+            this.offerDescriptionLabel.Location = new System.Drawing.Point(6, 72);
+            this.offerDescriptionLabel.Name = "offerDescriptionLabel";
+            this.offerDescriptionLabel.Size = new System.Drawing.Size(35, 13);
+            this.offerDescriptionLabel.TabIndex = 4;
+            this.offerDescriptionLabel.Text = "label3";
             // 
-            // comboBox1
+            // offerDescriptionTextBox
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(62, 45);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(259, 21);
-            this.comboBox1.TabIndex = 7;
+            this.offerDescriptionTextBox.Location = new System.Drawing.Point(130, 69);
+            this.offerDescriptionTextBox.Multiline = true;
+            this.offerDescriptionTextBox.Name = "offerDescriptionTextBox";
+            this.offerDescriptionTextBox.Size = new System.Drawing.Size(191, 133);
+            this.offerDescriptionTextBox.TabIndex = 5;
             // 
-            // groupBox1
+            // isActiveCheckBox
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(333, 279);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.isActiveCheckBox.AutoSize = true;
+            this.isActiveCheckBox.Location = new System.Drawing.Point(130, 211);
+            this.isActiveCheckBox.Name = "isActiveCheckBox";
+            this.isActiveCheckBox.Size = new System.Drawing.Size(80, 17);
+            this.isActiveCheckBox.TabIndex = 6;
+            this.isActiveCheckBox.Text = "checkBox1";
+            this.isActiveCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // offerMemberTypeComboBox
+            // 
+            this.offerMemberTypeComboBox.FormattingEnabled = true;
+            this.offerMemberTypeComboBox.Location = new System.Drawing.Point(130, 45);
+            this.offerMemberTypeComboBox.Name = "offerMemberTypeComboBox";
+            this.offerMemberTypeComboBox.Size = new System.Drawing.Size(191, 21);
+            this.offerMemberTypeComboBox.TabIndex = 7;
+            // 
+            // personalInfoGroupBox
+            // 
+            this.personalInfoGroupBox.Controls.Add(this.offerMemberTypeComboBox);
+            this.personalInfoGroupBox.Controls.Add(this.isActiveCheckBox);
+            this.personalInfoGroupBox.Controls.Add(this.offerDescriptionTextBox);
+            this.personalInfoGroupBox.Controls.Add(this.offerDescriptionLabel);
+            this.personalInfoGroupBox.Controls.Add(this.requiredMemberLevelLabel);
+            this.personalInfoGroupBox.Controls.Add(this.offerNameTextBox);
+            this.personalInfoGroupBox.Controls.Add(this.offerNameLabel);
+            this.personalInfoGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.personalInfoGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.personalInfoGroupBox.Name = "personalInfoGroupBox";
+            this.personalInfoGroupBox.Size = new System.Drawing.Size(333, 299);
+            this.personalInfoGroupBox.TabIndex = 2;
+            this.personalInfoGroupBox.TabStop = false;
+            this.personalInfoGroupBox.Text = "groupBox1";
             // 
             // tableLayoutPanel1
             // 
@@ -198,13 +196,13 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.personalInfoGroupBox, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.imageGroupBox, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(678, 285);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(678, 305);
             this.tableLayoutPanel1.TabIndex = 12;
             // 
             // tableLayoutPanel2
@@ -213,9 +211,9 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.baseButton2, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.baseButton3, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(363, 303);
+            this.tableLayoutPanel2.Controls.Add(this.cancelButton, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.saveOfferButton, 1, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(363, 323);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -226,7 +224,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(702, 374);
+            this.ClientSize = new System.Drawing.Size(702, 394);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -234,10 +232,10 @@
             this.MinimizeBox = false;
             this.Name = "AddOrEditOfferForm";
             this.Text = "AddOrEditOfferForm";
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.basePictureBox1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.imageGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.offerPictureBox)).EndInit();
+            this.personalInfoGroupBox.ResumeLayout(false);
+            this.personalInfoGroupBox.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -246,19 +244,19 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox2;
-        private BasePictureBox basePictureBox1;
-        private BaseButton baseButton1;
-        private BaseButton baseButton3;
-        private BaseButton baseButton2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox imageGroupBox;
+        private BasePictureBox offerPictureBox;
+        private BaseButton uploadofferPictureButton;
+        private BaseButton saveOfferButton;
+        private BaseButton cancelButton;
+        private System.Windows.Forms.Label offerNameLabel;
+        private System.Windows.Forms.TextBox offerNameTextBox;
+        private System.Windows.Forms.Label requiredMemberLevelLabel;
+        private System.Windows.Forms.Label offerDescriptionLabel;
+        private System.Windows.Forms.TextBox offerDescriptionTextBox;
+        private System.Windows.Forms.CheckBox isActiveCheckBox;
+        private System.Windows.Forms.ComboBox offerMemberTypeComboBox;
+        private System.Windows.Forms.GroupBox personalInfoGroupBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }

@@ -61,6 +61,87 @@ namespace FitAirlines_UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new offer.
+        /// </summary>
+        public static string AddOffer_FormName {
+            get {
+                return ResourceManager.GetString("AddOffer_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image Options.
+        /// </summary>
+        public static string AddOrEditOffer_ImageOptions {
+            get {
+                return ResourceManager.GetString("AddOrEditOffer_ImageOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string AddOrEditOffer_IsActive {
+            get {
+                return ResourceManager.GetString("AddOrEditOffer_IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string AddOrEditOffer_OfferDescription {
+            get {
+                return ResourceManager.GetString("AddOrEditOffer_OfferDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min membership level.
+        /// </summary>
+        public static string AddOrEditOFfer_OfferMembershipLevel {
+            get {
+                return ResourceManager.GetString("AddOrEditOFfer_OfferMembershipLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offer title.
+        /// </summary>
+        public static string AddOrEditOffer_OfferName {
+            get {
+                return ResourceManager.GetString("AddOrEditOffer_OfferName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal info.
+        /// </summary>
+        public static string AddOrEditOffer_PersonalInfo {
+            get {
+                return ResourceManager.GetString("AddOrEditOffer_PersonalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload Image....
+        /// </summary>
+        public static string AddOrEditOffer_UploadImage {
+            get {
+                return ResourceManager.GetString("AddOrEditOffer_UploadImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit offer.
+        /// </summary>
+        public static string EditOffer_FormName {
+            get {
+                return ResourceManager.GetString("EditOffer_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Generic_Add {
@@ -70,11 +151,29 @@ namespace FitAirlines_UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Generic_Cancel {
+            get {
+                return ResourceManager.GetString("Generic_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string Generic_Edit {
             get {
                 return ResourceManager.GetString("Generic_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Generic_Save {
+            get {
+                return ResourceManager.GetString("Generic_Save", resourceCulture);
             }
         }
         
