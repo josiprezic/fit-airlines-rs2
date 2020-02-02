@@ -58,6 +58,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\Components\BaseComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Base\Components\BaseComboBox.Designer.cs">
+      <DependentUpon>BaseComboBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddOrEditFlightForm.cs">
       <SubType>Form</SubType>
     </Compile>
