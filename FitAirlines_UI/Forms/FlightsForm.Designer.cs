@@ -44,10 +44,10 @@
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.endDateTimePicker = new FitAirlines_UI.BaseDateTimePicker(this.components);
             this.endDateTimePickerLabel = new System.Windows.Forms.Label();
-            this.offerComboBox = new System.Windows.Forms.ComboBox();
             this.offerLabel = new System.Windows.Forms.Label();
             this.minMembershipTypeLabel = new System.Windows.Forms.Label();
-            this.minMembershipComboBox = new System.Windows.Forms.ComboBox();
+            this.offerComboBox = new FitAirlines_UI.BaseComboBox();
+            this.minMembershipComboBox = new FitAirlines_UI.BaseComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -189,14 +189,6 @@
             this.endDateTimePickerLabel.TabIndex = 25;
             this.endDateTimePickerLabel.Text = "label1";
             // 
-            // offerComboBox
-            // 
-            this.offerComboBox.FormattingEnabled = true;
-            this.offerComboBox.Location = new System.Drawing.Point(412, 27);
-            this.offerComboBox.Name = "offerComboBox";
-            this.offerComboBox.Size = new System.Drawing.Size(165, 21);
-            this.offerComboBox.TabIndex = 27;
-            // 
             // offerLabel
             // 
             this.offerLabel.AutoSize = true;
@@ -215,23 +207,31 @@
             this.minMembershipTypeLabel.TabIndex = 30;
             this.minMembershipTypeLabel.Text = "label1";
             // 
+            // offerComboBox
+            // 
+            this.offerComboBox.FormattingEnabled = true;
+            this.offerComboBox.Location = new System.Drawing.Point(412, 28);
+            this.offerComboBox.Name = "offerComboBox";
+            this.offerComboBox.Size = new System.Drawing.Size(165, 21);
+            this.offerComboBox.TabIndex = 31;
+            // 
             // minMembershipComboBox
             // 
             this.minMembershipComboBox.FormattingEnabled = true;
-            this.minMembershipComboBox.Location = new System.Drawing.Point(412, 65);
+            this.minMembershipComboBox.Location = new System.Drawing.Point(412, 67);
             this.minMembershipComboBox.Name = "minMembershipComboBox";
             this.minMembershipComboBox.Size = new System.Drawing.Size(165, 21);
-            this.minMembershipComboBox.TabIndex = 29;
+            this.minMembershipComboBox.TabIndex = 32;
             // 
             // FlightsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(877, 510);
-            this.Controls.Add(this.minMembershipTypeLabel);
             this.Controls.Add(this.minMembershipComboBox);
-            this.Controls.Add(this.offerLabel);
             this.Controls.Add(this.offerComboBox);
+            this.Controls.Add(this.minMembershipTypeLabel);
+            this.Controls.Add(this.offerLabel);
             this.Controls.Add(this.endDateTimePicker);
             this.Controls.Add(this.endDateTimePickerLabel);
             this.Controls.Add(this.cityLabel);
@@ -275,9 +275,9 @@
         private System.Windows.Forms.TextBox cityTextBox;
         private BaseDateTimePicker endDateTimePicker;
         private System.Windows.Forms.Label endDateTimePickerLabel;
-        private System.Windows.Forms.ComboBox offerComboBox;
         private System.Windows.Forms.Label offerLabel;
         private System.Windows.Forms.Label minMembershipTypeLabel;
-        private System.Windows.Forms.ComboBox minMembershipComboBox;
+        private BaseComboBox offerComboBox;
+        private BaseComboBox minMembershipComboBox;
     }
 }

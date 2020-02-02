@@ -39,10 +39,10 @@
             this.offerDescriptionLabel = new System.Windows.Forms.Label();
             this.offerDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
-            this.offerMemberTypeComboBox = new System.Windows.Forms.ComboBox();
             this.personalInfoGroupBox = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.offerMemberTypeComboBox = new FitAirlines_UI.BaseComboBox();
             this.imageGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.offerPictureBox)).BeginInit();
             this.personalInfoGroupBox.SuspendLayout();
@@ -162,14 +162,6 @@
             this.isActiveCheckBox.Text = "checkBox1";
             this.isActiveCheckBox.UseVisualStyleBackColor = true;
             // 
-            // offerMemberTypeComboBox
-            // 
-            this.offerMemberTypeComboBox.FormattingEnabled = true;
-            this.offerMemberTypeComboBox.Location = new System.Drawing.Point(130, 45);
-            this.offerMemberTypeComboBox.Name = "offerMemberTypeComboBox";
-            this.offerMemberTypeComboBox.Size = new System.Drawing.Size(191, 21);
-            this.offerMemberTypeComboBox.TabIndex = 7;
-            // 
             // personalInfoGroupBox
             // 
             this.personalInfoGroupBox.Controls.Add(this.offerMemberTypeComboBox);
@@ -219,6 +211,14 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(321, 48);
             this.tableLayoutPanel2.TabIndex = 13;
             // 
+            // offerMemberTypeComboBox
+            // 
+            this.offerMemberTypeComboBox.FormattingEnabled = true;
+            this.offerMemberTypeComboBox.Location = new System.Drawing.Point(130, 45);
+            this.offerMemberTypeComboBox.Name = "offerMemberTypeComboBox";
+            this.offerMemberTypeComboBox.Size = new System.Drawing.Size(191, 21);
+            this.offerMemberTypeComboBox.TabIndex = 7;
+            // 
             // AddOrEditOfferForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,9 +254,9 @@
         private System.Windows.Forms.Label offerDescriptionLabel;
         private System.Windows.Forms.TextBox offerDescriptionTextBox;
         private System.Windows.Forms.CheckBox isActiveCheckBox;
-        private System.Windows.Forms.ComboBox offerMemberTypeComboBox;
         private System.Windows.Forms.GroupBox personalInfoGroupBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private BaseComboBox offerMemberTypeComboBox;
     }
 }

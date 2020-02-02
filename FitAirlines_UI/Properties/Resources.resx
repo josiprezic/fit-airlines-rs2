@@ -165,11 +165,44 @@
   <data name="AddOrEditOffer_PersonalInfo" xml:space="preserve">
     <value>Personal info</value>
   </data>
+  <data name="AddOrEditReservation_Client" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="AddOrEditReservation_Discount" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="AddOrEditReservation_Flight" xml:space="preserve">
+    <value>Flight</value>
+  </data>
+  <data name="AddOrEditReservation_Offer" xml:space="preserve">
+    <value>Offer</value>
+  </data>
+  <data name="AddOrEditReservation_Paid" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="AddOrEditReservation_Price" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="AddOrEditReservation_PriceTitle" xml:space="preserve">
+    <value>Total price</value>
+  </data>
+  <data name="AddOrEditReservation_SeatReturn" xml:space="preserve">
+    <value>Seat (return)</value>
+  </data>
+  <data name="AddOrEditReservation_SeatStart" xml:space="preserve">
+    <value>Seat (start)</value>
+  </data>
+  <data name="AddReservation_FormName" xml:space="preserve">
+    <value>Add new reservation</value>
+  </data>
   <data name="EditFlight_FormName" xml:space="preserve">
     <value>Edit flight</value>
   </data>
   <data name="EditOffer_FormName" xml:space="preserve">
     <value>Edit offer</value>
+  </data>
+  <data name="EditReservation_FormName" xml:space="preserve">
+    <value>Edit reservation</value>
   </data>
   <data name="Flights_FlightDate" xml:space="preserve">
     <value>Flight date</value>
@@ -196,7 +229,7 @@
     <value>Image options</value>
   </data>
   <data name="Generic_IsActive" xml:space="preserve">
-    <value>Active</value>
+    <value>Show only active items</value>
   </data>
   <data name="Generic_Save" xml:space="preserve">
     <value>Save</value>
@@ -240,5 +273,20 @@
   </data>
   <data name="Offers_OfferName" xml:space="preserve">
     <value>Offer name:</value>
+  </data>
+  <data name="Reservations_ClientName" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="Reservations_Flight" xml:space="preserve">
+    <value>Flight</value>
+  </data>
+  <data name="Reservations_FlightDate" xml:space="preserve">
+    <value>Flight date</value>
+  </data>
+  <data name="Reservations_FormName" xml:space="preserve">
+    <value>Reservations</value>
+  </data>
+  <data name="Reservations_ReservationDate" xml:space="preserve">
+    <value>Reservation date</value>
   </data>
 </root>

@@ -28,5 +28,10 @@ namespace FitAirlines_UI
         {
             ShowNewForm<FlightsForm>();
         }
+
+        private void reservationsButton_Click(object sender, System.EventArgs e)
+        {
+            ShowNewForm<ReservationsForm>();
+        }
     }
 }

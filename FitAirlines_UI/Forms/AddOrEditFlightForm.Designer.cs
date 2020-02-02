@@ -37,14 +37,11 @@
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.capacityNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.capacityLabel = new System.Windows.Forms.Label();
-            this.offerComboBox = new System.Windows.Forms.ComboBox();
             this.offerLabel = new System.Windows.Forms.Label();
             this.endDateTimePicker = new FitAirlines_UI.BaseDateTimePicker(this.components);
             this.endDateLabel = new System.Windows.Forms.Label();
             this.startDateTimePicker = new FitAirlines_UI.BaseDateTimePicker(this.components);
             this.startDateLabel = new System.Windows.Forms.Label();
-            this.cityComboBox = new System.Windows.Forms.ComboBox();
-            this.countryComboBox = new System.Windows.Forms.ComboBox();
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.cityLabel = new System.Windows.Forms.Label();
@@ -54,6 +51,9 @@
             this.imageGroupBox = new System.Windows.Forms.GroupBox();
             this.flightPictureBox = new FitAirlines_UI.BasePictureBox();
             this.uploadFlightPictureButton = new FitAirlines_UI.BaseButton();
+            this.offerComboBox = new FitAirlines_UI.BaseComboBox();
+            this.countryComboBox = new FitAirlines_UI.BaseComboBox();
+            this.cityComboBox = new FitAirlines_UI.BaseComboBox();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.basicInfoGroupBox.SuspendLayout();
@@ -118,17 +118,17 @@
             // 
             // basicInfoGroupBox
             // 
+            this.basicInfoGroupBox.Controls.Add(this.cityComboBox);
+            this.basicInfoGroupBox.Controls.Add(this.countryComboBox);
+            this.basicInfoGroupBox.Controls.Add(this.offerComboBox);
             this.basicInfoGroupBox.Controls.Add(this.descriptionLabel);
             this.basicInfoGroupBox.Controls.Add(this.capacityNumericUpDown);
             this.basicInfoGroupBox.Controls.Add(this.capacityLabel);
-            this.basicInfoGroupBox.Controls.Add(this.offerComboBox);
             this.basicInfoGroupBox.Controls.Add(this.offerLabel);
             this.basicInfoGroupBox.Controls.Add(this.endDateTimePicker);
             this.basicInfoGroupBox.Controls.Add(this.endDateLabel);
             this.basicInfoGroupBox.Controls.Add(this.startDateTimePicker);
             this.basicInfoGroupBox.Controls.Add(this.startDateLabel);
-            this.basicInfoGroupBox.Controls.Add(this.cityComboBox);
-            this.basicInfoGroupBox.Controls.Add(this.countryComboBox);
             this.basicInfoGroupBox.Controls.Add(this.isActiveCheckBox);
             this.basicInfoGroupBox.Controls.Add(this.descriptionTextBox);
             this.basicInfoGroupBox.Controls.Add(this.cityLabel);
@@ -167,14 +167,6 @@
             this.capacityLabel.Size = new System.Drawing.Size(35, 13);
             this.capacityLabel.TabIndex = 15;
             this.capacityLabel.Text = "label3";
-            // 
-            // offerComboBox
-            // 
-            this.offerComboBox.FormattingEnabled = true;
-            this.offerComboBox.Location = new System.Drawing.Point(130, 48);
-            this.offerComboBox.Name = "offerComboBox";
-            this.offerComboBox.Size = new System.Drawing.Size(191, 21);
-            this.offerComboBox.TabIndex = 14;
             // 
             // offerLabel
             // 
@@ -216,22 +208,6 @@
             this.startDateLabel.Size = new System.Drawing.Size(35, 13);
             this.startDateLabel.TabIndex = 9;
             this.startDateLabel.Text = "label3";
-            // 
-            // cityComboBox
-            // 
-            this.cityComboBox.FormattingEnabled = true;
-            this.cityComboBox.Location = new System.Drawing.Point(130, 102);
-            this.cityComboBox.Name = "cityComboBox";
-            this.cityComboBox.Size = new System.Drawing.Size(191, 21);
-            this.cityComboBox.TabIndex = 8;
-            // 
-            // countryComboBox
-            // 
-            this.countryComboBox.FormattingEnabled = true;
-            this.countryComboBox.Location = new System.Drawing.Point(130, 76);
-            this.countryComboBox.Name = "countryComboBox";
-            this.countryComboBox.Size = new System.Drawing.Size(191, 21);
-            this.countryComboBox.TabIndex = 7;
             // 
             // isActiveCheckBox
             // 
@@ -323,6 +299,30 @@
             this.uploadFlightPictureButton.UseVisualStyleBackColor = true;
             this.uploadFlightPictureButton.Click += new System.EventHandler(this.uploadFlightPictureButton_Click);
             // 
+            // offerComboBox
+            // 
+            this.offerComboBox.FormattingEnabled = true;
+            this.offerComboBox.Location = new System.Drawing.Point(130, 49);
+            this.offerComboBox.Name = "offerComboBox";
+            this.offerComboBox.Size = new System.Drawing.Size(191, 21);
+            this.offerComboBox.TabIndex = 18;
+            // 
+            // countryComboBox
+            // 
+            this.countryComboBox.FormattingEnabled = true;
+            this.countryComboBox.Location = new System.Drawing.Point(130, 76);
+            this.countryComboBox.Name = "countryComboBox";
+            this.countryComboBox.Size = new System.Drawing.Size(191, 21);
+            this.countryComboBox.TabIndex = 19;
+            // 
+            // cityComboBox
+            // 
+            this.cityComboBox.FormattingEnabled = true;
+            this.cityComboBox.Location = new System.Drawing.Point(130, 104);
+            this.cityComboBox.Name = "cityComboBox";
+            this.cityComboBox.Size = new System.Drawing.Size(191, 21);
+            this.cityComboBox.TabIndex = 20;
+            // 
             // AddOrEditFlightForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -353,7 +353,6 @@
         private BaseButton saveButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox basicInfoGroupBox;
-        private System.Windows.Forms.ComboBox countryComboBox;
         private System.Windows.Forms.CheckBox isActiveCheckBox;
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.Label cityLabel;
@@ -366,12 +365,13 @@
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.NumericUpDown capacityNumericUpDown;
         private System.Windows.Forms.Label capacityLabel;
-        private System.Windows.Forms.ComboBox offerComboBox;
         private System.Windows.Forms.Label offerLabel;
         private BaseDateTimePicker endDateTimePicker;
         private System.Windows.Forms.Label endDateLabel;
         private BaseDateTimePicker startDateTimePicker;
         private System.Windows.Forms.Label startDateLabel;
-        private System.Windows.Forms.ComboBox cityComboBox;
+        private BaseComboBox cityComboBox;
+        private BaseComboBox countryComboBox;
+        private BaseComboBox offerComboBox;
     }
 }
