@@ -58,6 +58,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\AddOrEditReservationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddOrEditReservationForm.Designer.cs">
+      <DependentUpon>AddOrEditReservationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Base\Components\BaseComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -144,6 +150,9 @@
     <Compile Include="Forms\ReservationsForm.Designer.cs">
       <DependentUpon>ReservationsForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\AddOrEditReservationForm.resx">
+      <DependentUpon>AddOrEditReservationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddOrEditFlightForm.resx">
       <DependentUpon>AddOrEditFlightForm.cs</DependentUpon>
     </EmbeddedResource>

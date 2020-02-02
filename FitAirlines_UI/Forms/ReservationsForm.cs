@@ -63,12 +63,14 @@ namespace FitAirlines_UI
 
         private void editImageButton_Click(object sender, EventArgs e)
         {
-
+            AddOrEditReservationForm form = new AddOrEditReservationForm(AddOrEditReservationForm.AddOrEditReservationFormType.Edit);
+            form.ShowDialog();
         }
 
         private void addImageButton_Click(object sender, EventArgs e)
         {
-
+            AddOrEditReservationForm form = new AddOrEditReservationForm();
+            form.ShowDialog();
         }
     }
 }

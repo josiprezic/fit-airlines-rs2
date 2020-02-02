@@ -205,6 +205,96 @@ namespace FitAirlines_UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Client.
+        /// </summary>
+        public static string AddOrEditReservation_Client {
+            get {
+                return ResourceManager.GetString("AddOrEditReservation_Client", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discount.
+        /// </summary>
+        public static string AddOrEditReservation_Discount {
+            get {
+                return ResourceManager.GetString("AddOrEditReservation_Discount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flight.
+        /// </summary>
+        public static string AddOrEditReservation_Flight {
+            get {
+                return ResourceManager.GetString("AddOrEditReservation_Flight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offer.
+        /// </summary>
+        public static string AddOrEditReservation_Offer {
+            get {
+                return ResourceManager.GetString("AddOrEditReservation_Offer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paid.
+        /// </summary>
+        public static string AddOrEditReservation_Paid {
+            get {
+                return ResourceManager.GetString("AddOrEditReservation_Paid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        public static string AddOrEditReservation_Price {
+            get {
+                return ResourceManager.GetString("AddOrEditReservation_Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total price.
+        /// </summary>
+        public static string AddOrEditReservation_PriceTitle {
+            get {
+                return ResourceManager.GetString("AddOrEditReservation_PriceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seat (return).
+        /// </summary>
+        public static string AddOrEditReservation_SeatReturn {
+            get {
+                return ResourceManager.GetString("AddOrEditReservation_SeatReturn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seat (start).
+        /// </summary>
+        public static string AddOrEditReservation_SeatStart {
+            get {
+                return ResourceManager.GetString("AddOrEditReservation_SeatStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new reservation.
+        /// </summary>
+        public static string AddReservation_FormName {
+            get {
+                return ResourceManager.GetString("AddReservation_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit flight.
         /// </summary>
         public static string EditFlight_FormName {
@@ -219,6 +309,15 @@ namespace FitAirlines_UI.Properties {
         public static string EditOffer_FormName {
             get {
                 return ResourceManager.GetString("EditOffer_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit reservation.
+        /// </summary>
+        public static string EditReservation_FormName {
+            get {
+                return ResourceManager.GetString("EditReservation_FormName", resourceCulture);
             }
         }
         

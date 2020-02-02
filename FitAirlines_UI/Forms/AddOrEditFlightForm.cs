@@ -11,6 +11,10 @@ using System.Windows.Forms;
 
 namespace FitAirlines_UI
 {
+    //
+    // MARK: - Enums
+    //
+
     public enum AddOrEditFlightFormType
     {
         Add,
