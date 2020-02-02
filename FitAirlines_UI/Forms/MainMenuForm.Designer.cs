@@ -93,6 +93,7 @@
             this.reservationsButton.TabIndex = 4;
             this.reservationsButton.Text = "MAINMENUBUTTON2";
             this.reservationsButton.UseVisualStyleBackColor = false;
+            this.reservationsButton.Click += new System.EventHandler(this.reservationsButton_Click);
             // 
             // offersButton
             // 

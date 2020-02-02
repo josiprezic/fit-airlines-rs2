@@ -295,7 +295,7 @@ namespace FitAirlines_UI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Active.
+        ///   Looks up a localized string similar to Show only active items.
         /// </summary>
         public static string Generic_IsActive {
             get {
@@ -428,6 +428,51 @@ namespace FitAirlines_UI.Properties {
         public static string Offers_OfferName {
             get {
                 return ResourceManager.GetString("Offers_OfferName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client.
+        /// </summary>
+        public static string Reservations_ClientName {
+            get {
+                return ResourceManager.GetString("Reservations_ClientName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flight.
+        /// </summary>
+        public static string Reservations_Flight {
+            get {
+                return ResourceManager.GetString("Reservations_Flight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flight date.
+        /// </summary>
+        public static string Reservations_FlightDate {
+            get {
+                return ResourceManager.GetString("Reservations_FlightDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reservations.
+        /// </summary>
+        public static string Reservations_FormName {
+            get {
+                return ResourceManager.GetString("Reservations_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reservation date.
+        /// </summary>
+        public static string Reservations_ReservationDate {
+            get {
+                return ResourceManager.GetString("Reservations_ReservationDate", resourceCulture);
             }
         }
     }
