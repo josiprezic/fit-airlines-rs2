@@ -58,6 +58,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\AddOrEditUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddOrEditUserForm.Designer.cs">
+      <DependentUpon>AddOrEditUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddOrEditReservationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddOrEditFlightForm.resx">
       <DependentUpon>AddOrEditFlightForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddOrEditUserForm.resx">
+      <DependentUpon>AddOrEditUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FlightsForm.resx">
       <DependentUpon>FlightsForm.cs</DependentUpon>
