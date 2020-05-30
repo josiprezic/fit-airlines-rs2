@@ -574,5 +574,41 @@ namespace FitAirlines_UI.Properties {
                 return ResourceManager.GetString("Reservations_ReservationDate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        public static string Users_FormName {
+            get {
+                return ResourceManager.GetString("Users_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        public static string Users_Gender {
+            get {
+                return ResourceManager.GetString("Users_Gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MemberLevel.
+        /// </summary>
+        public static string Users_MemberLevel {
+            get {
+                return ResourceManager.GetString("Users_MemberLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First name / Last name.
+        /// </summary>
+        public static string Users_NameSurname {
+            get {
+                return ResourceManager.GetString("Users_NameSurname", resourceCulture);
+            }
+        }
     }
 }

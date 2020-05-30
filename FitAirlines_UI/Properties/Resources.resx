@@ -289,4 +289,16 @@
   <data name="Reservations_ReservationDate" xml:space="preserve">
     <value>Reservation date</value>
   </data>
+  <data name="Users_FormName" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Users_Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Users_MemberLevel" xml:space="preserve">
+    <value>MemberLevel</value>
+  </data>
+  <data name="Users_NameSurname" xml:space="preserve">
+    <value>First name / Last name</value>
+  </data>
 </root>
