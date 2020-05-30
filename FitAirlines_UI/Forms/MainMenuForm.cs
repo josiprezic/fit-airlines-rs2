@@ -33,5 +33,10 @@ namespace FitAirlines_UI
         {
             ShowNewForm<ReservationsForm>();
         }
+
+        private void usersButton_Click(object sender, System.EventArgs e)
+        {
+            ShowNewForm<UsersForm>();
+        }
     }
 }

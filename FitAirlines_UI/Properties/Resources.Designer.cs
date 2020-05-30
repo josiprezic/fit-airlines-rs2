@@ -286,11 +286,155 @@ namespace FitAirlines_UI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Credit.
+        /// </summary>
+        public static string AddOrEditUser_AccountBalance {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_AccountBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actions.
+        /// </summary>
+        public static string AddOrEditUser_Actions {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_Actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add credit.
+        /// </summary>
+        public static string AddOrEditUser_AddCredit {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_AddCredit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of birth.
+        /// </summary>
+        public static string AddOrEditUser_BirthDate {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_BirthDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string AddOrEditUser_Cancel {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change password.
+        /// </summary>
+        public static string AddOrEditUser_ChangePassword {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Picture.
+        /// </summary>
+        public static string AddOrEditUser_ChangeProfilePicture {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_ChangeProfilePicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First name.
+        /// </summary>
+        public static string AddOrEditUser_FirstName {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FIT membership.
+        /// </summary>
+        public static string AddOrEditUser_FitMembership {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_FitMembership", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        public static string AddOrEditUser_Gender {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_Gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to is active.
+        /// </summary>
+        public static string AddOrEditUser_IsActive {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last name.
+        /// </summary>
+        public static string AddOrEditUser_LastName {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal info.
+        /// </summary>
+        public static string AddOrEditUser_PersonalInfoGroupBox {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_PersonalInfoGroupBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile picture.
+        /// </summary>
+        public static string AddOrEditUser_ProfilePictureGroupBox {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_ProfilePictureGroupBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string AddOrEditUser_Save {
+            get {
+                return ResourceManager.GetString("AddOrEditUser_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add new reservation.
         /// </summary>
         public static string AddReservation_FormName {
             get {
                 return ResourceManager.GetString("AddReservation_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add user.
+        /// </summary>
+        public static string AddUser_FormName {
+            get {
+                return ResourceManager.GetString("AddUser_FormName", resourceCulture);
             }
         }
         
@@ -318,6 +462,15 @@ namespace FitAirlines_UI.Properties {
         public static string EditReservation_FormName {
             get {
                 return ResourceManager.GetString("EditReservation_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit user.
+        /// </summary>
+        public static string EditUser_FormName {
+            get {
+                return ResourceManager.GetString("EditUser_FormName", resourceCulture);
             }
         }
         
@@ -572,6 +725,42 @@ namespace FitAirlines_UI.Properties {
         public static string Reservations_ReservationDate {
             get {
                 return ResourceManager.GetString("Reservations_ReservationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        public static string Users_FormName {
+            get {
+                return ResourceManager.GetString("Users_FormName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        public static string Users_Gender {
+            get {
+                return ResourceManager.GetString("Users_Gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member Level.
+        /// </summary>
+        public static string Users_MemberLevel {
+            get {
+                return ResourceManager.GetString("Users_MemberLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First name / Last name.
+        /// </summary>
+        public static string Users_NameSurname {
+            get {
+                return ResourceManager.GetString("Users_NameSurname", resourceCulture);
             }
         }
     }

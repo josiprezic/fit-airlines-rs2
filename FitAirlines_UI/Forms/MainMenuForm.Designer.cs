@@ -127,6 +127,7 @@
             this.usersButton.TabIndex = 6;
             this.usersButton.Text = "MAINMENUBUTTON3";
             this.usersButton.UseVisualStyleBackColor = false;
+            this.usersButton.Click += new System.EventHandler(this.usersButton_Click);
             // 
             // flightsButton
             // 
