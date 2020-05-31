@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FitAirlines_API.Models;
 
 namespace FitAirlines_UI
 {
@@ -16,6 +18,7 @@ namespace FitAirlines_UI
         public UsersForm()
         {
             InitializeComponent();
+            loadData();
         }
 
         //
@@ -66,6 +69,33 @@ namespace FitAirlines_UI
         {
             AddOrEditUserForm form = new AddOrEditUserForm(AddOrEditUserFormType.Add);
             form.ShowDialog();
+        }
+
+        private void loadData()
+        {
+            try
+            {
+                List<User> list = ApiHelper.GetData<User>(ApiHelper.Enpoints.GetUsers);
+                baseDataGridView1.DataSource = list;
+                setupDataGridView();
+            }
+            catch(ApiException ex)
+            {
+                MessageBox.Show(ex.message);
+            }
+        }
+
+        private void setupDataGridView()
+        {
+            List<string> visibleColumns = new List<string>();
+            visibleColumns.Add("FirstName");
+            visibleColumns.Add("LastName");
+            visibleColumns.Add("Username");
+            visibleColumns.Add("Email");
+            visibleColumns.Add("ContactNumber");
+            visibleColumns.Add("isActive");
+
+            baseDataGridView1.showSelectedColumns(visibleColumns);
         }
     }
 }

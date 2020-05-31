@@ -55,8 +55,26 @@ namespace FitAirlines_UI
 
         void BaseSetup() 
         {
-            // TODO: JR
+            ReadOnly = true;
+            SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            MultiSelect = false;
+            AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            AllowUserToResizeRows = false;
+            AllowUserToResizeColumns = false;
+            AllowUserToAddRows = false;
+            AllowDrop = false;
         }
 
+        //
+        // MARK: - Public methods
+        //
+
+        public void showSelectedColumns(List<string> columns)
+        {
+            foreach (DataGridViewColumn column in Columns)
+            {
+                column.Visible = columns.Contains(column.Name);
+            }
+        }
     }
 }
