@@ -22,7 +22,7 @@ namespace FitAirlines_UI
         }
 
         //
-        // MARK: - Protected methods
+        // MARK: - Styling
         //
 
         protected override void SetupStrings()
@@ -70,6 +70,10 @@ namespace FitAirlines_UI
             AddOrEditUserForm form = new AddOrEditUserForm(AddOrEditUserFormType.Add);
             form.ShowDialog();
         }
+
+        //
+        // MARK:- Data
+        //
 
         private void loadData()
         {
