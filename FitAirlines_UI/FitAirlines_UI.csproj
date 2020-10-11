@@ -39,6 +39,10 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -230,9 +234,9 @@
     <None Include="Resources\BaseImagePlaceholder.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FitAirlines_API\FitAirlines_API.csproj">
-      <Project>{5d3cdcdc-c644-473a-af88-df87423fdc37}</Project>
-      <Name>FitAirlines_API</Name>
+    <ProjectReference Include="..\FitAirlines.Model\FitAirlines.Model.csproj">
+      <Project>{4ba07c1d-2be7-4fa2-9455-dac14657ae86}</Project>
+      <Name>FitAirlines.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

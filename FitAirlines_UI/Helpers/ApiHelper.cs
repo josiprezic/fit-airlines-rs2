@@ -41,7 +41,7 @@ namespace FitAirlines_UI
 
         public static List<T> GetData<T>(string endpoint)
         {
-            HttpResponseMessage response = GetResponse(ApiHelper.Enpoints.GetUsers);
+            HttpResponseMessage response = GetResponse(endpoint);
             if (!response.IsSuccessStatusCode)
             {
                 string message = GetErrorMessageFromResponse(response);
@@ -51,6 +51,11 @@ namespace FitAirlines_UI
             {
                 return ApiHelper.GetObjectListFromResponse<T>(response);
             }
+        }
+
+        public static void CreateObject<T>(T createdObject, string enpodint)
+        { 
+            
         }
     }
 }

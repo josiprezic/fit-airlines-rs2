@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FitAirlines_API.Models;
 
 namespace FitAirlines_UI
 {
@@ -91,6 +92,30 @@ namespace FitAirlines_UI
         private void saveButton_Click(object sender, EventArgs e)
         {
             // TODO: JR
+            string firstName = firstNameTextBox.Text;
+            string lastName = lastNameTextBox.Text;
+            DateTime birthDate = birthDateTimePicker.Value;
+            string email = "testtest@gmail.com"; // TODO: JR
+            string mobileNumber = "2343242343";
+            // picture // TODO: JR
+            float credit = 0;
+            DateTime startDate = DateTime.Now; // TODO: JR
+            bool isActive = isActiveCheckBox.Checked;
+            int userRoleId = 1;
+            int membershipType = 1;
+
+            User user = new User();
+            user.FirstName = firstName;
+            user.LastName = lastName;
+            user.BirthDate = birthDate;
+            user.Email = email;
+            user.ContactNumber = mobileNumber;
+            user.Credit = credit;
+            user.StartDate = startDate;
+            user.isActive = isActive;
+            // user.UserRole = UserRole
+            // user.MembershipType
+            
         }
 
         private void changeProfileImageButton_Click(object sender, EventArgs e)
