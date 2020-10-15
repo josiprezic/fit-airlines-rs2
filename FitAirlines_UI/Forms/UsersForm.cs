@@ -1,4 +1,5 @@
 ﻿using FitAirlines.Model;
+using FitAirlines.UI.Helpers;
 using FitAirlines.UI.Properties;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,17 @@ namespace FitAirlines.UI
 {
     public partial class UsersForm : BaseForm
     {
+
+        private readonly APIService _serviceUsers = new APIService("Users");
+
         public UsersForm()
         {
             InitializeComponent();
+
+        }
+
+        private void UsersForm_Load(object sender, EventArgs e)
+        {
             loadData();
         }
 
@@ -56,7 +65,7 @@ namespace FitAirlines.UI
 
         private void searchImageButton_Click(object sender, EventArgs e)
         {
-            // TODO: JR
+            loadData();
         }
 
         private void editImageButton_Click(object sender, EventArgs e)
@@ -75,11 +84,20 @@ namespace FitAirlines.UI
         // MARK:- Data
         //
 
-        private void loadData()
+        private async void loadData()
         {
-                //List<Users> list = ApiHelper.GetData<Users>(ApiHelper.Enpoints.GetUsers);
-                //baseDataGridView1.DataSource = list;
-                //setupDataGridView();
+
+
+            var request = new Model.Requests.UsersSearchRequest
+            {
+                Name = nameSurnameTextBox.Text,
+                Gender = genderComboBox.Text,
+                ShowOnlyActive = isActiveCheckBox.Checked
+            };
+            var list = await _serviceUsers.Get<List<Model.Users>>(request);
+
+            baseDataGridView1.DataSource = list;
+            setupDataGridView();
         }
 
         private void setupDataGridView()

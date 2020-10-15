@@ -20,9 +20,9 @@ namespace FitAirlines.WebAPI.Controllers
         }
 
         [HttpGet]
-        public List<Model.Users> Get() 
+        public List<Model.Users> Get([FromQuery] Model.Requests.UsersSearchRequest request) 
         {
-            return _service.Get();   
+            return _service.Get(request);   
         }
 
         [HttpGet("{Id}")]

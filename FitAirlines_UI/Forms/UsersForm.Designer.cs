@@ -46,13 +46,20 @@
             // 
             // baseDataGridView1
             // 
+            this.baseDataGridView1.AllowUserToAddRows = false;
+            this.baseDataGridView1.AllowUserToResizeColumns = false;
+            this.baseDataGridView1.AllowUserToResizeRows = false;
             this.baseDataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.baseDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.baseDataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.baseDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.baseDataGridView1.Location = new System.Drawing.Point(12, 77);
+            this.baseDataGridView1.MultiSelect = false;
             this.baseDataGridView1.Name = "baseDataGridView1";
+            this.baseDataGridView1.ReadOnly = true;
+            this.baseDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.baseDataGridView1.Size = new System.Drawing.Size(853, 421);
             this.baseDataGridView1.TabIndex = 0;
             // 
@@ -154,6 +161,9 @@
             // genderComboBox
             // 
             this.genderComboBox.FormattingEnabled = true;
+            this.genderComboBox.Items.AddRange(new object[] {
+            "M",
+            "Z"});
             this.genderComboBox.Location = new System.Drawing.Point(213, 32);
             this.genderComboBox.Name = "genderComboBox";
             this.genderComboBox.Size = new System.Drawing.Size(121, 21);
@@ -181,6 +191,7 @@
             this.MinimizeBox = false;
             this.Name = "UsersForm";
             this.Text = "UsersForm";
+            this.Load += new System.EventHandler(this.UsersForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
