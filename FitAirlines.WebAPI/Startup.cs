@@ -60,6 +60,7 @@ namespace FitAirlines.WebAPI
             //               .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
             services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<IMembershipTypesService, MembershipTypesService>();
 
             var connection = Configuration.GetConnectionString("local");
             services.AddDbContext<FitAirlinesContext>(options => options.UseSqlServer(connection));

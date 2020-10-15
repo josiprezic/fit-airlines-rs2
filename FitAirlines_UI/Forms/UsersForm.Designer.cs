@@ -97,6 +97,7 @@
             // 
             // memberLevelComboBox
             // 
+            this.memberLevelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.memberLevelComboBox.FormattingEnabled = true;
             this.memberLevelComboBox.Location = new System.Drawing.Point(340, 32);
             this.memberLevelComboBox.Name = "memberLevelComboBox";
@@ -160,8 +161,10 @@
             // 
             // genderComboBox
             // 
+            this.genderComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.genderComboBox.FormattingEnabled = true;
             this.genderComboBox.Items.AddRange(new object[] {
+            "All",
             "M",
             "Z"});
             this.genderComboBox.Location = new System.Drawing.Point(213, 32);

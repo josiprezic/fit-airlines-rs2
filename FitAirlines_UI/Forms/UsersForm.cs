@@ -18,6 +18,7 @@ namespace FitAirlines.UI
     {
 
         private readonly APIService _serviceUsers = new APIService("Users");
+        private readonly APIService _serviceMembershipTypes = new APIService("MembershipTypes");
 
         public UsersForm()
         {
@@ -57,6 +58,8 @@ namespace FitAirlines.UI
 
             editImageButton.Image = Resources.Icon_Add;
             editImageButton.Text = Resources.Generic_Edit;
+
+            genderComboBox.SelectedIndex = 0;
         }
 
         //
@@ -65,7 +68,7 @@ namespace FitAirlines.UI
 
         private void searchImageButton_Click(object sender, EventArgs e)
         {
-            loadData();
+            loadUsers();
         }
 
         private void editImageButton_Click(object sender, EventArgs e)
@@ -86,18 +89,38 @@ namespace FitAirlines.UI
 
         private async void loadData()
         {
+            searchImageButton.Enabled = false;
+            await loadMembershipTypes();
+            await loadUsers();
+            setupDataGridView();
+            searchImageButton.Enabled = true;
+        }
 
-
+        private async Task loadUsers()
+        {
             var request = new Model.Requests.UsersSearchRequest
             {
                 Name = nameSurnameTextBox.Text,
-                Gender = genderComboBox.Text,
-                ShowOnlyActive = isActiveCheckBox.Checked
+                ShowOnlyActive = isActiveCheckBox.Checked,
+                MembershipTypeId = (memberLevelComboBox.SelectedItem as MembershipTypes).MembershipTypeId
             };
+
+            if(genderComboBox.Text != "All")
+            {
+                request.Gender = genderComboBox.Text;
+            }
+
             var list = await _serviceUsers.Get<List<Model.Users>>(request);
 
             baseDataGridView1.DataSource = list;
-            setupDataGridView();
+        }
+
+        private async Task loadMembershipTypes()
+        {
+            var list = await _serviceMembershipTypes.Get<List<Model.MembershipTypes>>(null);
+            list.Insert(0, new MembershipTypes() { MembershipTypeId = 0, Title = "All" }) ;
+            memberLevelComboBox.DataSource = list;
+            memberLevelComboBox.DisplayMember = "Title";
         }
 
         private void setupDataGridView()
