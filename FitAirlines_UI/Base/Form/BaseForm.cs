@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 
 
-namespace FitAirlines_UI
+namespace FitAirlines.UI
 {
     public class BaseForm: Form
     {

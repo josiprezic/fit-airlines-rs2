@@ -1,4 +1,4 @@
-﻿namespace FitAirlines_UI
+﻿namespace FitAirlines.UI
 {
     partial class ImageButton
     {

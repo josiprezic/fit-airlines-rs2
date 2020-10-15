@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D20350EF-B397-4232-B593-8EA50EA274ED}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>FitAirlines_UI</RootNamespace>
-    <AssemblyName>FitAirlines_UI</AssemblyName>
+    <RootNamespace>FitAirlines.UI</RootNamespace>
+    <AssemblyName>FitAirlines.UI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,7 +32,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Flurl, Version=2.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Flurl.2.8.2\lib\net40\Flurl.dll</HintPath>
+    </Reference>
+    <Reference Include="Flurl.Http, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Flurl.Http.2.4.2\lib\net46\Flurl.Http.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -62,7 +71,6 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\ApiHelper.cs" />
     <Compile Include="Forms\AddOrEditUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +160,7 @@
     <Compile Include="Custom\ImageButton.Designer.cs">
       <DependentUpon>ImageButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\APIService.cs" />
     <Compile Include="Helpers\ImageUploadHelper.cs" />
     <Compile Include="HttpsClient.cs" />
     <Compile Include="Program.cs" />

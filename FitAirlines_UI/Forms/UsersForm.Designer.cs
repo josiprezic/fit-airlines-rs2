@@ -1,4 +1,4 @@
-﻿namespace FitAirlines_UI
+﻿namespace FitAirlines.UI
 {
     partial class UsersForm
     {
@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.baseDataGridView1 = new FitAirlines_UI.BaseDataGridView(this.components);
+            this.baseDataGridView1 = new FitAirlines.UI.BaseDataGridView(this.components);
             this.nameSurnameTextBox = new System.Windows.Forms.TextBox();
             this.nameSurnameLabel = new System.Windows.Forms.Label();
             this.genderLabel = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.memberLevelComboBox = new FitAirlines_UI.BaseComboBox();
+            this.memberLevelComboBox = new FitAirlines.UI.BaseComboBox();
             this.memberLevelLabel = new System.Windows.Forms.Label();
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
-            this.searchImageButton = new FitAirlines_UI.ImageButton(this.components);
-            this.editImageButton = new FitAirlines_UI.ImageButton(this.components);
-            this.addImageButton = new FitAirlines_UI.ImageButton(this.components);
-            this.genderComboBox = new FitAirlines_UI.BaseComboBox();
+            this.searchImageButton = new FitAirlines.UI.ImageButton(this.components);
+            this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
+            this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
+            this.genderComboBox = new FitAirlines.UI.BaseComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 

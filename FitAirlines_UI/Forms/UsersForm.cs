@@ -1,5 +1,5 @@
 ﻿using FitAirlines.Model;
-using FitAirlines_UI.Properties;
+using FitAirlines.UI.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FitAirlines_UI
+namespace FitAirlines.UI
 {
     public partial class UsersForm : BaseForm
     {
@@ -77,16 +77,9 @@ namespace FitAirlines_UI
 
         private void loadData()
         {
-            try
-            {
-                List<Users> list = ApiHelper.GetData<Users>(ApiHelper.Enpoints.GetUsers);
-                baseDataGridView1.DataSource = list;
-                setupDataGridView();
-            }
-            catch(ApiException ex)
-            {
-                MessageBox.Show(ex.message);
-            }
+                //List<Users> list = ApiHelper.GetData<Users>(ApiHelper.Enpoints.GetUsers);
+                //baseDataGridView1.DataSource = list;
+                //setupDataGridView();
         }
 
         private void setupDataGridView()

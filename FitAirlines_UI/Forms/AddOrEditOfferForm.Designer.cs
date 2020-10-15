@@ -1,4 +1,4 @@
-﻿namespace FitAirlines_UI
+﻿namespace FitAirlines.UI
 {
     partial class AddOrEditOfferForm
     {
@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.imageGroupBox = new System.Windows.Forms.GroupBox();
-            this.offerPictureBox = new FitAirlines_UI.BasePictureBox();
-            this.uploadofferPictureButton = new FitAirlines_UI.BaseButton();
-            this.saveOfferButton = new FitAirlines_UI.BaseButton();
-            this.cancelButton = new FitAirlines_UI.BaseButton();
+            this.offerPictureBox = new FitAirlines.UI.BasePictureBox();
+            this.uploadofferPictureButton = new FitAirlines.UI.BaseButton();
+            this.saveOfferButton = new FitAirlines.UI.BaseButton();
+            this.cancelButton = new FitAirlines.UI.BaseButton();
             this.offerNameLabel = new System.Windows.Forms.Label();
             this.offerNameTextBox = new System.Windows.Forms.TextBox();
             this.requiredMemberLevelLabel = new System.Windows.Forms.Label();
@@ -42,7 +42,7 @@
             this.personalInfoGroupBox = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.offerMemberTypeComboBox = new FitAirlines_UI.BaseComboBox();
+            this.offerMemberTypeComboBox = new FitAirlines.UI.BaseComboBox();
             this.imageGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.offerPictureBox)).BeginInit();
             this.personalInfoGroupBox.SuspendLayout();

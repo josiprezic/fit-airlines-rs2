@@ -1,4 +1,4 @@
-﻿namespace FitAirlines_UI
+﻿namespace FitAirlines.UI
 {
     partial class OffersForm
     {
@@ -33,11 +33,11 @@
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.offerNameLabel = new System.Windows.Forms.Label();
             this.offerNameTextBox = new System.Windows.Forms.TextBox();
-            this.baseDataGridView1 = new FitAirlines_UI.BaseDataGridView(this.components);
-            this.offerDateTimePicker = new FitAirlines_UI.BaseDateTimePicker(this.components);
-            this.addImageButton = new FitAirlines_UI.ImageButton(this.components);
-            this.searchImageButton = new FitAirlines_UI.ImageButton(this.components);
-            this.editImageButton = new FitAirlines_UI.ImageButton(this.components);
+            this.baseDataGridView1 = new FitAirlines.UI.BaseDataGridView(this.components);
+            this.offerDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
+            this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
+            this.searchImageButton = new FitAirlines.UI.ImageButton(this.components);
+            this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 

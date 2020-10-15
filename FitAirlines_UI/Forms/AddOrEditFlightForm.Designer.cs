@@ -1,4 +1,4 @@
-﻿namespace FitAirlines_UI
+﻿namespace FitAirlines.UI
 {
     partial class AddOrEditFlightForm
     {
@@ -30,17 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.cancelButton = new FitAirlines_UI.BaseButton();
-            this.saveButton = new FitAirlines_UI.BaseButton();
+            this.cancelButton = new FitAirlines.UI.BaseButton();
+            this.saveButton = new FitAirlines.UI.BaseButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.basicInfoGroupBox = new System.Windows.Forms.GroupBox();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.capacityNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.capacityLabel = new System.Windows.Forms.Label();
             this.offerLabel = new System.Windows.Forms.Label();
-            this.endDateTimePicker = new FitAirlines_UI.BaseDateTimePicker(this.components);
+            this.endDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
             this.endDateLabel = new System.Windows.Forms.Label();
-            this.startDateTimePicker = new FitAirlines_UI.BaseDateTimePicker(this.components);
+            this.startDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
             this.startDateLabel = new System.Windows.Forms.Label();
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
@@ -49,11 +49,11 @@
             this.offerNameTextBox = new System.Windows.Forms.TextBox();
             this.flightNameLabel = new System.Windows.Forms.Label();
             this.imageGroupBox = new System.Windows.Forms.GroupBox();
-            this.flightPictureBox = new FitAirlines_UI.BasePictureBox();
-            this.uploadFlightPictureButton = new FitAirlines_UI.BaseButton();
-            this.offerComboBox = new FitAirlines_UI.BaseComboBox();
-            this.countryComboBox = new FitAirlines_UI.BaseComboBox();
-            this.cityComboBox = new FitAirlines_UI.BaseComboBox();
+            this.flightPictureBox = new FitAirlines.UI.BasePictureBox();
+            this.uploadFlightPictureButton = new FitAirlines.UI.BaseButton();
+            this.offerComboBox = new FitAirlines.UI.BaseComboBox();
+            this.countryComboBox = new FitAirlines.UI.BaseComboBox();
+            this.cityComboBox = new FitAirlines.UI.BaseComboBox();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.basicInfoGroupBox.SuspendLayout();

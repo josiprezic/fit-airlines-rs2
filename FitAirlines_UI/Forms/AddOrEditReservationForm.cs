@@ -1,4 +1,4 @@
-﻿using FitAirlines_UI.Properties;
+﻿using FitAirlines.UI.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FitAirlines_UI
+namespace FitAirlines.UI
 {
     public partial class AddOrEditReservationForm : BaseForm
     {

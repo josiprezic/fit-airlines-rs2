@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FitAirlines_UI
+namespace FitAirlines.UI
 {
     static class Program
     {

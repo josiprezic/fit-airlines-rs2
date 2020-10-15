@@ -1,6 +1,6 @@
-﻿using FitAirlines_UI.Properties;
+﻿using FitAirlines.UI.Properties;
 
-namespace FitAirlines_UI
+namespace FitAirlines.UI
 {
     public partial class MainMenuForm : BaseForm
     {

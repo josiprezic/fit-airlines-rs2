@@ -1,4 +1,4 @@
-﻿namespace FitAirlines_UI
+﻿namespace FitAirlines.UI
 {
     partial class MainMenuForm
     {
@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.settingsButton = new FitAirlines_UI.CustomViews.MainMenuButton();
-            this.reservationsButton = new FitAirlines_UI.CustomViews.MainMenuButton();
-            this.offersButton = new FitAirlines_UI.CustomViews.MainMenuButton();
-            this.usersButton = new FitAirlines_UI.CustomViews.MainMenuButton();
-            this.flightsButton = new FitAirlines_UI.CustomViews.MainMenuButton();
-            this.mainMenuButton2 = new FitAirlines_UI.CustomViews.MainMenuButton();
+            this.settingsButton = new FitAirlines.UI.CustomViews.MainMenuButton();
+            this.reservationsButton = new FitAirlines.UI.CustomViews.MainMenuButton();
+            this.offersButton = new FitAirlines.UI.CustomViews.MainMenuButton();
+            this.usersButton = new FitAirlines.UI.CustomViews.MainMenuButton();
+            this.flightsButton = new FitAirlines.UI.CustomViews.MainMenuButton();
+            this.mainMenuButton2 = new FitAirlines.UI.CustomViews.MainMenuButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 

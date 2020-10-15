@@ -1,4 +1,4 @@
-﻿namespace FitAirlines_UI
+﻿namespace FitAirlines.UI
 {
     partial class ReservationsForm
     {
@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridView = new FitAirlines_UI.BaseDataGridView(this.components);
-            this.searchImageButton = new FitAirlines_UI.ImageButton(this.components);
-            this.editImageButton = new FitAirlines_UI.ImageButton(this.components);
-            this.addImageButton = new FitAirlines_UI.ImageButton(this.components);
-            this.reservationDateTimePicker = new FitAirlines_UI.BaseDateTimePicker(this.components);
+            this.dataGridView = new FitAirlines.UI.BaseDataGridView(this.components);
+            this.searchImageButton = new FitAirlines.UI.ImageButton(this.components);
+            this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
+            this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
+            this.reservationDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
             this.reservationDateTimePickerLabel = new System.Windows.Forms.Label();
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.clientNameLabel = new System.Windows.Forms.Label();
             this.clientNameTextBox = new System.Windows.Forms.TextBox();
-            this.flightComboBox = new FitAirlines_UI.BaseComboBox();
+            this.flightComboBox = new FitAirlines.UI.BaseComboBox();
             this.flightLabel = new System.Windows.Forms.Label();
-            this.flightDateTimePicker = new FitAirlines_UI.BaseDateTimePicker(this.components);
+            this.flightDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
             this.flightDateTimePickerLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
