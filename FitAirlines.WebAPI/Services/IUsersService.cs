@@ -11,6 +11,7 @@ namespace FitAirlines.WebAPI.Services
         Model.Users GetById(int id);
 
         Model.Users Insert(Model.Requests.UsersInsertRequest request);
+        Model.Users Update(int id, Model.Requests.UsersUpdateRequest request);
 
 
 

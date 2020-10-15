@@ -25,8 +25,8 @@ namespace FitAirlines.WebAPI.Mapper
             CreateMap<Database.UserRoles, Model.UserRoles>();
             CreateMap<Database.Users, Model.Users>();
 
-            // TODO: JR add on insert / update request 
             CreateMap<Database.Users, Model.Requests.UsersInsertRequest>().ReverseMap();
+            CreateMap<Database.Users, Model.Requests.UsersUpdateRequest>().ReverseMap();
         }
     }
 }

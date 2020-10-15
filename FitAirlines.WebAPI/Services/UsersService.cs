@@ -71,6 +71,39 @@ namespace FitAirlines.WebAPI.Services
             return _mapper.Map<Model.Users>(entity);
         }
 
+        public Model.Users Update(int id, UsersUpdateRequest request)
+        {
+            var entity = _context.Users.Find(id);
+
+            _context.Users.Attach(entity);
+            _context.Users.Update(entity);
+            if (!string.IsNullOrWhiteSpace(request.Password))
+            {
+                if (request.Password != request.PasswordConfirmation)
+                {
+                    throw new UserException("Passwords do not match.");
+                }
+
+                entity.PasswordSalt = GenerateSalt();
+                entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
+            }
+            if (entity.Username != request.Username && CheckUsernameExists(request.Username))
+            {
+                throw new UserException("Username is already taken.");
+            }
+            if (entity.Email != request.Email && CheckEmailExists(request.Email))
+            {
+                throw new UserException("Email is already taken.");
+            }
+
+            _mapper.Map(request, entity);
+
+            _context.SaveChanges();
+
+            return _mapper.Map<Model.Users>(entity);
+        }
+
+
         // TODO: JR move to password helper
 
         public static string GenerateSalt()

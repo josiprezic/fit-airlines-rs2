@@ -36,5 +36,11 @@ namespace FitAirlines.WebAPI.Controllers
         {
             return _service.Insert(request);
         }
+
+        [HttpPut("{Id}")]
+        public Model.Users Update(int Id, [FromBody] Model.Requests.UsersUpdateRequest request)
+        {
+            return _service.Update(Id, request);
+        }
     }
 }
