@@ -1,4 +1,5 @@
-﻿using FitAirlines_UI.Properties;
+﻿using FitAirlines.Model;
+using FitAirlines_UI.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FitAirlines_API.Models;
 
 namespace FitAirlines_UI
 {
@@ -104,7 +104,7 @@ namespace FitAirlines_UI
             int userRoleId = 1;
             int membershipType = 1;
 
-            User user = new User();
+            Users user = new Users();
             user.FirstName = firstName;
             user.LastName = lastName;
             user.BirthDate = birthDate;
@@ -112,7 +112,7 @@ namespace FitAirlines_UI
             user.ContactNumber = mobileNumber;
             user.Credit = credit;
             user.StartDate = startDate;
-            user.isActive = isActive;
+            user.IsActive = isActive;
             // user.UserRole = UserRole
             // user.MembershipType
             

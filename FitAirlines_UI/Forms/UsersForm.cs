@@ -1,4 +1,5 @@
-﻿using FitAirlines_UI.Properties;
+﻿using FitAirlines.Model;
+using FitAirlines_UI.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +10,6 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FitAirlines_API.Models;
 
 namespace FitAirlines_UI
 {
@@ -79,7 +79,7 @@ namespace FitAirlines_UI
         {
             try
             {
-                List<User> list = ApiHelper.GetData<User>(ApiHelper.Enpoints.GetUsers);
+                List<Users> list = ApiHelper.GetData<Users>(ApiHelper.Enpoints.GetUsers);
                 baseDataGridView1.DataSource = list;
                 setupDataGridView();
             }
