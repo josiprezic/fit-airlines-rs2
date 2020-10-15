@@ -1,4 +1,4 @@
-﻿namespace FitAirlines_UI
+﻿namespace FitAirlines.UI
 {
     partial class AddOrEditReservationForm
     {
@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.clientLabel = new System.Windows.Forms.Label();
-            this.clientComboBox = new FitAirlines_UI.BaseComboBox();
-            this.offerComboBox = new FitAirlines_UI.BaseComboBox();
+            this.clientComboBox = new FitAirlines.UI.BaseComboBox();
+            this.offerComboBox = new FitAirlines.UI.BaseComboBox();
             this.offerLabel = new System.Windows.Forms.Label();
-            this.flightComboBox = new FitAirlines_UI.BaseComboBox();
+            this.flightComboBox = new FitAirlines.UI.BaseComboBox();
             this.flightLabel = new System.Windows.Forms.Label();
             this.seatStartTextBox = new System.Windows.Forms.TextBox();
             this.seatStartLabel = new System.Windows.Forms.Label();
@@ -44,8 +44,8 @@
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.priceTitleLabel = new System.Windows.Forms.Label();
             this.priceLabel = new System.Windows.Forms.Label();
-            this.cancelButton = new FitAirlines_UI.BaseButton();
-            this.saveButton = new FitAirlines_UI.BaseButton();
+            this.cancelButton = new FitAirlines.UI.BaseButton();
+            this.saveButton = new FitAirlines.UI.BaseButton();
             this.SuspendLayout();
             // 
             // clientLabel

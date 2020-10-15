@@ -1,25 +1,28 @@
-﻿using FitAirlines_UI.Properties;
+﻿using FitAirlines.Model;
+using FitAirlines.UI.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FitAirlines_UI
+namespace FitAirlines.UI
 {
     public partial class UsersForm : BaseForm
     {
         public UsersForm()
         {
             InitializeComponent();
+            loadData();
         }
 
         //
-        // MARK: - Protected methods
+        // MARK: - Styling
         //
 
         protected override void SetupStrings()
@@ -66,6 +69,30 @@ namespace FitAirlines_UI
         {
             AddOrEditUserForm form = new AddOrEditUserForm(AddOrEditUserFormType.Add);
             form.ShowDialog();
+        }
+
+        //
+        // MARK:- Data
+        //
+
+        private void loadData()
+        {
+                //List<Users> list = ApiHelper.GetData<Users>(ApiHelper.Enpoints.GetUsers);
+                //baseDataGridView1.DataSource = list;
+                //setupDataGridView();
+        }
+
+        private void setupDataGridView()
+        {
+            List<string> visibleColumns = new List<string>();
+            visibleColumns.Add("FirstName");
+            visibleColumns.Add("LastName");
+            visibleColumns.Add("Username");
+            visibleColumns.Add("Email");
+            visibleColumns.Add("ContactNumber");
+            visibleColumns.Add("isActive");
+
+            baseDataGridView1.showSelectedColumns(visibleColumns);
         }
     }
 }

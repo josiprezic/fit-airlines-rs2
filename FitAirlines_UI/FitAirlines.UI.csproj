@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D20350EF-B397-4232-B593-8EA50EA274ED}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>FitAirlines_UI</RootNamespace>
-    <AssemblyName>FitAirlines_UI</AssemblyName>
+    <RootNamespace>FitAirlines.UI</RootNamespace>
+    <AssemblyName>FitAirlines.UI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,13 +32,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Flurl, Version=2.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Flurl.2.8.2\lib\net40\Flurl.dll</HintPath>
+    </Reference>
+    <Reference Include="Flurl.Http, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Flurl.Http.2.4.2\lib\net46\Flurl.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -147,7 +160,9 @@
     <Compile Include="Custom\ImageButton.Designer.cs">
       <DependentUpon>ImageButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\APIService.cs" />
     <Compile Include="Helpers\ImageUploadHelper.cs" />
+    <Compile Include="HttpsClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\ReservationsForm.cs">
@@ -226,6 +241,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BaseImagePlaceholder.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FitAirlines.Model\FitAirlines.Model.csproj">
+      <Project>{4ba07c1d-2be7-4fa2-9455-dac14657ae86}</Project>
+      <Name>FitAirlines.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

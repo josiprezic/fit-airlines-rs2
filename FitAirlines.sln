@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitAirlines_API", "FitAirlines_API\FitAirlines_API.csproj", "{5D3CDCDC-C644-473A-AF88-DF87423FDC37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitAirlines.UI", "FitAirlines_UI\FitAirlines.UI.csproj", "{D20350EF-B397-4232-B593-8EA50EA274ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitAirlines_UI", "FitAirlines_UI\FitAirlines_UI.csproj", "{D20350EF-B397-4232-B593-8EA50EA274ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitAirlines.WebAPI", "FitAirlines.WebAPI\FitAirlines.WebAPI.csproj", "{775812DA-A3E7-4A10-95E1-EC20A53385D3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitAirlines.Model", "FitAirlines.Model\FitAirlines.Model.csproj", "{4BA07C1D-2BE7-4FA2-9455-DAC14657AE86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5D3CDCDC-C644-473A-AF88-DF87423FDC37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D3CDCDC-C644-473A-AF88-DF87423FDC37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D3CDCDC-C644-473A-AF88-DF87423FDC37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D3CDCDC-C644-473A-AF88-DF87423FDC37}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D20350EF-B397-4232-B593-8EA50EA274ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D20350EF-B397-4232-B593-8EA50EA274ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D20350EF-B397-4232-B593-8EA50EA274ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D20350EF-B397-4232-B593-8EA50EA274ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{775812DA-A3E7-4A10-95E1-EC20A53385D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{775812DA-A3E7-4A10-95E1-EC20A53385D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{775812DA-A3E7-4A10-95E1-EC20A53385D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{775812DA-A3E7-4A10-95E1-EC20A53385D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BA07C1D-2BE7-4FA2-9455-DAC14657AE86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BA07C1D-2BE7-4FA2-9455-DAC14657AE86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BA07C1D-2BE7-4FA2-9455-DAC14657AE86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BA07C1D-2BE7-4FA2-9455-DAC14657AE86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

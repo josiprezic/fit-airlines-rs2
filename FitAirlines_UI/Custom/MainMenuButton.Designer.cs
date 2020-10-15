@@ -1,4 +1,4 @@
-﻿namespace FitAirlines_UI.CustomViews
+﻿namespace FitAirlines.UI.CustomViews
 {
     partial class MainMenuButton
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.baseButton1 = new FitAirlines_UI.BaseButton();
+            this.baseButton1 = new FitAirlines.UI.BaseButton();
             this.SuspendLayout();
             // 
             // baseButton1

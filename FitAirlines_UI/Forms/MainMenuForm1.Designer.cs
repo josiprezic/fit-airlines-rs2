@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FitAirlines_UI.Forms {
+namespace FitAirlines.UI.Forms {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace FitAirlines_UI.Forms {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FitAirlines_UI.Forms.MainMenuForm", typeof(MainMenuForm).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FitAirlines.UI.Forms.MainMenuForm", typeof(MainMenuForm).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

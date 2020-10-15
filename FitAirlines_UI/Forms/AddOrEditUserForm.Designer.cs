@@ -1,4 +1,4 @@
-﻿namespace FitAirlines_UI
+﻿namespace FitAirlines.UI
 {
     partial class AddOrEditUserForm
     {
@@ -30,15 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.profilePictureGroupBox = new System.Windows.Forms.GroupBox();
-            this.profilePictureBox = new FitAirlines_UI.BasePictureBox();
-            this.changePasswordButton = new FitAirlines_UI.BaseButton();
-            this.changeProfileImageButton = new FitAirlines_UI.BaseButton();
+            this.profilePictureBox = new FitAirlines.UI.BasePictureBox();
+            this.changePasswordButton = new FitAirlines.UI.BaseButton();
+            this.changeProfileImageButton = new FitAirlines.UI.BaseButton();
             this.personalDataGroupBox = new System.Windows.Forms.GroupBox();
             this.accountBalanceValueLabel = new System.Windows.Forms.Label();
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
-            this.fitMembershipComboBox = new FitAirlines_UI.BaseComboBox();
-            this.genderComboBox = new FitAirlines_UI.BaseComboBox();
-            this.birthDateTimePicker = new FitAirlines_UI.BaseDateTimePicker(this.components);
+            this.fitMembershipComboBox = new FitAirlines.UI.BaseComboBox();
+            this.genderComboBox = new FitAirlines.UI.BaseComboBox();
+            this.birthDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
             this.accountBalanceTextLabel = new System.Windows.Forms.Label();
             this.fitMembershipLabel = new System.Windows.Forms.Label();
             this.genderLabel = new System.Windows.Forms.Label();
@@ -48,9 +48,9 @@
             this.firstNameTextBox = new System.Windows.Forms.TextBox();
             this.firstNameLabel = new System.Windows.Forms.Label();
             this.actionsGroupBox = new System.Windows.Forms.GroupBox();
-            this.saveButton = new FitAirlines_UI.BaseButton();
-            this.cancelButton = new FitAirlines_UI.BaseButton();
-            this.addCreditButton = new FitAirlines_UI.BaseButton();
+            this.saveButton = new FitAirlines.UI.BaseButton();
+            this.cancelButton = new FitAirlines.UI.BaseButton();
+            this.addCreditButton = new FitAirlines.UI.BaseButton();
             this.profilePictureGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
             this.personalDataGroupBox.SuspendLayout();

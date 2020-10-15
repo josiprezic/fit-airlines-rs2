@@ -1,4 +1,4 @@
-﻿namespace FitAirlines_UI
+﻿namespace FitAirlines.UI
 {
     partial class FlightsForm
     {
@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridView = new FitAirlines_UI.BaseDataGridView(this.components);
-            this.searchImageButton = new FitAirlines_UI.ImageButton(this.components);
-            this.editImageButton = new FitAirlines_UI.ImageButton(this.components);
-            this.addImageButton = new FitAirlines_UI.ImageButton(this.components);
-            this.startDateTimePicker = new FitAirlines_UI.BaseDateTimePicker(this.components);
+            this.dataGridView = new FitAirlines.UI.BaseDataGridView(this.components);
+            this.searchImageButton = new FitAirlines.UI.ImageButton(this.components);
+            this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
+            this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
+            this.startDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
             this.startDateTimePickerLabel = new System.Windows.Forms.Label();
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.flightNameLabel = new System.Windows.Forms.Label();
@@ -42,12 +42,12 @@
             this.countryTextBox = new System.Windows.Forms.TextBox();
             this.cityLabel = new System.Windows.Forms.Label();
             this.cityTextBox = new System.Windows.Forms.TextBox();
-            this.endDateTimePicker = new FitAirlines_UI.BaseDateTimePicker(this.components);
+            this.endDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
             this.endDateTimePickerLabel = new System.Windows.Forms.Label();
             this.offerLabel = new System.Windows.Forms.Label();
             this.minMembershipTypeLabel = new System.Windows.Forms.Label();
-            this.offerComboBox = new FitAirlines_UI.BaseComboBox();
-            this.minMembershipComboBox = new FitAirlines_UI.BaseComboBox();
+            this.offerComboBox = new FitAirlines.UI.BaseComboBox();
+            this.minMembershipComboBox = new FitAirlines.UI.BaseComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FitAirlines_UI.CustomViews
+namespace FitAirlines.UI.CustomViews
 {
     public partial class MainMenuButton : BaseButton
     {
