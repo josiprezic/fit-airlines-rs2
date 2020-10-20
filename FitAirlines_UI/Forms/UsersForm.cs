@@ -23,7 +23,7 @@ namespace FitAirlines.UI
         public UsersForm()
         {
             InitializeComponent();
-
+            baseDataGridView1.AutoGenerateColumns = false;
         }
 
         private void UsersForm_Load(object sender, EventArgs e)
@@ -92,7 +92,6 @@ namespace FitAirlines.UI
             searchImageButton.Enabled = false;
             await loadMembershipTypes();
             await loadUsers();
-            setupDataGridView();
             searchImageButton.Enabled = true;
         }
 
@@ -123,17 +122,14 @@ namespace FitAirlines.UI
             memberLevelComboBox.DisplayMember = "Title";
         }
 
-        private void setupDataGridView()
+        private void nameSurnameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            List<string> visibleColumns = new List<string>();
-            visibleColumns.Add("FirstName");
-            visibleColumns.Add("LastName");
-            visibleColumns.Add("Username");
-            visibleColumns.Add("Email");
-            visibleColumns.Add("ContactNumber");
-            visibleColumns.Add("isActive");
-
-            baseDataGridView1.showSelectedColumns(visibleColumns);
+            if (e.KeyCode == Keys.Enter) 
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                loadUsers();
+            }
         }
     }
 }

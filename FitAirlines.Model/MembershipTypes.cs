@@ -17,5 +17,10 @@ namespace FitAirlines.Model
         public bool IsBonusMealAvailable { get; set; }
         public double BasicTicketDiscount { get; set; }
         public double BasicFoodDrinkDiscount { get; set; }
+
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 }
