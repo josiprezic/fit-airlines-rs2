@@ -1,4 +1,5 @@
 ﻿using FitAirlines.Model;
+using FitAirlines.UI.Helpers;
 using FitAirlines.UI.Properties;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,9 @@ namespace FitAirlines.UI
 
     public partial class AddOrEditUserForm : BaseForm
     {
+        private readonly APIService _serviceUsers = new APIService("Users");
+        private readonly APIService _serviceMembershipTypes = new APIService("MembershipTypes");
+
 
         //
         // MARK: - Variables
@@ -57,6 +61,7 @@ namespace FitAirlines.UI
             changePasswordButton.Text = Resources.AddOrEditUser_ChangePassword;
             firstNameLabel.Text = Resources.AddOrEditUser_FirstName;
             lastNameLabel.Text = Resources.AddOrEditUser_LastName;
+            emailLabel.Text = "Email"; // TODO: JR add resource
             birthDateLabel.Text = Resources.AddOrEditUser_BirthDate;
             genderLabel.Text = Resources.AddOrEditUser_Gender;
             isActiveCheckBox.Text = Resources.AddOrEditUser_IsActive;
@@ -64,6 +69,7 @@ namespace FitAirlines.UI
             addCreditButton.Text = Resources.AddOrEditUser_AddCredit;
             cancelButton.Text = Resources.AddOrEditUser_Cancel;
             saveButton.Text = Resources.AddOrEditUser_Save;
+            fitMembershipLabel.Text = "Membership type"; // TODO: JR
 
             // TODO: JR update
             accountBalanceValueLabel.Text = "0.00 $";
@@ -89,33 +95,39 @@ namespace FitAirlines.UI
             this.Close();
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private async void saveButton_Click(object sender, EventArgs e)
         {
-            // TODO: JR
-            string firstName = firstNameTextBox.Text;
-            string lastName = lastNameTextBox.Text;
-            DateTime birthDate = birthDateTimePicker.Value;
-            string email = "testtest@gmail.com"; // TODO: JR
-            string mobileNumber = "2343242343";
-            // picture // TODO: JR
-            float credit = 0;
-            DateTime startDate = DateTime.Now; // TODO: JR
-            bool isActive = isActiveCheckBox.Checked;
-            int userRoleId = 1;
-            int membershipType = 1;
+            var request = new Model.Requests.UsersInsertRequest
+            {
+                FirstName = firstNameTextBox.Text,
+                LastName = lastNameTextBox.Text,
+                BirthDate = birthDateTimePicker.Value,
+                Email = emailTextBox.Text,
+                MembershipTypeId = (fitMembershipComboBox.SelectedItem as MembershipTypes).MembershipTypeId,
+                Gender = genderComboBox.Text,
+                IsActive = isActiveCheckBox.Checked,
+                Credit = 0.0,
+                Username = usernameTextBox.Text,
+                ContactNumber = ContactNumberTextBox.Text,
+                StartDate = DateTime.Now,
+                Password = "InitialPassword", // TODO: JR
+                PasswordConfirmation = "InitialPassword"
+            };
 
-            Users user = new Users();
-            user.FirstName = firstName;
-            user.LastName = lastName;
-            user.BirthDate = birthDate;
-            user.Email = email;
-            user.ContactNumber = mobileNumber;
-            user.Credit = credit;
-            user.StartDate = startDate;
-            user.IsActive = isActive;
-            // user.UserRole = UserRole
-            // user.MembershipType
-            
+            Model.Users user = null;
+            if (type == AddOrEditUserFormType.Add)
+            {
+                user = await _serviceUsers.Insert<Model.Users>(request);
+            }
+            else 
+            {
+                
+            }
+
+            if (user != null) 
+            {
+                DialogResult = DialogResult.OK;
+            }
         }
 
         private void changeProfileImageButton_Click(object sender, EventArgs e)
@@ -126,6 +138,18 @@ namespace FitAirlines.UI
         private void changePasswordButton_Click(object sender, EventArgs e)
         {
             // TODO: JR
+        }
+
+        private void AddOrEditUserForm_Load(object sender, EventArgs e)
+        {
+            loadMembershipTypes();
+        }
+
+        private async Task loadMembershipTypes()
+        {
+            var list = await _serviceMembershipTypes.Get<List<Model.MembershipTypes>>(null);
+            fitMembershipComboBox.DataSource = list;
+            fitMembershipComboBox.DisplayMember = "Title";
         }
     }
 }

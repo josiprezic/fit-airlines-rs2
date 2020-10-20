@@ -34,6 +34,8 @@
             this.changePasswordButton = new FitAirlines.UI.BaseButton();
             this.changeProfileImageButton = new FitAirlines.UI.BaseButton();
             this.personalDataGroupBox = new System.Windows.Forms.GroupBox();
+            this.emailTextBox = new System.Windows.Forms.TextBox();
+            this.emailLabel = new System.Windows.Forms.Label();
             this.accountBalanceValueLabel = new System.Windows.Forms.Label();
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.fitMembershipComboBox = new FitAirlines.UI.BaseComboBox();
@@ -51,6 +53,10 @@
             this.saveButton = new FitAirlines.UI.BaseButton();
             this.cancelButton = new FitAirlines.UI.BaseButton();
             this.addCreditButton = new FitAirlines.UI.BaseButton();
+            this.ContactNumberTextBox = new System.Windows.Forms.TextBox();
+            this.contactNumberLabel = new System.Windows.Forms.Label();
+            this.usernameTextBox = new System.Windows.Forms.TextBox();
+            this.usernameLabel = new System.Windows.Forms.Label();
             this.profilePictureGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
             this.personalDataGroupBox.SuspendLayout();
@@ -102,6 +108,12 @@
             // 
             // personalDataGroupBox
             // 
+            this.personalDataGroupBox.Controls.Add(this.usernameTextBox);
+            this.personalDataGroupBox.Controls.Add(this.usernameLabel);
+            this.personalDataGroupBox.Controls.Add(this.ContactNumberTextBox);
+            this.personalDataGroupBox.Controls.Add(this.contactNumberLabel);
+            this.personalDataGroupBox.Controls.Add(this.emailTextBox);
+            this.personalDataGroupBox.Controls.Add(this.emailLabel);
             this.personalDataGroupBox.Controls.Add(this.accountBalanceValueLabel);
             this.personalDataGroupBox.Controls.Add(this.isActiveCheckBox);
             this.personalDataGroupBox.Controls.Add(this.fitMembershipComboBox);
@@ -117,15 +129,31 @@
             this.personalDataGroupBox.Controls.Add(this.firstNameLabel);
             this.personalDataGroupBox.Location = new System.Drawing.Point(167, 12);
             this.personalDataGroupBox.Name = "personalDataGroupBox";
-            this.personalDataGroupBox.Size = new System.Drawing.Size(304, 217);
+            this.personalDataGroupBox.Size = new System.Drawing.Size(304, 271);
             this.personalDataGroupBox.TabIndex = 20;
             this.personalDataGroupBox.TabStop = false;
             this.personalDataGroupBox.Text = "groupBox2";
             // 
+            // emailTextBox
+            // 
+            this.emailTextBox.Location = new System.Drawing.Point(84, 75);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(190, 20);
+            this.emailTextBox.TabIndex = 27;
+            // 
+            // emailLabel
+            // 
+            this.emailLabel.AutoSize = true;
+            this.emailLabel.Location = new System.Drawing.Point(12, 78);
+            this.emailLabel.Name = "emailLabel";
+            this.emailLabel.Size = new System.Drawing.Size(35, 13);
+            this.emailLabel.TabIndex = 26;
+            this.emailLabel.Text = "label8";
+            // 
             // accountBalanceValueLabel
             // 
             this.accountBalanceValueLabel.AutoSize = true;
-            this.accountBalanceValueLabel.Location = new System.Drawing.Point(81, 160);
+            this.accountBalanceValueLabel.Location = new System.Drawing.Point(81, 240);
             this.accountBalanceValueLabel.Name = "accountBalanceValueLabel";
             this.accountBalanceValueLabel.Size = new System.Drawing.Size(35, 13);
             this.accountBalanceValueLabel.TabIndex = 25;
@@ -134,7 +162,7 @@
             // isActiveCheckBox
             // 
             this.isActiveCheckBox.AutoSize = true;
-            this.isActiveCheckBox.Location = new System.Drawing.Point(194, 159);
+            this.isActiveCheckBox.Location = new System.Drawing.Point(194, 239);
             this.isActiveCheckBox.Name = "isActiveCheckBox";
             this.isActiveCheckBox.Size = new System.Drawing.Size(80, 17);
             this.isActiveCheckBox.TabIndex = 24;
@@ -144,7 +172,7 @@
             // fitMembershipComboBox
             // 
             this.fitMembershipComboBox.FormattingEnabled = true;
-            this.fitMembershipComboBox.Location = new System.Drawing.Point(84, 127);
+            this.fitMembershipComboBox.Location = new System.Drawing.Point(84, 155);
             this.fitMembershipComboBox.Name = "fitMembershipComboBox";
             this.fitMembershipComboBox.Size = new System.Drawing.Size(190, 21);
             this.fitMembershipComboBox.TabIndex = 23;
@@ -152,14 +180,17 @@
             // genderComboBox
             // 
             this.genderComboBox.FormattingEnabled = true;
-            this.genderComboBox.Location = new System.Drawing.Point(84, 100);
+            this.genderComboBox.Items.AddRange(new object[] {
+            "M",
+            "Z"});
+            this.genderComboBox.Location = new System.Drawing.Point(84, 128);
             this.genderComboBox.Name = "genderComboBox";
             this.genderComboBox.Size = new System.Drawing.Size(190, 21);
             this.genderComboBox.TabIndex = 22;
             // 
             // birthDateTimePicker
             // 
-            this.birthDateTimePicker.Location = new System.Drawing.Point(84, 75);
+            this.birthDateTimePicker.Location = new System.Drawing.Point(84, 103);
             this.birthDateTimePicker.Name = "birthDateTimePicker";
             this.birthDateTimePicker.Size = new System.Drawing.Size(190, 20);
             this.birthDateTimePicker.TabIndex = 21;
@@ -167,7 +198,7 @@
             // accountBalanceTextLabel
             // 
             this.accountBalanceTextLabel.AutoSize = true;
-            this.accountBalanceTextLabel.Location = new System.Drawing.Point(12, 160);
+            this.accountBalanceTextLabel.Location = new System.Drawing.Point(12, 240);
             this.accountBalanceTextLabel.Name = "accountBalanceTextLabel";
             this.accountBalanceTextLabel.Size = new System.Drawing.Size(35, 13);
             this.accountBalanceTextLabel.TabIndex = 12;
@@ -176,7 +207,7 @@
             // fitMembershipLabel
             // 
             this.fitMembershipLabel.AutoSize = true;
-            this.fitMembershipLabel.Location = new System.Drawing.Point(12, 130);
+            this.fitMembershipLabel.Location = new System.Drawing.Point(12, 158);
             this.fitMembershipLabel.Name = "fitMembershipLabel";
             this.fitMembershipLabel.Size = new System.Drawing.Size(35, 13);
             this.fitMembershipLabel.TabIndex = 8;
@@ -185,7 +216,7 @@
             // genderLabel
             // 
             this.genderLabel.AutoSize = true;
-            this.genderLabel.Location = new System.Drawing.Point(12, 104);
+            this.genderLabel.Location = new System.Drawing.Point(12, 132);
             this.genderLabel.Name = "genderLabel";
             this.genderLabel.Size = new System.Drawing.Size(35, 13);
             this.genderLabel.TabIndex = 6;
@@ -194,7 +225,7 @@
             // birthDateLabel
             // 
             this.birthDateLabel.AutoSize = true;
-            this.birthDateLabel.Location = new System.Drawing.Point(12, 78);
+            this.birthDateLabel.Location = new System.Drawing.Point(12, 106);
             this.birthDateLabel.Name = "birthDateLabel";
             this.birthDateLabel.Size = new System.Drawing.Size(35, 13);
             this.birthDateLabel.TabIndex = 4;
@@ -239,14 +270,14 @@
             this.actionsGroupBox.Controls.Add(this.addCreditButton);
             this.actionsGroupBox.Location = new System.Drawing.Point(477, 12);
             this.actionsGroupBox.Name = "actionsGroupBox";
-            this.actionsGroupBox.Size = new System.Drawing.Size(113, 217);
+            this.actionsGroupBox.Size = new System.Drawing.Size(113, 271);
             this.actionsGroupBox.TabIndex = 21;
             this.actionsGroupBox.TabStop = false;
             this.actionsGroupBox.Text = "groupBox3";
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(6, 171);
+            this.saveButton.Location = new System.Drawing.Point(6, 215);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(101, 40);
             this.saveButton.TabIndex = 28;
@@ -256,7 +287,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(6, 125);
+            this.cancelButton.Location = new System.Drawing.Point(6, 169);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(101, 40);
             this.cancelButton.TabIndex = 27;
@@ -274,11 +305,43 @@
             this.addCreditButton.UseVisualStyleBackColor = true;
             this.addCreditButton.Click += new System.EventHandler(this.addCreditButton_Click);
             // 
+            // ContactNumberTextBox
+            // 
+            this.ContactNumberTextBox.Location = new System.Drawing.Point(84, 182);
+            this.ContactNumberTextBox.Name = "ContactNumberTextBox";
+            this.ContactNumberTextBox.Size = new System.Drawing.Size(190, 20);
+            this.ContactNumberTextBox.TabIndex = 29;
+            // 
+            // contactNumberLabel
+            // 
+            this.contactNumberLabel.AutoSize = true;
+            this.contactNumberLabel.Location = new System.Drawing.Point(12, 185);
+            this.contactNumberLabel.Name = "contactNumberLabel";
+            this.contactNumberLabel.Size = new System.Drawing.Size(106, 13);
+            this.contactNumberLabel.TabIndex = 28;
+            this.contactNumberLabel.Text = "contactNumberLabel";
+            // 
+            // usernameTextBox
+            // 
+            this.usernameTextBox.Location = new System.Drawing.Point(84, 208);
+            this.usernameTextBox.Name = "usernameTextBox";
+            this.usernameTextBox.Size = new System.Drawing.Size(190, 20);
+            this.usernameTextBox.TabIndex = 31;
+            // 
+            // usernameLabel
+            // 
+            this.usernameLabel.AutoSize = true;
+            this.usernameLabel.Location = new System.Drawing.Point(12, 211);
+            this.usernameLabel.Name = "usernameLabel";
+            this.usernameLabel.Size = new System.Drawing.Size(35, 13);
+            this.usernameLabel.TabIndex = 30;
+            this.usernameLabel.Text = "label8";
+            // 
             // AddOrEditUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(602, 240);
+            this.ClientSize = new System.Drawing.Size(602, 294);
             this.Controls.Add(this.actionsGroupBox);
             this.Controls.Add(this.personalDataGroupBox);
             this.Controls.Add(this.profilePictureGroupBox);
@@ -287,6 +350,7 @@
             this.MinimizeBox = false;
             this.Name = "AddOrEditUserForm";
             this.Text = "AddOrEditUserForm";
+            this.Load += new System.EventHandler(this.AddOrEditUserForm_Load);
             this.profilePictureGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).EndInit();
             this.personalDataGroupBox.ResumeLayout(false);
@@ -320,5 +384,11 @@
         private BaseButton saveButton;
         private BaseButton cancelButton;
         private BaseButton addCreditButton;
+        private System.Windows.Forms.TextBox emailTextBox;
+        private System.Windows.Forms.Label emailLabel;
+        private System.Windows.Forms.TextBox usernameTextBox;
+        private System.Windows.Forms.Label usernameLabel;
+        private System.Windows.Forms.TextBox ContactNumberTextBox;
+        private System.Windows.Forms.Label contactNumberLabel;
     }
 }

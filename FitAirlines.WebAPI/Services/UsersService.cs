@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using FitAirlines.Model;
 using FitAirlines.Model.Requests;
 using FitAirlines.WebAPI.Database;
 using FitAirlines.WebAPI.Exceptions;
@@ -9,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FitAirlines.WebAPI.Services
 {
@@ -84,7 +82,7 @@ namespace FitAirlines.WebAPI.Services
             entity.PasswordSalt = GenerateSalt();
             entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
             entity.StartDate = DateTime.Now;
-
+            entity.UserRoleId = _context.UserRoles.Where(x => x.Title == "FIT Member").FirstOrDefault().UserRoleId;
             _context.Users.Add(entity);
             _context.SaveChanges();
 

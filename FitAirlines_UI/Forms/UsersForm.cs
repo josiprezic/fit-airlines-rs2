@@ -81,6 +81,7 @@ namespace FitAirlines.UI
         {
             AddOrEditUserForm form = new AddOrEditUserForm(AddOrEditUserFormType.Add);
             form.ShowDialog();
+            loadUsers();
         }
 
         //
