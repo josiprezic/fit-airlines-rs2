@@ -70,10 +70,7 @@ namespace FitAirlines.WebAPI.Services
             {
                 throw new UserException("Passwords do not match");
             }
-            if (CheckUsernameExists(request.Username))
-            {
-                throw new UserException("Username is already taken.");
-            }
+           
             if (CheckEmailExists(request.Email))
             {
                 throw new UserException("Email is already taken.");
@@ -104,10 +101,6 @@ namespace FitAirlines.WebAPI.Services
 
                 entity.PasswordSalt = GenerateSalt();
                 entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
-            }
-            if (entity.Username != request.Username && CheckUsernameExists(request.Username))
-            {
-                throw new UserException("Username is already taken.");
             }
             if (entity.Email != request.Email && CheckEmailExists(request.Email))
             {
@@ -145,10 +138,6 @@ namespace FitAirlines.WebAPI.Services
             return Convert.ToBase64String(inArray);
         }
 
-        public bool CheckUsernameExists(string username)
-        {
-            return _context.Users.Any(x => x.Username == username);
-        }
         public bool CheckEmailExists(string email)
         {
             return _context.Users.Any(x => x.Email == email);

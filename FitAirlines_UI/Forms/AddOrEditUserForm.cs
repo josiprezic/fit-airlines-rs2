@@ -70,6 +70,7 @@ namespace FitAirlines.UI
             cancelButton.Text = Resources.AddOrEditUser_Cancel;
             saveButton.Text = Resources.AddOrEditUser_Save;
             fitMembershipLabel.Text = "Membership type"; // TODO: JR
+            contactNumberLabel.Text = "Tel number";
 
             // TODO: JR update
             accountBalanceValueLabel.Text = "0.00 $";
@@ -107,7 +108,7 @@ namespace FitAirlines.UI
                 Gender = genderComboBox.Text,
                 IsActive = isActiveCheckBox.Checked,
                 Credit = 0.0,
-                Username = usernameTextBox.Text,
+               
                 ContactNumber = ContactNumberTextBox.Text,
                 StartDate = DateTime.Now,
                 Password = "InitialPassword", // TODO: JR

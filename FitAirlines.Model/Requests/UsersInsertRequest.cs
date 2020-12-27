@@ -19,11 +19,10 @@ namespace FitAirlines.Model.Requests
         [Required] 
         public string Gender { get; set; }
         
-        [Required] 
-        public string Username { get; set; }
-        
         public string Password { get; set; }
         
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
         
         [Required] 

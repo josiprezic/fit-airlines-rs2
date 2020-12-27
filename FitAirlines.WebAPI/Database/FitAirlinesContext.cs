@@ -383,10 +383,7 @@ namespace FitAirlines.WebAPI.Database
                     .HasName("UQ__Users__A9D10534A6A00C66")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Username)
-                    .HasName("UQ__Users__536C85E455F25E7B")
-                    .IsUnique();
-
+                
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
                 entity.Property(e => e.BirthDate).HasColumnType("datetime");
@@ -433,10 +430,7 @@ namespace FitAirlines.WebAPI.Database
 
                 entity.Property(e => e.UserRoleId).HasColumnName("UserRoleID");
 
-                entity.Property(e => e.Username)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
+               
                 entity.HasOne(d => d.MembershipType)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.MembershipTypeId)
