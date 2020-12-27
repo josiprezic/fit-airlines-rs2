@@ -91,7 +91,6 @@ namespace FitAirlines.UI
             personalDataGroupBox.Text = Resources.AddOrEditOffer_PersonalInfo;
             actionsGroupBox.Text = Resources.AddOrEditUser_Actions;
             changeProfileImageButton.Text = Resources.AddOrEditUser_ChangeProfilePicture;
-            changePasswordButton.Text = Resources.AddOrEditUser_ChangePassword;
             firstNameLabel.Text = Resources.AddOrEditUser_FirstName;
             lastNameLabel.Text = Resources.AddOrEditUser_LastName;
             emailLabel.Text = "Email"; // TODO: JR add resource
@@ -102,8 +101,9 @@ namespace FitAirlines.UI
             addCreditButton.Text = Resources.AddOrEditUser_AddCredit;
             cancelButton.Text = Resources.AddOrEditUser_Cancel;
             saveButton.Text = Resources.AddOrEditUser_Save;
-            fitMembershipLabel.Text = "Membership type"; // TODO: JR
+            fitMembershipLabel.Text = "Membership"; // TODO: JR
             contactNumberLabel.Text = "Tel number";
+            userRoleLabel.Text = "User role";
 
             // TODO: JR update
             accountBalanceValueLabel.Text = "0.00 $";

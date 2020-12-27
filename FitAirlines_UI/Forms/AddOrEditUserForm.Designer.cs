@@ -130,7 +130,7 @@
             this.userRoleComboBox.Location = new System.Drawing.Point(84, 209);
             this.userRoleComboBox.Name = "userRoleComboBox";
             this.userRoleComboBox.Size = new System.Drawing.Size(190, 21);
-            this.userRoleComboBox.TabIndex = 102;
+            this.userRoleComboBox.TabIndex = 30;
             // 
             // userRoleLabel
             // 
@@ -189,7 +189,7 @@
             this.isActiveCheckBox.Location = new System.Drawing.Point(194, 239);
             this.isActiveCheckBox.Name = "isActiveCheckBox";
             this.isActiveCheckBox.Size = new System.Drawing.Size(63, 17);
-            this.isActiveCheckBox.TabIndex = 100;
+            this.isActiveCheckBox.TabIndex = 31;
             this.isActiveCheckBox.Text = "isActive";
             this.isActiveCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -337,6 +337,7 @@
             // 
             // AddOrEditUserForm
             // 
+            this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(602, 294);
