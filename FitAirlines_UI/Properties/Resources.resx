@@ -207,9 +207,6 @@
   <data name="AddOrEditUser_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="AddOrEditUser_ChangePassword" xml:space="preserve">
-    <value>Change password</value>
-  </data>
   <data name="AddOrEditUser_ChangeProfilePicture" xml:space="preserve">
     <value>Change Picture</value>
   </data>

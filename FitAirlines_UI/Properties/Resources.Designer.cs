@@ -331,15 +331,6 @@ namespace FitAirlines.UI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change password.
-        /// </summary>
-        public static string AddOrEditUser_ChangePassword {
-            get {
-                return ResourceManager.GetString("AddOrEditUser_ChangePassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Change Picture.
         /// </summary>
         public static string AddOrEditUser_ChangeProfilePicture {

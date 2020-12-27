@@ -31,9 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.profilePictureGroupBox = new System.Windows.Forms.GroupBox();
             this.profilePictureBox = new FitAirlines.UI.BasePictureBox();
-            this.changePasswordButton = new FitAirlines.UI.BaseButton();
             this.changeProfileImageButton = new FitAirlines.UI.BaseButton();
             this.personalDataGroupBox = new System.Windows.Forms.GroupBox();
+            this.userRoleComboBox = new FitAirlines.UI.BaseComboBox();
+            this.userRoleLabel = new System.Windows.Forms.Label();
             this.ContactNumberTextBox = new System.Windows.Forms.TextBox();
             this.contactNumberLabel = new System.Windows.Forms.Label();
             this.emailTextBox = new System.Windows.Forms.TextBox();
@@ -56,8 +57,6 @@
             this.cancelButton = new FitAirlines.UI.BaseButton();
             this.addCreditButton = new FitAirlines.UI.BaseButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.userRoleComboBox = new FitAirlines.UI.BaseComboBox();
-            this.userRoleLabel = new System.Windows.Forms.Label();
             this.profilePictureGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
             this.personalDataGroupBox.SuspendLayout();
@@ -68,11 +67,10 @@
             // profilePictureGroupBox
             // 
             this.profilePictureGroupBox.Controls.Add(this.profilePictureBox);
-            this.profilePictureGroupBox.Controls.Add(this.changePasswordButton);
             this.profilePictureGroupBox.Controls.Add(this.changeProfileImageButton);
             this.profilePictureGroupBox.Location = new System.Drawing.Point(12, 12);
             this.profilePictureGroupBox.Name = "profilePictureGroupBox";
-            this.profilePictureGroupBox.Size = new System.Drawing.Size(149, 217);
+            this.profilePictureGroupBox.Size = new System.Drawing.Size(149, 186);
             this.profilePictureGroupBox.TabIndex = 16;
             this.profilePictureGroupBox.TabStop = false;
             this.profilePictureGroupBox.Text = "groupBox1";
@@ -87,16 +85,6 @@
             this.profilePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profilePictureBox.TabIndex = 19;
             this.profilePictureBox.TabStop = false;
-            // 
-            // changePasswordButton
-            // 
-            this.changePasswordButton.Location = new System.Drawing.Point(6, 189);
-            this.changePasswordButton.Name = "changePasswordButton";
-            this.changePasswordButton.Size = new System.Drawing.Size(137, 23);
-            this.changePasswordButton.TabIndex = 120;
-            this.changePasswordButton.Text = "changePasswordButton";
-            this.changePasswordButton.UseVisualStyleBackColor = true;
-            this.changePasswordButton.Click += new System.EventHandler(this.changePasswordButton_Click);
             // 
             // changeProfileImageButton
             // 
@@ -135,6 +123,23 @@
             this.personalDataGroupBox.TabIndex = 20;
             this.personalDataGroupBox.TabStop = false;
             this.personalDataGroupBox.Text = "groupBox2";
+            // 
+            // userRoleComboBox
+            // 
+            this.userRoleComboBox.FormattingEnabled = true;
+            this.userRoleComboBox.Location = new System.Drawing.Point(84, 209);
+            this.userRoleComboBox.Name = "userRoleComboBox";
+            this.userRoleComboBox.Size = new System.Drawing.Size(190, 21);
+            this.userRoleComboBox.TabIndex = 102;
+            // 
+            // userRoleLabel
+            // 
+            this.userRoleLabel.AutoSize = true;
+            this.userRoleLabel.Location = new System.Drawing.Point(12, 212);
+            this.userRoleLabel.Name = "userRoleLabel";
+            this.userRoleLabel.Size = new System.Drawing.Size(75, 13);
+            this.userRoleLabel.TabIndex = 101;
+            this.userRoleLabel.Text = "userRoleLabel";
             // 
             // ContactNumberTextBox
             // 
@@ -330,23 +335,6 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // userRoleComboBox
-            // 
-            this.userRoleComboBox.FormattingEnabled = true;
-            this.userRoleComboBox.Location = new System.Drawing.Point(84, 209);
-            this.userRoleComboBox.Name = "userRoleComboBox";
-            this.userRoleComboBox.Size = new System.Drawing.Size(190, 21);
-            this.userRoleComboBox.TabIndex = 102;
-            // 
-            // userRoleLabel
-            // 
-            this.userRoleLabel.AutoSize = true;
-            this.userRoleLabel.Location = new System.Drawing.Point(12, 212);
-            this.userRoleLabel.Name = "userRoleLabel";
-            this.userRoleLabel.Size = new System.Drawing.Size(75, 13);
-            this.userRoleLabel.TabIndex = 101;
-            this.userRoleLabel.Text = "userRoleLabel";
-            // 
             // AddOrEditUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,7 +363,6 @@
 
         private System.Windows.Forms.GroupBox profilePictureGroupBox;
         private BasePictureBox profilePictureBox;
-        private BaseButton changePasswordButton;
         private BaseButton changeProfileImageButton;
         private System.Windows.Forms.GroupBox personalDataGroupBox;
         private System.Windows.Forms.Label accountBalanceValueLabel;
