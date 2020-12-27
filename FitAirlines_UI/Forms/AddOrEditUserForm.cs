@@ -49,7 +49,6 @@ namespace FitAirlines.UI
             this.selectedUser = selectedUser;
 
             InitializeComponent();
-
         }
 
         //
@@ -58,6 +57,8 @@ namespace FitAirlines.UI
 
         private async void AddOrEditUserForm_Load(object sender, EventArgs e)
         {
+            this.Enabled = false;
+
             await loadMembershipTypes();
             await loadUserRoles();
 
@@ -65,6 +66,8 @@ namespace FitAirlines.UI
             {
                 PopulateFormFields(selectedUser);
             }
+
+            this.Enabled = true;
 
         }
 
@@ -133,6 +136,8 @@ namespace FitAirlines.UI
         {
             if (!ValidateChildren()) return;
 
+            this.Enabled = false;
+
             var request = new Model.Requests.UsersInsertRequest
             {
                 FirstName = firstNameTextBox.Text,
@@ -171,6 +176,8 @@ namespace FitAirlines.UI
             {
                 DialogResult = DialogResult.OK;
             }
+            else
+                this.Enabled = true;
         }
 
         private void changeProfileImageButton_Click(object sender, EventArgs e)
@@ -219,6 +226,7 @@ namespace FitAirlines.UI
             if(string.IsNullOrWhiteSpace(field.Text))
             {
                 errorProvider1.SetError(field, Resources.Validation_FieldRequired);
+                e.Cancel = true;
             }
             else
             {
@@ -234,10 +242,12 @@ namespace FitAirlines.UI
             if (string.IsNullOrWhiteSpace(field.Text))
             {
                 errorProvider1.SetError(field, Resources.Validation_FieldRequired);
+                e.Cancel = true;
             }
             else if(!ValidateEmail(field.Text))
             {
                 errorProvider1.SetError(field, Resources.Validation_EmailInvalid);
+                e.Cancel = true;
             }
             else
             {
