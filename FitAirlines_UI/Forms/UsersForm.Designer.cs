@@ -45,7 +45,6 @@
             this.memberLevelComboBox = new FitAirlines.UI.BaseComboBox();
             this.memberLevelLabel = new System.Windows.Forms.Label();
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
-            this.searchImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.genderComboBox = new FitAirlines.UI.BaseComboBox();
@@ -177,6 +176,7 @@
             this.memberLevelComboBox.Name = "memberLevelComboBox";
             this.memberLevelComboBox.Size = new System.Drawing.Size(121, 21);
             this.memberLevelComboBox.TabIndex = 6;
+            this.memberLevelComboBox.SelectedIndexChanged += new System.EventHandler(this.memberLevelComboBox_SelectedIndexChanged);
             // 
             // memberLevelLabel
             // 
@@ -196,18 +196,7 @@
             this.isActiveCheckBox.TabIndex = 8;
             this.isActiveCheckBox.Text = "checkBox1";
             this.isActiveCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // searchImageButton
-            // 
-            this.searchImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchImageButton.Location = new System.Drawing.Point(592, 12);
-            this.searchImageButton.Name = "searchImageButton";
-            this.searchImageButton.Size = new System.Drawing.Size(95, 51);
-            this.searchImageButton.TabIndex = 15;
-            this.searchImageButton.Text = "imageButton3";
-            this.searchImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.searchImageButton.UseVisualStyleBackColor = true;
-            this.searchImageButton.Click += new System.EventHandler(this.searchImageButton_Click);
+            this.isActiveCheckBox.CheckedChanged += new System.EventHandler(this.isActiveCheckBox_CheckedChanged);
             // 
             // editImageButton
             // 
@@ -245,6 +234,7 @@
             this.genderComboBox.Name = "genderComboBox";
             this.genderComboBox.Size = new System.Drawing.Size(121, 21);
             this.genderComboBox.TabIndex = 16;
+            this.genderComboBox.SelectedIndexChanged += new System.EventHandler(this.genderComboBox_SelectedIndexChanged);
             // 
             // UsersForm
             // 
@@ -252,7 +242,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(877, 510);
             this.Controls.Add(this.genderComboBox);
-            this.Controls.Add(this.searchImageButton);
             this.Controls.Add(this.editImageButton);
             this.Controls.Add(this.addImageButton);
             this.Controls.Add(this.isActiveCheckBox);
@@ -285,7 +274,6 @@
         private BaseComboBox memberLevelComboBox;
         private System.Windows.Forms.Label memberLevelLabel;
         private System.Windows.Forms.CheckBox isActiveCheckBox;
-        private ImageButton searchImageButton;
         private ImageButton editImageButton;
         private ImageButton addImageButton;
         private BaseComboBox genderComboBox;

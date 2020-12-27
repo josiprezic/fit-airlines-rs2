@@ -50,8 +50,6 @@ namespace FitAirlines.UI
         {
             base.SetupStyling();
 
-            searchImageButton.Image = Resources.Icon_Add;
-            searchImageButton.Text = Resources.Generic_Search;
 
             addImageButton.Image = Resources.Icon_Add;
             addImageButton.Text = Resources.Generic_Add;
@@ -90,10 +88,8 @@ namespace FitAirlines.UI
 
         private async void loadData()
         {
-            searchImageButton.Enabled = false;
             await loadMembershipTypes();
             await loadUsers();
-            searchImageButton.Enabled = true;
         }
 
         private async Task loadUsers()
@@ -105,7 +101,7 @@ namespace FitAirlines.UI
                 MembershipTypeId = (memberLevelComboBox.SelectedItem as MembershipTypes).MembershipTypeId
             };
 
-            if(genderComboBox.Text != "All")
+            if (genderComboBox.Text != "All")
             {
                 request.Gender = genderComboBox.Text;
             }
@@ -118,19 +114,35 @@ namespace FitAirlines.UI
         private async Task loadMembershipTypes()
         {
             var list = await _serviceMembershipTypes.Get<List<Model.MembershipTypes>>(null);
-            list.Insert(0, new MembershipTypes() { MembershipTypeId = 0, Title = "All" }) ;
+            list.Insert(0, new MembershipTypes() { MembershipTypeId = 0, Title = "All" });
             memberLevelComboBox.DataSource = list;
             memberLevelComboBox.DisplayMember = "Title";
         }
 
         private void nameSurnameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) 
+            if (e.KeyCode == Keys.Enter)
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
                 loadUsers();
             }
+        }
+
+        private void genderComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadUsers();
+        }
+
+        private void memberLevelComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadUsers();
+
+        }
+
+        private void isActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            loadUsers();
         }
     }
 }
