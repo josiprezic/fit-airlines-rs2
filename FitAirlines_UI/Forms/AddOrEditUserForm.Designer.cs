@@ -56,6 +56,8 @@
             this.cancelButton = new FitAirlines.UI.BaseButton();
             this.addCreditButton = new FitAirlines.UI.BaseButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.userRoleComboBox = new FitAirlines.UI.BaseComboBox();
+            this.userRoleLabel = new System.Windows.Forms.Label();
             this.profilePictureGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
             this.personalDataGroupBox.SuspendLayout();
@@ -108,6 +110,8 @@
             // 
             // personalDataGroupBox
             // 
+            this.personalDataGroupBox.Controls.Add(this.userRoleComboBox);
+            this.personalDataGroupBox.Controls.Add(this.userRoleLabel);
             this.personalDataGroupBox.Controls.Add(this.ContactNumberTextBox);
             this.personalDataGroupBox.Controls.Add(this.contactNumberLabel);
             this.personalDataGroupBox.Controls.Add(this.emailTextBox);
@@ -326,6 +330,23 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // userRoleComboBox
+            // 
+            this.userRoleComboBox.FormattingEnabled = true;
+            this.userRoleComboBox.Location = new System.Drawing.Point(84, 209);
+            this.userRoleComboBox.Name = "userRoleComboBox";
+            this.userRoleComboBox.Size = new System.Drawing.Size(190, 21);
+            this.userRoleComboBox.TabIndex = 102;
+            // 
+            // userRoleLabel
+            // 
+            this.userRoleLabel.AutoSize = true;
+            this.userRoleLabel.Location = new System.Drawing.Point(12, 212);
+            this.userRoleLabel.Name = "userRoleLabel";
+            this.userRoleLabel.Size = new System.Drawing.Size(75, 13);
+            this.userRoleLabel.TabIndex = 101;
+            this.userRoleLabel.Text = "userRoleLabel";
+            // 
             // AddOrEditUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -379,5 +400,7 @@
         private System.Windows.Forms.TextBox ContactNumberTextBox;
         private System.Windows.Forms.Label contactNumberLabel;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private BaseComboBox userRoleComboBox;
+        private System.Windows.Forms.Label userRoleLabel;
     }
 }

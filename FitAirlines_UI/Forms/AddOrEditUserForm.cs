@@ -28,6 +28,8 @@ namespace FitAirlines.UI
     {
         private readonly APIService _serviceUsers = new APIService("Users");
         private readonly APIService _serviceMembershipTypes = new APIService("MembershipTypes");
+        private readonly APIService _serviceUserRoles = new APIService("UserRoles");
+
 
 
         //
@@ -57,6 +59,7 @@ namespace FitAirlines.UI
         private async void AddOrEditUserForm_Load(object sender, EventArgs e)
         {
             await loadMembershipTypes();
+            await loadUserRoles();
 
             if (type == AddOrEditUserFormType.Edit && selectedUser != null)
             {
@@ -70,6 +73,13 @@ namespace FitAirlines.UI
             var list = await _serviceMembershipTypes.Get<List<Model.MembershipTypes>>(null);
             fitMembershipComboBox.DataSource = list;
             fitMembershipComboBox.DisplayMember = "Title";
+        }
+
+        private async Task loadUserRoles()
+        {
+            var list = await _serviceUserRoles.Get<List<Model.UserRoles>>(null);
+            userRoleComboBox.DataSource = list;
+            userRoleComboBox.DisplayMember = "Title";
         }
 
         protected override bool ShouldResize() { return false; }
@@ -130,6 +140,7 @@ namespace FitAirlines.UI
                 BirthDate = birthDateTimePicker.Value,
                 Email = emailTextBox.Text,
                 MembershipTypeId = (fitMembershipComboBox.SelectedItem as MembershipTypes).MembershipTypeId,
+                UserRoleId = (userRoleComboBox.SelectedItem as UserRoles).UserRoleId,
                 Gender = genderComboBox.Text,
                 IsActive = isActiveCheckBox.Checked,
                 Credit = 0.0,
@@ -187,6 +198,17 @@ namespace FitAirlines.UI
                     break;
                 }
             }
+
+            foreach (UserRoles item in userRoleComboBox.Items)
+            {
+                if (item.UserRoleId == selectedUser.UserRoleId)
+                {
+                    userRoleComboBox.SelectedItem = item;
+                    break;
+                }
+            }
+
+
 
             genderComboBox.Text = selectedUser.Gender;
             isActiveCheckBox.Checked = selectedUser.IsActive ?? false;

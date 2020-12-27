@@ -79,7 +79,6 @@ namespace FitAirlines.WebAPI.Services
             entity.PasswordSalt = GenerateSalt();
             entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
             entity.StartDate = DateTime.Now;
-            entity.UserRoleId = _context.UserRoles.Where(x => x.Title == "FIT Member").FirstOrDefault().UserRoleId;
             _context.Users.Add(entity);
             _context.SaveChanges();
 
