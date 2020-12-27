@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using FitAirlines.Model;
 using FitAirlines.Model.Requests;
 using FitAirlines.WebAPI.Database;
 using FitAirlines.WebAPI.Exceptions;
@@ -9,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FitAirlines.WebAPI.Services
 {
@@ -25,9 +23,29 @@ namespace FitAirlines.WebAPI.Services
             _mapper = mapper;
         }
 
-        public List<Model.Users> Get()
+        public List<Model.Users> Get(UsersSearchRequest request)
         {
             var query = _context.Users.AsQueryable();
+            if (!string.IsNullOrEmpty(request.Name)) 
+            {
+                query = query.Where(x => (x.FirstName + " " + x.LastName).Contains(request.Name));
+            }
+
+            if (!string.IsNullOrEmpty(request.Gender))
+            {
+                query = query.Where(x => x.Gender == request.Gender);
+            }
+
+            if (request.MembershipTypeId != 0)
+            {
+                query = query.Where(x => x.MembershipTypeId == request.MembershipTypeId);
+            }
+
+            if (request.ShowOnlyActive)
+            {
+                query = query.Where(x => x.IsActive == true);
+            }
+
             var list = query
                 .Include(x => x.UserRole)
                 .Include(x => x.MembershipType)
@@ -64,7 +82,7 @@ namespace FitAirlines.WebAPI.Services
             entity.PasswordSalt = GenerateSalt();
             entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
             entity.StartDate = DateTime.Now;
-
+            entity.UserRoleId = _context.UserRoles.Where(x => x.Title == "FIT Member").FirstOrDefault().UserRoleId;
             _context.Users.Add(entity);
             _context.SaveChanges();
 

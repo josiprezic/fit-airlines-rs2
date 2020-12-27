@@ -1,4 +1,5 @@
 ﻿using FitAirlines.Model;
+using FitAirlines.UI.Helpers;
 using FitAirlines.UI.Properties;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,18 @@ namespace FitAirlines.UI
 {
     public partial class UsersForm : BaseForm
     {
+
+        private readonly APIService _serviceUsers = new APIService("Users");
+        private readonly APIService _serviceMembershipTypes = new APIService("MembershipTypes");
+
         public UsersForm()
         {
             InitializeComponent();
+            baseDataGridView1.AutoGenerateColumns = false;
+        }
+
+        private void UsersForm_Load(object sender, EventArgs e)
+        {
             loadData();
         }
 
@@ -40,14 +50,14 @@ namespace FitAirlines.UI
         {
             base.SetupStyling();
 
-            searchImageButton.Image = Resources.Icon_Add;
-            searchImageButton.Text = Resources.Generic_Search;
 
             addImageButton.Image = Resources.Icon_Add;
             addImageButton.Text = Resources.Generic_Add;
 
             editImageButton.Image = Resources.Icon_Add;
             editImageButton.Text = Resources.Generic_Edit;
+
+            genderComboBox.SelectedIndex = 0;
         }
 
         //
@@ -56,7 +66,7 @@ namespace FitAirlines.UI
 
         private void searchImageButton_Click(object sender, EventArgs e)
         {
-            // TODO: JR
+            loadUsers();
         }
 
         private void editImageButton_Click(object sender, EventArgs e)
@@ -69,30 +79,70 @@ namespace FitAirlines.UI
         {
             AddOrEditUserForm form = new AddOrEditUserForm(AddOrEditUserFormType.Add);
             form.ShowDialog();
+            loadUsers();
         }
 
         //
         // MARK:- Data
         //
 
-        private void loadData()
+        private async void loadData()
         {
-                //List<Users> list = ApiHelper.GetData<Users>(ApiHelper.Enpoints.GetUsers);
-                //baseDataGridView1.DataSource = list;
-                //setupDataGridView();
+            await loadMembershipTypes();
+            await loadUsers();
         }
 
-        private void setupDataGridView()
+        private async Task loadUsers()
         {
-            List<string> visibleColumns = new List<string>();
-            visibleColumns.Add("FirstName");
-            visibleColumns.Add("LastName");
-            visibleColumns.Add("Username");
-            visibleColumns.Add("Email");
-            visibleColumns.Add("ContactNumber");
-            visibleColumns.Add("isActive");
+            var request = new Model.Requests.UsersSearchRequest
+            {
+                Name = nameSurnameTextBox.Text,
+                ShowOnlyActive = isActiveCheckBox.Checked,
+                MembershipTypeId = (memberLevelComboBox.SelectedItem as MembershipTypes).MembershipTypeId
+            };
 
-            baseDataGridView1.showSelectedColumns(visibleColumns);
+            if (genderComboBox.Text != "All")
+            {
+                request.Gender = genderComboBox.Text;
+            }
+
+            var list = await _serviceUsers.Get<List<Model.Users>>(request);
+
+            baseDataGridView1.DataSource = list;
+        }
+
+        private async Task loadMembershipTypes()
+        {
+            var list = await _serviceMembershipTypes.Get<List<Model.MembershipTypes>>(null);
+            list.Insert(0, new MembershipTypes() { MembershipTypeId = 0, Title = "All" });
+            memberLevelComboBox.DataSource = list;
+            memberLevelComboBox.DisplayMember = "Title";
+        }
+
+        private void nameSurnameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                loadUsers();
+            }
+        }
+
+        private void genderComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadUsers();
+        }
+
+        private void memberLevelComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadUsers();
+
+        }
+
+        private void isActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            loadUsers();
         }
     }
 }

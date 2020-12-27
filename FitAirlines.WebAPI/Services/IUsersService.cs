@@ -7,7 +7,7 @@ namespace FitAirlines.WebAPI.Services
 {
     public interface IUsersService
     {
-        List<Model.Users> Get();
+        List<Model.Users> Get(Model.Requests.UsersSearchRequest request);
         Model.Users GetById(int id);
 
         Model.Users Insert(Model.Requests.UsersInsertRequest request);

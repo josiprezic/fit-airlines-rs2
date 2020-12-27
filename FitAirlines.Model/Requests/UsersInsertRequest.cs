@@ -22,7 +22,6 @@ namespace FitAirlines.Model.Requests
         [Required] 
         public string Username { get; set; }
         
-        [Required] 
         public string Password { get; set; }
         
         public string Email { get; set; }
@@ -44,7 +43,6 @@ namespace FitAirlines.Model.Requests
         [Required] 
         public int MembershipTypeId { get; set; }
         
-        [Required]
         public string PasswordConfirmation { get; set; }
     }
 }
