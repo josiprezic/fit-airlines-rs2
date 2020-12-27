@@ -37,8 +37,8 @@ namespace FitAirlines.Model.Requests
         
         public bool? IsActive { get; set; }
         
-        [Required] 
-        public int UserRoleId { get; set; }
+        //[Required] 
+        //public int UserRoleId { get; set; } // TODO: JR
         
         [Required] 
         public int MembershipTypeId { get; set; }

@@ -352,4 +352,10 @@
   <data name="Users_NameSurname" xml:space="preserve">
     <value>First name / Last name</value>
   </data>
+  <data name="Validation_EmailInvalid" xml:space="preserve">
+    <value>The email address is not in valid format.</value>
+  </data>
+  <data name="Validation_FieldRequired" xml:space="preserve">
+    <value>This field is required.</value>
+  </data>
 </root>

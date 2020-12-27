@@ -64,15 +64,22 @@ namespace FitAirlines.UI
         // MARK: - Actions
         //
 
-        private void searchImageButton_Click(object sender, EventArgs e)
-        {
-            loadUsers();
-        }
-
         private void editImageButton_Click(object sender, EventArgs e)
         {
-            AddOrEditUserForm form = new AddOrEditUserForm(AddOrEditUserFormType.Edit);
-            form.ShowDialog();
+            var selectedRow = baseDataGridView1.SelectedRows[0];
+            if(selectedRow == null)
+            {
+                MessageBox.Show("Please select a user for editing.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if(selectedRow.DataBoundItem is Model.Users selectedUser)
+            {
+                AddOrEditUserForm form = new AddOrEditUserForm(AddOrEditUserFormType.Edit, selectedUser);
+                form.ShowDialog();
+                loadUsers();
+            } 
+
         }
 
         private void addImageButton_Click(object sender, EventArgs e)

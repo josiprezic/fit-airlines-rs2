@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,21 +34,43 @@ namespace FitAirlines.UI
         // MARK: - Variables
         //
 
-        AddOrEditUserFormType type;
+        private readonly AddOrEditUserFormType type;
+        private readonly Users selectedUser;
 
         //
         // MARK: - Constructors
         //
 
-        public AddOrEditUserForm(AddOrEditUserFormType type = AddOrEditUserFormType.Add)
+        public AddOrEditUserForm(AddOrEditUserFormType type = AddOrEditUserFormType.Add, Users selectedUser = null)
         {
             this.type = type;
+            this.selectedUser = selectedUser;
+
             InitializeComponent();
+
         }
 
         //
         // MARK: - Methods
         //
+
+        private async void AddOrEditUserForm_Load(object sender, EventArgs e)
+        {
+            await loadMembershipTypes();
+
+            if (type == AddOrEditUserFormType.Edit && selectedUser != null)
+            {
+                PopulateFormFields(selectedUser);
+            }
+
+        }
+
+        private async Task loadMembershipTypes()
+        {
+            var list = await _serviceMembershipTypes.Get<List<Model.MembershipTypes>>(null);
+            fitMembershipComboBox.DataSource = list;
+            fitMembershipComboBox.DisplayMember = "Title";
+        }
 
         protected override bool ShouldResize() { return false; }
 
@@ -79,7 +102,7 @@ namespace FitAirlines.UI
         protected override void SetupStyling()
         {
             base.SetupStyling();
-            if (type == AddOrEditUserFormType.Add) 
+            if (type == AddOrEditUserFormType.Add)
             {
                 isActiveCheckBox.Checked = true;
                 addCreditButton.Visible = false;
@@ -98,6 +121,8 @@ namespace FitAirlines.UI
 
         private async void saveButton_Click(object sender, EventArgs e)
         {
+            if (!ValidateChildren()) return;
+
             var request = new Model.Requests.UsersInsertRequest
             {
                 FirstName = firstNameTextBox.Text,
@@ -108,24 +133,30 @@ namespace FitAirlines.UI
                 Gender = genderComboBox.Text,
                 IsActive = isActiveCheckBox.Checked,
                 Credit = 0.0,
-               
+
                 ContactNumber = ContactNumberTextBox.Text,
                 StartDate = DateTime.Now,
                 Password = "InitialPassword", // TODO: JR
-                PasswordConfirmation = "InitialPassword"
+                PasswordConfirmation = "InitialPassword",
             };
 
-            Model.Users user = null;
+            if(profilePictureBox.ImageLocation != null)
+            {
+                byte[] pictureContent = File.ReadAllBytes(profilePictureBox.ImageLocation);
+                request.Picture = pictureContent;
+            }
+
+            Model.Users user;
             if (type == AddOrEditUserFormType.Add)
             {
                 user = await _serviceUsers.Insert<Model.Users>(request);
             }
-            else 
+            else
             {
-                
+                user = await _serviceUsers.Update<Model.Users>(selectedUser.UserId, request);
             }
 
-            if (user != null) 
+            if (user != null)
             {
                 DialogResult = DialogResult.OK;
             }
@@ -141,16 +172,68 @@ namespace FitAirlines.UI
             // TODO: JR
         }
 
-        private void AddOrEditUserForm_Load(object sender, EventArgs e)
+
+        private void PopulateFormFields(Users selectedUser)
         {
-            loadMembershipTypes();
+            firstNameTextBox.Text = selectedUser.FirstName;
+            lastNameTextBox.Text = selectedUser.LastName;
+            birthDateTimePicker.Value = selectedUser.BirthDate;
+            emailTextBox.Text = selectedUser.Email;
+            foreach (MembershipTypes item in fitMembershipComboBox.Items)
+            {
+                if(item.MembershipTypeId == selectedUser.MembershipTypeId)
+                {
+                    fitMembershipComboBox.SelectedItem = item;
+                    break;
+                }
+            }
+
+            genderComboBox.Text = selectedUser.Gender;
+            isActiveCheckBox.Checked = selectedUser.IsActive ?? false;
+            ContactNumberTextBox.Text = selectedUser.ContactNumber;
+
+            if(selectedUser.Picture != null && selectedUser.Picture.Length > 0)
+            {
+                profilePictureBox.Image = ImageConversionHelper.ByteArrayToImage(selectedUser.Picture);
+            }
         }
 
-        private async Task loadMembershipTypes()
+        private void basicTextBox_Validating(object sender, CancelEventArgs e)
         {
-            var list = await _serviceMembershipTypes.Get<List<Model.MembershipTypes>>(null);
-            fitMembershipComboBox.DataSource = list;
-            fitMembershipComboBox.DisplayMember = "Title";
+            var field = sender as TextBox;
+
+            if(string.IsNullOrWhiteSpace(field.Text))
+            {
+                errorProvider1.SetError(field, Resources.Validation_FieldRequired);
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
+
+        private void emailTextBox_Validating(object sender, CancelEventArgs e)
+        {
+
+            var field = sender as TextBox;
+
+            if (string.IsNullOrWhiteSpace(field.Text))
+            {
+                errorProvider1.SetError(field, Resources.Validation_FieldRequired);
+            }
+            else if(!ValidateEmail(field.Text))
+            {
+                errorProvider1.SetError(field, Resources.Validation_EmailInvalid);
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
+
+        bool ValidateEmail( string emailAddress)
+        {
+            return true;
         }
     }
 }

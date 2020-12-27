@@ -55,10 +55,12 @@
             this.saveButton = new FitAirlines.UI.BaseButton();
             this.cancelButton = new FitAirlines.UI.BaseButton();
             this.addCreditButton = new FitAirlines.UI.BaseButton();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.profilePictureGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
             this.personalDataGroupBox.SuspendLayout();
             this.actionsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // profilePictureGroupBox
@@ -152,6 +154,7 @@
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(190, 20);
             this.emailTextBox.TabIndex = 4;
+            this.emailTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.emailTextBox_Validating);
             // 
             // emailLabel
             // 
@@ -249,6 +252,7 @@
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(190, 20);
             this.lastNameTextBox.TabIndex = 3;
+            this.lastNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.basicTextBox_Validating);
             // 
             // lastNameLabel
             // 
@@ -265,6 +269,7 @@
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(190, 20);
             this.firstNameTextBox.TabIndex = 1;
+            this.firstNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.basicTextBox_Validating);
             // 
             // firstNameLabel
             // 
@@ -317,6 +322,10 @@
             this.addCreditButton.UseVisualStyleBackColor = true;
             this.addCreditButton.Click += new System.EventHandler(this.addCreditButton_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // AddOrEditUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -336,6 +345,7 @@
             this.personalDataGroupBox.ResumeLayout(false);
             this.personalDataGroupBox.PerformLayout();
             this.actionsGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -368,5 +378,6 @@
         private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.TextBox ContactNumberTextBox;
         private System.Windows.Forms.Label contactNumberLabel;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

@@ -763,5 +763,23 @@ namespace FitAirlines.UI.Properties {
                 return ResourceManager.GetString("Users_NameSurname", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The email address is not in valid format..
+        /// </summary>
+        public static string Validation_EmailInvalid {
+            get {
+                return ResourceManager.GetString("Validation_EmailInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field is required..
+        /// </summary>
+        public static string Validation_FieldRequired {
+            get {
+                return ResourceManager.GetString("Validation_FieldRequired", resourceCulture);
+            }
+        }
     }
 }

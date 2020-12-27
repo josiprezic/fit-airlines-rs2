@@ -90,6 +90,10 @@ namespace FitAirlines.WebAPI.Services
         {
             var entity = _context.Users.Find(id);
 
+            byte[] OldPicture = entity.Picture;
+            if (request.Picture == null || request.Picture.Length == 0)
+                request.Picture = OldPicture;
+
             _context.Users.Attach(entity);
             _context.Users.Update(entity);
             if (!string.IsNullOrWhiteSpace(request.Password))
