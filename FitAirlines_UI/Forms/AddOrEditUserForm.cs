@@ -65,10 +65,22 @@ namespace FitAirlines.UI
             if (type == AddOrEditUserFormType.Edit && selectedUser != null)
             {
                 PopulateFormFields(selectedUser);
+                LoadProfilePicture(selectedUser);
             }
 
             this.Enabled = true;
 
+        }
+
+        private void LoadProfilePicture(Users selectedUser)
+        {
+            // TODO: JR
+            // initialize selectedUser.Picture via user GetById API call
+
+            if (selectedUser.Picture != null && selectedUser.Picture.Length > 0)
+            {
+                profilePictureBox.Image = ImageConversionHelper.ByteArrayToImage(selectedUser.Picture);
+            }
         }
 
         private async Task loadMembershipTypes()
@@ -212,11 +224,6 @@ namespace FitAirlines.UI
             genderComboBox.Text = selectedUser.Gender;
             isActiveCheckBox.Checked = selectedUser.IsActive ?? false;
             ContactNumberTextBox.Text = selectedUser.ContactNumber;
-
-            if(selectedUser.Picture != null && selectedUser.Picture.Length > 0)
-            {
-                profilePictureBox.Image = ImageConversionHelper.ByteArrayToImage(selectedUser.Picture);
-            }
         }
 
         private void basicTextBox_Validating(object sender, CancelEventArgs e)

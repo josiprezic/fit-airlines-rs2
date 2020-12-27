@@ -49,6 +49,23 @@ namespace FitAirlines.WebAPI.Services
             var list = query
                 .Include(x => x.UserRole)
                 .Include(x => x.MembershipType)
+                .Select(x => new Database.Users
+                {
+                    BirthDate = x.BirthDate,
+                    ContactNumber = x.ContactNumber,
+                    Credit = x.Credit,
+                    Email = x.Email,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    Gender = x.Gender,
+                    IsActive = x.IsActive,
+                    MembershipType = x.MembershipType,
+                    MembershipTypeId = x.MembershipTypeId,
+                    UserRole = x.UserRole,
+                    UserRoleId = x.UserRoleId,
+                    StartDate = x.StartDate,
+                    UserId = x.UserId
+                })
                 .ToList();
             return _mapper.Map<List<Model.Users>>(list);
         }
