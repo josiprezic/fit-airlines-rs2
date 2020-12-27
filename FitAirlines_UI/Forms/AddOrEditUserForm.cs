@@ -93,7 +93,7 @@ namespace FitAirlines.UI
             changeProfileImageButton.Text = Resources.AddOrEditUser_ChangeProfilePicture;
             firstNameLabel.Text = Resources.AddOrEditUser_FirstName;
             lastNameLabel.Text = Resources.AddOrEditUser_LastName;
-            emailLabel.Text = "Email"; // TODO: JR add resource
+            emailLabel.Text = "Email";
             birthDateLabel.Text = Resources.AddOrEditUser_BirthDate;
             genderLabel.Text = Resources.AddOrEditUser_Gender;
             isActiveCheckBox.Text = Resources.AddOrEditUser_IsActive;
@@ -101,7 +101,7 @@ namespace FitAirlines.UI
             addCreditButton.Text = Resources.AddOrEditUser_AddCredit;
             cancelButton.Text = Resources.AddOrEditUser_Cancel;
             saveButton.Text = Resources.AddOrEditUser_Save;
-            fitMembershipLabel.Text = "Membership"; // TODO: JR
+            fitMembershipLabel.Text = "Membership";
             contactNumberLabel.Text = "Tel number";
             userRoleLabel.Text = "User role";
 
@@ -178,12 +178,6 @@ namespace FitAirlines.UI
             profilePictureBox.UploadAndSetImage();
         }
 
-        private void changePasswordButton_Click(object sender, EventArgs e)
-        {
-            // TODO: JR
-        }
-
-
         private void PopulateFormFields(Users selectedUser)
         {
             firstNameTextBox.Text = selectedUser.FirstName;
@@ -207,8 +201,6 @@ namespace FitAirlines.UI
                     break;
                 }
             }
-
-
 
             genderComboBox.Text = selectedUser.Gender;
             isActiveCheckBox.Checked = selectedUser.IsActive ?? false;
