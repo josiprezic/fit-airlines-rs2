@@ -161,6 +161,7 @@
       <DependentUpon>ImageButton.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\APIService.cs" />
+    <Compile Include="Helpers\ImageConversionHelper.cs" />
     <Compile Include="Helpers\ImageUploadHelper.cs" />
     <Compile Include="HttpsClient.cs" />
     <Compile Include="Program.cs" />

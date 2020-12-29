@@ -331,15 +331,6 @@ namespace FitAirlines.UI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change password.
-        /// </summary>
-        public static string AddOrEditUser_ChangePassword {
-            get {
-                return ResourceManager.GetString("AddOrEditUser_ChangePassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Change Picture.
         /// </summary>
         public static string AddOrEditUser_ChangeProfilePicture {
@@ -761,6 +752,24 @@ namespace FitAirlines.UI.Properties {
         public static string Users_NameSurname {
             get {
                 return ResourceManager.GetString("Users_NameSurname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The email address is not in valid format..
+        /// </summary>
+        public static string Validation_EmailInvalid {
+            get {
+                return ResourceManager.GetString("Validation_EmailInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field is required..
+        /// </summary>
+        public static string Validation_FieldRequired {
+            get {
+                return ResourceManager.GetString("Validation_FieldRequired", resourceCulture);
             }
         }
     }

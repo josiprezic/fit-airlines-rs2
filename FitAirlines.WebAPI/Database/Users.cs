@@ -17,7 +17,6 @@ namespace FitAirlines.WebAPI.Database
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
         public string Gender { get; set; }
-        public string Username { get; set; }
         public string PasswordSalt { get; set; }
         public string PasswordHash { get; set; }
         public string Email { get; set; }

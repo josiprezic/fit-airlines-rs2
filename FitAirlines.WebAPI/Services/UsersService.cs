@@ -49,6 +49,23 @@ namespace FitAirlines.WebAPI.Services
             var list = query
                 .Include(x => x.UserRole)
                 .Include(x => x.MembershipType)
+                .Select(x => new Database.Users
+                {
+                    BirthDate = x.BirthDate,
+                    ContactNumber = x.ContactNumber,
+                    Credit = x.Credit,
+                    Email = x.Email,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    Gender = x.Gender,
+                    IsActive = x.IsActive,
+                    MembershipType = x.MembershipType,
+                    MembershipTypeId = x.MembershipTypeId,
+                    UserRole = x.UserRole,
+                    UserRoleId = x.UserRoleId,
+                    StartDate = x.StartDate,
+                    UserId = x.UserId
+                })
                 .ToList();
             return _mapper.Map<List<Model.Users>>(list);
         }
@@ -70,10 +87,7 @@ namespace FitAirlines.WebAPI.Services
             {
                 throw new UserException("Passwords do not match");
             }
-            if (CheckUsernameExists(request.Username))
-            {
-                throw new UserException("Username is already taken.");
-            }
+           
             if (CheckEmailExists(request.Email))
             {
                 throw new UserException("Email is already taken.");
@@ -82,7 +96,6 @@ namespace FitAirlines.WebAPI.Services
             entity.PasswordSalt = GenerateSalt();
             entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
             entity.StartDate = DateTime.Now;
-            entity.UserRoleId = _context.UserRoles.Where(x => x.Title == "FIT Member").FirstOrDefault().UserRoleId;
             _context.Users.Add(entity);
             _context.SaveChanges();
 
@@ -92,6 +105,10 @@ namespace FitAirlines.WebAPI.Services
         public Model.Users Update(int id, UsersUpdateRequest request)
         {
             var entity = _context.Users.Find(id);
+
+            byte[] OldPicture = entity.Picture;
+            if (request.Picture == null || request.Picture.Length == 0)
+                request.Picture = OldPicture;
 
             _context.Users.Attach(entity);
             _context.Users.Update(entity);
@@ -104,10 +121,6 @@ namespace FitAirlines.WebAPI.Services
 
                 entity.PasswordSalt = GenerateSalt();
                 entity.PasswordHash = GenerateHash(entity.PasswordSalt, request.Password);
-            }
-            if (entity.Username != request.Username && CheckUsernameExists(request.Username))
-            {
-                throw new UserException("Username is already taken.");
             }
             if (entity.Email != request.Email && CheckEmailExists(request.Email))
             {
@@ -145,10 +158,6 @@ namespace FitAirlines.WebAPI.Services
             return Convert.ToBase64String(inArray);
         }
 
-        public bool CheckUsernameExists(string username)
-        {
-            return _context.Users.Any(x => x.Username == username);
-        }
         public bool CheckEmailExists(string email)
         {
             return _context.Users.Any(x => x.Email == email);
