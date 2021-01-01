@@ -36,7 +36,7 @@ namespace FitAirlines.UI
         //
 
         private readonly AddOrEditUserFormType type;
-        private readonly Users selectedUser;
+        private Users selectedUser;
 
         //
         // MARK: - Constructors
@@ -119,7 +119,8 @@ namespace FitAirlines.UI
             userRoleLabel.Text = "User role";
 
             // TODO: JR update
-            accountBalanceValueLabel.Text = "0.00 $";
+            //accountBalanceTextLabel.Text = 
+            //accountBalanceValueLabel.Text = "0.00 $";
         }
 
         protected override void SetupStyling()
@@ -132,10 +133,13 @@ namespace FitAirlines.UI
             }
         }
 
-        private void addCreditButton_Click(object sender, EventArgs e)
+        private async void addCreditButton_Click(object sender, EventArgs e)
         {
-            UserCreditForm form = new UserCreditForm();
+            UserCreditForm form = new UserCreditForm(selectedUser);
             form.ShowDialog();
+            var user = await _serviceUsers.GetById<Model.Users>(selectedUser.UserId);
+            this.selectedUser = user;
+            PopulateFormFields(user);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -150,6 +154,7 @@ namespace FitAirlines.UI
             this.Enabled = false;
 
             var generatedPasswordString = PasswordHelper.CreatePassword(8);
+            double credit = Convert.ToDouble(accountBalanceValueLabel.Text);
 
             var request = new Model.Requests.UsersInsertRequest
             {
@@ -161,12 +166,13 @@ namespace FitAirlines.UI
                 UserRoleId = (userRoleComboBox.SelectedItem as UserRoles).UserRoleId,
                 Gender = genderComboBox.Text,
                 IsActive = isActiveCheckBox.Checked,
-                Credit = 0.0,
+                Credit = credit,
 
                 ContactNumber = ContactNumberTextBox.Text,
                 StartDate = DateTime.Now,
-                Password = generatedPasswordString,
+                Password = generatedPasswordString, // TODO: Szef password will be generated/updated for both create/update requests?
                 PasswordConfirmation = generatedPasswordString,
+                
             };
 
             if(profilePictureBox.ImageLocation != null)
@@ -231,6 +237,8 @@ namespace FitAirlines.UI
             genderComboBox.Text = selectedUser.Gender;
             isActiveCheckBox.Checked = selectedUser.IsActive ?? false;
             ContactNumberTextBox.Text = selectedUser.ContactNumber;
+            accountBalanceValueLabel.Text = selectedUser.Credit.ToString();
+       
         }
 
         private void basicTextBox_Validating(object sender, CancelEventArgs e)

@@ -31,7 +31,7 @@
             this.creditNameLabel = new System.Windows.Forms.Label();
             this.creditValueLabel = new System.Windows.Forms.Label();
             this.addCreditLabel = new System.Windows.Forms.Label();
-            this.updateCreditLabel = new System.Windows.Forms.Button();
+            this.updateCreditButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.creditValueNumericUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.creditValueNumericUpDown)).BeginInit();
@@ -66,15 +66,15 @@
             this.addCreditLabel.TabIndex = 2;
             this.addCreditLabel.Text = "Add credit:";
             // 
-            // updateCreditLabel
+            // updateCreditButton
             // 
-            this.updateCreditLabel.Location = new System.Drawing.Point(267, 97);
-            this.updateCreditLabel.Name = "updateCreditLabel";
-            this.updateCreditLabel.Size = new System.Drawing.Size(117, 23);
-            this.updateCreditLabel.TabIndex = 6;
-            this.updateCreditLabel.Text = "Update Credit";
-            this.updateCreditLabel.UseVisualStyleBackColor = true;
-            this.updateCreditLabel.Click += new System.EventHandler(this.updateCreditLabel_Click);
+            this.updateCreditButton.Location = new System.Drawing.Point(267, 97);
+            this.updateCreditButton.Name = "updateCreditButton";
+            this.updateCreditButton.Size = new System.Drawing.Size(117, 23);
+            this.updateCreditButton.TabIndex = 6;
+            this.updateCreditButton.Text = "Update Credit";
+            this.updateCreditButton.UseVisualStyleBackColor = true;
+            this.updateCreditButton.Click += new System.EventHandler(this.updateCreditLabel_Click);
             // 
             // label1
             // 
@@ -98,10 +98,11 @@
             this.ClientSize = new System.Drawing.Size(415, 149);
             this.Controls.Add(this.creditValueNumericUpDown);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.updateCreditLabel);
+            this.Controls.Add(this.updateCreditButton);
             this.Controls.Add(this.addCreditLabel);
             this.Controls.Add(this.creditValueLabel);
             this.Controls.Add(this.creditNameLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UserCreditForm";
@@ -118,7 +119,7 @@
         private System.Windows.Forms.Label creditNameLabel;
         private System.Windows.Forms.Label creditValueLabel;
         private System.Windows.Forms.Label addCreditLabel;
-        private System.Windows.Forms.Button updateCreditLabel;
+        private System.Windows.Forms.Button updateCreditButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown creditValueNumericUpDown;
     }
