@@ -20,7 +20,8 @@ namespace FitAirlines.UI
             byte[] currentByteImageArray = byteImageIn;
             double scale = 1f;
 
-            // TODO: JR
+            // 
+
             /*if (!IsValidImage(byteImageIn))
             {
                 return null;

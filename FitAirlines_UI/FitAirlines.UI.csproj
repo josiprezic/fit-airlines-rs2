@@ -160,6 +160,12 @@
     <Compile Include="Custom\ImageButton.Designer.cs">
       <DependentUpon>ImageButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserCreditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserCreditForm.Designer.cs">
+      <DependentUpon>UserCreditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\APIService.cs" />
     <Compile Include="Helpers\ImageConversionHelper.cs" />
     <Compile Include="Helpers\ImageUploadHelper.cs" />
@@ -207,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OffersForm.resx">
       <DependentUpon>OffersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserCreditForm.resx">
+      <DependentUpon>UserCreditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UsersForm.resx">
       <DependentUpon>UsersForm.cs</DependentUpon>

@@ -1,4 +1,5 @@
 ﻿using FitAirlines.Model;
+using FitAirlines.UI.Forms;
 using FitAirlines.UI.Helpers;
 using FitAirlines.UI.Properties;
 using System;
@@ -133,7 +134,8 @@ namespace FitAirlines.UI
 
         private void addCreditButton_Click(object sender, EventArgs e)
         {
-            // TODO: JR
+            UserCreditForm form = new UserCreditForm();
+            form.ShowDialog();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

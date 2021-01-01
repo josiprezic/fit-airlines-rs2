@@ -134,9 +134,6 @@ namespace FitAirlines.WebAPI.Services
             return _mapper.Map<Model.Users>(entity);
         }
 
-
-        // TODO: JR move to password helper
-
         public static string GenerateSalt()
         {
             var buf = new byte[16];
