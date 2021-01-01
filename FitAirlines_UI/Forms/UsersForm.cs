@@ -64,7 +64,7 @@ namespace FitAirlines.UI
         // MARK: - Actions
         //
 
-        private void editImageButton_Click(object sender, EventArgs e)
+        private async void editImageButton_Click(object sender, EventArgs e)
         {
             var selectedRow = baseDataGridView1.SelectedRows[0];
             if(selectedRow == null)
@@ -77,16 +77,16 @@ namespace FitAirlines.UI
             {
                 AddOrEditUserForm form = new AddOrEditUserForm(AddOrEditUserFormType.Edit, selectedUser);
                 form.ShowDialog();
-                loadUsers();
+                await loadUsers();
             } 
 
         }
 
-        private void addImageButton_Click(object sender, EventArgs e)
+        private async void addImageButton_Click(object sender, EventArgs e)
         {
             AddOrEditUserForm form = new AddOrEditUserForm(AddOrEditUserFormType.Add);
             form.ShowDialog();
-            loadUsers();
+            await loadUsers();
         }
 
         //
@@ -126,30 +126,26 @@ namespace FitAirlines.UI
             memberLevelComboBox.DisplayMember = "Title";
         }
 
-        private void nameSurnameTextBox_KeyDown(object sender, KeyEventArgs e)
+
+        private async void genderComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                loadUsers();
-            }
+            loadUsers(); // TODO: Szef await is causing unhandled exception error.
         }
 
-        private void genderComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private async void memberLevelComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadUsers();
-        }
-
-        private void memberLevelComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            loadUsers();
+            await loadUsers();
 
         }
 
-        private void isActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+        private async void isActiveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            loadUsers();
+            await loadUsers();
+        }
+
+        private async void nameSurnameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            await loadUsers();
         }
     }
 }

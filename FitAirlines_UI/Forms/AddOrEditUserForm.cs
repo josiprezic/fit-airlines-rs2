@@ -30,8 +30,6 @@ namespace FitAirlines.UI
         private readonly APIService _serviceMembershipTypes = new APIService("MembershipTypes");
         private readonly APIService _serviceUserRoles = new APIService("UserRoles");
 
-
-
         //
         // MARK: - Variables
         //
@@ -69,13 +67,12 @@ namespace FitAirlines.UI
             }
 
             this.Enabled = true;
-
         }
 
-        private void LoadProfilePicture(Users selectedUser)
+        private async void LoadProfilePicture(Users selectedUser)
         {
-            // TODO: JR
-            // initialize selectedUser.Picture via user GetById API call
+            var user = await _serviceUsers.GetById<Model.Users>(selectedUser.UserId);
+            selectedUser.Picture = user.Picture;
 
             if (selectedUser.Picture != null && selectedUser.Picture.Length > 0)
             {
@@ -150,6 +147,8 @@ namespace FitAirlines.UI
 
             this.Enabled = false;
 
+            var generatedPasswordString = PasswordHelper.CreatePassword(8);
+
             var request = new Model.Requests.UsersInsertRequest
             {
                 FirstName = firstNameTextBox.Text,
@@ -164,14 +163,20 @@ namespace FitAirlines.UI
 
                 ContactNumber = ContactNumberTextBox.Text,
                 StartDate = DateTime.Now,
-                Password = "InitialPassword", // TODO: JR
-                PasswordConfirmation = "InitialPassword",
+                Password = generatedPasswordString,
+                PasswordConfirmation = generatedPasswordString,
             };
 
             if(profilePictureBox.ImageLocation != null)
             {
+           
                 byte[] pictureContent = File.ReadAllBytes(profilePictureBox.ImageLocation);
-                request.Picture = pictureContent;
+
+                // Resizing image to max 50 Kb
+                // Answer: https://stackoverflow.com/questions/8790275/resize-image-which-is-placed-in-byte-array
+                byte[] resizedPictureContent = ImageUploadHelper.Resize2Max50Kbytes(pictureContent);
+
+                request.Picture = resizedPictureContent;
             }
 
             Model.Users user;

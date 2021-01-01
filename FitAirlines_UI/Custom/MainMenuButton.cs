@@ -60,7 +60,7 @@ namespace FitAirlines.UI.CustomViews
 
         void BaseSetup()
         {
-            // TODO: JR
+            
         }
     }
 }

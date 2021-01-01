@@ -36,7 +36,6 @@
             this.baseDataGridView1 = new FitAirlines.UI.BaseDataGridView(this.components);
             this.offerDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
             this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
-            this.searchImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -46,28 +45,29 @@
             this.dateTimePickerLabel.AutoSize = true;
             this.dateTimePickerLabel.Location = new System.Drawing.Point(215, 15);
             this.dateTimePickerLabel.Name = "dateTimePickerLabel";
-            this.dateTimePickerLabel.Size = new System.Drawing.Size(35, 13);
+            this.dateTimePickerLabel.Size = new System.Drawing.Size(107, 13);
             this.dateTimePickerLabel.TabIndex = 6;
-            this.dateTimePickerLabel.Text = "label1";
+            this.dateTimePickerLabel.Text = "dateTimePickerLabel";
             // 
             // isActiveCheckBox
             // 
             this.isActiveCheckBox.AutoSize = true;
-            this.isActiveCheckBox.Location = new System.Drawing.Point(416, 33);
+            this.isActiveCheckBox.Location = new System.Drawing.Point(465, 33);
             this.isActiveCheckBox.Name = "isActiveCheckBox";
-            this.isActiveCheckBox.Size = new System.Drawing.Size(80, 17);
+            this.isActiveCheckBox.Size = new System.Drawing.Size(112, 17);
             this.isActiveCheckBox.TabIndex = 4;
-            this.isActiveCheckBox.Text = "checkBox1";
+            this.isActiveCheckBox.Text = "isActiveCheckBox";
             this.isActiveCheckBox.UseVisualStyleBackColor = true;
+            this.isActiveCheckBox.CheckedChanged += new System.EventHandler(this.isActiveCheckBox_CheckedChanged);
             // 
             // offerNameLabel
             // 
             this.offerNameLabel.AutoSize = true;
             this.offerNameLabel.Location = new System.Drawing.Point(12, 15);
             this.offerNameLabel.Name = "offerNameLabel";
-            this.offerNameLabel.Size = new System.Drawing.Size(35, 13);
+            this.offerNameLabel.Size = new System.Drawing.Size(82, 13);
             this.offerNameLabel.TabIndex = 3;
-            this.offerNameLabel.Text = "label1";
+            this.offerNameLabel.Text = "offerNameLabel";
             // 
             // offerNameTextBox
             // 
@@ -75,16 +75,24 @@
             this.offerNameTextBox.Name = "offerNameTextBox";
             this.offerNameTextBox.Size = new System.Drawing.Size(178, 20);
             this.offerNameTextBox.TabIndex = 2;
+            this.offerNameTextBox.TextChanged += new System.EventHandler(this.offerNameTextBox_TextChanged);
             // 
             // baseDataGridView1
             // 
+            this.baseDataGridView1.AllowUserToAddRows = false;
+            this.baseDataGridView1.AllowUserToResizeColumns = false;
+            this.baseDataGridView1.AllowUserToResizeRows = false;
             this.baseDataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.baseDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.baseDataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.baseDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.baseDataGridView1.Location = new System.Drawing.Point(12, 77);
+            this.baseDataGridView1.MultiSelect = false;
             this.baseDataGridView1.Name = "baseDataGridView1";
+            this.baseDataGridView1.ReadOnly = true;
+            this.baseDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.baseDataGridView1.Size = new System.Drawing.Size(853, 421);
             this.baseDataGridView1.TabIndex = 7;
             // 
@@ -92,8 +100,10 @@
             // 
             this.offerDateTimePicker.Location = new System.Drawing.Point(218, 31);
             this.offerDateTimePicker.Name = "offerDateTimePicker";
-            this.offerDateTimePicker.Size = new System.Drawing.Size(183, 20);
+            this.offerDateTimePicker.ShowCheckBox = true;
+            this.offerDateTimePicker.Size = new System.Drawing.Size(223, 20);
             this.offerDateTimePicker.TabIndex = 9;
+            this.offerDateTimePicker.ValueChanged += new System.EventHandler(this.offerDateTimePicker_ValueChanged);
             // 
             // addImageButton
             // 
@@ -106,18 +116,6 @@
             this.addImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.addImageButton.UseVisualStyleBackColor = true;
             this.addImageButton.Click += new System.EventHandler(this.addImageButton_Click);
-            // 
-            // searchImageButton
-            // 
-            this.searchImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchImageButton.Location = new System.Drawing.Point(592, 15);
-            this.searchImageButton.Name = "searchImageButton";
-            this.searchImageButton.Size = new System.Drawing.Size(95, 51);
-            this.searchImageButton.TabIndex = 12;
-            this.searchImageButton.Text = "imageButton3";
-            this.searchImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.searchImageButton.UseVisualStyleBackColor = true;
-            this.searchImageButton.Click += new System.EventHandler(this.searchImageButton_Click);
             // 
             // editImageButton
             // 
@@ -136,7 +134,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(877, 510);
-            this.Controls.Add(this.searchImageButton);
             this.Controls.Add(this.editImageButton);
             this.Controls.Add(this.addImageButton);
             this.Controls.Add(this.offerDateTimePicker);
@@ -150,6 +147,7 @@
             this.MinimizeBox = false;
             this.Name = "OffersForm";
             this.Text = "OffersForm";
+            this.Load += new System.EventHandler(this.OffersForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -165,7 +163,6 @@
         private BaseDataGridView baseDataGridView1;
         private BaseDateTimePicker offerDateTimePicker;
         private ImageButton addImageButton;
-        private ImageButton searchImageButton;
         private ImageButton editImageButton;
     }
 }

@@ -163,6 +163,7 @@
     <Compile Include="Helpers\APIService.cs" />
     <Compile Include="Helpers\ImageConversionHelper.cs" />
     <Compile Include="Helpers\ImageUploadHelper.cs" />
+    <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="HttpsClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
