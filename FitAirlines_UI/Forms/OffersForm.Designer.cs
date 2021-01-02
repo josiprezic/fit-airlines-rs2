@@ -29,16 +29,81 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
+            this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
+            this.offerDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
+            this.baseDataGridView1 = new FitAirlines.UI.BaseDataGridView(this.components);
             this.dateTimePickerLabel = new System.Windows.Forms.Label();
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.offerNameLabel = new System.Windows.Forms.Label();
             this.offerNameTextBox = new System.Windows.Forms.TextBox();
-            this.baseDataGridView1 = new FitAirlines.UI.BaseDataGridView(this.components);
-            this.offerDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
-            this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
-            this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
+            this.OfferName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShortInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.OfferTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // editImageButton
+            // 
+            this.editImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.editImageButton.Location = new System.Drawing.Point(689, 15);
+            this.editImageButton.Name = "editImageButton";
+            this.editImageButton.Size = new System.Drawing.Size(85, 51);
+            this.editImageButton.TabIndex = 11;
+            this.editImageButton.Text = "imageButton2";
+            this.editImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.editImageButton.UseVisualStyleBackColor = true;
+            this.editImageButton.Click += new System.EventHandler(this.editImageButton_Click);
+            // 
+            // addImageButton
+            // 
+            this.addImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addImageButton.Location = new System.Drawing.Point(776, 15);
+            this.addImageButton.Name = "addImageButton";
+            this.addImageButton.Size = new System.Drawing.Size(89, 52);
+            this.addImageButton.TabIndex = 10;
+            this.addImageButton.Text = "imageButton1";
+            this.addImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.addImageButton.UseVisualStyleBackColor = true;
+            this.addImageButton.Click += new System.EventHandler(this.addImageButton_Click);
+            // 
+            // offerDateTimePicker
+            // 
+            this.offerDateTimePicker.Location = new System.Drawing.Point(218, 31);
+            this.offerDateTimePicker.Name = "offerDateTimePicker";
+            this.offerDateTimePicker.ShowCheckBox = true;
+            this.offerDateTimePicker.Size = new System.Drawing.Size(223, 20);
+            this.offerDateTimePicker.TabIndex = 9;
+            this.offerDateTimePicker.ValueChanged += new System.EventHandler(this.offerDateTimePicker_ValueChanged);
+            // 
+            // baseDataGridView1
+            // 
+            this.baseDataGridView1.AllowUserToAddRows = false;
+            this.baseDataGridView1.AllowUserToResizeColumns = false;
+            this.baseDataGridView1.AllowUserToResizeRows = false;
+            this.baseDataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.baseDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.baseDataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.baseDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.baseDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.OfferName,
+            this.ShortInfo,
+            this.StartDate,
+            this.EndDate,
+            this.isActive,
+            this.OfferTypeId});
+            this.baseDataGridView1.Location = new System.Drawing.Point(12, 77);
+            this.baseDataGridView1.MultiSelect = false;
+            this.baseDataGridView1.Name = "baseDataGridView1";
+            this.baseDataGridView1.ReadOnly = true;
+            this.baseDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.baseDataGridView1.Size = new System.Drawing.Size(853, 421);
+            this.baseDataGridView1.TabIndex = 7;
             // 
             // dateTimePickerLabel
             // 
@@ -77,57 +142,49 @@
             this.offerNameTextBox.TabIndex = 2;
             this.offerNameTextBox.TextChanged += new System.EventHandler(this.offerNameTextBox_TextChanged);
             // 
-            // baseDataGridView1
+            // OfferName
             // 
-            this.baseDataGridView1.AllowUserToAddRows = false;
-            this.baseDataGridView1.AllowUserToResizeColumns = false;
-            this.baseDataGridView1.AllowUserToResizeRows = false;
-            this.baseDataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.baseDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.baseDataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.baseDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.baseDataGridView1.Location = new System.Drawing.Point(12, 77);
-            this.baseDataGridView1.MultiSelect = false;
-            this.baseDataGridView1.Name = "baseDataGridView1";
-            this.baseDataGridView1.ReadOnly = true;
-            this.baseDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.baseDataGridView1.Size = new System.Drawing.Size(853, 421);
-            this.baseDataGridView1.TabIndex = 7;
+            this.OfferName.DataPropertyName = "OfferName";
+            this.OfferName.HeaderText = "OfferName";
+            this.OfferName.Name = "OfferName";
+            this.OfferName.ReadOnly = true;
             // 
-            // offerDateTimePicker
+            // ShortInfo
             // 
-            this.offerDateTimePicker.Location = new System.Drawing.Point(218, 31);
-            this.offerDateTimePicker.Name = "offerDateTimePicker";
-            this.offerDateTimePicker.ShowCheckBox = true;
-            this.offerDateTimePicker.Size = new System.Drawing.Size(223, 20);
-            this.offerDateTimePicker.TabIndex = 9;
-            this.offerDateTimePicker.ValueChanged += new System.EventHandler(this.offerDateTimePicker_ValueChanged);
+            this.ShortInfo.DataPropertyName = "ShortInfo";
+            this.ShortInfo.HeaderText = "Short Info";
+            this.ShortInfo.Name = "ShortInfo";
+            this.ShortInfo.ReadOnly = true;
             // 
-            // addImageButton
+            // StartDate
             // 
-            this.addImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addImageButton.Location = new System.Drawing.Point(776, 15);
-            this.addImageButton.Name = "addImageButton";
-            this.addImageButton.Size = new System.Drawing.Size(89, 52);
-            this.addImageButton.TabIndex = 10;
-            this.addImageButton.Text = "imageButton1";
-            this.addImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.addImageButton.UseVisualStyleBackColor = true;
-            this.addImageButton.Click += new System.EventHandler(this.addImageButton_Click);
+            this.StartDate.DataPropertyName = "StartDate";
+            this.StartDate.HeaderText = "Start Date";
+            this.StartDate.Name = "StartDate";
+            this.StartDate.ReadOnly = true;
             // 
-            // editImageButton
+            // EndDate
             // 
-            this.editImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.editImageButton.Location = new System.Drawing.Point(689, 15);
-            this.editImageButton.Name = "editImageButton";
-            this.editImageButton.Size = new System.Drawing.Size(85, 51);
-            this.editImageButton.TabIndex = 11;
-            this.editImageButton.Text = "imageButton2";
-            this.editImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.editImageButton.UseVisualStyleBackColor = true;
-            this.editImageButton.Click += new System.EventHandler(this.editImageButton_Click);
+            this.EndDate.DataPropertyName = "EndDate";
+            this.EndDate.HeaderText = "End Date";
+            this.EndDate.Name = "EndDate";
+            this.EndDate.ReadOnly = true;
+            // 
+            // isActive
+            // 
+            this.isActive.DataPropertyName = "isActive";
+            this.isActive.HeaderText = "Active";
+            this.isActive.Name = "isActive";
+            this.isActive.ReadOnly = true;
+            this.isActive.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isActive.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // OfferTypeId
+            // 
+            this.OfferTypeId.DataPropertyName = "OfferType";
+            this.OfferTypeId.HeaderText = "Offer Type";
+            this.OfferTypeId.Name = "OfferTypeId";
+            this.OfferTypeId.ReadOnly = true;
             // 
             // OffersForm
             // 
@@ -164,5 +221,11 @@
         private BaseDateTimePicker offerDateTimePicker;
         private ImageButton addImageButton;
         private ImageButton editImageButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ShortInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StartDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isActive;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OfferTypeId;
     }
 }

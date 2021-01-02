@@ -43,6 +43,10 @@
             this.offerMemberTypeComboBox = new FitAirlines.UI.BaseComboBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.startDateLabel = new System.Windows.Forms.Label();
+            this.endDateLabel = new System.Windows.Forms.Label();
             this.imageGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.offerPictureBox)).BeginInit();
             this.personalInfoGroupBox.SuspendLayout();
@@ -155,7 +159,7 @@
             // isActiveCheckBox
             // 
             this.isActiveCheckBox.AutoSize = true;
-            this.isActiveCheckBox.Location = new System.Drawing.Point(130, 211);
+            this.isActiveCheckBox.Location = new System.Drawing.Point(130, 261);
             this.isActiveCheckBox.Name = "isActiveCheckBox";
             this.isActiveCheckBox.Size = new System.Drawing.Size(80, 17);
             this.isActiveCheckBox.TabIndex = 6;
@@ -164,6 +168,10 @@
             // 
             // personalInfoGroupBox
             // 
+            this.personalInfoGroupBox.Controls.Add(this.endDateLabel);
+            this.personalInfoGroupBox.Controls.Add(this.startDateLabel);
+            this.personalInfoGroupBox.Controls.Add(this.endDateTimePicker);
+            this.personalInfoGroupBox.Controls.Add(this.startDateTimePicker);
             this.personalInfoGroupBox.Controls.Add(this.offerMemberTypeComboBox);
             this.personalInfoGroupBox.Controls.Add(this.isActiveCheckBox);
             this.personalInfoGroupBox.Controls.Add(this.offerDescriptionTextBox);
@@ -219,6 +227,38 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(321, 48);
             this.tableLayoutPanel2.TabIndex = 13;
             // 
+            // startDateTimePicker
+            // 
+            this.startDateTimePicker.Location = new System.Drawing.Point(130, 209);
+            this.startDateTimePicker.Name = "startDateTimePicker";
+            this.startDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.startDateTimePicker.TabIndex = 8;
+            // 
+            // endDateTimePicker
+            // 
+            this.endDateTimePicker.Location = new System.Drawing.Point(130, 235);
+            this.endDateTimePicker.Name = "endDateTimePicker";
+            this.endDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.endDateTimePicker.TabIndex = 9;
+            // 
+            // startDateLabel
+            // 
+            this.startDateLabel.AutoSize = true;
+            this.startDateLabel.Location = new System.Drawing.Point(6, 215);
+            this.startDateLabel.Name = "startDateLabel";
+            this.startDateLabel.Size = new System.Drawing.Size(56, 13);
+            this.startDateLabel.TabIndex = 10;
+            this.startDateLabel.Text = "Start date:";
+            // 
+            // endDateLabel
+            // 
+            this.endDateLabel.AutoSize = true;
+            this.endDateLabel.Location = new System.Drawing.Point(6, 241);
+            this.endDateLabel.Name = "endDateLabel";
+            this.endDateLabel.Size = new System.Drawing.Size(53, 13);
+            this.endDateLabel.TabIndex = 11;
+            this.endDateLabel.Text = "End date:";
+            // 
             // AddOrEditOfferForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,5 +299,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private BaseComboBox offerMemberTypeComboBox;
+        private System.Windows.Forms.Label endDateLabel;
+        private System.Windows.Forms.Label startDateLabel;
+        private System.Windows.Forms.DateTimePicker endDateTimePicker;
+        private System.Windows.Forms.DateTimePicker startDateTimePicker;
     }
 }

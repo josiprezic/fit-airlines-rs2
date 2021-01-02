@@ -15,6 +15,8 @@ namespace FitAirlines.UI
     public partial class OffersForm : BaseForm
     {
         private readonly APIService _serviceOffers = new APIService("Offers");
+        private readonly APIService _serviceOfferTypes = new APIService("OfferTypes");
+
 
         //
         // MARK: - Constructors
@@ -71,18 +73,23 @@ namespace FitAirlines.UI
             };
             if(offerDateTimePicker.Checked)
             {
-                request.Date = offerDateTimePicker.Value.Date;
+                //request.Date = offerDateTimePicker.Value.Date;
             }
 
             var list = await _serviceOffers.Get<List<Model.Offers>>(request);
 
+            // TODO: Szef fix OfferType displayed value
+
             baseDataGridView1.DataSource = list;
         }
 
-        private void ShowAddForm()
+      
+
+        private async Task ShowAddForm()
         {
             AddOrEditOfferForm form = new AddOrEditOfferForm();
             form.ShowDialog();
+            await loadOffers();
         }
 
         private async Task ShowEditForm()
@@ -107,9 +114,9 @@ namespace FitAirlines.UI
         // MARK: - Actions
         //
 
-        private void addImageButton_Click(object sender, EventArgs e)
+        private async void addImageButton_Click(object sender, EventArgs e)
         {
-            ShowAddForm();
+            await ShowAddForm();
         }
 
         private async void editImageButton_Click(object sender, EventArgs e)
@@ -131,5 +138,6 @@ namespace FitAirlines.UI
         {
             await loadOffers();
         }
+
     }
 }

@@ -149,13 +149,24 @@ namespace FitAirlines.UI
             {
                 IsActive = isActiveCheckBox.Checked,
                 OfferName = offerNameTextBox.Text,
-                ShortInfo = offerDescriptionTextBox.Text
+                ShortInfo = offerDescriptionTextBox.Text,
+                StartDate = DateTime.Now, // TODO: JR
+                EndDate = DateTime.Now, // TODO: JR
+                OfferTypeId = (offerMemberTypeComboBox.SelectedItem as OfferTypes).OfferTypeId
+
             };
 
             if (offerPictureBox.ImageLocation != null)
             {
+
                 byte[] pictureContent = File.ReadAllBytes(offerPictureBox.ImageLocation);
-                request.Picture = pictureContent;
+
+                // Resizing image to max 50 Kb
+                // Answer: https://stackoverflow.com/questions/8790275/resize-image-which-is-placed-in-byte-array
+                byte[] resizedPictureContent = ImageUploadHelper.Resize2Max50Kbytes(pictureContent);
+
+
+                request.Picture = resizedPictureContent;
             }
 
             Model.OfferTypes offer;
