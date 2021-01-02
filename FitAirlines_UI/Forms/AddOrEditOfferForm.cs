@@ -112,7 +112,7 @@ namespace FitAirlines.UI
             offerNameLabel.Text = Resources.AddOrEditOffer_OfferName;
             requiredMemberLevelLabel.Text = Resources.AddOrEditOFfer_OfferMembershipLevel;
             offerDescriptionLabel.Text = Resources.AddOrEditOffer_OfferDescription;
-            isActiveCheckBox.Text = Resources.Generic_IsActive;
+            isActiveCheckBox.Text = "Active";
 
             uploadofferPictureButton.Text = Resources.Generic_UploadImage;
             cancelButton.Text = Resources.Generic_Cancel;
@@ -187,5 +187,9 @@ namespace FitAirlines.UI
                 this.Enabled = true;
         }
 
+        private void isActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
