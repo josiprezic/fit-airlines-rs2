@@ -72,7 +72,7 @@ namespace FitAirlines.UI
             };
             if(offerDateTimePicker.Checked)
             {
-                request.Date = offerDateTimePicker.Value.Date; // TODO: JRR
+                request.Date = offerDateTimePicker.Value.Date;
             }
 
             var list = await _serviceOffers.Get<List<Model.Offers>>(request);
