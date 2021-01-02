@@ -43,7 +43,7 @@ namespace FitAirlines.UI
             nameSurnameLabel.Text = Resources.Users_NameSurname;
             genderLabel.Text = Resources.Users_Gender;
             memberLevelLabel.Text = Resources.Users_MemberLevel;
-            isActiveCheckBox.Text = Resources.Generic_IsActive;
+            isActiveCheckBox.Text = "Show only active users"; //Resources.Generic_IsActive;
         }
 
         protected override void SetupStyling()
