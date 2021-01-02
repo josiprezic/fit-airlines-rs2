@@ -150,8 +150,8 @@ namespace FitAirlines.UI
                 IsActive = isActiveCheckBox.Checked,
                 OfferName = offerNameTextBox.Text,
                 ShortInfo = offerDescriptionTextBox.Text,
-                StartDate = DateTime.Now, // TODO: JR
-                EndDate = DateTime.Now, // TODO: JR
+                StartDate = startDateTimePicker.Value,
+                EndDate = endDateTimePicker.Value,
                 OfferTypeId = (offerMemberTypeComboBox.SelectedItem as OfferTypes).OfferTypeId
 
             };

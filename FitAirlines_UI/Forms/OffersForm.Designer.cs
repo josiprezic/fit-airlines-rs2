@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
-            this.offerDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
             this.baseDataGridView1 = new FitAirlines.UI.BaseDataGridView(this.components);
             this.dateTimePickerLabel = new System.Windows.Forms.Label();
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
@@ -43,6 +42,7 @@
             this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.OfferTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.offerDateTimePicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,15 +69,6 @@
             this.addImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.addImageButton.UseVisualStyleBackColor = true;
             this.addImageButton.Click += new System.EventHandler(this.addImageButton_Click);
-            // 
-            // offerDateTimePicker
-            // 
-            this.offerDateTimePicker.Location = new System.Drawing.Point(218, 31);
-            this.offerDateTimePicker.Name = "offerDateTimePicker";
-            this.offerDateTimePicker.ShowCheckBox = true;
-            this.offerDateTimePicker.Size = new System.Drawing.Size(223, 20);
-            this.offerDateTimePicker.TabIndex = 9;
-            this.offerDateTimePicker.ValueChanged += new System.EventHandler(this.offerDateTimePicker_ValueChanged);
             // 
             // baseDataGridView1
             // 
@@ -186,14 +177,24 @@
             this.OfferTypeId.Name = "OfferTypeId";
             this.OfferTypeId.ReadOnly = true;
             // 
+            // offerDateTimePicker
+            // 
+            this.offerDateTimePicker.Checked = false;
+            this.offerDateTimePicker.Location = new System.Drawing.Point(218, 33);
+            this.offerDateTimePicker.Name = "offerDateTimePicker";
+            this.offerDateTimePicker.ShowCheckBox = true;
+            this.offerDateTimePicker.Size = new System.Drawing.Size(223, 20);
+            this.offerDateTimePicker.TabIndex = 12;
+            this.offerDateTimePicker.ValueChanged += new System.EventHandler(this.offerDateTimePicker_ValueChanged_1);
+            // 
             // OffersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(877, 510);
+            this.Controls.Add(this.offerDateTimePicker);
             this.Controls.Add(this.editImageButton);
             this.Controls.Add(this.addImageButton);
-            this.Controls.Add(this.offerDateTimePicker);
             this.Controls.Add(this.baseDataGridView1);
             this.Controls.Add(this.dateTimePickerLabel);
             this.Controls.Add(this.isActiveCheckBox);
@@ -218,7 +219,6 @@
         private System.Windows.Forms.Label offerNameLabel;
         private System.Windows.Forms.TextBox offerNameTextBox;
         private BaseDataGridView baseDataGridView1;
-        private BaseDateTimePicker offerDateTimePicker;
         private ImageButton addImageButton;
         private ImageButton editImageButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn OfferName;
@@ -227,5 +227,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isActive;
         private System.Windows.Forms.DataGridViewTextBoxColumn OfferTypeId;
+        private System.Windows.Forms.DateTimePicker offerDateTimePicker;
     }
 }

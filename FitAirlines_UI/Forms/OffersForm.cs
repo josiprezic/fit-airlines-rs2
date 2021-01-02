@@ -45,7 +45,6 @@ namespace FitAirlines.UI
         protected override void SetupStyling()
         {
             base.SetupStyling();
-            offerDateTimePicker.Clear();
 
             addImageButton.Image = Resources.Icon_Add;
             addImageButton.Text = Resources.Generic_Add;
@@ -73,12 +72,11 @@ namespace FitAirlines.UI
             };
             if(offerDateTimePicker.Checked)
             {
-                //request.Date = offerDateTimePicker.Value.Date;
+                request.Date = offerDateTimePicker.Value.Date; // TODO: JRR
             }
 
             var list = await _serviceOffers.Get<List<Model.Offers>>(request);
 
-            // TODO: Szef fix OfferType displayed value
 
             baseDataGridView1.DataSource = list;
         }
@@ -129,15 +127,15 @@ namespace FitAirlines.UI
             await loadOffers();
         }
 
-        private async void offerDateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-            await loadOffers();
-        }
 
         private async void isActiveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             await loadOffers();
         }
 
+        private async void offerDateTimePicker_ValueChanged_1(object sender, EventArgs e)
+        {
+            await loadOffers();
+        }
     }
 }
