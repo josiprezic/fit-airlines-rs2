@@ -34,7 +34,7 @@ namespace FitAirlines.UI
 
         protected virtual void SetupStyling()
         {
-            // TODO: JR
+            
         }
 
         //
@@ -49,7 +49,7 @@ namespace FitAirlines.UI
 
         void BaseSetup()
         {
-            // TODO: JR
+           
         }
     }
 }

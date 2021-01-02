@@ -118,9 +118,7 @@ namespace FitAirlines.UI
             contactNumberLabel.Text = "Tel number";
             userRoleLabel.Text = "User role";
 
-            // TODO: JR update
-            //accountBalanceTextLabel.Text = 
-            //accountBalanceValueLabel.Text = "0.00 $";
+            
         }
 
         protected override void SetupStyling()
@@ -172,7 +170,7 @@ namespace FitAirlines.UI
                 StartDate = DateTime.Now,
                 Password = generatedPasswordString, // TODO: Szef password will be generated/updated for both create/update requests?
                 PasswordConfirmation = generatedPasswordString,
-                
+                 
             };
 
             if(profilePictureBox.ImageLocation != null)
