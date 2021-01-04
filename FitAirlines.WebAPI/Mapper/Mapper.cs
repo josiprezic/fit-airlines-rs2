@@ -29,6 +29,11 @@ namespace FitAirlines.WebAPI.Mapper
             CreateMap<Database.Users, Model.Requests.UsersUpdateRequest>().ReverseMap();
             CreateMap<Database.Offers, Model.Requests.OffersInsertRequest>().ReverseMap();
 
+            // TODO: Szef why don't we have offersUpdateRequest here? Probably because we have additional password field in user model.
+
+            CreateMap<Database.Flights, Model.Requests.FlightsInsertRequest>().ReverseMap();
+            // TODO: JR // TODO: Szef: Should I add Flights Update request here? Probably not.
+
         }
     }
 }
