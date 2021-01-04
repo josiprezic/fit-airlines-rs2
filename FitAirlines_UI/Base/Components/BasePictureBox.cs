@@ -55,7 +55,7 @@ namespace FitAirlines.UI
 
         void BaseSetup()
         {
-            // TODO: JR
+           
         }
     }
 }

@@ -46,9 +46,6 @@ namespace FitAirlines.UI
             base.SetupStyling();
             startDateTimePicker.Clear();
 
-            searchImageButton.Image = Resources.Icon_Add;
-            searchImageButton.Text = Resources.Generic_Search;
-
             addImageButton.Image = Resources.Icon_Add;
             addImageButton.Text = Resources.Generic_Add;
 
@@ -60,11 +57,7 @@ namespace FitAirlines.UI
         // MARK: - Actions
         //
 
-        private void searchImageButton_Click(object sender, EventArgs e)
-        {
-            // TODO: JR
-        }
-
+       
         private void editImageButton_Click(object sender, EventArgs e)
         {
             AddOrEditFlightForm form = new AddOrEditFlightForm(AddOrEditFlightFormType.Edit);

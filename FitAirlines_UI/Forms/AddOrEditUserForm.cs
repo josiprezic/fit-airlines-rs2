@@ -1,4 +1,5 @@
 ﻿using FitAirlines.Model;
+using FitAirlines.UI.Forms;
 using FitAirlines.UI.Helpers;
 using FitAirlines.UI.Properties;
 using System;
@@ -30,14 +31,12 @@ namespace FitAirlines.UI
         private readonly APIService _serviceMembershipTypes = new APIService("MembershipTypes");
         private readonly APIService _serviceUserRoles = new APIService("UserRoles");
 
-
-
         //
         // MARK: - Variables
         //
 
         private readonly AddOrEditUserFormType type;
-        private readonly Users selectedUser;
+        private Users selectedUser;
 
         //
         // MARK: - Constructors
@@ -68,14 +67,17 @@ namespace FitAirlines.UI
                 LoadProfilePicture(selectedUser);
             }
 
-            this.Enabled = true;
+            fitMembershipComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            genderComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            userRoleComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
+            this.Enabled = true;
         }
 
-        private void LoadProfilePicture(Users selectedUser)
+        private async void LoadProfilePicture(Users selectedUser)
         {
-            // TODO: JR
-            // initialize selectedUser.Picture via user GetById API call
+            var user = await _serviceUsers.GetById<Model.Users>(selectedUser.UserId);
+            selectedUser.Picture = user.Picture;
 
             if (selectedUser.Picture != null && selectedUser.Picture.Length > 0)
             {
@@ -120,8 +122,7 @@ namespace FitAirlines.UI
             contactNumberLabel.Text = "Tel number";
             userRoleLabel.Text = "User role";
 
-            // TODO: JR update
-            accountBalanceValueLabel.Text = "0.00 $";
+            
         }
 
         protected override void SetupStyling()
@@ -134,9 +135,13 @@ namespace FitAirlines.UI
             }
         }
 
-        private void addCreditButton_Click(object sender, EventArgs e)
+        private async void addCreditButton_Click(object sender, EventArgs e)
         {
-            // TODO: JR
+            UserCreditForm form = new UserCreditForm(selectedUser);
+            form.ShowDialog();
+            var user = await _serviceUsers.GetById<Model.Users>(selectedUser.UserId);
+            this.selectedUser = user;
+            PopulateFormFields(user);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -150,6 +155,9 @@ namespace FitAirlines.UI
 
             this.Enabled = false;
 
+            var generatedPasswordString = PasswordHelper.CreatePassword(8);
+            double credit = Convert.ToDouble(accountBalanceValueLabel.Text);
+
             var request = new Model.Requests.UsersInsertRequest
             {
                 FirstName = firstNameTextBox.Text,
@@ -160,18 +168,25 @@ namespace FitAirlines.UI
                 UserRoleId = (userRoleComboBox.SelectedItem as UserRoles).UserRoleId,
                 Gender = genderComboBox.Text,
                 IsActive = isActiveCheckBox.Checked,
-                Credit = 0.0,
+                Credit = credit,
 
                 ContactNumber = ContactNumberTextBox.Text,
                 StartDate = DateTime.Now,
-                Password = "InitialPassword", // TODO: JR
-                PasswordConfirmation = "InitialPassword",
+                Password = generatedPasswordString, // TODO: Szef password will be generated/updated for both create/update requests?
+                PasswordConfirmation = generatedPasswordString,
+                 
             };
 
             if(profilePictureBox.ImageLocation != null)
             {
+           
                 byte[] pictureContent = File.ReadAllBytes(profilePictureBox.ImageLocation);
-                request.Picture = pictureContent;
+
+                // Resizing image to max 50 Kb
+                // Answer: https://stackoverflow.com/questions/8790275/resize-image-which-is-placed-in-byte-array
+                byte[] resizedPictureContent = ImageUploadHelper.Resize2Max50Kbytes(pictureContent);
+
+                request.Picture = resizedPictureContent;
             }
 
             Model.Users user;
@@ -224,6 +239,8 @@ namespace FitAirlines.UI
             genderComboBox.Text = selectedUser.Gender;
             isActiveCheckBox.Checked = selectedUser.IsActive ?? false;
             ContactNumberTextBox.Text = selectedUser.ContactNumber;
+            accountBalanceValueLabel.Text = selectedUser.Credit.ToString();
+       
         }
 
         private void basicTextBox_Validating(object sender, CancelEventArgs e)

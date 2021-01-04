@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView = new FitAirlines.UI.BaseDataGridView(this.components);
-            this.searchImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.startDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
@@ -53,27 +52,22 @@
             // 
             // dataGridView
             // 
+            this.dataGridView.AllowUserToAddRows = false;
+            this.dataGridView.AllowUserToResizeColumns = false;
+            this.dataGridView.AllowUserToResizeRows = false;
             this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Location = new System.Drawing.Point(12, 144);
+            this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
+            this.dataGridView.ReadOnly = true;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(853, 354);
             this.dataGridView.TabIndex = 0;
-            // 
-            // searchImageButton
-            // 
-            this.searchImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchImageButton.Location = new System.Drawing.Point(592, 12);
-            this.searchImageButton.Name = "searchImageButton";
-            this.searchImageButton.Size = new System.Drawing.Size(95, 51);
-            this.searchImageButton.TabIndex = 20;
-            this.searchImageButton.Text = "imageButton3";
-            this.searchImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.searchImageButton.UseVisualStyleBackColor = true;
-            this.searchImageButton.Click += new System.EventHandler(this.searchImageButton_Click);
             // 
             // editImageButton
             // 
@@ -238,7 +232,6 @@
             this.Controls.Add(this.cityTextBox);
             this.Controls.Add(this.countryLabel);
             this.Controls.Add(this.countryTextBox);
-            this.Controls.Add(this.searchImageButton);
             this.Controls.Add(this.editImageButton);
             this.Controls.Add(this.addImageButton);
             this.Controls.Add(this.startDateTimePicker);
@@ -261,7 +254,6 @@
         #endregion
 
         private BaseDataGridView dataGridView;
-        private ImageButton searchImageButton;
         private ImageButton editImageButton;
         private ImageButton addImageButton;
         private BaseDateTimePicker startDateTimePicker;
