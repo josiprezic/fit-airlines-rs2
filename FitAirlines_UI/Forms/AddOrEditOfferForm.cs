@@ -59,6 +59,8 @@ namespace FitAirlines.UI
                 LoadProfilePicture(selectedOffer);
             }
 
+            this.offerMemberTypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
             this.Enabled = true;
         }
 

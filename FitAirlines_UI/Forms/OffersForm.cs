@@ -65,6 +65,7 @@ namespace FitAirlines.UI
 
         private async Task loadOffers()
         {
+            this.Enabled = false;
             var request = new Model.Requests.OffersSearchRequest
             {
                 Name = offerNameTextBox.Text,
@@ -79,6 +80,7 @@ namespace FitAirlines.UI
 
 
             baseDataGridView1.DataSource = list;
+            this.Enabled = true;
         }
 
       

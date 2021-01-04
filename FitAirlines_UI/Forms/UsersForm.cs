@@ -101,6 +101,7 @@ namespace FitAirlines.UI
 
         private async Task loadUsers()
         {
+            this.Enabled = false;
             var request = new Model.Requests.UsersSearchRequest
             {
                 Name = nameSurnameTextBox.Text,
@@ -116,6 +117,7 @@ namespace FitAirlines.UI
             var list = await _serviceUsers.Get<List<Model.Users>>(request);
 
             baseDataGridView1.DataSource = list;
+            this.Enabled = true;
         }
 
         private async Task loadMembershipTypes()

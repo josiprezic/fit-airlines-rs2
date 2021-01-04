@@ -67,6 +67,10 @@ namespace FitAirlines.UI
                 LoadProfilePicture(selectedUser);
             }
 
+            fitMembershipComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            genderComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            userRoleComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
             this.Enabled = true;
         }
 
