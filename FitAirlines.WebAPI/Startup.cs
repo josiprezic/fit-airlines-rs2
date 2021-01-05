@@ -65,6 +65,8 @@ namespace FitAirlines.WebAPI
             services.AddScoped<IUserRolesService, UserRolesService>();
             services.AddScoped<IOffersService, OffersService>();
             services.AddScoped<IFlightsService, FlightsService>();
+            services.AddScoped<ICountriesService, CountriesService>();
+
 
 
             var connection = Configuration.GetConnectionString("local");

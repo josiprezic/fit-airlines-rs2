@@ -39,6 +39,16 @@ namespace FitAirlines.WebAPI.Services
                 query = query.Where(x => x.EndDate == request.EndDate);
             }
 
+            if (request.CityId != null)
+            {
+                query = query.Where(x => x.CityId == request.CityId);
+            }
+
+            if (request.CountryId != null)
+            {
+                query = query.Where(x => x.City.CountryId == request.CountryId);
+            }
+
             //if (request.EndDate != null)
             //{
             //    query = query.Where(x => ((x.EndDate.Day == request.EndDate?.Day) && (x.EndDate.Month == request.EndDate?.Month) && (x.EndDate.Year == request.EndDate.Year)));
@@ -50,6 +60,8 @@ namespace FitAirlines.WebAPI.Services
             {
                 query = query.Where(x => x.IsActive == true);
             }
+
+            
 
             var list = query
 

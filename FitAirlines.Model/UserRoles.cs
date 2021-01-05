@@ -15,5 +15,10 @@ namespace FitAirlines.Model
         public bool IsAbleToAddNewReservations { get; set; }
         public bool IsAbleToAddNewPlaces { get; set; }
         public bool IsSuperUser { get; set; }
+
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 }

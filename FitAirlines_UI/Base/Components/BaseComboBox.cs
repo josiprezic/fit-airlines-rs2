@@ -49,7 +49,7 @@ namespace FitAirlines.UI
 
         void BaseSetup()
         {
-            
+            DropDownStyle = ComboBoxStyle.DropDownList;
         }
     }
 }

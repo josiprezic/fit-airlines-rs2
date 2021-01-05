@@ -31,5 +31,9 @@ namespace FitAirlines.Model
         public Airports DestinationAirport { get; set; }
         public Offers Offer { get; set; }
         public Planes Plane { get; set; }
+
+        public int Capacity {
+            get { return Plane.Capacity; }
+        }
     }
 }

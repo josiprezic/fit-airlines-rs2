@@ -32,21 +32,27 @@
             this.dataGridView = new FitAirlines.UI.BaseDataGridView(this.components);
             this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
-            this.startDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
             this.startDateTimePickerLabel = new System.Windows.Forms.Label();
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
-            this.flightNameLabel = new System.Windows.Forms.Label();
-            this.flightNameTextBox = new System.Windows.Forms.TextBox();
             this.countryLabel = new System.Windows.Forms.Label();
-            this.countryTextBox = new System.Windows.Forms.TextBox();
             this.cityLabel = new System.Windows.Forms.Label();
-            this.cityTextBox = new System.Windows.Forms.TextBox();
-            this.endDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
             this.endDateTimePickerLabel = new System.Windows.Forms.Label();
             this.offerLabel = new System.Windows.Forms.Label();
             this.minMembershipTypeLabel = new System.Windows.Forms.Label();
             this.offerComboBox = new FitAirlines.UI.BaseComboBox();
             this.minMembershipComboBox = new FitAirlines.UI.BaseComboBox();
+            this.countryComboBox = new FitAirlines.UI.BaseComboBox();
+            this.cityComboBox = new FitAirlines.UI.BaseComboBox();
+            this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.Country = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.City = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Offer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MembershipType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Capacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,12 +67,21 @@
             this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(12, 144);
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Country,
+            this.City,
+            this.StartDate,
+            this.EndDate,
+            this.Offer,
+            this.MembershipType,
+            this.Capacity,
+            this.isActive});
+            this.dataGridView.Location = new System.Drawing.Point(12, 94);
             this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(853, 354);
+            this.dataGridView.Size = new System.Drawing.Size(853, 404);
             this.dataGridView.TabIndex = 0;
             // 
             // editImageButton
@@ -93,17 +108,10 @@
             this.addImageButton.UseVisualStyleBackColor = true;
             this.addImageButton.Click += new System.EventHandler(this.addImageButton_Click);
             // 
-            // startDateTimePicker
-            // 
-            this.startDateTimePicker.Location = new System.Drawing.Point(212, 28);
-            this.startDateTimePicker.Name = "startDateTimePicker";
-            this.startDateTimePicker.Size = new System.Drawing.Size(183, 20);
-            this.startDateTimePicker.TabIndex = 17;
-            // 
             // startDateTimePickerLabel
             // 
             this.startDateTimePickerLabel.AutoSize = true;
-            this.startDateTimePickerLabel.Location = new System.Drawing.Point(209, 12);
+            this.startDateTimePickerLabel.Location = new System.Drawing.Point(189, 13);
             this.startDateTimePickerLabel.Name = "startDateTimePickerLabel";
             this.startDateTimePickerLabel.Size = new System.Drawing.Size(35, 13);
             this.startDateTimePickerLabel.TabIndex = 16;
@@ -112,72 +120,35 @@
             // isActiveCheckBox
             // 
             this.isActiveCheckBox.AutoSize = true;
-            this.isActiveCheckBox.Location = new System.Drawing.Point(412, 106);
+            this.isActiveCheckBox.Location = new System.Drawing.Point(593, 30);
             this.isActiveCheckBox.Name = "isActiveCheckBox";
             this.isActiveCheckBox.Size = new System.Drawing.Size(80, 17);
             this.isActiveCheckBox.TabIndex = 15;
             this.isActiveCheckBox.Text = "checkBox1";
             this.isActiveCheckBox.UseVisualStyleBackColor = true;
             // 
-            // flightNameLabel
-            // 
-            this.flightNameLabel.AutoSize = true;
-            this.flightNameLabel.Location = new System.Drawing.Point(12, 12);
-            this.flightNameLabel.Name = "flightNameLabel";
-            this.flightNameLabel.Size = new System.Drawing.Size(35, 13);
-            this.flightNameLabel.TabIndex = 14;
-            this.flightNameLabel.Text = "label1";
-            // 
-            // flightNameTextBox
-            // 
-            this.flightNameTextBox.Location = new System.Drawing.Point(15, 28);
-            this.flightNameTextBox.Name = "flightNameTextBox";
-            this.flightNameTextBox.Size = new System.Drawing.Size(178, 20);
-            this.flightNameTextBox.TabIndex = 13;
-            // 
             // countryLabel
             // 
             this.countryLabel.AutoSize = true;
-            this.countryLabel.Location = new System.Drawing.Point(12, 51);
+            this.countryLabel.Location = new System.Drawing.Point(12, 11);
             this.countryLabel.Name = "countryLabel";
             this.countryLabel.Size = new System.Drawing.Size(35, 13);
             this.countryLabel.TabIndex = 22;
             this.countryLabel.Text = "label1";
             // 
-            // countryTextBox
-            // 
-            this.countryTextBox.Location = new System.Drawing.Point(15, 67);
-            this.countryTextBox.Name = "countryTextBox";
-            this.countryTextBox.Size = new System.Drawing.Size(178, 20);
-            this.countryTextBox.TabIndex = 21;
-            // 
             // cityLabel
             // 
             this.cityLabel.AutoSize = true;
-            this.cityLabel.Location = new System.Drawing.Point(12, 90);
+            this.cityLabel.Location = new System.Drawing.Point(12, 50);
             this.cityLabel.Name = "cityLabel";
             this.cityLabel.Size = new System.Drawing.Size(35, 13);
             this.cityLabel.TabIndex = 24;
             this.cityLabel.Text = "label1";
             // 
-            // cityTextBox
-            // 
-            this.cityTextBox.Location = new System.Drawing.Point(15, 106);
-            this.cityTextBox.Name = "cityTextBox";
-            this.cityTextBox.Size = new System.Drawing.Size(178, 20);
-            this.cityTextBox.TabIndex = 23;
-            // 
-            // endDateTimePicker
-            // 
-            this.endDateTimePicker.Location = new System.Drawing.Point(212, 66);
-            this.endDateTimePicker.Name = "endDateTimePicker";
-            this.endDateTimePicker.Size = new System.Drawing.Size(183, 20);
-            this.endDateTimePicker.TabIndex = 26;
-            // 
             // endDateTimePickerLabel
             // 
             this.endDateTimePickerLabel.AutoSize = true;
-            this.endDateTimePickerLabel.Location = new System.Drawing.Point(209, 50);
+            this.endDateTimePickerLabel.Location = new System.Drawing.Point(189, 51);
             this.endDateTimePickerLabel.Name = "endDateTimePickerLabel";
             this.endDateTimePickerLabel.Size = new System.Drawing.Size(35, 13);
             this.endDateTimePickerLabel.TabIndex = 25;
@@ -186,7 +157,7 @@
             // offerLabel
             // 
             this.offerLabel.AutoSize = true;
-            this.offerLabel.Location = new System.Drawing.Point(409, 12);
+            this.offerLabel.Location = new System.Drawing.Point(407, 12);
             this.offerLabel.Name = "offerLabel";
             this.offerLabel.Size = new System.Drawing.Size(35, 13);
             this.offerLabel.TabIndex = 28;
@@ -195,7 +166,7 @@
             // minMembershipTypeLabel
             // 
             this.minMembershipTypeLabel.AutoSize = true;
-            this.minMembershipTypeLabel.Location = new System.Drawing.Point(409, 50);
+            this.minMembershipTypeLabel.Location = new System.Drawing.Point(407, 50);
             this.minMembershipTypeLabel.Name = "minMembershipTypeLabel";
             this.minMembershipTypeLabel.Size = new System.Drawing.Size(35, 13);
             this.minMembershipTypeLabel.TabIndex = 30;
@@ -203,48 +174,141 @@
             // 
             // offerComboBox
             // 
+            this.offerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.offerComboBox.FormattingEnabled = true;
-            this.offerComboBox.Location = new System.Drawing.Point(412, 28);
+            this.offerComboBox.Location = new System.Drawing.Point(410, 28);
             this.offerComboBox.Name = "offerComboBox";
             this.offerComboBox.Size = new System.Drawing.Size(165, 21);
             this.offerComboBox.TabIndex = 31;
             // 
             // minMembershipComboBox
             // 
+            this.minMembershipComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.minMembershipComboBox.FormattingEnabled = true;
-            this.minMembershipComboBox.Location = new System.Drawing.Point(412, 67);
+            this.minMembershipComboBox.Location = new System.Drawing.Point(410, 67);
             this.minMembershipComboBox.Name = "minMembershipComboBox";
             this.minMembershipComboBox.Size = new System.Drawing.Size(165, 21);
             this.minMembershipComboBox.TabIndex = 32;
+            // 
+            // countryComboBox
+            // 
+            this.countryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.countryComboBox.FormattingEnabled = true;
+            this.countryComboBox.Location = new System.Drawing.Point(15, 26);
+            this.countryComboBox.Name = "countryComboBox";
+            this.countryComboBox.Size = new System.Drawing.Size(162, 21);
+            this.countryComboBox.TabIndex = 33;
+            // 
+            // cityComboBox
+            // 
+            this.cityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cityComboBox.FormattingEnabled = true;
+            this.cityComboBox.Location = new System.Drawing.Point(12, 66);
+            this.cityComboBox.Name = "cityComboBox";
+            this.cityComboBox.Size = new System.Drawing.Size(165, 21);
+            this.cityComboBox.TabIndex = 34;
+            // 
+            // startDateTimePicker
+            // 
+            this.startDateTimePicker.Checked = false;
+            this.startDateTimePicker.Location = new System.Drawing.Point(192, 27);
+            this.startDateTimePicker.Name = "startDateTimePicker";
+            this.startDateTimePicker.ShowCheckBox = true;
+            this.startDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.startDateTimePicker.TabIndex = 35;
+            // 
+            // endDateTimePicker
+            // 
+            this.endDateTimePicker.Checked = false;
+            this.endDateTimePicker.Location = new System.Drawing.Point(192, 67);
+            this.endDateTimePicker.Name = "endDateTimePicker";
+            this.endDateTimePicker.ShowCheckBox = true;
+            this.endDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.endDateTimePicker.TabIndex = 36;
+            // 
+            // Country
+            // 
+            this.Country.DataPropertyName = "CountryId";
+            this.Country.HeaderText = "Country";
+            this.Country.Name = "Country";
+            this.Country.ReadOnly = true;
+            // 
+            // City
+            // 
+            this.City.DataPropertyName = "City";
+            this.City.HeaderText = "City";
+            this.City.Name = "City";
+            this.City.ReadOnly = true;
+            // 
+            // StartDate
+            // 
+            this.StartDate.DataPropertyName = "StartDate";
+            this.StartDate.HeaderText = "StartDate";
+            this.StartDate.Name = "StartDate";
+            this.StartDate.ReadOnly = true;
+            // 
+            // EndDate
+            // 
+            this.EndDate.DataPropertyName = "EndDate";
+            this.EndDate.HeaderText = "EndDate";
+            this.EndDate.Name = "EndDate";
+            this.EndDate.ReadOnly = true;
+            // 
+            // Offer
+            // 
+            this.Offer.DataPropertyName = "Offer";
+            this.Offer.HeaderText = "Offer";
+            this.Offer.Name = "Offer";
+            this.Offer.ReadOnly = true;
+            // 
+            // MembershipType
+            // 
+            this.MembershipType.DataPropertyName = "AvailableToMemberType";
+            this.MembershipType.HeaderText = "Availability";
+            this.MembershipType.Name = "MembershipType";
+            this.MembershipType.ReadOnly = true;
+            // 
+            // Capacity
+            // 
+            this.Capacity.DataPropertyName = "Capacity";
+            this.Capacity.HeaderText = "Capacity";
+            this.Capacity.Name = "Capacity";
+            this.Capacity.ReadOnly = true;
+            // 
+            // isActive
+            // 
+            this.isActive.DataPropertyName = "isActive";
+            this.isActive.HeaderText = "isActive";
+            this.isActive.Name = "isActive";
+            this.isActive.ReadOnly = true;
             // 
             // FlightsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(877, 510);
+            this.Controls.Add(this.endDateTimePicker);
+            this.Controls.Add(this.startDateTimePicker);
+            this.Controls.Add(this.cityComboBox);
+            this.Controls.Add(this.countryComboBox);
             this.Controls.Add(this.minMembershipComboBox);
             this.Controls.Add(this.offerComboBox);
             this.Controls.Add(this.minMembershipTypeLabel);
             this.Controls.Add(this.offerLabel);
-            this.Controls.Add(this.endDateTimePicker);
             this.Controls.Add(this.endDateTimePickerLabel);
             this.Controls.Add(this.cityLabel);
-            this.Controls.Add(this.cityTextBox);
             this.Controls.Add(this.countryLabel);
-            this.Controls.Add(this.countryTextBox);
             this.Controls.Add(this.editImageButton);
             this.Controls.Add(this.addImageButton);
-            this.Controls.Add(this.startDateTimePicker);
             this.Controls.Add(this.startDateTimePickerLabel);
             this.Controls.Add(this.isActiveCheckBox);
-            this.Controls.Add(this.flightNameLabel);
-            this.Controls.Add(this.flightNameTextBox);
             this.Controls.Add(this.dataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FlightsForm";
             this.Text = "FlightsForm";
+            this.Load += new System.EventHandler(this.FlightsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -256,20 +320,26 @@
         private BaseDataGridView dataGridView;
         private ImageButton editImageButton;
         private ImageButton addImageButton;
-        private BaseDateTimePicker startDateTimePicker;
         private System.Windows.Forms.Label startDateTimePickerLabel;
         private System.Windows.Forms.CheckBox isActiveCheckBox;
-        private System.Windows.Forms.Label flightNameLabel;
-        private System.Windows.Forms.TextBox flightNameTextBox;
         private System.Windows.Forms.Label countryLabel;
-        private System.Windows.Forms.TextBox countryTextBox;
         private System.Windows.Forms.Label cityLabel;
-        private System.Windows.Forms.TextBox cityTextBox;
-        private BaseDateTimePicker endDateTimePicker;
         private System.Windows.Forms.Label endDateTimePickerLabel;
         private System.Windows.Forms.Label offerLabel;
         private System.Windows.Forms.Label minMembershipTypeLabel;
         private BaseComboBox offerComboBox;
         private BaseComboBox minMembershipComboBox;
+        private BaseComboBox countryComboBox;
+        private BaseComboBox cityComboBox;
+        private System.Windows.Forms.DateTimePicker startDateTimePicker;
+        private System.Windows.Forms.DateTimePicker endDateTimePicker;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Country;
+        private System.Windows.Forms.DataGridViewTextBoxColumn City;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StartDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Offer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MembershipType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Capacity;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isActive;
     }
 }

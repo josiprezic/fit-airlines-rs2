@@ -12,5 +12,10 @@ namespace FitAirlines.Model
         public int CountryId { get; set; }
 
         public Countries Country { get; set; }
+
+        public override string ToString()
+        {
+            return CityName;
+        }
     }
 }

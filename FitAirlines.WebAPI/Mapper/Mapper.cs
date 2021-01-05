@@ -34,6 +34,7 @@ namespace FitAirlines.WebAPI.Mapper
             CreateMap<Database.Flights, Model.Requests.FlightsInsertRequest>().ReverseMap();
             // TODO: JR // TODO: Szef: Should I add Flights Update request here? Probably not.
 
+
         }
     }
 }
