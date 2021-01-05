@@ -1,4 +1,5 @@
-﻿using FitAirlines.UI.Helpers;
+﻿using FitAirlines.Model;
+using FitAirlines.UI.Helpers;
 using FitAirlines.UI.Properties;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,10 @@ namespace FitAirlines.UI
 
         private readonly APIService _serviceFlights = new APIService("Flights");
         private readonly APIService _serviceCountries = new APIService("Countries");
+        private readonly APIService _serviceCities = new APIService("Cities");
+        // TODO: JR add services for Offers and memberships types for combo box values
+
+        private List<Cities> allCities = new List<Cities>();
 
         //
         // MARK: - Constructors
@@ -88,16 +93,28 @@ namespace FitAirlines.UI
             this.Enabled = false;
             await loadCountries();
             await loadFlights();
+            await loadCities();
             this.Enabled = true;
         }
 
 
-        private async Task loadCountries() 
+        private async Task loadCountries()
         {
             var list = await _serviceCountries.Get<List<Model.Countries>>(null);
             list.Insert(0, new Model.Countries() { CountryId = 0, CountryName = "All" });
             countryComboBox.DataSource = list;
             countryComboBox.DisplayMember = "CountryName";
+        }
+
+        private async Task loadCities()
+        {
+            var list = await _serviceCities.Get<List<Model.Cities>>(null);
+            this.allCities.AddRange(list);
+
+            // The code below is not required since we'll update cities list on country changed trigger
+            //list.Insert(0, new Model.Cities() { CityId = 0, CityName = "All" });
+            //cityComboBox.DataSource = list;
+            //cityComboBox.DisplayMember = "CityName";
         }
 
         private async Task loadFlights()
@@ -124,5 +141,38 @@ namespace FitAirlines.UI
             this.Enabled = shouldEnableAtFinish;
         }
 
+        private void countryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refreshCitiesComboBoxItems();
+        }
+
+        private void refreshCitiesComboBoxItems() 
+        {
+            if (countryComboBox.SelectedItem == null) { return; }
+
+            var countryId = (countryComboBox.SelectedItem as Countries).CountryId;
+            if (countryId != 0)
+            {
+                // Country is selected ---> Show all cities from this particular country
+                var countryCities = allCities.Where(x => x.CountryId == countryId).ToList<Cities>();
+
+                var list = new List<Model.Cities>();
+                list.InsertRange(0, countryCities);
+                list.Insert(0, new Model.Cities() { CityId = 0, CityName = "All" });
+                cityComboBox.DataSource = list;
+                cityComboBox.DisplayMember = "CityName";
+                cityComboBox.Enabled = true;
+            }
+            else 
+            {
+                // Country selection is "All Countries" ---> Show all cities and block control
+                var list = new List<Model.Cities>();
+                list.Insert(0, new Model.Cities() { CityId = 0, CityName = "All" });
+                cityComboBox.DataSource = list;
+                cityComboBox.DisplayMember = "CityName";
+                cityComboBox.Enabled = false;
+            }
+            
+        }
     }
 }
