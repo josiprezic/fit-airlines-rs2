@@ -23,6 +23,7 @@ namespace FitAirlines.UI
         private readonly APIService _serviceMembershipTypes = new APIService("MembershipTypes");
 
         private List<Cities> allCities = new List<Cities>();
+        private bool isFirstLoad = true;
 
         //
         // MARK: - Constructors
@@ -39,6 +40,7 @@ namespace FitAirlines.UI
         private async void FlightsForm_Load(object sender, EventArgs e)
         {
             await loadData();
+            isFirstLoad = false;
         }
 
         
@@ -146,19 +148,55 @@ namespace FitAirlines.UI
             var shouldEnableAtFinish = this.Enabled;
             this.Enabled = false;
             var request = new Model.Requests.FlightsSearchRequest
-
             {
-                AvailableToMemberTypeId = 1  
-                //Name = nameSurnametextbox.text,
-                //showonlyactive = isactivecheckbox.checked,
-                //membershiptypeid = (memberLevelComboBox.SelectedItem as MembershipTypes).MembershipTypeId
+                //check ifs below;)
+                // IsActive = true
+                AvailableToMemberTypeId = 1 // TODO: Szef If all request properties are equal to null then I get crashed.
             };
 
-            //if (genderComboBox.Text != "All")
-            //{
-            //    request.Gender = genderComboBox.Text;
-            //}
+            if (isFirstLoad) {
+                var flList = await _serviceFlights.Get<List<Model.Flights>>(null);
+                dataGridView.DataSource = flList;
+                this.Enabled = true;
+                return;
+            }
 
+            if (minMembershipComboBox.Text != "All")
+            {
+                request.AvailableToMemberTypeId = (minMembershipComboBox.SelectedItem as MembershipTypes).MembershipTypeId;
+            }
+
+            if (countryComboBox.Text != "All")
+            {
+                request.CountryId = (countryComboBox.SelectedItem as Countries).CountryId;
+            }
+
+            if (cityComboBox.Text != "All")
+            {
+                request.CityId = (cityComboBox.SelectedItem as Cities).CityId;
+            }
+
+            if (offerComboBox.Text != "All")
+            {
+                request.OfferId = (offerComboBox.SelectedItem as Offers).OfferId;
+            }
+
+            if (isActive.Selected)
+            {
+                request.IsActive = isActive.Selected;
+            }
+
+            if (startDateTimePicker.Checked) 
+            {
+                request.StartDate = startDateTimePicker.Value;
+            }
+
+            if (endDateTimePicker.Checked)
+            {
+                request.EndDate = endDateTimePicker.Value;
+            }
+
+            
             var list = await _serviceFlights.Get<List<Model.Flights>>(request);
 
             dataGridView.DataSource = list;
@@ -199,6 +237,37 @@ namespace FitAirlines.UI
                 cityComboBox.Enabled = false;
             }
             
+        }
+
+        private async void isActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            await loadFlights();
+        }
+
+        private async void offerComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await loadFlights();
+        }
+
+        private async void minMembershipComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await loadFlights();
+        }
+
+        private async void endDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            await loadFlights();
+        }
+
+        private async void startDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            await loadFlights();
+        }
+
+        private async void cityComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await loadFlights();
+
         }
     }
 }

@@ -30,6 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView = new FitAirlines.UI.BaseDataGridView(this.components);
+            this.Country = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.City = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Offer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MembershipType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Capacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.startDateTimePickerLabel = new System.Windows.Forms.Label();
@@ -45,14 +53,6 @@
             this.cityComboBox = new FitAirlines.UI.BaseComboBox();
             this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.Country = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.City = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Offer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MembershipType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Capacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,149 +83,6 @@
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(853, 404);
             this.dataGridView.TabIndex = 0;
-            // 
-            // editImageButton
-            // 
-            this.editImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.editImageButton.Location = new System.Drawing.Point(689, 12);
-            this.editImageButton.Name = "editImageButton";
-            this.editImageButton.Size = new System.Drawing.Size(85, 51);
-            this.editImageButton.TabIndex = 19;
-            this.editImageButton.Text = "imageButton2";
-            this.editImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.editImageButton.UseVisualStyleBackColor = true;
-            this.editImageButton.Click += new System.EventHandler(this.editImageButton_Click);
-            // 
-            // addImageButton
-            // 
-            this.addImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addImageButton.Location = new System.Drawing.Point(776, 12);
-            this.addImageButton.Name = "addImageButton";
-            this.addImageButton.Size = new System.Drawing.Size(89, 52);
-            this.addImageButton.TabIndex = 18;
-            this.addImageButton.Text = "imageButton1";
-            this.addImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.addImageButton.UseVisualStyleBackColor = true;
-            this.addImageButton.Click += new System.EventHandler(this.addImageButton_Click);
-            // 
-            // startDateTimePickerLabel
-            // 
-            this.startDateTimePickerLabel.AutoSize = true;
-            this.startDateTimePickerLabel.Location = new System.Drawing.Point(189, 13);
-            this.startDateTimePickerLabel.Name = "startDateTimePickerLabel";
-            this.startDateTimePickerLabel.Size = new System.Drawing.Size(35, 13);
-            this.startDateTimePickerLabel.TabIndex = 16;
-            this.startDateTimePickerLabel.Text = "label1";
-            // 
-            // isActiveCheckBox
-            // 
-            this.isActiveCheckBox.AutoSize = true;
-            this.isActiveCheckBox.Location = new System.Drawing.Point(593, 30);
-            this.isActiveCheckBox.Name = "isActiveCheckBox";
-            this.isActiveCheckBox.Size = new System.Drawing.Size(80, 17);
-            this.isActiveCheckBox.TabIndex = 15;
-            this.isActiveCheckBox.Text = "checkBox1";
-            this.isActiveCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // countryLabel
-            // 
-            this.countryLabel.AutoSize = true;
-            this.countryLabel.Location = new System.Drawing.Point(12, 11);
-            this.countryLabel.Name = "countryLabel";
-            this.countryLabel.Size = new System.Drawing.Size(35, 13);
-            this.countryLabel.TabIndex = 22;
-            this.countryLabel.Text = "label1";
-            // 
-            // cityLabel
-            // 
-            this.cityLabel.AutoSize = true;
-            this.cityLabel.Location = new System.Drawing.Point(12, 50);
-            this.cityLabel.Name = "cityLabel";
-            this.cityLabel.Size = new System.Drawing.Size(35, 13);
-            this.cityLabel.TabIndex = 24;
-            this.cityLabel.Text = "label1";
-            // 
-            // endDateTimePickerLabel
-            // 
-            this.endDateTimePickerLabel.AutoSize = true;
-            this.endDateTimePickerLabel.Location = new System.Drawing.Point(189, 51);
-            this.endDateTimePickerLabel.Name = "endDateTimePickerLabel";
-            this.endDateTimePickerLabel.Size = new System.Drawing.Size(35, 13);
-            this.endDateTimePickerLabel.TabIndex = 25;
-            this.endDateTimePickerLabel.Text = "label1";
-            // 
-            // offerLabel
-            // 
-            this.offerLabel.AutoSize = true;
-            this.offerLabel.Location = new System.Drawing.Point(407, 12);
-            this.offerLabel.Name = "offerLabel";
-            this.offerLabel.Size = new System.Drawing.Size(35, 13);
-            this.offerLabel.TabIndex = 28;
-            this.offerLabel.Text = "label1";
-            // 
-            // minMembershipTypeLabel
-            // 
-            this.minMembershipTypeLabel.AutoSize = true;
-            this.minMembershipTypeLabel.Location = new System.Drawing.Point(407, 50);
-            this.minMembershipTypeLabel.Name = "minMembershipTypeLabel";
-            this.minMembershipTypeLabel.Size = new System.Drawing.Size(35, 13);
-            this.minMembershipTypeLabel.TabIndex = 30;
-            this.minMembershipTypeLabel.Text = "label1";
-            // 
-            // offerComboBox
-            // 
-            this.offerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.offerComboBox.FormattingEnabled = true;
-            this.offerComboBox.Location = new System.Drawing.Point(410, 28);
-            this.offerComboBox.Name = "offerComboBox";
-            this.offerComboBox.Size = new System.Drawing.Size(165, 21);
-            this.offerComboBox.TabIndex = 31;
-            // 
-            // minMembershipComboBox
-            // 
-            this.minMembershipComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.minMembershipComboBox.FormattingEnabled = true;
-            this.minMembershipComboBox.Location = new System.Drawing.Point(410, 67);
-            this.minMembershipComboBox.Name = "minMembershipComboBox";
-            this.minMembershipComboBox.Size = new System.Drawing.Size(165, 21);
-            this.minMembershipComboBox.TabIndex = 32;
-            // 
-            // countryComboBox
-            // 
-            this.countryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.countryComboBox.FormattingEnabled = true;
-            this.countryComboBox.Location = new System.Drawing.Point(15, 26);
-            this.countryComboBox.Name = "countryComboBox";
-            this.countryComboBox.Size = new System.Drawing.Size(162, 21);
-            this.countryComboBox.TabIndex = 33;
-            this.countryComboBox.SelectedIndexChanged += new System.EventHandler(this.countryComboBox_SelectedIndexChanged);
-            // 
-            // cityComboBox
-            // 
-            this.cityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cityComboBox.FormattingEnabled = true;
-            this.cityComboBox.Location = new System.Drawing.Point(12, 66);
-            this.cityComboBox.Name = "cityComboBox";
-            this.cityComboBox.Size = new System.Drawing.Size(165, 21);
-            this.cityComboBox.TabIndex = 34;
-            // 
-            // startDateTimePicker
-            // 
-            this.startDateTimePicker.Checked = false;
-            this.startDateTimePicker.Location = new System.Drawing.Point(192, 27);
-            this.startDateTimePicker.Name = "startDateTimePicker";
-            this.startDateTimePicker.ShowCheckBox = true;
-            this.startDateTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.startDateTimePicker.TabIndex = 35;
-            // 
-            // endDateTimePicker
-            // 
-            this.endDateTimePicker.Checked = false;
-            this.endDateTimePicker.Location = new System.Drawing.Point(192, 67);
-            this.endDateTimePicker.Name = "endDateTimePicker";
-            this.endDateTimePicker.ShowCheckBox = true;
-            this.endDateTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.endDateTimePicker.TabIndex = 36;
             // 
             // Country
             // 
@@ -282,6 +139,155 @@
             this.isActive.HeaderText = "isActive";
             this.isActive.Name = "isActive";
             this.isActive.ReadOnly = true;
+            // 
+            // editImageButton
+            // 
+            this.editImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.editImageButton.Location = new System.Drawing.Point(689, 12);
+            this.editImageButton.Name = "editImageButton";
+            this.editImageButton.Size = new System.Drawing.Size(85, 51);
+            this.editImageButton.TabIndex = 19;
+            this.editImageButton.Text = "imageButton2";
+            this.editImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.editImageButton.UseVisualStyleBackColor = true;
+            this.editImageButton.Click += new System.EventHandler(this.editImageButton_Click);
+            // 
+            // addImageButton
+            // 
+            this.addImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addImageButton.Location = new System.Drawing.Point(776, 12);
+            this.addImageButton.Name = "addImageButton";
+            this.addImageButton.Size = new System.Drawing.Size(89, 52);
+            this.addImageButton.TabIndex = 18;
+            this.addImageButton.Text = "imageButton1";
+            this.addImageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.addImageButton.UseVisualStyleBackColor = true;
+            this.addImageButton.Click += new System.EventHandler(this.addImageButton_Click);
+            // 
+            // startDateTimePickerLabel
+            // 
+            this.startDateTimePickerLabel.AutoSize = true;
+            this.startDateTimePickerLabel.Location = new System.Drawing.Point(189, 13);
+            this.startDateTimePickerLabel.Name = "startDateTimePickerLabel";
+            this.startDateTimePickerLabel.Size = new System.Drawing.Size(35, 13);
+            this.startDateTimePickerLabel.TabIndex = 16;
+            this.startDateTimePickerLabel.Text = "label1";
+            // 
+            // isActiveCheckBox
+            // 
+            this.isActiveCheckBox.AutoSize = true;
+            this.isActiveCheckBox.Location = new System.Drawing.Point(593, 30);
+            this.isActiveCheckBox.Name = "isActiveCheckBox";
+            this.isActiveCheckBox.Size = new System.Drawing.Size(80, 17);
+            this.isActiveCheckBox.TabIndex = 15;
+            this.isActiveCheckBox.Text = "checkBox1";
+            this.isActiveCheckBox.UseVisualStyleBackColor = true;
+            this.isActiveCheckBox.CheckedChanged += new System.EventHandler(this.isActiveCheckBox_CheckedChanged);
+            // 
+            // countryLabel
+            // 
+            this.countryLabel.AutoSize = true;
+            this.countryLabel.Location = new System.Drawing.Point(12, 11);
+            this.countryLabel.Name = "countryLabel";
+            this.countryLabel.Size = new System.Drawing.Size(35, 13);
+            this.countryLabel.TabIndex = 22;
+            this.countryLabel.Text = "label1";
+            // 
+            // cityLabel
+            // 
+            this.cityLabel.AutoSize = true;
+            this.cityLabel.Location = new System.Drawing.Point(12, 50);
+            this.cityLabel.Name = "cityLabel";
+            this.cityLabel.Size = new System.Drawing.Size(35, 13);
+            this.cityLabel.TabIndex = 24;
+            this.cityLabel.Text = "label1";
+            // 
+            // endDateTimePickerLabel
+            // 
+            this.endDateTimePickerLabel.AutoSize = true;
+            this.endDateTimePickerLabel.Location = new System.Drawing.Point(189, 51);
+            this.endDateTimePickerLabel.Name = "endDateTimePickerLabel";
+            this.endDateTimePickerLabel.Size = new System.Drawing.Size(35, 13);
+            this.endDateTimePickerLabel.TabIndex = 25;
+            this.endDateTimePickerLabel.Text = "label1";
+            // 
+            // offerLabel
+            // 
+            this.offerLabel.AutoSize = true;
+            this.offerLabel.Location = new System.Drawing.Point(407, 12);
+            this.offerLabel.Name = "offerLabel";
+            this.offerLabel.Size = new System.Drawing.Size(35, 13);
+            this.offerLabel.TabIndex = 28;
+            this.offerLabel.Text = "label1";
+            // 
+            // minMembershipTypeLabel
+            // 
+            this.minMembershipTypeLabel.AutoSize = true;
+            this.minMembershipTypeLabel.Location = new System.Drawing.Point(407, 50);
+            this.minMembershipTypeLabel.Name = "minMembershipTypeLabel";
+            this.minMembershipTypeLabel.Size = new System.Drawing.Size(35, 13);
+            this.minMembershipTypeLabel.TabIndex = 30;
+            this.minMembershipTypeLabel.Text = "label1";
+            // 
+            // offerComboBox
+            // 
+            this.offerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.offerComboBox.FormattingEnabled = true;
+            this.offerComboBox.Location = new System.Drawing.Point(410, 28);
+            this.offerComboBox.Name = "offerComboBox";
+            this.offerComboBox.Size = new System.Drawing.Size(165, 21);
+            this.offerComboBox.TabIndex = 31;
+            this.offerComboBox.SelectedIndexChanged += new System.EventHandler(this.offerComboBox_SelectedIndexChanged);
+            // 
+            // minMembershipComboBox
+            // 
+            this.minMembershipComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.minMembershipComboBox.FormattingEnabled = true;
+            this.minMembershipComboBox.Location = new System.Drawing.Point(410, 67);
+            this.minMembershipComboBox.Name = "minMembershipComboBox";
+            this.minMembershipComboBox.Size = new System.Drawing.Size(165, 21);
+            this.minMembershipComboBox.TabIndex = 32;
+            this.minMembershipComboBox.SelectedIndexChanged += new System.EventHandler(this.minMembershipComboBox_SelectedIndexChanged);
+            // 
+            // countryComboBox
+            // 
+            this.countryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.countryComboBox.FormattingEnabled = true;
+            this.countryComboBox.Location = new System.Drawing.Point(15, 26);
+            this.countryComboBox.Name = "countryComboBox";
+            this.countryComboBox.Size = new System.Drawing.Size(162, 21);
+            this.countryComboBox.TabIndex = 33;
+            this.countryComboBox.SelectedIndexChanged += new System.EventHandler(this.countryComboBox_SelectedIndexChanged);
+            // 
+            // cityComboBox
+            // 
+            this.cityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cityComboBox.FormattingEnabled = true;
+            this.cityComboBox.Location = new System.Drawing.Point(12, 66);
+            this.cityComboBox.Name = "cityComboBox";
+            this.cityComboBox.Size = new System.Drawing.Size(165, 21);
+            this.cityComboBox.TabIndex = 34;
+            this.cityComboBox.SelectedIndexChanged += new System.EventHandler(this.cityComboBox_SelectedIndexChanged);
+            // 
+            // startDateTimePicker
+            // 
+            this.startDateTimePicker.Checked = false;
+            this.startDateTimePicker.Location = new System.Drawing.Point(192, 27);
+            this.startDateTimePicker.Name = "startDateTimePicker";
+            this.startDateTimePicker.ShowCheckBox = true;
+            this.startDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.startDateTimePicker.TabIndex = 35;
+            this.startDateTimePicker.ValueChanged += new System.EventHandler(this.startDateTimePicker_ValueChanged);
+            // 
+            // endDateTimePicker
+            // 
+            this.endDateTimePicker.Checked = false;
+            this.endDateTimePicker.Location = new System.Drawing.Point(192, 67);
+            this.endDateTimePicker.Name = "endDateTimePicker";
+            this.endDateTimePicker.ShowCheckBox = true;
+            this.endDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.endDateTimePicker.TabIndex = 36;
+            this.endDateTimePicker.ValueChanged += new System.EventHandler(this.endDateTimePicker_ValueChanged);
             // 
             // FlightsForm
             // 

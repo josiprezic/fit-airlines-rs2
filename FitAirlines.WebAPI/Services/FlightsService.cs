@@ -27,16 +27,20 @@ namespace FitAirlines.WebAPI.Services
         {
             var query = _context.Flights.AsQueryable();
 
-
             if (request.StartDate != null)
             {
-                query = query.Where(x => x.StartDate == request.StartDate);
+                query = query.Where(x => 
+                x.StartDate.DayOfYear == request.StartDate.Value.DayOfYear &&
+                x.StartDate.Year == request.StartDate.Value.Year
+                );
             }
-
 
             if (request.EndDate!= null)
             {
-                query = query.Where(x => x.EndDate == request.EndDate);
+                query = query.Where(x =>
+                x.EndDate.DayOfYear == request.EndDate.Value.DayOfYear &&
+                x.EndDate.Year == request.EndDate.Value.Year
+                );
             }
 
             if (request.CityId != null)
@@ -49,11 +53,16 @@ namespace FitAirlines.WebAPI.Services
                 query = query.Where(x => x.City.CountryId == request.CountryId);
             }
 
-            //if (request.EndDate != null)
-            //{
-            //    query = query.Where(x => ((x.EndDate.Day == request.EndDate?.Day) && (x.EndDate.Month == request.EndDate?.Month) && (x.EndDate.Year == request.EndDate.Year)));
-            //}
+            // TODO: JR update logic
+            if (request.AvailableToMemberTypeId != null)
+            {
+                query = query.Where(x => x.AvailableToMemberTypeId == request.AvailableToMemberTypeId);
+            }
 
+            if (request.OfferId!= null)
+            {
+                query = query.Where(x => x.OfferId == request.OfferId);
+            }
 
 
             if (request.IsActive ?? false) // TODO: JR // TODO: Szef "false" or true here?
