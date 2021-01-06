@@ -19,7 +19,8 @@ namespace FitAirlines.UI
         private readonly APIService _serviceFlights = new APIService("Flights");
         private readonly APIService _serviceCountries = new APIService("Countries");
         private readonly APIService _serviceCities = new APIService("Cities");
-        // TODO: JR add services for Offers and memberships types for combo box values
+        private readonly APIService _serviceOffers = new APIService("Offers");
+        private readonly APIService _serviceMembershipTypes = new APIService("MembershipTypes");
 
         private List<Cities> allCities = new List<Cities>();
 
@@ -91,9 +92,20 @@ namespace FitAirlines.UI
         private async Task loadData()
         {
             this.Enabled = false;
-            await loadCountries();
-            await loadFlights();
-            await loadCities();
+            //await loadCities();
+            //await loadCountries();
+            //await loadOffers();
+            //await loadMembersipTypes();
+            //await loadFlights();
+
+            await Task.WhenAll(
+                loadCities(), 
+                loadCountries(), 
+                loadOffers(),
+                loadMembersipTypes(),
+                loadFlights()
+                );
+
             this.Enabled = true;
         }
 
@@ -111,6 +123,22 @@ namespace FitAirlines.UI
         {
             var list = await _serviceCities.Get<List<Model.Cities>>(null);
             this.allCities.AddRange(list);
+        }
+
+        private async Task loadOffers()
+        {
+            var list = await _serviceOffers.Get<List<Model.Offers>>(null);
+            list.Insert(0, new Model.Offers() { OfferId = 0, OfferName = "All" });
+            offerComboBox.DataSource = list;
+            offerComboBox.DisplayMember = "OfferName";
+        }
+
+        private async Task loadMembersipTypes()
+        {
+            var list = await _serviceMembershipTypes.Get<List<Model.MembershipTypes>>(null);
+            list.Insert(0, new Model.MembershipTypes() { MembershipTypeId = 0, Title = "All" });
+            minMembershipComboBox.DataSource = list;
+            minMembershipComboBox.DisplayMember = "Title";
         }
 
         private async Task loadFlights()
