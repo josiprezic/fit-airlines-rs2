@@ -53,11 +53,9 @@ namespace FitAirlines.UI
             basicInfoGroupBox.Text = Resources.AddOrEditFlight_BasicInfo;
             imageGroupBox.Text = Resources.AddOrEditOffer_ImageOptions;
 
-            flightNameLabel.Text = Resources.AddOrEditFlight_FlightName;
             offerLabel.Text = Resources.AddOrEditFlight_FlightOffer;
             countryLabel.Text = Resources.AddOrEditFlight_Country;
             cityLabel.Text = Resources.AddOrEditFlight_City;
-            capacityLabel.Text = Resources.AddOrEditFlight_Capacity;
             startDateLabel.Text = Resources.AddOrEditFlight_StartDate;
             endDateLabel.Text = Resources.AddOrEditFlight_EndDate;
             descriptionLabel.Text = Resources.AddOrEditFlight_FlightDescription;

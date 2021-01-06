@@ -53,7 +53,7 @@ namespace FitAirlines.WebAPI.Services
                 query = query.Where(x => x.City.CountryId == request.CountryId);
             }
 
-            // TODO: JR update logic
+            // TODO: JR // TODO: Szef update logic
             if (request.AvailableToMemberTypeId != null)
             {
                 query = query.Where(x => x.AvailableToMemberTypeId == request.AvailableToMemberTypeId);
