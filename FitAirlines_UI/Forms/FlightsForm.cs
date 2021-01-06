@@ -101,6 +101,7 @@ namespace FitAirlines.UI
         private async Task loadCountries()
         {
             var list = await _serviceCountries.Get<List<Model.Countries>>(null);
+            list.Sort();
             list.Insert(0, new Model.Countries() { CountryId = 0, CountryName = "All" });
             countryComboBox.DataSource = list;
             countryComboBox.DisplayMember = "CountryName";
@@ -110,11 +111,6 @@ namespace FitAirlines.UI
         {
             var list = await _serviceCities.Get<List<Model.Cities>>(null);
             this.allCities.AddRange(list);
-
-            // The code below is not required since we'll update cities list on country changed trigger
-            //list.Insert(0, new Model.Cities() { CityId = 0, CityName = "All" });
-            //cityComboBox.DataSource = list;
-            //cityComboBox.DisplayMember = "CityName";
         }
 
         private async Task loadFlights()
@@ -151,6 +147,7 @@ namespace FitAirlines.UI
             if (countryComboBox.SelectedItem == null) { return; }
 
             var countryId = (countryComboBox.SelectedItem as Countries).CountryId;
+            
             if (countryId != 0)
             {
                 // Country is selected ---> Show all cities from this particular country
@@ -158,6 +155,7 @@ namespace FitAirlines.UI
 
                 var list = new List<Model.Cities>();
                 list.InsertRange(0, countryCities);
+                list.Sort();
                 list.Insert(0, new Model.Cities() { CityId = 0, CityName = "All" });
                 cityComboBox.DataSource = list;
                 cityComboBox.DisplayMember = "CityName";
