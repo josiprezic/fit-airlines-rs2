@@ -38,6 +38,7 @@ namespace FitAirlines.UI
         private readonly APIService _serviceCountries = new APIService("Countries");
         private readonly APIService _serviceCities = new APIService("Cities");
         private readonly APIService _serviceAirports = new APIService("Airports");
+        private readonly APIService _servicePlanes = new APIService("Planes");
         private readonly APIService _serviceOffers = new APIService("Offers");
         private readonly APIService _serviceMembershipTypes = new APIService("MembershipTypes");
 
@@ -66,7 +67,8 @@ namespace FitAirlines.UI
                 loadCountries(),
                 loadOffers(),
                 loadMembersipTypes(),
-                loadAirports()
+                loadAirports(),
+                loadPlanes()
                 );
 
             this.Enabled = true;
@@ -98,7 +100,6 @@ namespace FitAirlines.UI
 
         private async Task loadAirports(bool shouldAddPleaseSelect = false)
         {
-            // TODO: JR add reload on country change + validation reminder
             var list = await _serviceAirports.Get<List<Model.Airports>>(null);
 
             if (shouldAddPleaseSelect)
@@ -109,6 +110,14 @@ namespace FitAirlines.UI
             this.allAirports.AddRange(list);
             destinationAirportComboBox.DataSource = list;
             destinationAirportComboBox.DisplayMember = "AirportName";
+        }
+
+        private async Task loadPlanes()
+        {
+            var list = await _servicePlanes.Get<List<Model.Planes>>(null);
+
+            planeComboBox.DataSource = list;
+            planeComboBox.DisplayMember = "PlaneName";
         }
 
         private async Task loadOffers()
