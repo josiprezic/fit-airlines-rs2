@@ -34,6 +34,20 @@
             this.saveButton = new FitAirlines.UI.BaseButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.basicInfoGroupBox = new System.Windows.Forms.GroupBox();
+            this.MinMembershipBaseComboBox = new FitAirlines.UI.BaseComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.priceNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.priceLabel = new System.Windows.Forms.Label();
+            this.FlightTimeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.flightDurationLabel = new System.Windows.Forms.Label();
+            this.pilotNameTextBox = new System.Windows.Forms.TextBox();
+            this.pilotNameLabel = new System.Windows.Forms.Label();
+            this.discPercentageUpDown = new System.Windows.Forms.NumericUpDown();
+            this.voucherDiscPercentageLabel = new System.Windows.Forms.Label();
+            this.planeComboBox = new FitAirlines.UI.BaseComboBox();
+            this.planeLabel = new System.Windows.Forms.Label();
+            this.destinationAirportComboBox = new FitAirlines.UI.BaseComboBox();
+            this.destAirportLabel = new System.Windows.Forms.Label();
             this.cityComboBox = new FitAirlines.UI.BaseComboBox();
             this.countryComboBox = new FitAirlines.UI.BaseComboBox();
             this.offerComboBox = new FitAirlines.UI.BaseComboBox();
@@ -43,37 +57,23 @@
             this.endDateLabel = new System.Windows.Forms.Label();
             this.startDateTimePicker = new FitAirlines.UI.BaseDateTimePicker(this.components);
             this.startDateLabel = new System.Windows.Forms.Label();
-            this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.cityLabel = new System.Windows.Forms.Label();
             this.countryLabel = new System.Windows.Forms.Label();
             this.imageGroupBox = new System.Windows.Forms.GroupBox();
             this.flightPictureBox = new FitAirlines.UI.BasePictureBox();
             this.uploadFlightPictureButton = new FitAirlines.UI.BaseButton();
-            this.destinationAirportComboBox = new FitAirlines.UI.BaseComboBox();
-            this.destAirportLabel = new System.Windows.Forms.Label();
-            this.planeComboBox = new FitAirlines.UI.BaseComboBox();
-            this.planeLabel = new System.Windows.Forms.Label();
-            this.discPercentageUpDown = new System.Windows.Forms.NumericUpDown();
-            this.voucherDiscPercentageLabel = new System.Windows.Forms.Label();
-            this.pilotNameLabel = new System.Windows.Forms.Label();
-            this.pilotNameTextBox = new System.Windows.Forms.TextBox();
-            this.flightDurationLabel = new System.Windows.Forms.Label();
-            this.FlightTimeNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.priceNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.priceLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.notesTextBox = new System.Windows.Forms.TextBox();
-            this.MinMembershipBaseComboBox = new FitAirlines.UI.BaseComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.basicInfoGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.priceNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FlightTimeNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.discPercentageUpDown)).BeginInit();
             this.imageGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.flightPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.discPercentageUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FlightTimeNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -166,6 +166,124 @@
             this.basicInfoGroupBox.TabStop = false;
             this.basicInfoGroupBox.Text = "groupBox1";
             // 
+            // MinMembershipBaseComboBox
+            // 
+            this.MinMembershipBaseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MinMembershipBaseComboBox.FormattingEnabled = true;
+            this.MinMembershipBaseComboBox.Location = new System.Drawing.Point(148, 316);
+            this.MinMembershipBaseComboBox.Name = "MinMembershipBaseComboBox";
+            this.MinMembershipBaseComboBox.Size = new System.Drawing.Size(191, 21);
+            this.MinMembershipBaseComboBox.TabIndex = 36;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 321);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "Available to:";
+            // 
+            // priceNumericUpDown
+            // 
+            this.priceNumericUpDown.Location = new System.Drawing.Point(148, 370);
+            this.priceNumericUpDown.Name = "priceNumericUpDown";
+            this.priceNumericUpDown.Size = new System.Drawing.Size(191, 20);
+            this.priceNumericUpDown.TabIndex = 32;
+            // 
+            // priceLabel
+            // 
+            this.priceLabel.AutoSize = true;
+            this.priceLabel.Location = new System.Drawing.Point(6, 372);
+            this.priceLabel.Name = "priceLabel";
+            this.priceLabel.Size = new System.Drawing.Size(63, 13);
+            this.priceLabel.TabIndex = 31;
+            this.priceLabel.Text = "Ticket price";
+            // 
+            // FlightTimeNumericUpDown
+            // 
+            this.FlightTimeNumericUpDown.Location = new System.Drawing.Point(147, 343);
+            this.FlightTimeNumericUpDown.Name = "FlightTimeNumericUpDown";
+            this.FlightTimeNumericUpDown.Size = new System.Drawing.Size(191, 20);
+            this.FlightTimeNumericUpDown.TabIndex = 30;
+            // 
+            // flightDurationLabel
+            // 
+            this.flightDurationLabel.AutoSize = true;
+            this.flightDurationLabel.Location = new System.Drawing.Point(5, 345);
+            this.flightDurationLabel.Name = "flightDurationLabel";
+            this.flightDurationLabel.Size = new System.Drawing.Size(130, 13);
+            this.flightDurationLabel.TabIndex = 29;
+            this.flightDurationLabel.Text = "Flight time [min] (One-way)";
+            // 
+            // pilotNameTextBox
+            // 
+            this.pilotNameTextBox.Location = new System.Drawing.Point(146, 162);
+            this.pilotNameTextBox.Name = "pilotNameTextBox";
+            this.pilotNameTextBox.Size = new System.Drawing.Size(191, 20);
+            this.pilotNameTextBox.TabIndex = 28;
+            // 
+            // pilotNameLabel
+            // 
+            this.pilotNameLabel.AutoSize = true;
+            this.pilotNameLabel.Location = new System.Drawing.Point(6, 162);
+            this.pilotNameLabel.Name = "pilotNameLabel";
+            this.pilotNameLabel.Size = new System.Drawing.Size(58, 13);
+            this.pilotNameLabel.TabIndex = 27;
+            this.pilotNameLabel.Text = "Pilot Name";
+            // 
+            // discPercentageUpDown
+            // 
+            this.discPercentageUpDown.Location = new System.Drawing.Point(146, 290);
+            this.discPercentageUpDown.Name = "discPercentageUpDown";
+            this.discPercentageUpDown.Size = new System.Drawing.Size(191, 20);
+            this.discPercentageUpDown.TabIndex = 26;
+            // 
+            // voucherDiscPercentageLabel
+            // 
+            this.voucherDiscPercentageLabel.AutoSize = true;
+            this.voucherDiscPercentageLabel.Location = new System.Drawing.Point(5, 292);
+            this.voucherDiscPercentageLabel.Name = "voucherDiscPercentageLabel";
+            this.voucherDiscPercentageLabel.Size = new System.Drawing.Size(109, 13);
+            this.voucherDiscPercentageLabel.TabIndex = 25;
+            this.voucherDiscPercentageLabel.Text = "Voucher Discount (%)";
+            // 
+            // planeComboBox
+            // 
+            this.planeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.planeComboBox.FormattingEnabled = true;
+            this.planeComboBox.Location = new System.Drawing.Point(147, 135);
+            this.planeComboBox.Name = "planeComboBox";
+            this.planeComboBox.Size = new System.Drawing.Size(191, 21);
+            this.planeComboBox.TabIndex = 24;
+            // 
+            // planeLabel
+            // 
+            this.planeLabel.AutoSize = true;
+            this.planeLabel.Location = new System.Drawing.Point(5, 136);
+            this.planeLabel.Name = "planeLabel";
+            this.planeLabel.Size = new System.Drawing.Size(34, 13);
+            this.planeLabel.TabIndex = 23;
+            this.planeLabel.Text = "Plane";
+            // 
+            // destinationAirportComboBox
+            // 
+            this.destinationAirportComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.destinationAirportComboBox.FormattingEnabled = true;
+            this.destinationAirportComboBox.Location = new System.Drawing.Point(148, 109);
+            this.destinationAirportComboBox.Name = "destinationAirportComboBox";
+            this.destinationAirportComboBox.Size = new System.Drawing.Size(191, 21);
+            this.destinationAirportComboBox.TabIndex = 22;
+            // 
+            // destAirportLabel
+            // 
+            this.destAirportLabel.AutoSize = true;
+            this.destAirportLabel.Location = new System.Drawing.Point(6, 110);
+            this.destAirportLabel.Name = "destAirportLabel";
+            this.destAirportLabel.Size = new System.Drawing.Size(64, 13);
+            this.destAirportLabel.TabIndex = 21;
+            this.destAirportLabel.Text = "Dest. airport";
+            // 
             // cityComboBox
             // 
             this.cityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -243,16 +361,6 @@
             this.startDateLabel.TabIndex = 9;
             this.startDateLabel.Text = "startDateLabel";
             // 
-            // isActiveCheckBox
-            // 
-            this.isActiveCheckBox.AutoSize = true;
-            this.isActiveCheckBox.Location = new System.Drawing.Point(45, 373);
-            this.isActiveCheckBox.Name = "isActiveCheckBox";
-            this.isActiveCheckBox.Size = new System.Drawing.Size(112, 17);
-            this.isActiveCheckBox.TabIndex = 6;
-            this.isActiveCheckBox.Text = "isActiveCheckBox";
-            this.isActiveCheckBox.UseVisualStyleBackColor = true;
-            // 
             // descriptionTextBox
             // 
             this.descriptionTextBox.Location = new System.Drawing.Point(147, 238);
@@ -320,114 +428,15 @@
             this.uploadFlightPictureButton.UseVisualStyleBackColor = true;
             this.uploadFlightPictureButton.Click += new System.EventHandler(this.uploadFlightPictureButton_Click);
             // 
-            // destinationAirportComboBox
+            // isActiveCheckBox
             // 
-            this.destinationAirportComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.destinationAirportComboBox.FormattingEnabled = true;
-            this.destinationAirportComboBox.Location = new System.Drawing.Point(148, 109);
-            this.destinationAirportComboBox.Name = "destinationAirportComboBox";
-            this.destinationAirportComboBox.Size = new System.Drawing.Size(191, 21);
-            this.destinationAirportComboBox.TabIndex = 22;
-            // 
-            // destAirportLabel
-            // 
-            this.destAirportLabel.AutoSize = true;
-            this.destAirportLabel.Location = new System.Drawing.Point(6, 110);
-            this.destAirportLabel.Name = "destAirportLabel";
-            this.destAirportLabel.Size = new System.Drawing.Size(64, 13);
-            this.destAirportLabel.TabIndex = 21;
-            this.destAirportLabel.Text = "Dest. airport";
-            // 
-            // planeComboBox
-            // 
-            this.planeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.planeComboBox.FormattingEnabled = true;
-            this.planeComboBox.Location = new System.Drawing.Point(147, 135);
-            this.planeComboBox.Name = "planeComboBox";
-            this.planeComboBox.Size = new System.Drawing.Size(191, 21);
-            this.planeComboBox.TabIndex = 24;
-            // 
-            // planeLabel
-            // 
-            this.planeLabel.AutoSize = true;
-            this.planeLabel.Location = new System.Drawing.Point(5, 136);
-            this.planeLabel.Name = "planeLabel";
-            this.planeLabel.Size = new System.Drawing.Size(34, 13);
-            this.planeLabel.TabIndex = 23;
-            this.planeLabel.Text = "Plane";
-            // 
-            // discPercentageUpDown
-            // 
-            this.discPercentageUpDown.Location = new System.Drawing.Point(146, 290);
-            this.discPercentageUpDown.Name = "discPercentageUpDown";
-            this.discPercentageUpDown.Size = new System.Drawing.Size(191, 20);
-            this.discPercentageUpDown.TabIndex = 26;
-            // 
-            // voucherDiscPercentageLabel
-            // 
-            this.voucherDiscPercentageLabel.AutoSize = true;
-            this.voucherDiscPercentageLabel.Location = new System.Drawing.Point(5, 292);
-            this.voucherDiscPercentageLabel.Name = "voucherDiscPercentageLabel";
-            this.voucherDiscPercentageLabel.Size = new System.Drawing.Size(109, 13);
-            this.voucherDiscPercentageLabel.TabIndex = 25;
-            this.voucherDiscPercentageLabel.Text = "Voucher Discount (%)";
-            // 
-            // pilotNameLabel
-            // 
-            this.pilotNameLabel.AutoSize = true;
-            this.pilotNameLabel.Location = new System.Drawing.Point(6, 162);
-            this.pilotNameLabel.Name = "pilotNameLabel";
-            this.pilotNameLabel.Size = new System.Drawing.Size(58, 13);
-            this.pilotNameLabel.TabIndex = 27;
-            this.pilotNameLabel.Text = "Pilot Name";
-            // 
-            // pilotNameTextBox
-            // 
-            this.pilotNameTextBox.Location = new System.Drawing.Point(146, 162);
-            this.pilotNameTextBox.Name = "pilotNameTextBox";
-            this.pilotNameTextBox.Size = new System.Drawing.Size(191, 20);
-            this.pilotNameTextBox.TabIndex = 28;
-            // 
-            // flightDurationLabel
-            // 
-            this.flightDurationLabel.AutoSize = true;
-            this.flightDurationLabel.Location = new System.Drawing.Point(5, 345);
-            this.flightDurationLabel.Name = "flightDurationLabel";
-            this.flightDurationLabel.Size = new System.Drawing.Size(130, 13);
-            this.flightDurationLabel.TabIndex = 29;
-            this.flightDurationLabel.Text = "Flight time [min] (One-way)";
-            // 
-            // FlightTimeNumericUpDown
-            // 
-            this.FlightTimeNumericUpDown.Location = new System.Drawing.Point(147, 343);
-            this.FlightTimeNumericUpDown.Name = "FlightTimeNumericUpDown";
-            this.FlightTimeNumericUpDown.Size = new System.Drawing.Size(191, 20);
-            this.FlightTimeNumericUpDown.TabIndex = 30;
-            // 
-            // priceNumericUpDown
-            // 
-            this.priceNumericUpDown.Location = new System.Drawing.Point(148, 370);
-            this.priceNumericUpDown.Name = "priceNumericUpDown";
-            this.priceNumericUpDown.Size = new System.Drawing.Size(191, 20);
-            this.priceNumericUpDown.TabIndex = 32;
-            // 
-            // priceLabel
-            // 
-            this.priceLabel.AutoSize = true;
-            this.priceLabel.Location = new System.Drawing.Point(6, 372);
-            this.priceLabel.Name = "priceLabel";
-            this.priceLabel.Size = new System.Drawing.Size(63, 13);
-            this.priceLabel.TabIndex = 31;
-            this.priceLabel.Text = "Ticket price";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 289);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "Notes:";
+            this.isActiveCheckBox.AutoSize = true;
+            this.isActiveCheckBox.Location = new System.Drawing.Point(45, 373);
+            this.isActiveCheckBox.Name = "isActiveCheckBox";
+            this.isActiveCheckBox.Size = new System.Drawing.Size(112, 17);
+            this.isActiveCheckBox.TabIndex = 6;
+            this.isActiveCheckBox.Text = "isActiveCheckBox";
+            this.isActiveCheckBox.UseVisualStyleBackColor = true;
             // 
             // notesTextBox
             // 
@@ -437,23 +446,14 @@
             this.notesTextBox.Size = new System.Drawing.Size(291, 74);
             this.notesTextBox.TabIndex = 33;
             // 
-            // MinMembershipBaseComboBox
+            // label1
             // 
-            this.MinMembershipBaseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.MinMembershipBaseComboBox.FormattingEnabled = true;
-            this.MinMembershipBaseComboBox.Location = new System.Drawing.Point(148, 316);
-            this.MinMembershipBaseComboBox.Name = "MinMembershipBaseComboBox";
-            this.MinMembershipBaseComboBox.Size = new System.Drawing.Size(191, 21);
-            this.MinMembershipBaseComboBox.TabIndex = 36;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 321);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
-            this.label2.TabIndex = 35;
-            this.label2.Text = "Available to:";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 289);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "Notes:";
             // 
             // AddOrEditFlightForm
             // 
@@ -467,16 +467,17 @@
             this.MinimizeBox = false;
             this.Name = "AddOrEditFlightForm";
             this.Text = "AddOrEditFlightForm";
+            this.Load += new System.EventHandler(this.AddOrEditFlightForm_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.basicInfoGroupBox.ResumeLayout(false);
             this.basicInfoGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.priceNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FlightTimeNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.discPercentageUpDown)).EndInit();
             this.imageGroupBox.ResumeLayout(false);
             this.imageGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.flightPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.discPercentageUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FlightTimeNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }

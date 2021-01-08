@@ -1,4 +1,6 @@
-﻿using FitAirlines.UI.Properties;
+﻿using FitAirlines.Model;
+using FitAirlines.UI.Helpers;
+using FitAirlines.UI.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +31,14 @@ namespace FitAirlines.UI
         //
 
         AddOrEditFlightFormType type;
+        private List<Cities> allCities = new List<Cities>();
+
+
+        private readonly APIService _serviceFlights = new APIService("Flights");
+        private readonly APIService _serviceCountries = new APIService("Countries");
+        private readonly APIService _serviceCities = new APIService("Cities");
+        private readonly APIService _serviceOffers = new APIService("Offers");
+        private readonly APIService _serviceMembershipTypes = new APIService("MembershipTypes");
 
         //
         // MARK: - Constructors
@@ -38,6 +48,64 @@ namespace FitAirlines.UI
         {
             this.type = type;
             InitializeComponent();
+        }
+
+
+        private async void AddOrEditFlightForm_Load(object sender, EventArgs e)
+        {
+            await loadData();
+        }
+
+        private async Task loadData()
+        {
+            this.Enabled = false;
+         
+            await Task.WhenAll(
+                loadCities(),
+                loadCountries(),
+                loadOffers(),
+                loadMembersipTypes()
+                );
+
+            this.Enabled = true;
+        }
+
+        private async Task loadCountries()
+        {
+            var list = await _serviceCountries.Get<List<Model.Countries>>(null);
+            list.Sort();
+            list.Insert(0, new Model.Countries() { CountryId = 0, CountryName = "All" });
+            countryComboBox.DataSource = list;
+            countryComboBox.DisplayMember = "CountryName";
+        }
+
+        private async Task loadCities(bool shouldAddPleaseSelect = false)
+        {
+            // TODO: JR add reload on country change + validation reminder
+            var list = await _serviceCities.Get<List<Model.Cities>>(null);
+            
+            if (shouldAddPleaseSelect)
+            {
+                list.Insert(0, new Model.Cities() { CityId = 0, CityName= "Please select" });
+            }
+
+            this.allCities.AddRange(list);
+            cityComboBox.DataSource = list;
+            countryComboBox.DisplayMember = "CityName";
+        }
+
+        private async Task loadOffers()
+        {
+            var list = await _serviceOffers.Get<List<Model.Offers>>(null);
+            offerComboBox.DataSource = list;
+            offerComboBox.DisplayMember = "OfferName";
+        }
+
+        private async Task loadMembersipTypes()
+        {
+            var list = await _serviceMembershipTypes.Get<List<Model.MembershipTypes>>(null);
+            MinMembershipBaseComboBox.DataSource = list;
+            MinMembershipBaseComboBox.DisplayMember = "Title";
         }
 
         //
@@ -69,7 +137,7 @@ namespace FitAirlines.UI
         protected override void SetupStyling()
         {
             base.SetupStyling();
-            isActiveCheckBox.Checked = true;
+            //isActiveCheckBox.Checked = true;
         }
 
         //
@@ -90,5 +158,6 @@ namespace FitAirlines.UI
         {
             // TODO: JR
         }
+
     }
 }
