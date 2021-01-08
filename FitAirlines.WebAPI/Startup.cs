@@ -67,6 +67,7 @@ namespace FitAirlines.WebAPI
             services.AddScoped<IFlightsService, FlightsService>();
             services.AddScoped<ICountriesService, CountriesService>();
             services.AddScoped<ICitiesService, CitiesService>();
+            services.AddScoped<IAirportsService, AirportsService>();
 
 
 

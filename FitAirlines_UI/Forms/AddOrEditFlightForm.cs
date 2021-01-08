@@ -31,12 +31,13 @@ namespace FitAirlines.UI
         //
 
         AddOrEditFlightFormType type;
+        
         private List<Cities> allCities = new List<Cities>();
+        private List<Airports> allAirports = new List<Airports>();
 
-
-        private readonly APIService _serviceFlights = new APIService("Flights");
         private readonly APIService _serviceCountries = new APIService("Countries");
         private readonly APIService _serviceCities = new APIService("Cities");
+        private readonly APIService _serviceAirports = new APIService("Airports");
         private readonly APIService _serviceOffers = new APIService("Offers");
         private readonly APIService _serviceMembershipTypes = new APIService("MembershipTypes");
 
@@ -64,7 +65,8 @@ namespace FitAirlines.UI
                 loadCities(),
                 loadCountries(),
                 loadOffers(),
-                loadMembersipTypes()
+                loadMembersipTypes(),
+                loadAirports()
                 );
 
             this.Enabled = true;
@@ -92,6 +94,21 @@ namespace FitAirlines.UI
             this.allCities.AddRange(list);
             cityComboBox.DataSource = list;
             countryComboBox.DisplayMember = "CityName";
+        }
+
+        private async Task loadAirports(bool shouldAddPleaseSelect = false)
+        {
+            // TODO: JR add reload on country change + validation reminder
+            var list = await _serviceAirports.Get<List<Model.Airports>>(null);
+
+            if (shouldAddPleaseSelect)
+            {
+                list.Insert(0, new Model.Airports() { AirportId = 0, AirportName = "Please select" });
+            }
+
+            this.allAirports.AddRange(list);
+            destinationAirportComboBox.DataSource = list;
+            destinationAirportComboBox.DisplayMember = "AirportName";
         }
 
         private async Task loadOffers()
