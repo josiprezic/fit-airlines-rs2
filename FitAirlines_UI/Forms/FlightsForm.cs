@@ -94,12 +94,7 @@ namespace FitAirlines.UI
         private async Task loadData()
         {
             this.Enabled = false;
-            //await loadCities();
-            //await loadCountries();
-            //await loadOffers();
-            //await loadMembersipTypes();
-            //await loadFlights();
-
+            
             await Task.WhenAll(
                 loadCities(), 
                 loadCountries(), 

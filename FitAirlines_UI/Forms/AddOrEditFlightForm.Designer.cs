@@ -292,6 +292,7 @@
             this.cityComboBox.Name = "cityComboBox";
             this.cityComboBox.Size = new System.Drawing.Size(191, 21);
             this.cityComboBox.TabIndex = 20;
+            this.cityComboBox.SelectedIndexChanged += new System.EventHandler(this.cityComboBox_SelectedIndexChanged);
             // 
             // countryComboBox
             // 
@@ -301,6 +302,7 @@
             this.countryComboBox.Name = "countryComboBox";
             this.countryComboBox.Size = new System.Drawing.Size(191, 21);
             this.countryComboBox.TabIndex = 19;
+            this.countryComboBox.SelectedIndexChanged += new System.EventHandler(this.countryComboBox_SelectedIndexChanged);
             // 
             // offerComboBox
             // 

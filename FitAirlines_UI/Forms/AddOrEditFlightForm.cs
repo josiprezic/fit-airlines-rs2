@@ -31,7 +31,9 @@ namespace FitAirlines.UI
         //
 
         AddOrEditFlightFormType type;
-        
+        private bool isFirstLoad = true;
+
+
         private List<Cities> allCities = new List<Cities>();
         private List<Airports> allAirports = new List<Airports>();
 
@@ -56,6 +58,8 @@ namespace FitAirlines.UI
         private async void AddOrEditFlightForm_Load(object sender, EventArgs e)
         {
             await loadData();
+            isFirstLoad = false;
+
         }
 
         private async Task loadData()
@@ -71,6 +75,11 @@ namespace FitAirlines.UI
                 loadPlanes()
                 );
 
+                resetCities();
+                resetAirports();
+
+            // TODO: JR load flight if needed.
+           
             this.Enabled = true;
         }
 
@@ -85,7 +94,6 @@ namespace FitAirlines.UI
 
         private async Task loadCities(bool shouldAddPleaseSelect = false)
         {
-            // TODO: JR add reload on country change + validation reminder
             var list = await _serviceCities.Get<List<Model.Cities>>(null);
             
             if (shouldAddPleaseSelect)
@@ -95,7 +103,7 @@ namespace FitAirlines.UI
 
             this.allCities.AddRange(list);
             cityComboBox.DataSource = list;
-            countryComboBox.DisplayMember = "CityName";
+            cityComboBox.DisplayMember = "CityName";
         }
 
         private async Task loadAirports(bool shouldAddPleaseSelect = false)
@@ -163,7 +171,6 @@ namespace FitAirlines.UI
         protected override void SetupStyling()
         {
             base.SetupStyling();
-            //isActiveCheckBox.Checked = true;
         }
 
         //
@@ -185,5 +192,82 @@ namespace FitAirlines.UI
             // TODO: JR
         }
 
+
+        private void countryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (isFirstLoad && type == AddOrEditFlightFormType.Edit) { return; }
+
+            resetCities();
+            resetAirports();
+        }
+
+
+        private void cityComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (isFirstLoad && type == AddOrEditFlightFormType.Edit) { return; }
+
+            resetAirports();
+        }
+
+        private void resetCities() 
+        {
+            var selectedCountryId = (countryComboBox.SelectedItem as Countries).CountryId;
+
+            // Check if country is selected
+            if (selectedCountryId == 0)
+            {
+                // block this control if country is not selected
+                var singleElementList = new List<Model.Cities>();
+                singleElementList.Insert(0, new Model.Cities() { CityId = 0, CityName = "Select country" });
+                cityComboBox.DataSource = singleElementList;
+                cityComboBox.Enabled = false;
+                return;
+            } 
+            else 
+            {
+                // Country is selected, display proper cities
+                var countryCities = allCities.Where(x => x.CountryId == selectedCountryId).ToList<Cities>();
+
+                var cbList = new List<Model.Cities>();
+                cbList.InsertRange(0, countryCities);
+                cbList.Sort();
+                // cbList.Insert(0, new Model.Cities() { CityId = 0, CityName = "All" });
+                cityComboBox.DataSource = cbList;
+                cityComboBox.Enabled = true;
+            }
+        }
+
+
+        private void resetAirports()
+        {
+
+            var selectedCity = (cityComboBox.SelectedItem as Cities);
+            var cityExists = selectedCity != null;
+            
+            var selectedCityId = cityExists ? selectedCity.CityId : 0;
+
+            // Check if city is selected
+            if (selectedCityId == 0)
+            {
+                // block this control if city is not selected
+                var singleElementList = new List<Model.Airports>();
+                singleElementList.Insert(0, new Model.Airports() { AirportId = 0, AirportName = "Select city" });
+                destinationAirportComboBox.DataSource = singleElementList;
+                destinationAirportComboBox.Enabled = false;
+                return;
+            }
+            else
+            {
+                // city is selected, display proper airports
+                var cityAirports = allAirports.Where(x => x.CityId == selectedCityId).ToList<Airports>();
+
+                var cbList = new List<Model.Airports>();
+                cbList.InsertRange(0, cityAirports);
+                cbList.Sort();
+                // cbList.Insert(0, new Model.Airports() { AirportId = 0, AirportName = "All" });
+                destinationAirportComboBox.DataSource = cbList;
+                destinationAirportComboBox.Enabled = true;
+            }
+        }
     }
 }
