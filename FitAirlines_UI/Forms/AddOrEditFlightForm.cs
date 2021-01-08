@@ -231,7 +231,6 @@ namespace FitAirlines.UI
                 var cbList = new List<Model.Cities>();
                 cbList.InsertRange(0, countryCities);
                 cbList.Sort();
-                // cbList.Insert(0, new Model.Cities() { CityId = 0, CityName = "All" });
                 cityComboBox.DataSource = cbList;
                 cityComboBox.Enabled = true;
             }
@@ -264,7 +263,6 @@ namespace FitAirlines.UI
                 var cbList = new List<Model.Airports>();
                 cbList.InsertRange(0, cityAirports);
                 cbList.Sort();
-                // cbList.Insert(0, new Model.Airports() { AirportId = 0, AirportName = "All" });
                 destinationAirportComboBox.DataSource = cbList;
                 destinationAirportComboBox.Enabled = true;
             }
