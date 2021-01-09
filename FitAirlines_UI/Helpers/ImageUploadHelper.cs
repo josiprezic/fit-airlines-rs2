@@ -71,7 +71,7 @@ namespace FitAirlines.UI
 
         private static string GetFilteringOptions() 
         {
-            return " JPG files(*.jpg)|*.jpg| PNG files(*.png) |*.png";
+            return "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
         }
     }
 }

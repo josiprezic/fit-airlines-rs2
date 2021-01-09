@@ -355,4 +355,7 @@
   <data name="Validation_FieldRequired" xml:space="preserve">
     <value>This field is required.</value>
   </data>
+  <data name="Validation_PhoneNumberInvalid" xml:space="preserve">
+    <value>The phone number is not in valid format.</value>
+  </data>
 </root>

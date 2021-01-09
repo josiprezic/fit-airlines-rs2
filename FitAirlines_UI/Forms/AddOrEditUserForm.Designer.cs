@@ -126,6 +126,7 @@
             // 
             // userRoleComboBox
             // 
+            this.userRoleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.userRoleComboBox.FormattingEnabled = true;
             this.userRoleComboBox.Location = new System.Drawing.Point(84, 209);
             this.userRoleComboBox.Name = "userRoleComboBox";
@@ -147,6 +148,7 @@
             this.ContactNumberTextBox.Name = "ContactNumberTextBox";
             this.ContactNumberTextBox.Size = new System.Drawing.Size(190, 20);
             this.ContactNumberTextBox.TabIndex = 29;
+            this.ContactNumberTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ContactNumberTextBox_Validating);
             // 
             // contactNumberLabel
             // 
@@ -195,6 +197,7 @@
             // 
             // fitMembershipComboBox
             // 
+            this.fitMembershipComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.fitMembershipComboBox.FormattingEnabled = true;
             this.fitMembershipComboBox.Location = new System.Drawing.Point(84, 155);
             this.fitMembershipComboBox.Name = "fitMembershipComboBox";
@@ -203,6 +206,7 @@
             // 
             // genderComboBox
             // 
+            this.genderComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.genderComboBox.FormattingEnabled = true;
             this.genderComboBox.Items.AddRange(new object[] {
             "M",

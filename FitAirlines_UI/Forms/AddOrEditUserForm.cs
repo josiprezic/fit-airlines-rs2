@@ -9,7 +9,9 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -151,11 +153,10 @@ namespace FitAirlines.UI
 
         private async void saveButton_Click(object sender, EventArgs e)
         {
-            if (!ValidateChildren()) return;
+            if (!ValidateChildren()) return; // Blokiranje save buttona
 
             this.Enabled = false;
 
-            var generatedPasswordString = PasswordHelper.CreatePassword(8);
             double credit = Convert.ToDouble(accountBalanceValueLabel.Text);
 
             var request = new Model.Requests.UsersInsertRequest
@@ -169,12 +170,7 @@ namespace FitAirlines.UI
                 Gender = genderComboBox.Text,
                 IsActive = isActiveCheckBox.Checked,
                 Credit = credit,
-
                 ContactNumber = ContactNumberTextBox.Text,
-                StartDate = DateTime.Now,
-                Password = generatedPasswordString, // TODO: Szef password will be generated/updated for both create/update requests?
-                PasswordConfirmation = generatedPasswordString,
-                 
             };
 
             if(profilePictureBox.ImageLocation != null)
@@ -192,6 +188,12 @@ namespace FitAirlines.UI
             Model.Users user;
             if (type == AddOrEditUserFormType.Add)
             {
+                var generatedPasswordString = PasswordHelper.CreatePassword(8);
+
+                request.Password = generatedPasswordString;
+                request.PasswordConfirmation = generatedPasswordString;
+                request.StartDate = DateTime.Now;
+
                 user = await _serviceUsers.Insert<Model.Users>(request);
             }
             else
@@ -281,7 +283,47 @@ namespace FitAirlines.UI
 
         bool ValidateEmail( string emailAddress)
         {
+            try
+            {
+                _ = new MailAddress(emailAddress);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
             return true;
+        }
+
+        private void ContactNumberTextBox_Validating(object sender, CancelEventArgs e)
+        {
+
+            var field = sender as TextBox;
+
+            if (string.IsNullOrWhiteSpace(field.Text))
+            {
+                errorProvider1.SetError(field, Resources.Validation_FieldRequired);
+                e.Cancel = true;
+            }
+            else if (!ValidatePhoneNumber(field.Text))
+            {
+                errorProvider1.SetError(field, Resources.Validation_PhoneNumberInvalid);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
+            // TODO: Validation helper
+        }
+
+        private bool ValidatePhoneNumber(string text)
+        {
+            // TODO: JR Update regex
+            return true;
+
+            var expr = new Regex(@"TODO: JR :D ");
+            return expr.IsMatch(text);
         }
     }
 }

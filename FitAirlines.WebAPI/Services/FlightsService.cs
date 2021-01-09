@@ -14,7 +14,7 @@ namespace FitAirlines.WebAPI.Services
     public class FlightsService : IFlightsService
     {
         private readonly FitAirlinesContext _context;
-        
+
         private readonly IMapper _mapper;
 
         public FlightsService(FitAirlinesContext context, IMapper mapper)
@@ -29,13 +29,13 @@ namespace FitAirlines.WebAPI.Services
 
             if (request.StartDate != null)
             {
-                query = query.Where(x => 
+                query = query.Where(x =>
                 x.StartDate.DayOfYear == request.StartDate.Value.DayOfYear &&
                 x.StartDate.Year == request.StartDate.Value.Year
                 );
             }
 
-            if (request.EndDate!= null)
+            if (request.EndDate != null)
             {
                 query = query.Where(x =>
                 x.EndDate.DayOfYear == request.EndDate.Value.DayOfYear &&
@@ -53,38 +53,29 @@ namespace FitAirlines.WebAPI.Services
                 query = query.Where(x => x.City.CountryId == request.CountryId);
             }
 
-            // TODO: JR // TODO: Szef update logic
             if (request.AvailableToMemberTypeId != null)
             {
-                query = query.Where(x => x.AvailableToMemberTypeId == request.AvailableToMemberTypeId);
+                var SelectedMembershipType = _context.MembershipTypes.Find(request.AvailableToMemberTypeId);
+                if (SelectedMembershipType != null)
+                {
+                    query = query.Where(x => x.AvailableToMemberType.MembershipPrice <= SelectedMembershipType.MembershipPrice);
+                }
+
             }
 
-            if (request.OfferId!= null)
+            if (request.OfferId != null)
             {
                 query = query.Where(x => x.OfferId == request.OfferId);
             }
 
 
-            if (request.IsActive ?? false) // TODO: JR // TODO: Szef "false" or true here?
+            if (request.IsActive != null)
             {
-                query = query.Where(x => x.IsActive == true);
+                query = query.Where(x => x.IsActive == request.IsActive);
             }
 
-            
-
             var list = query
-
-                //             .Where(x => x.CityId == request.CityId)
-                //              .Where(x => x.OfferId == request.OfferId)
-                //                .Where(x => x.AvailableToMemberTypeId == request.AvailableToMemberTypeId)
-
-                .Include(x => x.Offer.OfferName) // TODO: Szef I have picture bytes[] in response, I don't want it. I just want the offer name.
-                .Include(x => x.City)
-                .Include(x => x.City.Country) // TODO: Szef country = null in response body ;(
-                
-                .Include(x => x.AvailableToMemberType)
-                .Include(x => x.Plane)
-                .Select(x=>new Flights
+                .Select(x => new Flights
                 {
                     CityId = x.CityId,
                     OfferId = x.OfferId,
@@ -96,24 +87,37 @@ namespace FitAirlines.WebAPI.Services
                     Notes = x.Notes,
                     FlightDuration = x.FlightDuration,
                     PilotFullName = x.PilotFullName,
-                    City = x.City,
+                    City = new Cities
+                    {
+                        CityName = x.City.CityName,
+                        Country = new Countries
+                        {
+                            CountryName = x.City.Country.CountryName
+                        }
+                    },
                     AvailableToMemberType = x.AvailableToMemberType,
                     VoucherCode = x.VoucherCode,
                     VoucherDiscountPercentage = x.VoucherDiscountPercentage,
                     AvailableToMemberTypeId = x.AvailableToMemberTypeId,
-                    AddedByUserId = x.AddedByUserId, 
+                    AddedByUserId = x.AddedByUserId,
                     Plane = x.Plane,
-                   // Offer = x.Offer
+                    Offer = new Offers
+                    {
+                        OfferName = x.Offer.OfferName
+                    }
                 })
                 .ToList();
-            return _mapper.Map<List<Model.Flights>>(list);// TODO: JR probably mapper will not be able to map missing values here [?].
+            return _mapper.Map<List<Model.Flights>>(list);
         }
 
         public Model.Flights GetById(int id)
         {
             var entity = _context.Flights
                 .Where(x => x.FlightId == id)
-                //.Include(x => x.FlightType)
+                .Include(x => x.Offer)
+                .Include(x => x.City.Country)
+                .Include(x => x.AvailableToMemberType)
+                .Include(x => x.Plane)
                 .FirstOrDefault();
             return _mapper.Map<Model.Flights>(entity);
         }
@@ -121,10 +125,11 @@ namespace FitAirlines.WebAPI.Services
         public Model.Flights Insert(FlightsInsertRequest request)
         {
             var entity = _mapper.Map<Database.Flights>(request);
-           
+
             entity.AddedDate = DateTime.Now;
             // TODO: JR // TODO: Szef remove hardcoded value. UserId should be send though the insert request probably?
-            entity.AddedByUserId = 1; 
+            // Nie, trzeba login zrobić
+            entity.AddedByUserId = 1;
             _context.Flights.Add(entity);
             _context.SaveChanges();
 

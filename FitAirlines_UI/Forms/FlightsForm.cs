@@ -133,21 +133,16 @@ namespace FitAirlines.UI
         private async Task loadMembersipTypes()
         {
             var list = await _serviceMembershipTypes.Get<List<Model.MembershipTypes>>(null);
-            list.Insert(0, new Model.MembershipTypes() { MembershipTypeId = 0, Title = "All" });
             minMembershipComboBox.DataSource = list;
             minMembershipComboBox.DisplayMember = "Title";
+            minMembershipComboBox.SelectedItem = list.Last();
         }
 
         private async Task loadFlights()
         {
             var shouldEnableAtFinish = this.Enabled;
             this.Enabled = false;
-            var request = new Model.Requests.FlightsSearchRequest
-            {
-                //check ifs below;)
-                // IsActive = true
-                AvailableToMemberTypeId = 1 // TODO: Szef If all request properties are equal to null then I get crashed.
-            };
+            var request = new Model.Requests.FlightsSearchRequest();
 
             if (isFirstLoad) {
                 var flList = await _serviceFlights.Get<List<Model.Flights>>(null);
@@ -156,7 +151,7 @@ namespace FitAirlines.UI
                 return;
             }
 
-            if (minMembershipComboBox.Text != "All")
+            if (minMembershipComboBox.SelectedItem != null)
             {
                 request.AvailableToMemberTypeId = (minMembershipComboBox.SelectedItem as MembershipTypes).MembershipTypeId;
             }

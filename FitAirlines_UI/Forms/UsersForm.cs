@@ -105,13 +105,16 @@ namespace FitAirlines.UI
             var request = new Model.Requests.UsersSearchRequest
             {
                 Name = nameSurnameTextBox.Text,
-                ShowOnlyActive = isActiveCheckBox.Checked,
-                MembershipTypeId = (memberLevelComboBox.SelectedItem as MembershipTypes).MembershipTypeId
+                ShowOnlyActive = isActiveCheckBox.Checked
             };
 
-            if (genderComboBox.Text != "All")
+            if (genderComboBox.SelectedIndex > 0)
             {
                 request.Gender = genderComboBox.Text;
+            }
+            if (memberLevelComboBox.SelectedIndex > 0)
+            {
+                request.MembershipTypeId = (memberLevelComboBox.SelectedItem as MembershipTypes).MembershipTypeId;
             }
 
             var list = await _serviceUsers.Get<List<Model.Users>>(request);
@@ -131,7 +134,7 @@ namespace FitAirlines.UI
 
         private async void genderComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadUsers(); // TODO: Szef await is causing unhandled exception error.
+            await loadUsers();
         }
 
         private async void memberLevelComboBox_SelectedIndexChanged(object sender, EventArgs e)

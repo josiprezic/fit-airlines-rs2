@@ -88,6 +88,7 @@ namespace FitAirlines.UI
             var list = await _serviceCountries.Get<List<Model.Countries>>(null);
             list.Sort();
             list.Insert(0, new Model.Countries() { CountryId = 0, CountryName = "All" });
+
             countryComboBox.DataSource = list;
             countryComboBox.DisplayMember = "CountryName";
         }
@@ -190,6 +191,7 @@ namespace FitAirlines.UI
         private void saveButton_Click(object sender, EventArgs e)
         {
             // TODO: JR
+
         }
 
 
