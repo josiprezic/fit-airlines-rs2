@@ -32,8 +32,8 @@ namespace FitAirlines.Model
         public Offers Offer { get; set; }
         public Planes Plane { get; set; }
 
-        public int Capacity => Plane.Capacity;
+        public int Capacity => Plane?.Capacity ?? 0;
 
-        public string CountryName => City.Country.CountryName;
+        public string CountryName => City?.Country?.CountryName ?? null;
     }
 }

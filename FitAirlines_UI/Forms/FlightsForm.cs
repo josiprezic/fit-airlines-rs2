@@ -79,16 +79,21 @@ namespace FitAirlines.UI
         //
 
        
-        private void editImageButton_Click(object sender, EventArgs e)
+        private async void editImageButton_Click(object sender, EventArgs e)
         {
-            AddOrEditFlightForm form = new AddOrEditFlightForm(AddOrEditFlightFormType.Edit);
-            form.ShowDialog();
+            if (dataGridView.SelectedRows[0].DataBoundItem is Model.Flights selectedFlight)
+            {
+                AddOrEditFlightForm form = new AddOrEditFlightForm(AddOrEditFlightFormType.Edit, selectedFlight);
+                form.ShowDialog();
+                await loadFlights();
+            }
         }
 
-        private void addImageButton_Click(object sender, EventArgs e)
+        private async void addImageButton_Click(object sender, EventArgs e)
         {
             AddOrEditFlightForm form = new AddOrEditFlightForm(AddOrEditFlightFormType.Add);
             form.ShowDialog();
+            await loadFlights();
         }
 
         private async Task loadData()
@@ -171,9 +176,9 @@ namespace FitAirlines.UI
                 request.OfferId = (offerComboBox.SelectedItem as Offers).OfferId;
             }
 
-            if (isActive.Selected)
+            if (isActiveCheckBox.Checked)
             {
-                request.IsActive = isActive.Selected;
+                request.IsActive = isActiveCheckBox.Checked;
             }
 
             if (startDateTimePicker.Checked) 
@@ -227,7 +232,7 @@ namespace FitAirlines.UI
                 cityComboBox.Enabled = false;
             }
             
-        }
+        }//szef szef disocrd trolluje mnie :(1 sec ok
 
         private async void isActiveCheckBox_CheckedChanged(object sender, EventArgs e)
         {

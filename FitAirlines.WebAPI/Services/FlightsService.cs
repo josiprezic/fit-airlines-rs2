@@ -16,11 +16,13 @@ namespace FitAirlines.WebAPI.Services
         private readonly FitAirlinesContext _context;
 
         private readonly IMapper _mapper;
+        private readonly IUsersService usersService;
 
-        public FlightsService(FitAirlinesContext context, IMapper mapper)
+        public FlightsService(FitAirlinesContext context, IMapper mapper, IUsersService usersService)
         {
             _context = context;
             _mapper = mapper;
+            this.usersService = usersService;
         }
 
         public List<Model.Flights> Get(FlightsSearchRequest request)
@@ -77,6 +79,7 @@ namespace FitAirlines.WebAPI.Services
             var list = query
                 .Select(x => new Flights
                 {
+                    FlightId = x.FlightId,
                     CityId = x.CityId,
                     OfferId = x.OfferId,
                     StartDate = x.StartDate,
@@ -92,7 +95,8 @@ namespace FitAirlines.WebAPI.Services
                         CityName = x.City.CityName,
                         Country = new Countries
                         {
-                            CountryName = x.City.Country.CountryName
+                            CountryId = x.City.Country.CountryId,
+                            CountryName = x.City.Country.CountryName,
                         }
                     },
                     AvailableToMemberType = x.AvailableToMemberType,
@@ -104,7 +108,8 @@ namespace FitAirlines.WebAPI.Services
                     Offer = new Offers
                     {
                         OfferName = x.Offer.OfferName
-                    }
+                    },
+                    DestinationAirportId = x.DestinationAirportId
                 })
                 .ToList();
             return _mapper.Map<List<Model.Flights>>(list);
@@ -129,7 +134,9 @@ namespace FitAirlines.WebAPI.Services
             entity.AddedDate = DateTime.Now;
             // TODO: JR // TODO: Szef remove hardcoded value. UserId should be send though the insert request probably?
             // Nie, trzeba login zrobić
+
             entity.AddedByUserId = 1;
+            //entity.AddedByUserId = usersService.CurrentUser.UserId;
             _context.Flights.Add(entity);
             _context.SaveChanges();
 

@@ -51,5 +51,19 @@ namespace FitAirlines.UI
         {
             DropDownStyle = ComboBoxStyle.DropDownList;
         }
+
+        // magia szefowa
+        public void SetSelectedItem<T>(Func<T, bool> action)
+        {
+            foreach (T item in this.Items)
+            {
+                if (action(item) == true)
+                {
+                    this.SelectedItem = item;
+                    break;
+                }
+            }
+        }
+
     }
 }

@@ -20,12 +20,6 @@ namespace FitAirlines.Model.Requests
         [Required]
         public int PlaneId { get; set; }
 
-        [Required]
-        public int AddedByUserId { get; set; }
-
-        //[Required]
-        //public DateTime AddedDate { get; set; }
-
         //[Required]
         public string VoucherCode { get; set; }
 
@@ -62,18 +56,5 @@ namespace FitAirlines.Model.Requests
         [Required]
         public bool? IsActive { get; set; }
         
-        //[Required]
-
-        //public Users AddedByUser { get; set; }
-        //[Required]
-        //public MembershipTypes AvailableToMemberType { get; set; }
-        //[Required]
-        //public Cities City { get; set; }
-        //[Required]
-        //public Airports DestinationAirport { get; set; }
-        //[Required]
-        //public Offers Offer { get; set; }
-        //[Required]
-        //public Planes Plane { get; set; }
     }
 }

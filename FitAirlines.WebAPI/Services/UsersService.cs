@@ -14,8 +14,9 @@ namespace FitAirlines.WebAPI.Services
     public class UsersService : IUsersService
     {
         private readonly FitAirlinesContext _context;
-        
+
         private readonly IMapper _mapper;
+        public Users CurrentUser { get; set; }
 
         public UsersService(FitAirlinesContext context, IMapper mapper)
         {

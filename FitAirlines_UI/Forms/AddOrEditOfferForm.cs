@@ -55,8 +55,8 @@ namespace FitAirlines.UI
 
             if (type == AddOrEditOfferFormType.Edit && selectedOffer != null)
             {
-                PopulateFormFields(selectedOffer);
-                LoadProfilePicture(selectedOffer);
+                PopulateFormFields();
+                LoadProfilePicture();
             }
 
             this.offerMemberTypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -64,7 +64,7 @@ namespace FitAirlines.UI
             this.Enabled = true;
         }
 
-        private void PopulateFormFields(Offers selectedOffer)
+        private void PopulateFormFields()
         {
             offerNameTextBox.Text = selectedOffer.OfferName;
             offerDescriptionTextBox.Text = selectedOffer.ShortInfo;
@@ -79,18 +79,19 @@ namespace FitAirlines.UI
                 }
             }
         }
-        private async void LoadProfilePicture(Offers selectedOffer)
+        private async void LoadProfilePicture()
         {
             var offer  = await _serviceOffers.GetById<Model.Offers>(selectedOffer.OfferId);
             if(offer != null)
             {
                 selectedOffer.Picture = offer.Picture;
+
+                if (selectedOffer.Picture != null && selectedOffer.Picture.Length > 0)
+                {
+                    offerPictureBox.Image = ImageConversionHelper.ByteArrayToImage(selectedOffer.Picture);
+                }
             }
 
-            if (selectedOffer.Picture != null && selectedOffer.Picture.Length > 0)
-            {
-                offerPictureBox.Image = ImageConversionHelper.ByteArrayToImage(selectedOffer.Picture);
-            }
         }
 
 
