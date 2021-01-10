@@ -139,7 +139,7 @@ namespace FitAirlines.UI
             resetCities();
             resetAirports();
 
-            // TODO: JR load flight if needed.
+            // TODO: JR load flight if needed. Not needed.
 
             this.Enabled = true;
         }
