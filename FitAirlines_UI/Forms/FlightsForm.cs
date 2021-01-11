@@ -272,13 +272,17 @@ namespace FitAirlines.UI
             {
                 if (Myrow.DataBoundItem is Model.Flights selectedFlight)
                 {
-                    if (selectedFlight.EndDate.IsGreaterThan(DateTime.Now))
+                    if (selectedFlight.IsActive != true) 
+                    {
+                        Myrow.DefaultCellStyle.BackColor = Color.LightPink;
+                    }
+                    else if (selectedFlight.EndDate.IsGreaterThan(DateTime.Now))
                     {
                         Myrow.DefaultCellStyle.BackColor = Color.LightGreen;
                     }
                     else
                     {
-                        Myrow.DefaultCellStyle.BackColor = Color.LightPink;
+                        Myrow.DefaultCellStyle.BackColor = Color.LightBlue;
                     }
                 }
             }
