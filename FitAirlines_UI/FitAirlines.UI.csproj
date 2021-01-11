@@ -170,6 +170,8 @@
     <Compile Include="Helpers\ImageConversionHelper.cs" />
     <Compile Include="Helpers\ImageUploadHelper.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
+    <Compile Include="Helpers\ValidationHelper.cs" />
+    <Compile Include="Helpers\ValidationHelper2.cs" />
     <Compile Include="HttpsClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -96,7 +96,7 @@
             this.cancelButton.Location = new System.Drawing.Point(3, 3);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(154, 42);
-            this.cancelButton.TabIndex = 8;
+            this.cancelButton.TabIndex = 50;
             this.cancelButton.Text = "cancelButton";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -107,7 +107,7 @@
             this.saveButton.Location = new System.Drawing.Point(163, 3);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(155, 42);
-            this.saveButton.TabIndex = 9;
+            this.saveButton.TabIndex = 52;
             this.saveButton.Text = "saveButton";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -173,7 +173,7 @@
             this.endDateTimePicker.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.endDateTimePicker.Name = "endDateTimePicker";
             this.endDateTimePicker.Size = new System.Drawing.Size(190, 20);
-            this.endDateTimePicker.TabIndex = 38;
+            this.endDateTimePicker.TabIndex = 30;
             // 
             // startDateTimePicker
             // 
@@ -183,7 +183,7 @@
             this.startDateTimePicker.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.startDateTimePicker.Name = "startDateTimePicker";
             this.startDateTimePicker.Size = new System.Drawing.Size(190, 20);
-            this.startDateTimePicker.TabIndex = 37;
+            this.startDateTimePicker.TabIndex = 29;
             // 
             // MinMembershipBaseComboBox
             // 
@@ -192,7 +192,7 @@
             this.MinMembershipBaseComboBox.Location = new System.Drawing.Point(148, 316);
             this.MinMembershipBaseComboBox.Name = "MinMembershipBaseComboBox";
             this.MinMembershipBaseComboBox.Size = new System.Drawing.Size(191, 21);
-            this.MinMembershipBaseComboBox.TabIndex = 36;
+            this.MinMembershipBaseComboBox.TabIndex = 41;
             // 
             // label2
             // 
@@ -206,25 +206,35 @@
             // priceNumericUpDown
             // 
             this.priceNumericUpDown.Location = new System.Drawing.Point(148, 370);
+            this.priceNumericUpDown.Maximum = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
             this.priceNumericUpDown.Name = "priceNumericUpDown";
             this.priceNumericUpDown.Size = new System.Drawing.Size(191, 20);
-            this.priceNumericUpDown.TabIndex = 32;
+            this.priceNumericUpDown.TabIndex = 43;
             // 
             // priceLabel
             // 
             this.priceLabel.AutoSize = true;
             this.priceLabel.Location = new System.Drawing.Point(6, 372);
             this.priceLabel.Name = "priceLabel";
-            this.priceLabel.Size = new System.Drawing.Size(63, 13);
+            this.priceLabel.Size = new System.Drawing.Size(98, 13);
             this.priceLabel.TabIndex = 31;
-            this.priceLabel.Text = "Ticket price";
+            this.priceLabel.Text = "Ticket price (BAM):";
             // 
             // FlightTimeNumericUpDown
             // 
             this.FlightTimeNumericUpDown.Location = new System.Drawing.Point(147, 343);
+            this.FlightTimeNumericUpDown.Maximum = new decimal(new int[] {
+            15000,
+            0,
+            0,
+            0});
             this.FlightTimeNumericUpDown.Name = "FlightTimeNumericUpDown";
             this.FlightTimeNumericUpDown.Size = new System.Drawing.Size(191, 20);
-            this.FlightTimeNumericUpDown.TabIndex = 30;
+            this.FlightTimeNumericUpDown.TabIndex = 42;
             // 
             // flightDurationLabel
             // 
@@ -247,25 +257,25 @@
             this.pilotNameLabel.AutoSize = true;
             this.pilotNameLabel.Location = new System.Drawing.Point(6, 162);
             this.pilotNameLabel.Name = "pilotNameLabel";
-            this.pilotNameLabel.Size = new System.Drawing.Size(58, 13);
+            this.pilotNameLabel.Size = new System.Drawing.Size(61, 13);
             this.pilotNameLabel.TabIndex = 27;
-            this.pilotNameLabel.Text = "Pilot Name";
+            this.pilotNameLabel.Text = "Pilot Name:";
             // 
             // discPercentageUpDown
             // 
             this.discPercentageUpDown.Location = new System.Drawing.Point(146, 290);
             this.discPercentageUpDown.Name = "discPercentageUpDown";
             this.discPercentageUpDown.Size = new System.Drawing.Size(191, 20);
-            this.discPercentageUpDown.TabIndex = 26;
+            this.discPercentageUpDown.TabIndex = 40;
             // 
             // voucherDiscPercentageLabel
             // 
             this.voucherDiscPercentageLabel.AutoSize = true;
             this.voucherDiscPercentageLabel.Location = new System.Drawing.Point(5, 292);
             this.voucherDiscPercentageLabel.Name = "voucherDiscPercentageLabel";
-            this.voucherDiscPercentageLabel.Size = new System.Drawing.Size(109, 13);
+            this.voucherDiscPercentageLabel.Size = new System.Drawing.Size(112, 13);
             this.voucherDiscPercentageLabel.TabIndex = 25;
-            this.voucherDiscPercentageLabel.Text = "Voucher Discount (%)";
+            this.voucherDiscPercentageLabel.Text = "Voucher Discount (%):";
             // 
             // planeComboBox
             // 
@@ -281,9 +291,9 @@
             this.planeLabel.AutoSize = true;
             this.planeLabel.Location = new System.Drawing.Point(5, 136);
             this.planeLabel.Name = "planeLabel";
-            this.planeLabel.Size = new System.Drawing.Size(34, 13);
+            this.planeLabel.Size = new System.Drawing.Size(37, 13);
             this.planeLabel.TabIndex = 23;
-            this.planeLabel.Text = "Plane";
+            this.planeLabel.Text = "Plane:";
             // 
             // destinationAirportComboBox
             // 
@@ -299,9 +309,9 @@
             this.destAirportLabel.AutoSize = true;
             this.destAirportLabel.Location = new System.Drawing.Point(6, 110);
             this.destAirportLabel.Name = "destAirportLabel";
-            this.destAirportLabel.Size = new System.Drawing.Size(64, 13);
+            this.destAirportLabel.Size = new System.Drawing.Size(67, 13);
             this.destAirportLabel.TabIndex = 21;
-            this.destAirportLabel.Text = "Dest. airport";
+            this.destAirportLabel.Text = "Dest. airport:";
             // 
             // cityComboBox
             // 
@@ -320,7 +330,7 @@
             this.countryComboBox.Location = new System.Drawing.Point(147, 54);
             this.countryComboBox.Name = "countryComboBox";
             this.countryComboBox.Size = new System.Drawing.Size(191, 21);
-            this.countryComboBox.TabIndex = 19;
+            this.countryComboBox.TabIndex = 15;
             this.countryComboBox.SelectedIndexChanged += new System.EventHandler(this.countryComboBox_SelectedIndexChanged);
             // 
             // offerComboBox
@@ -330,43 +340,43 @@
             this.offerComboBox.Location = new System.Drawing.Point(147, 26);
             this.offerComboBox.Name = "offerComboBox";
             this.offerComboBox.Size = new System.Drawing.Size(191, 21);
-            this.offerComboBox.TabIndex = 18;
+            this.offerComboBox.TabIndex = 10;
             // 
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
             this.descriptionLabel.Location = new System.Drawing.Point(5, 241);
             this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(84, 13);
+            this.descriptionLabel.Size = new System.Drawing.Size(63, 13);
             this.descriptionLabel.TabIndex = 17;
-            this.descriptionLabel.Text = "descriptionLabel";
+            this.descriptionLabel.Text = "Description:";
             // 
             // offerLabel
             // 
             this.offerLabel.AutoSize = true;
             this.offerLabel.Location = new System.Drawing.Point(6, 31);
             this.offerLabel.Name = "offerLabel";
-            this.offerLabel.Size = new System.Drawing.Size(54, 13);
+            this.offerLabel.Size = new System.Drawing.Size(33, 13);
             this.offerLabel.TabIndex = 13;
-            this.offerLabel.Text = "offerLabel";
+            this.offerLabel.Text = "Offer:";
             // 
             // endDateLabel
             // 
             this.endDateLabel.AutoSize = true;
             this.endDateLabel.Location = new System.Drawing.Point(6, 218);
             this.endDateLabel.Name = "endDateLabel";
-            this.endDateLabel.Size = new System.Drawing.Size(74, 13);
+            this.endDateLabel.Size = new System.Drawing.Size(96, 13);
             this.endDateLabel.TabIndex = 11;
-            this.endDateLabel.Text = "endDateLabel";
+            this.endDateLabel.Text = "Return Date/Time:";
             // 
             // startDateLabel
             // 
             this.startDateLabel.AutoSize = true;
             this.startDateLabel.Location = new System.Drawing.Point(5, 192);
             this.startDateLabel.Name = "startDateLabel";
-            this.startDateLabel.Size = new System.Drawing.Size(76, 13);
+            this.startDateLabel.Size = new System.Drawing.Size(111, 13);
             this.startDateLabel.TabIndex = 9;
-            this.startDateLabel.Text = "startDateLabel";
+            this.startDateLabel.Text = "Departure Date/Time:";
             // 
             // descriptionTextBox
             // 
@@ -374,25 +384,25 @@
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(191, 46);
-            this.descriptionTextBox.TabIndex = 5;
+            this.descriptionTextBox.TabIndex = 35;
             // 
             // cityLabel
             // 
             this.cityLabel.AutoSize = true;
             this.cityLabel.Location = new System.Drawing.Point(5, 83);
             this.cityLabel.Name = "cityLabel";
-            this.cityLabel.Size = new System.Drawing.Size(49, 13);
+            this.cityLabel.Size = new System.Drawing.Size(30, 13);
             this.cityLabel.TabIndex = 4;
-            this.cityLabel.Text = "cityLabel";
+            this.cityLabel.Text = "City: ";
             // 
             // countryLabel
             // 
             this.countryLabel.AutoSize = true;
             this.countryLabel.Location = new System.Drawing.Point(6, 57);
             this.countryLabel.Name = "countryLabel";
-            this.countryLabel.Size = new System.Drawing.Size(68, 13);
+            this.countryLabel.Size = new System.Drawing.Size(46, 13);
             this.countryLabel.TabIndex = 2;
-            this.countryLabel.Text = "countryLabel";
+            this.countryLabel.Text = "Country:";
             // 
             // imageGroupBox
             // 
@@ -430,8 +440,8 @@
             this.uploadFlightPictureButton.Location = new System.Drawing.Point(5, 243);
             this.uploadFlightPictureButton.Name = "uploadFlightPictureButton";
             this.uploadFlightPictureButton.Size = new System.Drawing.Size(331, 40);
-            this.uploadFlightPictureButton.TabIndex = 7;
-            this.uploadFlightPictureButton.Text = "uploadFlightPictureButton";
+            this.uploadFlightPictureButton.TabIndex = 44;
+            this.uploadFlightPictureButton.Text = "Upload Picture...";
             this.uploadFlightPictureButton.UseVisualStyleBackColor = true;
             this.uploadFlightPictureButton.Click += new System.EventHandler(this.uploadFlightPictureButton_Click);
             // 
@@ -440,9 +450,9 @@
             this.isActiveCheckBox.AutoSize = true;
             this.isActiveCheckBox.Location = new System.Drawing.Point(45, 373);
             this.isActiveCheckBox.Name = "isActiveCheckBox";
-            this.isActiveCheckBox.Size = new System.Drawing.Size(112, 17);
-            this.isActiveCheckBox.TabIndex = 6;
-            this.isActiveCheckBox.Text = "isActiveCheckBox";
+            this.isActiveCheckBox.Size = new System.Drawing.Size(56, 17);
+            this.isActiveCheckBox.TabIndex = 48;
+            this.isActiveCheckBox.Text = "Active";
             this.isActiveCheckBox.UseVisualStyleBackColor = true;
             // 
             // notesTextBox
@@ -451,7 +461,7 @@
             this.notesTextBox.Multiline = true;
             this.notesTextBox.Name = "notesTextBox";
             this.notesTextBox.Size = new System.Drawing.Size(291, 74);
-            this.notesTextBox.TabIndex = 33;
+            this.notesTextBox.TabIndex = 45;
             // 
             // label1
             // 

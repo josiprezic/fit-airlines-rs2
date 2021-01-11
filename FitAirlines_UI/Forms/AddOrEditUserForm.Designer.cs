@@ -33,9 +33,9 @@
             this.profilePictureBox = new FitAirlines.UI.BasePictureBox();
             this.changeProfileImageButton = new FitAirlines.UI.BaseButton();
             this.personalDataGroupBox = new System.Windows.Forms.GroupBox();
+            this.ContactNumberTextBox = new System.Windows.Forms.MaskedTextBox();
             this.userRoleComboBox = new FitAirlines.UI.BaseComboBox();
             this.userRoleLabel = new System.Windows.Forms.Label();
-            this.ContactNumberTextBox = new System.Windows.Forms.TextBox();
             this.contactNumberLabel = new System.Windows.Forms.Label();
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.emailLabel = new System.Windows.Forms.Label();
@@ -98,9 +98,9 @@
             // 
             // personalDataGroupBox
             // 
+            this.personalDataGroupBox.Controls.Add(this.ContactNumberTextBox);
             this.personalDataGroupBox.Controls.Add(this.userRoleComboBox);
             this.personalDataGroupBox.Controls.Add(this.userRoleLabel);
-            this.personalDataGroupBox.Controls.Add(this.ContactNumberTextBox);
             this.personalDataGroupBox.Controls.Add(this.contactNumberLabel);
             this.personalDataGroupBox.Controls.Add(this.emailTextBox);
             this.personalDataGroupBox.Controls.Add(this.emailLabel);
@@ -124,6 +124,15 @@
             this.personalDataGroupBox.TabStop = false;
             this.personalDataGroupBox.Text = "groupBox2";
             // 
+            // ContactNumberTextBox
+            // 
+            this.ContactNumberTextBox.Location = new System.Drawing.Point(84, 182);
+            this.ContactNumberTextBox.Mask = "999-000-000";
+            this.ContactNumberTextBox.Name = "ContactNumberTextBox";
+            this.ContactNumberTextBox.Size = new System.Drawing.Size(190, 20);
+            this.ContactNumberTextBox.TabIndex = 22;
+            this.ContactNumberTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ContactNumberTextBox_Validating_1);
+            // 
             // userRoleComboBox
             // 
             this.userRoleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -141,14 +150,6 @@
             this.userRoleLabel.Size = new System.Drawing.Size(75, 13);
             this.userRoleLabel.TabIndex = 101;
             this.userRoleLabel.Text = "userRoleLabel";
-            // 
-            // ContactNumberTextBox
-            // 
-            this.ContactNumberTextBox.Location = new System.Drawing.Point(84, 182);
-            this.ContactNumberTextBox.Name = "ContactNumberTextBox";
-            this.ContactNumberTextBox.Size = new System.Drawing.Size(190, 20);
-            this.ContactNumberTextBox.TabIndex = 29;
-            this.ContactNumberTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ContactNumberTextBox_Validating);
             // 
             // contactNumberLabel
             // 
@@ -389,10 +390,10 @@
         private BaseButton addCreditButton;
         private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.Label emailLabel;
-        private System.Windows.Forms.TextBox ContactNumberTextBox;
         private System.Windows.Forms.Label contactNumberLabel;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private BaseComboBox userRoleComboBox;
         private System.Windows.Forms.Label userRoleLabel;
+        private System.Windows.Forms.MaskedTextBox ContactNumberTextBox;
     }
 }

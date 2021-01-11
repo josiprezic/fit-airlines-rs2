@@ -124,7 +124,7 @@ namespace FitAirlines.UI
             contactNumberLabel.Text = "Tel number";
             userRoleLabel.Text = "User role";
 
-            
+
         }
 
         protected override void SetupStyling()
@@ -173,9 +173,9 @@ namespace FitAirlines.UI
                 ContactNumber = ContactNumberTextBox.Text,
             };
 
-            if(profilePictureBox.ImageLocation != null)
+            if (profilePictureBox.ImageLocation != null)
             {
-           
+
                 byte[] pictureContent = File.ReadAllBytes(profilePictureBox.ImageLocation);
 
                 // Resizing image to max 50 Kb
@@ -222,7 +222,7 @@ namespace FitAirlines.UI
             emailTextBox.Text = selectedUser.Email;
             foreach (MembershipTypes item in fitMembershipComboBox.Items)
             {
-                if(item.MembershipTypeId == selectedUser.MembershipTypeId)
+                if (item.MembershipTypeId == selectedUser.MembershipTypeId)
                 {
                     fitMembershipComboBox.SelectedItem = item;
                     break;
@@ -242,14 +242,19 @@ namespace FitAirlines.UI
             isActiveCheckBox.Checked = selectedUser.IsActive ?? false;
             ContactNumberTextBox.Text = selectedUser.ContactNumber;
             accountBalanceValueLabel.Text = selectedUser.Credit.ToString();
-       
+
         }
+
+        //
+        // MARK: - Validation
+        //
+
 
         private void basicTextBox_Validating(object sender, CancelEventArgs e)
         {
             var field = sender as TextBox;
 
-            if(string.IsNullOrWhiteSpace(field.Text))
+            if (string.IsNullOrWhiteSpace(field.Text))
             {
                 errorProvider1.SetError(field, Resources.Validation_FieldRequired);
                 e.Cancel = true;
@@ -270,7 +275,7 @@ namespace FitAirlines.UI
                 errorProvider1.SetError(field, Resources.Validation_FieldRequired);
                 e.Cancel = true;
             }
-            else if(!ValidateEmail(field.Text))
+            else if (!field.Text.IsEmail())
             {
                 errorProvider1.SetError(field, Resources.Validation_EmailInvalid);
                 e.Cancel = true;
@@ -281,31 +286,17 @@ namespace FitAirlines.UI
             }
         }
 
-        bool ValidateEmail( string emailAddress)
+        private void ContactNumberTextBox_Validating_1(object sender, CancelEventArgs e)
         {
-            try
-            {
-                _ = new MailAddress(emailAddress);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            var field = sender as MaskedTextBox;
 
-            return true;
-        }
-
-        private void ContactNumberTextBox_Validating(object sender, CancelEventArgs e)
-        {
-
-            var field = sender as TextBox;
 
             if (string.IsNullOrWhiteSpace(field.Text))
             {
                 errorProvider1.SetError(field, Resources.Validation_FieldRequired);
                 e.Cancel = true;
             }
-            else if (!ValidatePhoneNumber(field.Text))
+            else if (!field.Text.ValidTelephoneNo())
             {
                 errorProvider1.SetError(field, Resources.Validation_PhoneNumberInvalid);
                 e.Cancel = true;
@@ -314,16 +305,6 @@ namespace FitAirlines.UI
             {
                 errorProvider1.SetError(field, null);
             }
-            // TODO: Validation helper
-        }
-
-        private bool ValidatePhoneNumber(string text)
-        {
-            // TODO: JR Update regex
-            return true;
-
-            var expr = new Regex(@"TODO: JR :D ");
-            return expr.IsMatch(text);
         }
     }
 }

@@ -139,8 +139,6 @@ namespace FitAirlines.UI
             resetCities();
             resetAirports();
 
-            // TODO: JR load flight if needed. Not needed.
-
             this.Enabled = true;
         }
 
@@ -217,15 +215,6 @@ namespace FitAirlines.UI
             basicInfoGroupBox.Text = Resources.AddOrEditFlight_BasicInfo;
             imageGroupBox.Text = Resources.AddOrEditOffer_ImageOptions;
 
-            offerLabel.Text = Resources.AddOrEditFlight_FlightOffer;
-            countryLabel.Text = Resources.AddOrEditFlight_Country;
-            cityLabel.Text = Resources.AddOrEditFlight_City;
-            startDateLabel.Text = Resources.AddOrEditFlight_StartDate;
-            endDateLabel.Text = Resources.AddOrEditFlight_EndDate;
-            descriptionLabel.Text = Resources.AddOrEditFlight_FlightDescription;
-            isActiveCheckBox.Text = Resources.Generic_IsActive;
-
-            uploadFlightPictureButton.Text = Resources.Generic_UploadImage;
             cancelButton.Text = Resources.Generic_Cancel;
             saveButton.Text = Resources.Generic_Save;
         }
@@ -266,7 +255,7 @@ namespace FitAirlines.UI
                 PilotFullName = pilotNameTextBox.Text,
                 PlaneId = (planeComboBox.SelectedItem as Planes).PlaneId,
                 Price = decimal.ToDouble(priceNumericUpDown.Value),
-                VoucherCode = "ASDASDASD", // TODO: JR Geerate voucher code
+                VoucherCode = PasswordHelper.CreatePassword(5),
                 VoucherDiscountPercentage = decimal.ToDouble(discPercentageUpDown.Value),
                 IsActive = isActiveCheckBox.Checked,
                 ShortInfo = descriptionTextBox.Text,
