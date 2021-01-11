@@ -76,6 +76,7 @@
             this.baseDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.baseDataGridView1.Size = new System.Drawing.Size(853, 421);
             this.baseDataGridView1.TabIndex = 0;
+            this.baseDataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.baseDataGridView1_CellFormatting);
             // 
             // FirstName
             // 

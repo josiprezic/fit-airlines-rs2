@@ -139,5 +139,25 @@ namespace FitAirlines.UI
         {
             await loadOffers();
         }
+
+        private void baseDataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+
+            foreach (DataGridViewRow Myrow in baseDataGridView1.Rows)
+            {
+                if (Myrow.DataBoundItem is Model.Offers offer)
+                {
+                    if (offer.EndDate.IsGreaterThan(DateTime.Now))
+                    {
+                        Myrow.DefaultCellStyle.BackColor = Color.LightGreen;
+                    }
+                    else
+                    {
+                        Myrow.DefaultCellStyle.BackColor = Color.LightPink;
+                    }
+                }
+            }
+        }
     }
 }

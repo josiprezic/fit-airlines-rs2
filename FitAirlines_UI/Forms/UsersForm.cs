@@ -152,5 +152,23 @@ namespace FitAirlines.UI
         {
             await loadUsers();
         }
+
+        private void baseDataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            foreach (DataGridViewRow Myrow in baseDataGridView1.Rows)
+            {
+                if (Myrow.DataBoundItem is Model.Users user)
+                {
+                    if (user.IsActive ?? true)
+                    {
+                        Myrow.DefaultCellStyle.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        Myrow.DefaultCellStyle.BackColor = Color.LightGray;
+                    }
+                }
+            }
+        }
     }
 }
