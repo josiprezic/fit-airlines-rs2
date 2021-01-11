@@ -264,5 +264,24 @@ namespace FitAirlines.UI
             await loadFlights();
 
         }
+
+        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+            foreach (DataGridViewRow Myrow in dataGridView.Rows)
+            {
+                if (Myrow.DataBoundItem is Model.Flights selectedFlight)
+                {
+                    if (selectedFlight.EndDate.IsGreaterThan(DateTime.Now))
+                    {
+                        Myrow.DefaultCellStyle.BackColor = Color.LightGreen;
+                    }
+                    else
+                    {
+                        Myrow.DefaultCellStyle.BackColor = Color.LightPink;
+                    }
+                }
+            }
+        }
     }
 }

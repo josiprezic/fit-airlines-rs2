@@ -123,8 +123,6 @@ namespace FitAirlines.UI
             fitMembershipLabel.Text = "Membership";
             contactNumberLabel.Text = "Tel number";
             userRoleLabel.Text = "User role";
-
-
         }
 
         protected override void SetupStyling()

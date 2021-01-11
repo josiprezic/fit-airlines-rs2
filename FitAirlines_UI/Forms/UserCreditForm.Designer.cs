@@ -87,6 +87,11 @@
             // creditValueNumericUpDown
             // 
             this.creditValueNumericUpDown.Location = new System.Drawing.Point(133, 98);
+            this.creditValueNumericUpDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.creditValueNumericUpDown.Name = "creditValueNumericUpDown";
             this.creditValueNumericUpDown.Size = new System.Drawing.Size(120, 20);
             this.creditValueNumericUpDown.TabIndex = 9;
