@@ -39,6 +39,7 @@ namespace FitAirlines.UI
 
         private readonly AddOrEditUserFormType type;
         private Users selectedUser;
+        private bool isFormDataChanged = false;
 
         //
         // MARK: - Constructors
@@ -48,7 +49,6 @@ namespace FitAirlines.UI
         {
             this.type = type;
             this.selectedUser = selectedUser;
-
             InitializeComponent();
         }
 
@@ -59,7 +59,6 @@ namespace FitAirlines.UI
         private async void AddOrEditUserForm_Load(object sender, EventArgs e)
         {
             this.Enabled = false;
-
             await loadMembershipTypes();
             await loadUserRoles();
 
@@ -72,7 +71,6 @@ namespace FitAirlines.UI
             fitMembershipComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             genderComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             userRoleComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-
             this.Enabled = true;
         }
 
@@ -99,6 +97,13 @@ namespace FitAirlines.UI
             var list = await _serviceUserRoles.Get<List<Model.UserRoles>>(null);
             userRoleComboBox.DataSource = list;
             userRoleComboBox.DisplayMember = "Title";
+
+            // TODO: Szef some hardcoded values here...
+            var fitMemberRole = list.First(x => x.Title.Contains("FIT"));
+            if (fitMemberRole != null)
+            {
+                userRoleComboBox.SelectedItem = fitMemberRole;
+            }
         }
 
         protected override bool ShouldResize() { return false; }
@@ -109,20 +114,21 @@ namespace FitAirlines.UI
             profilePictureGroupBox.Text = Resources.AddOrEditUser_ProfilePictureGroupBox;
             personalDataGroupBox.Text = Resources.AddOrEditOffer_PersonalInfo;
             actionsGroupBox.Text = Resources.AddOrEditUser_Actions;
-            changeProfileImageButton.Text = Resources.AddOrEditUser_ChangeProfilePicture;
-            firstNameLabel.Text = Resources.AddOrEditUser_FirstName;
-            lastNameLabel.Text = Resources.AddOrEditUser_LastName;
-            emailLabel.Text = "Email";
-            birthDateLabel.Text = Resources.AddOrEditUser_BirthDate;
-            genderLabel.Text = Resources.AddOrEditUser_Gender;
-            isActiveCheckBox.Text = Resources.AddOrEditUser_IsActive;
-            accountBalanceTextLabel.Text = Resources.AddOrEditUser_AccountBalance;
+            changeProfileImageButton.Text = Resources.AddOrEditUser_ChangeProfilePicture + "...";
+            firstNameLabel.Text = Resources.AddOrEditUser_FirstName + ":";
+            lastNameLabel.Text = Resources.AddOrEditUser_LastName + ":";
+            emailLabel.Text = "Email: ";
+            birthDateLabel.Text = Resources.AddOrEditUser_BirthDate + ":";
+            genderLabel.Text = Resources.AddOrEditUser_Gender + ":"; ;
+            isActiveCheckBox.Text = "Active";
+            accountBalanceTextLabel.Text = Resources.AddOrEditUser_AccountBalance + " ($):";
             addCreditButton.Text = Resources.AddOrEditUser_AddCredit;
             cancelButton.Text = Resources.AddOrEditUser_Cancel;
             saveButton.Text = Resources.AddOrEditUser_Save;
-            fitMembershipLabel.Text = "Membership";
-            contactNumberLabel.Text = "Tel number";
-            userRoleLabel.Text = "User role";
+            fitMembershipLabel.Text = "Membership: ";
+            contactNumberLabel.Text = "Tel. number:";
+            userRoleLabel.Text = "User role:";
+            accountBalanceValueLabel.Text = "0";
         }
 
         protected override void SetupStyling()
@@ -137,11 +143,21 @@ namespace FitAirlines.UI
 
         private async void addCreditButton_Click(object sender, EventArgs e)
         {
-            UserCreditForm form = new UserCreditForm(selectedUser);
-            form.ShowDialog();
-            var user = await _serviceUsers.GetById<Model.Users>(selectedUser.UserId);
-            this.selectedUser = user;
-            PopulateFormFields(user);
+            // TODO: Szef do I need this message box here?
+            //DialogResult dialogResult = MessageBox.Show("Changes will be saved. Continue?", "Warning", MessageBoxButtons.YesNo);
+            //if (dialogResult == DialogResult.Yes)
+           // {
+                await saveUser();
+                UserCreditForm form = new UserCreditForm(selectedUser);
+                form.ShowDialog();
+                var user = await _serviceUsers.GetById<Model.Users>(selectedUser.UserId);
+                this.selectedUser = user;
+                PopulateFormFields(user);
+            //}
+            //else if (dialogResult == DialogResult.No)
+            //{
+                //do something else
+            //}
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -151,10 +167,13 @@ namespace FitAirlines.UI
 
         private async void saveButton_Click(object sender, EventArgs e)
         {
-            if (!ValidateChildren()) return; // Blokiranje save buttona
+            await saveUser(true);
+        }
 
+        private async Task saveUser(bool shouldCloseFormAfterSave = false) {
+            if (!ValidateChildren()) return; // Blocking save button
+            
             this.Enabled = false;
-
             double credit = Convert.ToDouble(accountBalanceValueLabel.Text);
 
             var request = new Model.Requests.UsersInsertRequest
@@ -171,15 +190,10 @@ namespace FitAirlines.UI
                 ContactNumber = ContactNumberTextBox.Text,
             };
 
-            if (profilePictureBox.ImageLocation != null)
+            if (profilePictureBox.ImageLocation != null && profilePictureBox.ImageLocation.Length > 0)
             {
-
                 byte[] pictureContent = File.ReadAllBytes(profilePictureBox.ImageLocation);
-
-                // Resizing image to max 50 Kb
-                // Answer: https://stackoverflow.com/questions/8790275/resize-image-which-is-placed-in-byte-array
                 byte[] resizedPictureContent = ImageUploadHelper.Resize2Max50Kbytes(pictureContent);
-
                 request.Picture = resizedPictureContent;
             }
 
@@ -187,11 +201,9 @@ namespace FitAirlines.UI
             if (type == AddOrEditUserFormType.Add)
             {
                 var generatedPasswordString = PasswordHelper.CreatePassword(8);
-
                 request.Password = generatedPasswordString;
                 request.PasswordConfirmation = generatedPasswordString;
                 request.StartDate = DateTime.Now;
-
                 user = await _serviceUsers.Insert<Model.Users>(request);
             }
             else
@@ -199,12 +211,17 @@ namespace FitAirlines.UI
                 user = await _serviceUsers.Update<Model.Users>(selectedUser.UserId, request);
             }
 
-            if (user != null)
+            if (shouldCloseFormAfterSave)
             {
-                DialogResult = DialogResult.OK;
+                if (user != null)
+                {
+                    selectedUser = user; // TODO: JR TODO: Szef: this should be okay. Just checking
+                    DialogResult = DialogResult.OK;
+                    return;
+                }
             }
-            else
-                this.Enabled = true;
+
+            this.Enabled = true;
         }
 
         private void changeProfileImageButton_Click(object sender, EventArgs e)
@@ -240,14 +257,13 @@ namespace FitAirlines.UI
             isActiveCheckBox.Checked = selectedUser.IsActive ?? false;
             ContactNumberTextBox.Text = selectedUser.ContactNumber;
             accountBalanceValueLabel.Text = selectedUser.Credit.ToString();
-
         }
 
         //
         // MARK: - Validation
         //
 
-
+        // User first and last name: At least one digit
         private void basicTextBox_Validating(object sender, CancelEventArgs e)
         {
             var field = sender as TextBox;
@@ -263,9 +279,9 @@ namespace FitAirlines.UI
             }
         }
 
+        // User email: valid email
         private void emailTextBox_Validating(object sender, CancelEventArgs e)
         {
-
             var field = sender as TextBox;
 
             if (string.IsNullOrWhiteSpace(field.Text))
@@ -284,10 +300,10 @@ namespace FitAirlines.UI
             }
         }
 
+        // User telephone number: Phone number in valid format
         private void ContactNumberTextBox_Validating_1(object sender, CancelEventArgs e)
         {
             var field = sender as MaskedTextBox;
-
 
             if (string.IsNullOrWhiteSpace(field.Text))
             {
@@ -304,5 +320,46 @@ namespace FitAirlines.UI
                 errorProvider1.SetError(field, null);
             }
         }
+
+        // Date of birth: User must be older than 18 years
+        private void birthDateTimePicker_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as BaseDateTimePicker;
+            var date = field.Value;
+            var age = date.GetAge();
+
+            if (age < 18)
+            {
+                errorProvider1.SetError(field, "Invalid birth date. User should be at least 18 years old.");
+                e.Cancel = true;
+            }
+            else 
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
+
+        // Gender: Must be selected M/Z
+        // TODO: JR TODO: Szef: Change default text to "Select gender"
+        // TODO: JR TODO: Szef Change this to be full string or at least to "M" and "F"
+        private void genderComboBox_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as BaseComboBox;
+            var genderText = genderComboBox.Text;
+
+            if (genderText.Length != 1)
+            {
+                errorProvider1.SetError(field, "Please select gender value.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
+
+        // Membership must be selected: selected by default - no valdation required 
+        // User role: Must be selected: selected by default - no validation required
+        // Is Active: No validation required
     }
 }
