@@ -190,7 +190,7 @@ namespace FitAirlines.UI
                 ContactNumber = ContactNumberTextBox.Text,
             };
 
-            if (profilePictureBox.ImageLocation != null)
+            if (profilePictureBox.ImageLocation != null && profilePictureBox.ImageLocation.Length > 0)
             {
                 byte[] pictureContent = File.ReadAllBytes(profilePictureBox.ImageLocation);
                 byte[] resizedPictureContent = ImageUploadHelper.Resize2Max50Kbytes(pictureContent);

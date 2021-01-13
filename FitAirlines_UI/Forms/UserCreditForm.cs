@@ -14,9 +14,7 @@ namespace FitAirlines.UI.Forms
 {
     public partial class UserCreditForm : BaseForm
     {
-
         private readonly APIService _serviceUsers = new APIService("Users");
-
 
         private readonly Users selectedUser;
 
@@ -25,16 +23,24 @@ namespace FitAirlines.UI.Forms
             InitializeComponent();
             this.selectedUser = selectedUser;
             PopulateFormFields(selectedUser);
+
+            creditValueNumericUpDown.Increment = 25;
+            creditValueNumericUpDown.DecimalPlaces = 0;
+            creditValueNumericUpDown.Value = 100;
+            creditValueNumericUpDown.Minimum = 25;
+            creditValueNumericUpDown.Maximum = 10000;
+            creditValueNumericUpDown.ReadOnly = true;
         }
 
         private async void updateCreditLabel_Click(object sender, EventArgs e)
         {
+            if (!ValidateChildren()) return; // Blocking save button
+            
             this.Enabled = false;
 
             var newCredit = decimal.ToDouble(creditValueNumericUpDown.Value);
             var totalCredit = selectedUser.Credit + newCredit;
             await saveUser(totalCredit);
-
 
             this.Close();
         }
@@ -43,9 +49,7 @@ namespace FitAirlines.UI.Forms
 
         private void PopulateFormFields(Users user) {
             creditValueLabel.Text = user.Credit.ToString();
-
         }
-
 
         private async Task saveUser(double newCredit) 
         {
@@ -73,14 +77,40 @@ namespace FitAirlines.UI.Forms
             if (user != null)
             {
                 DialogResult = DialogResult.OK;
-               
             }
             else
             {
                 this.Enabled = true;
-
             }
+        }
 
+        //
+        // MARK: - Validation
+        //
+
+        // Credit value: 
+        // - Should not be empty
+        // - Must be positive
+        // - Must be integer value
+        private void creditValueNumericUpDown_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as NumericUpDown;
+            var newCredit = decimal.ToDouble(field.Value);
+
+            if (string.IsNullOrWhiteSpace(field.Text))
+            {
+                errorProvider1.SetError(field, "Field cannot be empty");
+                e.Cancel = true;
+            } 
+            else if(newCredit <= 0)
+            {
+                errorProvider1.SetError(field, "Please provide positive value.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
         }
     }
 }

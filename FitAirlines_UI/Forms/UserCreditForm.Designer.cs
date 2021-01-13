@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.creditNameLabel = new System.Windows.Forms.Label();
             this.creditValueLabel = new System.Windows.Forms.Label();
             this.addCreditLabel = new System.Windows.Forms.Label();
             this.updateCreditButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.creditValueNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.creditValueNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // creditNameLabel
@@ -95,6 +98,11 @@
             this.creditValueNumericUpDown.Name = "creditValueNumericUpDown";
             this.creditValueNumericUpDown.Size = new System.Drawing.Size(120, 20);
             this.creditValueNumericUpDown.TabIndex = 9;
+            this.creditValueNumericUpDown.Validating += new System.ComponentModel.CancelEventHandler(this.creditValueNumericUpDown_Validating);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // UserCreditForm
             // 
@@ -114,6 +122,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "User Credit";
             ((System.ComponentModel.ISupportInitialize)(this.creditValueNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,5 +136,6 @@
         private System.Windows.Forms.Button updateCreditButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown creditValueNumericUpDown;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
