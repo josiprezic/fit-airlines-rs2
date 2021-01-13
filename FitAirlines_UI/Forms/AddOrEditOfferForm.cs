@@ -43,6 +43,8 @@ namespace FitAirlines.UI
             InitializeComponent();
         }
 
+        override protected bool ShouldResize() { return false; }
+
         //
         // MARK: - Methods
         //
@@ -78,7 +80,11 @@ namespace FitAirlines.UI
                     break;
                 }
             }
+
+            startDateTimePicker.Value = selectedOffer.StartDate;
+            endDateTimePicker.Value = selectedOffer.EndDate;
         }
+
         private async void LoadProfilePicture()
         {
             var offer  = await _serviceOffers.GetById<Model.Offers>(selectedOffer.OfferId);
@@ -91,9 +97,7 @@ namespace FitAirlines.UI
                     offerPictureBox.Image = ImageConversionHelper.ByteArrayToImage(selectedOffer.Picture);
                 }
             }
-
         }
-
 
         private async Task loadOfferTypes()
         {
@@ -102,11 +106,8 @@ namespace FitAirlines.UI
             offerMemberTypeComboBox.DisplayMember = "TypeName";
         }
 
-        protected override bool ShouldResize() { return false; }
-
         protected override void SetupStrings()
         {
- 
             Text = type == AddOrEditOfferFormType.Add ? Resources.AddOffer_FormName : Resources.EditOffer_FormName;
 
             personalInfoGroupBox.Text = Resources.AddOrEditOffer_PersonalInfo;
@@ -156,19 +157,12 @@ namespace FitAirlines.UI
                 StartDate = startDateTimePicker.Value,
                 EndDate = endDateTimePicker.Value,
                 OfferTypeId = (offerMemberTypeComboBox.SelectedItem as OfferTypes).OfferTypeId
-
             };
 
-            if (offerPictureBox.ImageLocation != null)
+            if (offerPictureBox.ImageLocation != null && offerPictureBox.ImageLocation.Length > 0)
             {
-
                 byte[] pictureContent = File.ReadAllBytes(offerPictureBox.ImageLocation);
-
-                // Resizing image to max 50 Kb
-                // Answer: https://stackoverflow.com/questions/8790275/resize-image-which-is-placed-in-byte-array
                 byte[] resizedPictureContent = ImageUploadHelper.Resize2Max50Kbytes(pictureContent);
-
-
                 request.Picture = resizedPictureContent;
             }
 
@@ -190,9 +184,74 @@ namespace FitAirlines.UI
                 this.Enabled = true;
         }
 
-        private void isActiveCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
+        //
+        // MARK: - Validation
+        //
 
+        // Offer name
+        // Should not be empty
+        // Should have 2 - 20 characters
+        private void offerNameTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as TextBox;
+
+            if (string.IsNullOrWhiteSpace(field.Text))
+            {
+                errorProvider1.SetError(field, Resources.Validation_FieldRequired);
+                e.Cancel = true;
+            }
+            else if (field.Text.Length > 30)
+            {
+                errorProvider1.SetError(field, "Offer name cannot be longer than 30 characters.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
+
+        // Offer description
+        private void offerDescriptionTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as TextBox;
+
+            if (string.IsNullOrWhiteSpace(field.Text))
+            {
+                errorProvider1.SetError(field, Resources.Validation_FieldRequired);
+                e.Cancel = true;
+            }
+            else if (field.Text.Length > 400)
+            {
+                errorProvider1.SetError(field, "Offer description cannot be longer than 400 characters.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
+
+        private void endDateTimePicker_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as DateTimePicker;
+            var endDate = field.Value;
+            var startDate = startDateTimePicker.Value;
+
+            if (endDate < startDate)
+            {
+                errorProvider1.SetError(field, "End date cannot be earlier than start date.");
+                e.Cancel = true;
+            }
+            else if ((endDate - startDate).TotalDays < 5)
+            {
+                errorProvider1.SetError(field, "Difference between start and end date should be at least 5 days.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
         }
     }
 }
