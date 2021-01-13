@@ -48,7 +48,6 @@ namespace FitAirlines.UI
         {
             this.type = type;
             this.selectedUser = selectedUser;
-
             InitializeComponent();
         }
 
@@ -59,7 +58,6 @@ namespace FitAirlines.UI
         private async void AddOrEditUserForm_Load(object sender, EventArgs e)
         {
             this.Enabled = false;
-
             await loadMembershipTypes();
             await loadUserRoles();
 
@@ -72,7 +70,6 @@ namespace FitAirlines.UI
             fitMembershipComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             genderComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             userRoleComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-
             this.Enabled = true;
         }
 
@@ -109,20 +106,21 @@ namespace FitAirlines.UI
             profilePictureGroupBox.Text = Resources.AddOrEditUser_ProfilePictureGroupBox;
             personalDataGroupBox.Text = Resources.AddOrEditOffer_PersonalInfo;
             actionsGroupBox.Text = Resources.AddOrEditUser_Actions;
-            changeProfileImageButton.Text = Resources.AddOrEditUser_ChangeProfilePicture;
-            firstNameLabel.Text = Resources.AddOrEditUser_FirstName;
-            lastNameLabel.Text = Resources.AddOrEditUser_LastName;
-            emailLabel.Text = "Email";
-            birthDateLabel.Text = Resources.AddOrEditUser_BirthDate;
-            genderLabel.Text = Resources.AddOrEditUser_Gender;
-            isActiveCheckBox.Text = Resources.AddOrEditUser_IsActive;
-            accountBalanceTextLabel.Text = Resources.AddOrEditUser_AccountBalance;
+            changeProfileImageButton.Text = Resources.AddOrEditUser_ChangeProfilePicture + "...";
+            firstNameLabel.Text = Resources.AddOrEditUser_FirstName + ":";
+            lastNameLabel.Text = Resources.AddOrEditUser_LastName + ":";
+            emailLabel.Text = "Email: ";
+            birthDateLabel.Text = Resources.AddOrEditUser_BirthDate + ":";
+            genderLabel.Text = Resources.AddOrEditUser_Gender + ":"; ;
+            isActiveCheckBox.Text = "Active";
+            accountBalanceTextLabel.Text = Resources.AddOrEditUser_AccountBalance + " ($):";
             addCreditButton.Text = Resources.AddOrEditUser_AddCredit;
             cancelButton.Text = Resources.AddOrEditUser_Cancel;
             saveButton.Text = Resources.AddOrEditUser_Save;
-            fitMembershipLabel.Text = "Membership";
-            contactNumberLabel.Text = "Tel number";
-            userRoleLabel.Text = "User role";
+            fitMembershipLabel.Text = "Membership: ";
+            contactNumberLabel.Text = "Tel. number:";
+            userRoleLabel.Text = "User role:";
+            accountBalanceValueLabel.Text = "0";
         }
 
         protected override void SetupStyling()
@@ -151,10 +149,9 @@ namespace FitAirlines.UI
 
         private async void saveButton_Click(object sender, EventArgs e)
         {
-            if (!ValidateChildren()) return; // Blokiranje save buttona
-
+            if (!ValidateChildren()) return; // Blocking save button
+            
             this.Enabled = false;
-
             double credit = Convert.ToDouble(accountBalanceValueLabel.Text);
 
             var request = new Model.Requests.UsersInsertRequest
@@ -173,13 +170,8 @@ namespace FitAirlines.UI
 
             if (profilePictureBox.ImageLocation != null)
             {
-
                 byte[] pictureContent = File.ReadAllBytes(profilePictureBox.ImageLocation);
-
-                // Resizing image to max 50 Kb
-                // Answer: https://stackoverflow.com/questions/8790275/resize-image-which-is-placed-in-byte-array
                 byte[] resizedPictureContent = ImageUploadHelper.Resize2Max50Kbytes(pictureContent);
-
                 request.Picture = resizedPictureContent;
             }
 
@@ -187,11 +179,9 @@ namespace FitAirlines.UI
             if (type == AddOrEditUserFormType.Add)
             {
                 var generatedPasswordString = PasswordHelper.CreatePassword(8);
-
                 request.Password = generatedPasswordString;
                 request.PasswordConfirmation = generatedPasswordString;
                 request.StartDate = DateTime.Now;
-
                 user = await _serviceUsers.Insert<Model.Users>(request);
             }
             else
@@ -240,14 +230,13 @@ namespace FitAirlines.UI
             isActiveCheckBox.Checked = selectedUser.IsActive ?? false;
             ContactNumberTextBox.Text = selectedUser.ContactNumber;
             accountBalanceValueLabel.Text = selectedUser.Credit.ToString();
-
         }
 
         //
         // MARK: - Validation
         //
 
-
+        // User first and last name: At least one digit
         private void basicTextBox_Validating(object sender, CancelEventArgs e)
         {
             var field = sender as TextBox;
@@ -263,9 +252,9 @@ namespace FitAirlines.UI
             }
         }
 
+        // User email: valid email
         private void emailTextBox_Validating(object sender, CancelEventArgs e)
         {
-
             var field = sender as TextBox;
 
             if (string.IsNullOrWhiteSpace(field.Text))
@@ -284,10 +273,10 @@ namespace FitAirlines.UI
             }
         }
 
+        // User telephone number: Phone number in valid format
         private void ContactNumberTextBox_Validating_1(object sender, CancelEventArgs e)
         {
             var field = sender as MaskedTextBox;
-
 
             if (string.IsNullOrWhiteSpace(field.Text))
             {
@@ -304,5 +293,21 @@ namespace FitAirlines.UI
                 errorProvider1.SetError(field, null);
             }
         }
+
+        // Date of birth: User must be older than 18 years
+        
+        // Gender: Must be selected M/Z
+        // TODO: JR TODO: Szef: Change this to be full string or at least to "M" and "F"
+
+        // Membership must be selected: selected by default - no valdation required 
+        
+        // User role: Must be selected: selected by default - no validation required
+        // TODO: JR default should be FIT member
+
+        // Credit: should be 0 at the begining
+        // Credit should be positive number
+
+        // Is Active: No validation required
+        // TODO: JR Is Active should be renamed to active
     }
 }
