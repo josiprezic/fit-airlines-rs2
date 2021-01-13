@@ -39,6 +39,7 @@ namespace FitAirlines.UI
 
         private readonly AddOrEditUserFormType type;
         private Users selectedUser;
+        private bool isFormDataChanged = false;
 
         //
         // MARK: - Constructors
@@ -142,11 +143,21 @@ namespace FitAirlines.UI
 
         private async void addCreditButton_Click(object sender, EventArgs e)
         {
-            UserCreditForm form = new UserCreditForm(selectedUser);
-            form.ShowDialog();
-            var user = await _serviceUsers.GetById<Model.Users>(selectedUser.UserId);
-            this.selectedUser = user;
-            PopulateFormFields(user);
+            // TODO: Szef do I need this message box here?
+            //DialogResult dialogResult = MessageBox.Show("Changes will be saved. Continue?", "Warning", MessageBoxButtons.YesNo);
+            //if (dialogResult == DialogResult.Yes)
+           // {
+                await saveUser();
+                UserCreditForm form = new UserCreditForm(selectedUser);
+                form.ShowDialog();
+                var user = await _serviceUsers.GetById<Model.Users>(selectedUser.UserId);
+                this.selectedUser = user;
+                PopulateFormFields(user);
+            //}
+            //else if (dialogResult == DialogResult.No)
+            //{
+                //do something else
+            //}
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -156,6 +167,10 @@ namespace FitAirlines.UI
 
         private async void saveButton_Click(object sender, EventArgs e)
         {
+            await saveUser(true);
+        }
+
+        private async Task saveUser(bool shouldCloseFormAfterSave = false) {
             if (!ValidateChildren()) return; // Blocking save button
             
             this.Enabled = false;
@@ -196,12 +211,17 @@ namespace FitAirlines.UI
                 user = await _serviceUsers.Update<Model.Users>(selectedUser.UserId, request);
             }
 
-            if (user != null)
+            if (shouldCloseFormAfterSave)
             {
-                DialogResult = DialogResult.OK;
+                if (user != null)
+                {
+                    selectedUser = user; // TODO: JR TODO: Szef: this should be okay. Just checking
+                    DialogResult = DialogResult.OK;
+                    return;
+                }
             }
-            else
-                this.Enabled = true;
+
+            this.Enabled = true;
         }
 
         private void changeProfileImageButton_Click(object sender, EventArgs e)
