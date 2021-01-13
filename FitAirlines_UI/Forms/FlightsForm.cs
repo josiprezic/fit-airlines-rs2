@@ -15,7 +15,6 @@ namespace FitAirlines.UI
 {
     public partial class FlightsForm : BaseForm
     {
-
         private readonly APIService _serviceFlights = new APIService("Flights");
         private readonly APIService _serviceCountries = new APIService("Countries");
         private readonly APIService _serviceCities = new APIService("Cities");
@@ -33,7 +32,6 @@ namespace FitAirlines.UI
         {
             InitializeComponent();
             dataGridView.AutoGenerateColumns = false;
-
         }
 
 
@@ -42,8 +40,6 @@ namespace FitAirlines.UI
             await loadData();
             isFirstLoad = false;
         }
-
-        
 
         //
         // MARK: - Protected methods
@@ -55,10 +51,8 @@ namespace FitAirlines.UI
             Text = Resources.Flights_FormName;
             countryLabel.Text = Resources.AddOrEditFlight_Country;
             cityLabel.Text = Resources.AddOrEditFlight_City;
-            
             startDateTimePickerLabel.Text = Resources.AddOrEditFlight_StartDate;
             endDateTimePickerLabel.Text = Resources.AddOrEditFlight_EndDate;
-            minMembershipTypeLabel.Text = Resources.AddOrEditOFfer_OfferMembershipLevel;
             offerLabel.Text = Resources.Flights_Offer;
             isActiveCheckBox.Text = Resources.Generic_IsActive;
         }
@@ -190,7 +184,6 @@ namespace FitAirlines.UI
             {
                 request.EndDate = endDateTimePicker.Value;
             }
-
             
             var list = await _serviceFlights.Get<List<Model.Flights>>(request);
 
@@ -262,27 +255,29 @@ namespace FitAirlines.UI
         private async void cityComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             await loadFlights();
-
         }
+
+        //
+        // MARK: - Colors
+        //
 
         private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-
-            foreach (DataGridViewRow Myrow in dataGridView.Rows)
+            foreach (DataGridViewRow Row in dataGridView.Rows)
             {
-                if (Myrow.DataBoundItem is Model.Flights selectedFlight)
+                if (Row.DataBoundItem is Model.Flights selectedFlight)
                 {
                     if (selectedFlight.IsActive != true) 
                     {
-                        Myrow.DefaultCellStyle.BackColor = Color.LightPink;
+                        Row.DefaultCellStyle.BackColor = Color.LightPink;
                     }
                     else if (selectedFlight.EndDate.IsGreaterThan(DateTime.Now))
                     {
-                        Myrow.DefaultCellStyle.BackColor = Color.LightGreen;
+                        Row.DefaultCellStyle.BackColor = Color.LightGreen;
                     }
                     else
                     {
-                        Myrow.DefaultCellStyle.BackColor = Color.LightBlue;
+                        Row.DefaultCellStyle.BackColor = Color.LightBlue;
                     }
                 }
             }

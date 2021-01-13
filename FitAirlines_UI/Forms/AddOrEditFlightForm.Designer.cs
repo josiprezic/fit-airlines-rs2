@@ -241,9 +241,9 @@
             this.flightDurationLabel.AutoSize = true;
             this.flightDurationLabel.Location = new System.Drawing.Point(5, 345);
             this.flightDurationLabel.Name = "flightDurationLabel";
-            this.flightDurationLabel.Size = new System.Drawing.Size(130, 13);
+            this.flightDurationLabel.Size = new System.Drawing.Size(133, 13);
             this.flightDurationLabel.TabIndex = 29;
-            this.flightDurationLabel.Text = "Flight time [min] (One-way)";
+            this.flightDurationLabel.Text = "Flight time [min] (One-way):";
             // 
             // pilotNameTextBox
             // 

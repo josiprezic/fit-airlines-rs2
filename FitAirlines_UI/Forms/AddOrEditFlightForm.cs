@@ -27,14 +27,12 @@ namespace FitAirlines.UI
 
     public partial class AddOrEditFlightForm : BaseForm
     {
-
         //
         // MARK: - Variables
         //
 
         AddOrEditFlightFormType type;
         private bool isFirstLoad = true;
-
 
         private List<Cities> allCities = new List<Cities>();
         private List<Airports> allAirports = new List<Airports>();
@@ -71,10 +69,13 @@ namespace FitAirlines.UI
                 PopulateFormFields();
                 LoadPicture();
             }
+            else if (type == AddOrEditFlightFormType.Add) 
+            {
+                isActiveCheckBox.Checked = true;
+            }
 
             this.Enabled = true;
             isFirstLoad = false;
-
         }
 
         private void PopulateFormFields()
@@ -183,7 +184,6 @@ namespace FitAirlines.UI
         private async Task loadPlanes()
         {
             var list = await _servicePlanes.Get<List<Model.Planes>>(null);
-
             planeComboBox.DataSource = list;
             planeComboBox.DisplayMember = "PlaneName";
         }
@@ -265,13 +265,8 @@ namespace FitAirlines.UI
 
             if (!string.IsNullOrEmpty(flightPictureBox.ImageLocation))
             {
-
                 byte[] pictureContent = File.ReadAllBytes(flightPictureBox.ImageLocation);
-
-                // Resizing image to max 50 Kb
-                // Answer: https://stackoverflow.com/questions/8790275/resize-image-which-is-placed-in-byte-array
                 byte[] resizedPictureContent = ImageUploadHelper.Resize2Max50Kbytes(pictureContent);
-
                 request.Picture = resizedPictureContent;
             }
 
@@ -297,7 +292,6 @@ namespace FitAirlines.UI
         private void countryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (isFirstLoad && type == AddOrEditFlightFormType.Edit) { return; }
-
             resetCities();
             resetAirports();
         }
@@ -306,7 +300,6 @@ namespace FitAirlines.UI
         private void cityComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (isFirstLoad && type == AddOrEditFlightFormType.Edit) { return; }
-
             resetAirports();
         }
 
@@ -328,7 +321,6 @@ namespace FitAirlines.UI
             {
                 // Country is selected, display proper cities
                 var countryCities = allCities.Where(x => x.CountryId == selectedCountryId).ToList<Cities>();
-
                 var cbList = new List<Model.Cities>();
                 cbList.InsertRange(0, countryCities);
                 cbList = cbList.OrderBy(x => x.CityName).ToList();
@@ -340,10 +332,8 @@ namespace FitAirlines.UI
 
         private void resetAirports()
         {
-
             var selectedCity = (cityComboBox.SelectedItem as Cities);
             var cityExists = selectedCity != null;
-
             var selectedCityId = cityExists ? selectedCity.CityId : 0;
 
             // Check if city is selected
@@ -360,7 +350,6 @@ namespace FitAirlines.UI
             {
                 // city is selected, display proper airports
                 var cityAirports = allAirports.Where(x => x.CityId == selectedCityId).ToList<Airports>();
-
                 var cbList = new List<Model.Airports>();
                 cbList.InsertRange(0, cityAirports);
                 cbList = cbList.OrderBy(x => x.AirportName).ToList();

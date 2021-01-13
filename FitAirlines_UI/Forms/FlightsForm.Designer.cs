@@ -226,9 +226,9 @@
             this.minMembershipTypeLabel.AutoSize = true;
             this.minMembershipTypeLabel.Location = new System.Drawing.Point(407, 50);
             this.minMembershipTypeLabel.Name = "minMembershipTypeLabel";
-            this.minMembershipTypeLabel.Size = new System.Drawing.Size(35, 13);
+            this.minMembershipTypeLabel.Size = new System.Drawing.Size(126, 13);
             this.minMembershipTypeLabel.TabIndex = 30;
-            this.minMembershipTypeLabel.Text = "label1";
+            this.minMembershipTypeLabel.Text = "Minimum membersip level";
             // 
             // offerComboBox
             // 
