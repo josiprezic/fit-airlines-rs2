@@ -33,8 +33,6 @@ namespace FitAirlines.Model.Requests
         
         public double Credit { get; set; }
         
-        public DateTime StartDate { get; set; }
-        
         public bool? IsActive { get; set; }
         
         [Required] 

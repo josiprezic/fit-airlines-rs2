@@ -32,16 +32,16 @@
             this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.baseDataGridView1 = new FitAirlines.UI.BaseDataGridView(this.components);
-            this.dateTimePickerLabel = new System.Windows.Forms.Label();
-            this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
-            this.offerNameLabel = new System.Windows.Forms.Label();
-            this.offerNameTextBox = new System.Windows.Forms.TextBox();
             this.OfferName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShortInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.OfferTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateTimePickerLabel = new System.Windows.Forms.Label();
+            this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
+            this.offerNameLabel = new System.Windows.Forms.Label();
+            this.offerNameTextBox = new System.Windows.Forms.TextBox();
             this.offerDateTimePicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.baseDataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -95,43 +95,7 @@
             this.baseDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.baseDataGridView1.Size = new System.Drawing.Size(853, 421);
             this.baseDataGridView1.TabIndex = 7;
-            // 
-            // dateTimePickerLabel
-            // 
-            this.dateTimePickerLabel.AutoSize = true;
-            this.dateTimePickerLabel.Location = new System.Drawing.Point(215, 15);
-            this.dateTimePickerLabel.Name = "dateTimePickerLabel";
-            this.dateTimePickerLabel.Size = new System.Drawing.Size(107, 13);
-            this.dateTimePickerLabel.TabIndex = 6;
-            this.dateTimePickerLabel.Text = "dateTimePickerLabel";
-            // 
-            // isActiveCheckBox
-            // 
-            this.isActiveCheckBox.AutoSize = true;
-            this.isActiveCheckBox.Location = new System.Drawing.Point(465, 33);
-            this.isActiveCheckBox.Name = "isActiveCheckBox";
-            this.isActiveCheckBox.Size = new System.Drawing.Size(112, 17);
-            this.isActiveCheckBox.TabIndex = 4;
-            this.isActiveCheckBox.Text = "isActiveCheckBox";
-            this.isActiveCheckBox.UseVisualStyleBackColor = true;
-            this.isActiveCheckBox.CheckedChanged += new System.EventHandler(this.isActiveCheckBox_CheckedChanged);
-            // 
-            // offerNameLabel
-            // 
-            this.offerNameLabel.AutoSize = true;
-            this.offerNameLabel.Location = new System.Drawing.Point(12, 15);
-            this.offerNameLabel.Name = "offerNameLabel";
-            this.offerNameLabel.Size = new System.Drawing.Size(82, 13);
-            this.offerNameLabel.TabIndex = 3;
-            this.offerNameLabel.Text = "offerNameLabel";
-            // 
-            // offerNameTextBox
-            // 
-            this.offerNameTextBox.Location = new System.Drawing.Point(15, 31);
-            this.offerNameTextBox.Name = "offerNameTextBox";
-            this.offerNameTextBox.Size = new System.Drawing.Size(178, 20);
-            this.offerNameTextBox.TabIndex = 2;
-            this.offerNameTextBox.TextChanged += new System.EventHandler(this.offerNameTextBox_TextChanged);
+            this.baseDataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.baseDataGridView1_CellFormatting);
             // 
             // OfferName
             // 
@@ -176,6 +140,43 @@
             this.OfferTypeId.HeaderText = "Offer Type";
             this.OfferTypeId.Name = "OfferTypeId";
             this.OfferTypeId.ReadOnly = true;
+            // 
+            // dateTimePickerLabel
+            // 
+            this.dateTimePickerLabel.AutoSize = true;
+            this.dateTimePickerLabel.Location = new System.Drawing.Point(215, 15);
+            this.dateTimePickerLabel.Name = "dateTimePickerLabel";
+            this.dateTimePickerLabel.Size = new System.Drawing.Size(107, 13);
+            this.dateTimePickerLabel.TabIndex = 6;
+            this.dateTimePickerLabel.Text = "dateTimePickerLabel";
+            // 
+            // isActiveCheckBox
+            // 
+            this.isActiveCheckBox.AutoSize = true;
+            this.isActiveCheckBox.Location = new System.Drawing.Point(465, 33);
+            this.isActiveCheckBox.Name = "isActiveCheckBox";
+            this.isActiveCheckBox.Size = new System.Drawing.Size(112, 17);
+            this.isActiveCheckBox.TabIndex = 4;
+            this.isActiveCheckBox.Text = "isActiveCheckBox";
+            this.isActiveCheckBox.UseVisualStyleBackColor = true;
+            this.isActiveCheckBox.CheckedChanged += new System.EventHandler(this.isActiveCheckBox_CheckedChanged);
+            // 
+            // offerNameLabel
+            // 
+            this.offerNameLabel.AutoSize = true;
+            this.offerNameLabel.Location = new System.Drawing.Point(12, 15);
+            this.offerNameLabel.Name = "offerNameLabel";
+            this.offerNameLabel.Size = new System.Drawing.Size(82, 13);
+            this.offerNameLabel.TabIndex = 3;
+            this.offerNameLabel.Text = "offerNameLabel";
+            // 
+            // offerNameTextBox
+            // 
+            this.offerNameTextBox.Location = new System.Drawing.Point(15, 31);
+            this.offerNameTextBox.Name = "offerNameTextBox";
+            this.offerNameTextBox.Size = new System.Drawing.Size(178, 20);
+            this.offerNameTextBox.TabIndex = 2;
+            this.offerNameTextBox.TextChanged += new System.EventHandler(this.offerNameTextBox_TextChanged);
             // 
             // offerDateTimePicker
             // 

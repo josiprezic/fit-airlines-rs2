@@ -772,5 +772,14 @@ namespace FitAirlines.UI.Properties {
                 return ResourceManager.GetString("Validation_FieldRequired", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The phone number is not in valid format..
+        /// </summary>
+        public static string Validation_PhoneNumberInvalid {
+            get {
+                return ResourceManager.GetString("Validation_PhoneNumberInvalid", resourceCulture);
+            }
+        }
     }
 }

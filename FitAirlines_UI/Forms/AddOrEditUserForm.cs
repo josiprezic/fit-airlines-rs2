@@ -9,7 +9,9 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -121,8 +123,6 @@ namespace FitAirlines.UI
             fitMembershipLabel.Text = "Membership";
             contactNumberLabel.Text = "Tel number";
             userRoleLabel.Text = "User role";
-
-            
         }
 
         protected override void SetupStyling()
@@ -151,11 +151,10 @@ namespace FitAirlines.UI
 
         private async void saveButton_Click(object sender, EventArgs e)
         {
-            if (!ValidateChildren()) return;
+            if (!ValidateChildren()) return; // Blokiranje save buttona
 
             this.Enabled = false;
 
-            var generatedPasswordString = PasswordHelper.CreatePassword(8);
             double credit = Convert.ToDouble(accountBalanceValueLabel.Text);
 
             var request = new Model.Requests.UsersInsertRequest
@@ -169,17 +168,12 @@ namespace FitAirlines.UI
                 Gender = genderComboBox.Text,
                 IsActive = isActiveCheckBox.Checked,
                 Credit = credit,
-
                 ContactNumber = ContactNumberTextBox.Text,
-                StartDate = DateTime.Now,
-                Password = generatedPasswordString, // TODO: Szef password will be generated/updated for both create/update requests?
-                PasswordConfirmation = generatedPasswordString,
-                 
             };
 
-            if(profilePictureBox.ImageLocation != null)
+            if (profilePictureBox.ImageLocation != null)
             {
-           
+
                 byte[] pictureContent = File.ReadAllBytes(profilePictureBox.ImageLocation);
 
                 // Resizing image to max 50 Kb
@@ -192,6 +186,12 @@ namespace FitAirlines.UI
             Model.Users user;
             if (type == AddOrEditUserFormType.Add)
             {
+                var generatedPasswordString = PasswordHelper.CreatePassword(8);
+
+                request.Password = generatedPasswordString;
+                request.PasswordConfirmation = generatedPasswordString;
+                request.StartDate = DateTime.Now;
+
                 user = await _serviceUsers.Insert<Model.Users>(request);
             }
             else
@@ -220,7 +220,7 @@ namespace FitAirlines.UI
             emailTextBox.Text = selectedUser.Email;
             foreach (MembershipTypes item in fitMembershipComboBox.Items)
             {
-                if(item.MembershipTypeId == selectedUser.MembershipTypeId)
+                if (item.MembershipTypeId == selectedUser.MembershipTypeId)
                 {
                     fitMembershipComboBox.SelectedItem = item;
                     break;
@@ -240,14 +240,19 @@ namespace FitAirlines.UI
             isActiveCheckBox.Checked = selectedUser.IsActive ?? false;
             ContactNumberTextBox.Text = selectedUser.ContactNumber;
             accountBalanceValueLabel.Text = selectedUser.Credit.ToString();
-       
+
         }
+
+        //
+        // MARK: - Validation
+        //
+
 
         private void basicTextBox_Validating(object sender, CancelEventArgs e)
         {
             var field = sender as TextBox;
 
-            if(string.IsNullOrWhiteSpace(field.Text))
+            if (string.IsNullOrWhiteSpace(field.Text))
             {
                 errorProvider1.SetError(field, Resources.Validation_FieldRequired);
                 e.Cancel = true;
@@ -268,7 +273,7 @@ namespace FitAirlines.UI
                 errorProvider1.SetError(field, Resources.Validation_FieldRequired);
                 e.Cancel = true;
             }
-            else if(!ValidateEmail(field.Text))
+            else if (!field.Text.IsEmail())
             {
                 errorProvider1.SetError(field, Resources.Validation_EmailInvalid);
                 e.Cancel = true;
@@ -279,9 +284,25 @@ namespace FitAirlines.UI
             }
         }
 
-        bool ValidateEmail( string emailAddress)
+        private void ContactNumberTextBox_Validating_1(object sender, CancelEventArgs e)
         {
-            return true;
+            var field = sender as MaskedTextBox;
+
+
+            if (string.IsNullOrWhiteSpace(field.Text))
+            {
+                errorProvider1.SetError(field, Resources.Validation_FieldRequired);
+                e.Cancel = true;
+            }
+            else if (!field.Text.ValidTelephoneNo())
+            {
+                errorProvider1.SetError(field, Resources.Validation_PhoneNumberInvalid);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
         }
     }
 }

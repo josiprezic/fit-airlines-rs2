@@ -64,6 +64,13 @@ namespace FitAirlines.WebAPI
             services.AddScoped<IOfferTypesService, OfferTypesService>();
             services.AddScoped<IUserRolesService, UserRolesService>();
             services.AddScoped<IOffersService, OffersService>();
+            services.AddScoped<IFlightsService, FlightsService>();
+            services.AddScoped<ICountriesService, CountriesService>();
+            services.AddScoped<ICitiesService, CitiesService>();
+            services.AddScoped<IAirportsService, AirportsService>();
+            services.AddScoped<IPlanesService, PlanesService>();
+
+
 
             var connection = Configuration.GetConnectionString("local");
             services.AddDbContext<FitAirlinesContext>(options => options.UseSqlServer(connection));

@@ -51,19 +51,19 @@ namespace FitAirlines.UI
             if (Value == DateTimePicker.MinimumDateTime)
             {
                 Value = DateTime.Now; // This is required in order to show current month/year when user reopens the date popup.
-                Format = DateTimePickerFormat.Custom;
-                CustomFormat = " ";
+               // Format = DateTimePickerFormat.Custom;
+               // CustomFormat = " ";
             }
             else
             {
-                Format = DateTimePickerFormat.Long;
+                //Format = DateTimePickerFormat.Long;
             }
 
         }
 
         private void BaseSetup() 
         {
-            Format = DateTimePickerFormat.Long;
+            //Format = DateTimePickerFormat.Long;
         }
 
         protected override void OnValueChanged(EventArgs eventargs)

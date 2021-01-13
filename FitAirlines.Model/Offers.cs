@@ -16,5 +16,10 @@ namespace FitAirlines.Model
         public int OfferTypeId { get; set; }
 
         public OfferTypes OfferType { get; set; }
+
+        public override string ToString()
+        {
+            return OfferName;
+        }
     }
 }

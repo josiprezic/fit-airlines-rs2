@@ -29,6 +29,7 @@ namespace FitAirlines.WebAPI.Mapper
             CreateMap<Database.Users, Model.Requests.UsersUpdateRequest>().ReverseMap();
             CreateMap<Database.Offers, Model.Requests.OffersInsertRequest>().ReverseMap();
 
+            CreateMap<Database.Flights, Model.Requests.FlightsInsertRequest>().ReverseMap();
         }
     }
 }
