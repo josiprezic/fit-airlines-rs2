@@ -269,7 +269,7 @@
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(190, 20);
             this.lastNameTextBox.TabIndex = 1;
-            this.lastNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.basicTextBox_Validating);
+            this.lastNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.lastNameTextBox_Validating);
             // 
             // lastNameLabel
             // 
@@ -286,7 +286,7 @@
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(190, 20);
             this.firstNameTextBox.TabIndex = 0;
-            this.firstNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.basicTextBox_Validating);
+            this.firstNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.firstNameTextBox_Validating);
             // 
             // firstNameLabel
             // 

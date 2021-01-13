@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.cancelButton = new FitAirlines.UI.BaseButton();
             this.saveOfferButton = new FitAirlines.UI.BaseButton();
@@ -47,11 +48,13 @@
             this.imageGroupBox = new System.Windows.Forms.GroupBox();
             this.offerPictureBox = new FitAirlines.UI.BasePictureBox();
             this.uploadofferPictureButton = new FitAirlines.UI.BaseButton();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.personalInfoGroupBox.SuspendLayout();
             this.imageGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.offerPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -62,7 +65,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.cancelButton, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.saveOfferButton, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(365, 329);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(439, 329);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -105,7 +108,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(678, 311);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(752, 311);
             this.tableLayoutPanel1.TabIndex = 12;
             // 
             // personalInfoGroupBox
@@ -124,7 +127,7 @@
             this.personalInfoGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.personalInfoGroupBox.Location = new System.Drawing.Point(3, 3);
             this.personalInfoGroupBox.Name = "personalInfoGroupBox";
-            this.personalInfoGroupBox.Size = new System.Drawing.Size(333, 305);
+            this.personalInfoGroupBox.Size = new System.Drawing.Size(370, 305);
             this.personalInfoGroupBox.TabIndex = 2;
             this.personalInfoGroupBox.TabStop = false;
             this.personalInfoGroupBox.Text = "groupBox1";
@@ -153,6 +156,7 @@
             this.endDateTimePicker.Name = "endDateTimePicker";
             this.endDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.endDateTimePicker.TabIndex = 9;
+            this.endDateTimePicker.Validating += new System.ComponentModel.CancelEventHandler(this.endDateTimePicker_Validating);
             // 
             // startDateTimePicker
             // 
@@ -163,10 +167,11 @@
             // 
             // offerMemberTypeComboBox
             // 
+            this.offerMemberTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.offerMemberTypeComboBox.FormattingEnabled = true;
             this.offerMemberTypeComboBox.Location = new System.Drawing.Point(130, 45);
             this.offerMemberTypeComboBox.Name = "offerMemberTypeComboBox";
-            this.offerMemberTypeComboBox.Size = new System.Drawing.Size(191, 21);
+            this.offerMemberTypeComboBox.Size = new System.Drawing.Size(200, 21);
             this.offerMemberTypeComboBox.TabIndex = 7;
             // 
             // isActiveCheckBox
@@ -178,15 +183,15 @@
             this.isActiveCheckBox.TabIndex = 6;
             this.isActiveCheckBox.Text = "checkBox1";
             this.isActiveCheckBox.UseVisualStyleBackColor = true;
-            this.isActiveCheckBox.CheckedChanged += new System.EventHandler(this.isActiveCheckBox_CheckedChanged);
             // 
             // offerDescriptionTextBox
             // 
             this.offerDescriptionTextBox.Location = new System.Drawing.Point(130, 69);
             this.offerDescriptionTextBox.Multiline = true;
             this.offerDescriptionTextBox.Name = "offerDescriptionTextBox";
-            this.offerDescriptionTextBox.Size = new System.Drawing.Size(191, 133);
+            this.offerDescriptionTextBox.Size = new System.Drawing.Size(200, 133);
             this.offerDescriptionTextBox.TabIndex = 5;
+            this.offerDescriptionTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.offerDescriptionTextBox_Validating);
             // 
             // offerDescriptionLabel
             // 
@@ -210,8 +215,9 @@
             // 
             this.offerNameTextBox.Location = new System.Drawing.Point(130, 22);
             this.offerNameTextBox.Name = "offerNameTextBox";
-            this.offerNameTextBox.Size = new System.Drawing.Size(191, 20);
+            this.offerNameTextBox.Size = new System.Drawing.Size(200, 20);
             this.offerNameTextBox.TabIndex = 1;
+            this.offerNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.offerNameTextBox_Validating);
             // 
             // offerNameLabel
             // 
@@ -227,9 +233,9 @@
             this.imageGroupBox.Controls.Add(this.offerPictureBox);
             this.imageGroupBox.Controls.Add(this.uploadofferPictureButton);
             this.imageGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageGroupBox.Location = new System.Drawing.Point(342, 3);
+            this.imageGroupBox.Location = new System.Drawing.Point(379, 3);
             this.imageGroupBox.Name = "imageGroupBox";
-            this.imageGroupBox.Size = new System.Drawing.Size(333, 305);
+            this.imageGroupBox.Size = new System.Drawing.Size(370, 305);
             this.imageGroupBox.TabIndex = 11;
             this.imageGroupBox.TabStop = false;
             this.imageGroupBox.Text = "groupBox2";
@@ -243,7 +249,7 @@
             this.offerPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.offerPictureBox.Location = new System.Drawing.Point(6, 25);
             this.offerPictureBox.Name = "offerPictureBox";
-            this.offerPictureBox.Size = new System.Drawing.Size(321, 230);
+            this.offerPictureBox.Size = new System.Drawing.Size(358, 230);
             this.offerPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.offerPictureBox.TabIndex = 10;
             this.offerPictureBox.TabStop = false;
@@ -254,17 +260,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.uploadofferPictureButton.Location = new System.Drawing.Point(6, 261);
             this.uploadofferPictureButton.Name = "uploadofferPictureButton";
-            this.uploadofferPictureButton.Size = new System.Drawing.Size(321, 40);
+            this.uploadofferPictureButton.Size = new System.Drawing.Size(358, 40);
             this.uploadofferPictureButton.TabIndex = 7;
             this.uploadofferPictureButton.Text = "baseButton1";
             this.uploadofferPictureButton.UseVisualStyleBackColor = true;
             this.uploadofferPictureButton.Click += new System.EventHandler(this.uploadofferPictureButton_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // AddOrEditOfferForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(702, 382);
+            this.ClientSize = new System.Drawing.Size(776, 382);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -279,6 +289,7 @@
             this.personalInfoGroupBox.PerformLayout();
             this.imageGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.offerPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -304,5 +315,6 @@
         private System.Windows.Forms.Label startDateLabel;
         private System.Windows.Forms.DateTimePicker endDateTimePicker;
         private System.Windows.Forms.DateTimePicker startDateTimePicker;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

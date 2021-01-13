@@ -263,14 +263,51 @@ namespace FitAirlines.UI
         // MARK: - Validation
         //
 
-        // User first and last name: At least one digit
-        private void basicTextBox_Validating(object sender, CancelEventArgs e)
+        // User first and last name: At least one letter
+        // Should not be longer than 20
+        // Should contain just letters, "-" and spaces
+        private void firstNameTextBox_Validating(object sender, CancelEventArgs e)
         {
             var field = sender as TextBox;
 
             if (string.IsNullOrWhiteSpace(field.Text))
             {
                 errorProvider1.SetError(field, Resources.Validation_FieldRequired);
+                e.Cancel = true;
+            }
+            else if (field.Text.Length > 20)
+            {
+                errorProvider1.SetError(field, "First name cannot be longer than 20 characters.");
+                e.Cancel = true;
+            }
+            else if (!field.Text.All((c => Char.IsLetter(c) || c == '-' || c == ' ')))
+            {
+                errorProvider1.SetError(field, "Please enter valid first name.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
+
+        private void lastNameTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as TextBox;
+
+            if (string.IsNullOrWhiteSpace(field.Text))
+            {
+                errorProvider1.SetError(field, Resources.Validation_FieldRequired);
+                e.Cancel = true;
+            }
+            else if (field.Text.Length > 20)
+            {
+                errorProvider1.SetError(field, "Last name cannot be longer than 20 characters.");
+                e.Cancel = true;
+            }
+            else if (!field.Text.All((c => Char.IsLetter(c) || c == '-' || c == ' ')))
+            {
+                errorProvider1.SetError(field, "Please enter valid last name.");
                 e.Cancel = true;
             }
             else
@@ -292,6 +329,11 @@ namespace FitAirlines.UI
             else if (!field.Text.IsEmail())
             {
                 errorProvider1.SetError(field, Resources.Validation_EmailInvalid);
+                e.Cancel = true;
+            }
+            else if (field.Text.Length > 30)
+            {
+                errorProvider1.SetError(field, "Email cannot be longer than 30 characters.");
                 e.Cancel = true;
             }
             else
