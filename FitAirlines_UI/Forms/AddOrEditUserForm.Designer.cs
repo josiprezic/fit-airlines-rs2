@@ -91,7 +91,7 @@
             this.changeProfileImageButton.Location = new System.Drawing.Point(6, 160);
             this.changeProfileImageButton.Name = "changeProfileImageButton";
             this.changeProfileImageButton.Size = new System.Drawing.Size(137, 23);
-            this.changeProfileImageButton.TabIndex = 121;
+            this.changeProfileImageButton.TabIndex = 0;
             this.changeProfileImageButton.Text = "changeProfileImageButton";
             this.changeProfileImageButton.UseVisualStyleBackColor = true;
             this.changeProfileImageButton.Click += new System.EventHandler(this.changeProfileImageButton_Click);
@@ -130,7 +130,7 @@
             this.ContactNumberTextBox.Mask = "999-000-000";
             this.ContactNumberTextBox.Name = "ContactNumberTextBox";
             this.ContactNumberTextBox.Size = new System.Drawing.Size(190, 20);
-            this.ContactNumberTextBox.TabIndex = 22;
+            this.ContactNumberTextBox.TabIndex = 6;
             this.ContactNumberTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ContactNumberTextBox_Validating_1);
             // 
             // userRoleComboBox
@@ -140,7 +140,7 @@
             this.userRoleComboBox.Location = new System.Drawing.Point(84, 209);
             this.userRoleComboBox.Name = "userRoleComboBox";
             this.userRoleComboBox.Size = new System.Drawing.Size(190, 21);
-            this.userRoleComboBox.TabIndex = 30;
+            this.userRoleComboBox.TabIndex = 7;
             // 
             // userRoleLabel
             // 
@@ -165,7 +165,7 @@
             this.emailTextBox.Location = new System.Drawing.Point(84, 75);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(190, 20);
-            this.emailTextBox.TabIndex = 4;
+            this.emailTextBox.TabIndex = 2;
             this.emailTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.emailTextBox_Validating);
             // 
             // emailLabel
@@ -192,7 +192,7 @@
             this.isActiveCheckBox.Location = new System.Drawing.Point(194, 239);
             this.isActiveCheckBox.Name = "isActiveCheckBox";
             this.isActiveCheckBox.Size = new System.Drawing.Size(63, 17);
-            this.isActiveCheckBox.TabIndex = 31;
+            this.isActiveCheckBox.TabIndex = 8;
             this.isActiveCheckBox.Text = "isActive";
             this.isActiveCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -203,7 +203,7 @@
             this.fitMembershipComboBox.Location = new System.Drawing.Point(84, 155);
             this.fitMembershipComboBox.Name = "fitMembershipComboBox";
             this.fitMembershipComboBox.Size = new System.Drawing.Size(190, 21);
-            this.fitMembershipComboBox.TabIndex = 23;
+            this.fitMembershipComboBox.TabIndex = 5;
             // 
             // genderComboBox
             // 
@@ -215,14 +215,17 @@
             this.genderComboBox.Location = new System.Drawing.Point(84, 128);
             this.genderComboBox.Name = "genderComboBox";
             this.genderComboBox.Size = new System.Drawing.Size(190, 21);
-            this.genderComboBox.TabIndex = 22;
+            this.genderComboBox.TabIndex = 4;
+            this.genderComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.genderComboBox_Validating);
             // 
             // birthDateTimePicker
             // 
             this.birthDateTimePicker.Location = new System.Drawing.Point(84, 103);
             this.birthDateTimePicker.Name = "birthDateTimePicker";
             this.birthDateTimePicker.Size = new System.Drawing.Size(190, 20);
-            this.birthDateTimePicker.TabIndex = 5;
+            this.birthDateTimePicker.TabIndex = 3;
+            this.birthDateTimePicker.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.birthDateTimePicker.Validating += new System.ComponentModel.CancelEventHandler(this.birthDateTimePicker_Validating);
             // 
             // accountBalanceTextLabel
             // 
@@ -265,7 +268,7 @@
             this.lastNameTextBox.Location = new System.Drawing.Point(84, 49);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(190, 20);
-            this.lastNameTextBox.TabIndex = 3;
+            this.lastNameTextBox.TabIndex = 1;
             this.lastNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.basicTextBox_Validating);
             // 
             // lastNameLabel
@@ -282,7 +285,7 @@
             this.firstNameTextBox.Location = new System.Drawing.Point(84, 23);
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(190, 20);
-            this.firstNameTextBox.TabIndex = 1;
+            this.firstNameTextBox.TabIndex = 0;
             this.firstNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.basicTextBox_Validating);
             // 
             // firstNameLabel
@@ -311,7 +314,7 @@
             this.saveButton.Location = new System.Drawing.Point(6, 215);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(101, 40);
-            this.saveButton.TabIndex = 110;
+            this.saveButton.TabIndex = 2;
             this.saveButton.Text = "saveButton";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -321,7 +324,7 @@
             this.cancelButton.Location = new System.Drawing.Point(6, 169);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(101, 40);
-            this.cancelButton.TabIndex = 111;
+            this.cancelButton.TabIndex = 1;
             this.cancelButton.Text = "cancelButton";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -331,7 +334,7 @@
             this.addCreditButton.Location = new System.Drawing.Point(6, 23);
             this.addCreditButton.Name = "addCreditButton";
             this.addCreditButton.Size = new System.Drawing.Size(101, 40);
-            this.addCreditButton.TabIndex = 112;
+            this.addCreditButton.TabIndex = 0;
             this.addCreditButton.Text = "addCreditButton";
             this.addCreditButton.UseVisualStyleBackColor = true;
             this.addCreditButton.Click += new System.EventHandler(this.addCreditButton_Click);

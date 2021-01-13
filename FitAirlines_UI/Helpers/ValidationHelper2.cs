@@ -21,6 +21,17 @@ namespace FitAirlines.UI.Helpers
 
     public static class ExtensionMethods
     {
+
+        public static int GetAge(this DateTime bornDate)
+        {
+            DateTime today = DateTime.Today;
+            int age = today.Year - bornDate.Year;
+            if (bornDate > today.AddYears(-age))
+                age--;
+
+            return age;
+        }
+
         #region " String "
 
         #region " Nullable, Empty & Whitespace "

@@ -96,6 +96,13 @@ namespace FitAirlines.UI
             var list = await _serviceUserRoles.Get<List<Model.UserRoles>>(null);
             userRoleComboBox.DataSource = list;
             userRoleComboBox.DisplayMember = "Title";
+
+            // TODO: Szef some hardcoded values here...
+            var fitMemberRole = list.First(x => x.Title.Contains("FIT"));
+            if (fitMemberRole != null)
+            {
+                userRoleComboBox.SelectedItem = fitMemberRole;
+            }
         }
 
         protected override bool ShouldResize() { return false; }
@@ -295,19 +302,44 @@ namespace FitAirlines.UI
         }
 
         // Date of birth: User must be older than 18 years
-        
+        private void birthDateTimePicker_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as BaseDateTimePicker;
+            var date = field.Value;
+            var age = date.GetAge();
+
+            if (age < 18)
+            {
+                errorProvider1.SetError(field, "Invalid birth date. User should be at least 18 years old.");
+                e.Cancel = true;
+            }
+            else 
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
+
         // Gender: Must be selected M/Z
-        // TODO: JR TODO: Szef: Change this to be full string or at least to "M" and "F"
+        // TODO: JR TODO: Szef: Change default text to "Select gender"
+        // TODO: JR TODO: Szef Change this to be full string or at least to "M" and "F"
+        private void genderComboBox_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as BaseComboBox;
+            var genderText = genderComboBox.Text;
+
+            if (genderText.Length != 1)
+            {
+                errorProvider1.SetError(field, "Please select gender value.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
 
         // Membership must be selected: selected by default - no valdation required 
-        
         // User role: Must be selected: selected by default - no validation required
-        // TODO: JR default should be FIT member
-
-        // Credit: should be 0 at the begining
-        // Credit should be positive number
-
         // Is Active: No validation required
-        // TODO: JR Is Active should be renamed to active
     }
 }
