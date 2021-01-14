@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.baseDataGridView1 = new FitAirlines.UI.BaseDataGridView(this.components);
@@ -88,6 +89,16 @@
             this.EndDate,
             this.isActive,
             this.OfferTypeId});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.baseDataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.baseDataGridView1.Location = new System.Drawing.Point(12, 77);
             this.baseDataGridView1.MultiSelect = false;
             this.baseDataGridView1.Name = "baseDataGridView1";
