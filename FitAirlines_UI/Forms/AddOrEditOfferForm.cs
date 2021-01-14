@@ -62,6 +62,7 @@ namespace FitAirlines.UI
             }
 
             this.offerMemberTypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ActiveControl = offerNameTextBox;
 
             this.Enabled = true;
         }

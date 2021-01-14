@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.cancelButton = new FitAirlines.UI.BaseButton();
             this.saveButton = new FitAirlines.UI.BaseButton();
@@ -65,6 +66,7 @@
             this.isActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.notesTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.basicInfoGroupBox.SuspendLayout();
@@ -73,6 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.discPercentageUpDown)).BeginInit();
             this.imageGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.flightPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -83,7 +86,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.cancelButton, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.saveButton, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(374, 411);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(443, 411);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -96,7 +99,7 @@
             this.cancelButton.Location = new System.Drawing.Point(3, 3);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(154, 42);
-            this.cancelButton.TabIndex = 50;
+            this.cancelButton.TabIndex = 0;
             this.cancelButton.Text = "cancelButton";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -107,7 +110,7 @@
             this.saveButton.Location = new System.Drawing.Point(163, 3);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(155, 42);
-            this.saveButton.TabIndex = 52;
+            this.saveButton.TabIndex = 1;
             this.saveButton.Text = "saveButton";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -126,7 +129,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(697, 412);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(766, 412);
             this.tableLayoutPanel1.TabIndex = 14;
             // 
             // basicInfoGroupBox
@@ -160,7 +163,7 @@
             this.basicInfoGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.basicInfoGroupBox.Location = new System.Drawing.Point(3, 3);
             this.basicInfoGroupBox.Name = "basicInfoGroupBox";
-            this.basicInfoGroupBox.Size = new System.Drawing.Size(342, 406);
+            this.basicInfoGroupBox.Size = new System.Drawing.Size(377, 406);
             this.basicInfoGroupBox.TabIndex = 2;
             this.basicInfoGroupBox.TabStop = false;
             this.basicInfoGroupBox.Text = "groupBox1";
@@ -173,7 +176,8 @@
             this.endDateTimePicker.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.endDateTimePicker.Name = "endDateTimePicker";
             this.endDateTimePicker.Size = new System.Drawing.Size(190, 20);
-            this.endDateTimePicker.TabIndex = 30;
+            this.endDateTimePicker.TabIndex = 7;
+            this.endDateTimePicker.Validating += new System.ComponentModel.CancelEventHandler(this.endDateTimePicker_Validating);
             // 
             // startDateTimePicker
             // 
@@ -183,7 +187,7 @@
             this.startDateTimePicker.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.startDateTimePicker.Name = "startDateTimePicker";
             this.startDateTimePicker.Size = new System.Drawing.Size(190, 20);
-            this.startDateTimePicker.TabIndex = 29;
+            this.startDateTimePicker.TabIndex = 6;
             // 
             // MinMembershipBaseComboBox
             // 
@@ -192,7 +196,7 @@
             this.MinMembershipBaseComboBox.Location = new System.Drawing.Point(148, 316);
             this.MinMembershipBaseComboBox.Name = "MinMembershipBaseComboBox";
             this.MinMembershipBaseComboBox.Size = new System.Drawing.Size(191, 21);
-            this.MinMembershipBaseComboBox.TabIndex = 41;
+            this.MinMembershipBaseComboBox.TabIndex = 10;
             // 
             // label2
             // 
@@ -213,7 +217,7 @@
             0});
             this.priceNumericUpDown.Name = "priceNumericUpDown";
             this.priceNumericUpDown.Size = new System.Drawing.Size(191, 20);
-            this.priceNumericUpDown.TabIndex = 43;
+            this.priceNumericUpDown.TabIndex = 12;
             // 
             // priceLabel
             // 
@@ -234,7 +238,7 @@
             0});
             this.FlightTimeNumericUpDown.Name = "FlightTimeNumericUpDown";
             this.FlightTimeNumericUpDown.Size = new System.Drawing.Size(191, 20);
-            this.FlightTimeNumericUpDown.TabIndex = 42;
+            this.FlightTimeNumericUpDown.TabIndex = 11;
             // 
             // flightDurationLabel
             // 
@@ -250,7 +254,8 @@
             this.pilotNameTextBox.Location = new System.Drawing.Point(146, 162);
             this.pilotNameTextBox.Name = "pilotNameTextBox";
             this.pilotNameTextBox.Size = new System.Drawing.Size(191, 20);
-            this.pilotNameTextBox.TabIndex = 28;
+            this.pilotNameTextBox.TabIndex = 5;
+            this.pilotNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.pilotNameTextBox_Validating);
             // 
             // pilotNameLabel
             // 
@@ -266,7 +271,7 @@
             this.discPercentageUpDown.Location = new System.Drawing.Point(146, 290);
             this.discPercentageUpDown.Name = "discPercentageUpDown";
             this.discPercentageUpDown.Size = new System.Drawing.Size(191, 20);
-            this.discPercentageUpDown.TabIndex = 40;
+            this.discPercentageUpDown.TabIndex = 9;
             // 
             // voucherDiscPercentageLabel
             // 
@@ -284,7 +289,7 @@
             this.planeComboBox.Location = new System.Drawing.Point(147, 135);
             this.planeComboBox.Name = "planeComboBox";
             this.planeComboBox.Size = new System.Drawing.Size(191, 21);
-            this.planeComboBox.TabIndex = 24;
+            this.planeComboBox.TabIndex = 4;
             // 
             // planeLabel
             // 
@@ -302,7 +307,8 @@
             this.destinationAirportComboBox.Location = new System.Drawing.Point(148, 109);
             this.destinationAirportComboBox.Name = "destinationAirportComboBox";
             this.destinationAirportComboBox.Size = new System.Drawing.Size(191, 21);
-            this.destinationAirportComboBox.TabIndex = 22;
+            this.destinationAirportComboBox.TabIndex = 3;
+            this.destinationAirportComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.destinationAirportComboBox_Validating);
             // 
             // destAirportLabel
             // 
@@ -320,8 +326,9 @@
             this.cityComboBox.Location = new System.Drawing.Point(147, 82);
             this.cityComboBox.Name = "cityComboBox";
             this.cityComboBox.Size = new System.Drawing.Size(191, 21);
-            this.cityComboBox.TabIndex = 20;
+            this.cityComboBox.TabIndex = 2;
             this.cityComboBox.SelectedIndexChanged += new System.EventHandler(this.cityComboBox_SelectedIndexChanged);
+            this.cityComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.cityComboBox_Validating);
             // 
             // countryComboBox
             // 
@@ -330,8 +337,9 @@
             this.countryComboBox.Location = new System.Drawing.Point(147, 54);
             this.countryComboBox.Name = "countryComboBox";
             this.countryComboBox.Size = new System.Drawing.Size(191, 21);
-            this.countryComboBox.TabIndex = 15;
+            this.countryComboBox.TabIndex = 1;
             this.countryComboBox.SelectedIndexChanged += new System.EventHandler(this.countryComboBox_SelectedIndexChanged);
+            this.countryComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.countryComboBox_Validating);
             // 
             // offerComboBox
             // 
@@ -340,7 +348,7 @@
             this.offerComboBox.Location = new System.Drawing.Point(147, 26);
             this.offerComboBox.Name = "offerComboBox";
             this.offerComboBox.Size = new System.Drawing.Size(191, 21);
-            this.offerComboBox.TabIndex = 10;
+            this.offerComboBox.TabIndex = 0;
             // 
             // descriptionLabel
             // 
@@ -384,7 +392,8 @@
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(191, 46);
-            this.descriptionTextBox.TabIndex = 35;
+            this.descriptionTextBox.TabIndex = 8;
+            this.descriptionTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.descriptionTextBox_Validating);
             // 
             // cityLabel
             // 
@@ -412,9 +421,9 @@
             this.imageGroupBox.Controls.Add(this.notesTextBox);
             this.imageGroupBox.Controls.Add(this.label1);
             this.imageGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageGroupBox.Location = new System.Drawing.Point(351, 3);
+            this.imageGroupBox.Location = new System.Drawing.Point(386, 3);
             this.imageGroupBox.Name = "imageGroupBox";
-            this.imageGroupBox.Size = new System.Drawing.Size(343, 406);
+            this.imageGroupBox.Size = new System.Drawing.Size(377, 406);
             this.imageGroupBox.TabIndex = 11;
             this.imageGroupBox.TabStop = false;
             this.imageGroupBox.Text = "groupBox2";
@@ -428,7 +437,7 @@
             this.flightPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flightPictureBox.Location = new System.Drawing.Point(6, 25);
             this.flightPictureBox.Name = "flightPictureBox";
-            this.flightPictureBox.Size = new System.Drawing.Size(331, 206);
+            this.flightPictureBox.Size = new System.Drawing.Size(365, 206);
             this.flightPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.flightPictureBox.TabIndex = 10;
             this.flightPictureBox.TabStop = false;
@@ -439,8 +448,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.uploadFlightPictureButton.Location = new System.Drawing.Point(5, 243);
             this.uploadFlightPictureButton.Name = "uploadFlightPictureButton";
-            this.uploadFlightPictureButton.Size = new System.Drawing.Size(331, 40);
-            this.uploadFlightPictureButton.TabIndex = 44;
+            this.uploadFlightPictureButton.Size = new System.Drawing.Size(365, 40);
+            this.uploadFlightPictureButton.TabIndex = 0;
             this.uploadFlightPictureButton.Text = "Upload Picture...";
             this.uploadFlightPictureButton.UseVisualStyleBackColor = true;
             this.uploadFlightPictureButton.Click += new System.EventHandler(this.uploadFlightPictureButton_Click);
@@ -451,7 +460,7 @@
             this.isActiveCheckBox.Location = new System.Drawing.Point(45, 373);
             this.isActiveCheckBox.Name = "isActiveCheckBox";
             this.isActiveCheckBox.Size = new System.Drawing.Size(56, 17);
-            this.isActiveCheckBox.TabIndex = 48;
+            this.isActiveCheckBox.TabIndex = 2;
             this.isActiveCheckBox.Text = "Active";
             this.isActiveCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -460,8 +469,9 @@
             this.notesTextBox.Location = new System.Drawing.Point(45, 289);
             this.notesTextBox.Multiline = true;
             this.notesTextBox.Name = "notesTextBox";
-            this.notesTextBox.Size = new System.Drawing.Size(291, 74);
-            this.notesTextBox.TabIndex = 45;
+            this.notesTextBox.Size = new System.Drawing.Size(325, 74);
+            this.notesTextBox.TabIndex = 1;
+            this.notesTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.notesTextBox_Validating);
             // 
             // label1
             // 
@@ -472,11 +482,15 @@
             this.label1.TabIndex = 34;
             this.label1.Text = "Notes:";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // AddOrEditFlightForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 462);
+            this.ClientSize = new System.Drawing.Size(774, 462);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -495,6 +509,7 @@
             this.imageGroupBox.ResumeLayout(false);
             this.imageGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.flightPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -538,5 +553,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker endDateTimePicker;
         private System.Windows.Forms.DateTimePicker startDateTimePicker;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

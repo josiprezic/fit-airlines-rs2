@@ -78,7 +78,7 @@
             this.cancelButton.Location = new System.Drawing.Point(3, 3);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(154, 42);
-            this.cancelButton.TabIndex = 8;
+            this.cancelButton.TabIndex = 7;
             this.cancelButton.Text = "baseButton2";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -89,7 +89,7 @@
             this.saveOfferButton.Location = new System.Drawing.Point(163, 3);
             this.saveOfferButton.Name = "saveOfferButton";
             this.saveOfferButton.Size = new System.Drawing.Size(155, 42);
-            this.saveOfferButton.TabIndex = 9;
+            this.saveOfferButton.TabIndex = 8;
             this.saveOfferButton.Text = "baseButton3";
             this.saveOfferButton.UseVisualStyleBackColor = true;
             this.saveOfferButton.Click += new System.EventHandler(this.saveOfferButton_Click);
@@ -155,7 +155,7 @@
             this.endDateTimePicker.Location = new System.Drawing.Point(130, 235);
             this.endDateTimePicker.Name = "endDateTimePicker";
             this.endDateTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.endDateTimePicker.TabIndex = 9;
+            this.endDateTimePicker.TabIndex = 4;
             this.endDateTimePicker.Validating += new System.ComponentModel.CancelEventHandler(this.endDateTimePicker_Validating);
             // 
             // startDateTimePicker
@@ -163,7 +163,7 @@
             this.startDateTimePicker.Location = new System.Drawing.Point(130, 209);
             this.startDateTimePicker.Name = "startDateTimePicker";
             this.startDateTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.startDateTimePicker.TabIndex = 8;
+            this.startDateTimePicker.TabIndex = 3;
             // 
             // offerMemberTypeComboBox
             // 
@@ -172,7 +172,7 @@
             this.offerMemberTypeComboBox.Location = new System.Drawing.Point(130, 45);
             this.offerMemberTypeComboBox.Name = "offerMemberTypeComboBox";
             this.offerMemberTypeComboBox.Size = new System.Drawing.Size(200, 21);
-            this.offerMemberTypeComboBox.TabIndex = 7;
+            this.offerMemberTypeComboBox.TabIndex = 1;
             // 
             // isActiveCheckBox
             // 
@@ -180,7 +180,7 @@
             this.isActiveCheckBox.Location = new System.Drawing.Point(130, 261);
             this.isActiveCheckBox.Name = "isActiveCheckBox";
             this.isActiveCheckBox.Size = new System.Drawing.Size(80, 17);
-            this.isActiveCheckBox.TabIndex = 6;
+            this.isActiveCheckBox.TabIndex = 5;
             this.isActiveCheckBox.Text = "checkBox1";
             this.isActiveCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -190,7 +190,7 @@
             this.offerDescriptionTextBox.Multiline = true;
             this.offerDescriptionTextBox.Name = "offerDescriptionTextBox";
             this.offerDescriptionTextBox.Size = new System.Drawing.Size(200, 133);
-            this.offerDescriptionTextBox.TabIndex = 5;
+            this.offerDescriptionTextBox.TabIndex = 2;
             this.offerDescriptionTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.offerDescriptionTextBox_Validating);
             // 
             // offerDescriptionLabel
@@ -216,7 +216,7 @@
             this.offerNameTextBox.Location = new System.Drawing.Point(130, 22);
             this.offerNameTextBox.Name = "offerNameTextBox";
             this.offerNameTextBox.Size = new System.Drawing.Size(200, 20);
-            this.offerNameTextBox.TabIndex = 1;
+            this.offerNameTextBox.TabIndex = 0;
             this.offerNameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.offerNameTextBox_Validating);
             // 
             // offerNameLabel
@@ -236,7 +236,7 @@
             this.imageGroupBox.Location = new System.Drawing.Point(379, 3);
             this.imageGroupBox.Name = "imageGroupBox";
             this.imageGroupBox.Size = new System.Drawing.Size(370, 305);
-            this.imageGroupBox.TabIndex = 11;
+            this.imageGroupBox.TabIndex = 0;
             this.imageGroupBox.TabStop = false;
             this.imageGroupBox.Text = "groupBox2";
             // 
@@ -261,7 +261,7 @@
             this.uploadofferPictureButton.Location = new System.Drawing.Point(6, 261);
             this.uploadofferPictureButton.Name = "uploadofferPictureButton";
             this.uploadofferPictureButton.Size = new System.Drawing.Size(358, 40);
-            this.uploadofferPictureButton.TabIndex = 7;
+            this.uploadofferPictureButton.TabIndex = 6;
             this.uploadofferPictureButton.Text = "baseButton1";
             this.uploadofferPictureButton.UseVisualStyleBackColor = true;
             this.uploadofferPictureButton.Click += new System.EventHandler(this.uploadofferPictureButton_Click);
