@@ -57,13 +57,11 @@ namespace FitAirlines.UI
             InitializeComponent();
         }
 
-
         private async void AddOrEditFlightForm_Load(object sender, EventArgs e)
         {
             this.Enabled = false;
-
+            SetupControls();
             await loadData();
-
             if (type == AddOrEditFlightFormType.Edit && selectedFlight != null)
             {
                 PopulateFormFields();
@@ -73,9 +71,36 @@ namespace FitAirlines.UI
             {
                 isActiveCheckBox.Checked = true;
             }
-
             this.Enabled = true;
             isFirstLoad = false;
+        }
+
+        private void SetupControls() 
+        {
+            // Flight time setup
+            // Should be between 10-10000
+            FlightTimeNumericUpDown.Minimum = 10;
+            FlightTimeNumericUpDown.Maximum = 10000;
+            FlightTimeNumericUpDown.Value = 60;
+            FlightTimeNumericUpDown.Increment = 10;
+            FlightTimeNumericUpDown.ReadOnly = true;
+
+            // Voucher discount
+            // Should be between 0-100 [5]
+            discPercentageUpDown.Minimum = 0;
+            discPercentageUpDown.Maximum = 95;
+            discPercentageUpDown.Value = 0;
+            discPercentageUpDown.Increment = 5;
+            discPercentageUpDown.ReadOnly = true;
+
+
+            // Total price
+            // Should be between 0-10 000
+            // 
+            priceNumericUpDown.Minimum = 10;
+            priceNumericUpDown.Maximum = 100000;
+            priceNumericUpDown.Value = 100;
+            priceNumericUpDown.Increment = 10;
         }
 
         private void PopulateFormFields()
@@ -101,7 +126,9 @@ namespace FitAirlines.UI
 
             MinMembershipBaseComboBox.SetSelectedItem<Model.MembershipTypes>(x => x.MembershipTypeId == selectedFlight.AvailableToMemberTypeId);
 
-            FlightTimeNumericUpDown.Value = decimal.Parse(selectedFlight.FlightDuration.Minutes.ToString());
+
+
+            FlightTimeNumericUpDown.Value = (decimal) selectedFlight.FlightDuration.TotalMinutes;
             priceNumericUpDown.Value = decimal.Parse(selectedFlight.Price.ToString());
 
             isActiveCheckBox.Checked = selectedFlight.IsActive.Value;
@@ -122,7 +149,6 @@ namespace FitAirlines.UI
                 }
             }
         }
-
 
         private async Task loadData()
         {
@@ -260,7 +286,7 @@ namespace FitAirlines.UI
                 IsActive = isActiveCheckBox.Checked,
                 ShortInfo = descriptionTextBox.Text,
                 StartDate = startDateTimePicker.Value,
-                EndDate = startDateTimePicker.Value
+                EndDate = endDateTimePicker.Value
             };
 
             if (!string.IsNullOrEmpty(flightPictureBox.ImageLocation))
@@ -355,6 +381,175 @@ namespace FitAirlines.UI
                 cbList = cbList.OrderBy(x => x.AirportName).ToList();
                 destinationAirportComboBox.DataSource = cbList;
                 destinationAirportComboBox.Enabled = true;
+            }
+        }
+
+        //
+        // MARK: - Valdation
+        //
+
+        // Country: 
+        // Should not be "All"
+        private void countryComboBox_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as BaseComboBox;
+            var text = (field.SelectedItem as Countries).CountryName;
+
+            if (text == "All")
+            {
+                errorProvider1.SetError(field, "Please select country value.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
+
+        // City: Should be selected
+        private void cityComboBox_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as BaseComboBox;
+            var selectedItem = field.SelectedItem as Cities;
+            if (selectedItem == null)
+            {
+                errorProvider1.SetError(field, "Please select city value.");
+                e.Cancel = true;
+                return;
+            }
+
+            var text = selectedItem.CityName;
+            if (text == null || text == "" || text == "Select country")
+            {
+                errorProvider1.SetError(field, "Please select city value.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
+
+        // Destination Airport: Should be selected
+        private void destinationAirportComboBox_Validating(object sender, CancelEventArgs e)
+        {
+
+            var field = sender as BaseComboBox;
+            var selectedItem = field.SelectedItem as Airports;
+            if (selectedItem == null)
+            {
+                errorProvider1.SetError(field, "Please select destination airport.");
+                e.Cancel = true;
+                return;
+            }
+
+            var text = selectedItem.AirportName;
+
+            if (text == null || text == "" || text == "Select city")
+            {
+                errorProvider1.SetError(field, "Please select destination airport.");
+                e.Cancel = true; // TODO: JR
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
+
+        // Pilot name: At least two words with at least one letter
+        // No numbers
+        // Just "-" and " " allowed + letters
+        private void pilotNameTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as TextBox;
+
+            if (string.IsNullOrWhiteSpace(field.Text))
+            {
+                errorProvider1.SetError(field, Resources.Validation_FieldRequired);
+                e.Cancel = true;
+            }
+            else if (field.Text.Length > 80)
+            {
+                errorProvider1.SetError(field, "Pilot name is too long.");
+                e.Cancel = true;
+            }
+            else if (!field.Text.All((c => Char.IsLetter(c) || c == '-' || c == ' ')))
+            {
+                errorProvider1.SetError(field, "Please enter valid pilot name.");
+                e.Cancel = true;
+            } else if (!field.Text.Contains(" ")) 
+            {
+                errorProvider1.SetError(field, "Please enter full name.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
+
+        // Return date
+        // Should have at least 5 hours difference
+        // Should not be smalled than departure date
+        private void endDateTimePicker_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as DateTimePicker;
+            var endDate = field.Value;
+            var startDate = startDateTimePicker.Value;
+
+            if(startDate > endDate)
+            {
+                errorProvider1.SetError(field, "Return date must be after departure date.");
+                e.Cancel = true;
+            } 
+            else if((endDate - startDate).TotalHours < 5)
+            {
+                errorProvider1.SetError(field, "Time differnce between departure and return time shold be at least 5 hours.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
+
+        // Description
+        // Should not be empty
+        // Should have at least 10 letters
+        // Should have max 400 letters
+        private void descriptionTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as TextBox;
+
+            if (string.IsNullOrWhiteSpace(field.Text))
+            {
+                errorProvider1.SetError(field, Resources.Validation_FieldRequired);
+                e.Cancel = true;
+            }
+            else if (field.Text.Length > 400)
+            {
+                errorProvider1.SetError(field, "Description cannot be longer than 400 characters.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
+            }
+        }
+
+        // Notes: Should not have more than 400 letters
+        private void notesTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            var field = sender as TextBox;
+
+            if (!string.IsNullOrWhiteSpace(field.Text) && field.Text.Length > 400)
+            {
+                errorProvider1.SetError(field, "Notes text cannot be longer than 400 characters.");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider1.SetError(field, null);
             }
         }
     }
