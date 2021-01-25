@@ -161,7 +161,7 @@ namespace FitAirlines.UI
                 {
                     if (user.IsActive ?? true)
                     {
-                        Myrow.DefaultCellStyle.BackColor = Color.White;
+                        Myrow.DefaultCellStyle.BackColor = Color.LightGreen;
                     }
                     else
                     {
