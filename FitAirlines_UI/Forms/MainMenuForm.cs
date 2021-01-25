@@ -4,6 +4,11 @@ namespace FitAirlines.UI
 {
     public partial class MainMenuForm : BaseForm
     {
+        protected override bool ShouldResize()
+        {
+            return false;
+        }
+
         public MainMenuForm()
         {
             InitializeComponent();
@@ -11,11 +16,10 @@ namespace FitAirlines.UI
 
         protected override void SetupStrings()
         {
-            Text = Resources.MainMenu_FormName;
+            Text = "FIT Airlines";
             offersButton.Text = Resources.MainMenu_Offers;
             reservationsButton.Text = Resources.MainMenu_Reservations;
             usersButton.Text = Resources.MainMenu_Users;
-            settingsButton.Text = Resources.MainMenu_Settings;
             flightsButton.Text = Resources.MainMenu_Flights;
         }
 
@@ -37,6 +41,11 @@ namespace FitAirlines.UI
         private void usersButton_Click(object sender, System.EventArgs e)
         {
             ShowNewForm<UsersForm>();
+        }
+
+        private void button1_Click(object sender, System.EventArgs e)
+        {
+            ShowNewForm<SettingsForm>();
         }
     }
 }
