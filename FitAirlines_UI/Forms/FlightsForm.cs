@@ -282,5 +282,10 @@ namespace FitAirlines.UI
                 }
             }
         }
+
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show("Whoooops!");
+        }
     }
 }

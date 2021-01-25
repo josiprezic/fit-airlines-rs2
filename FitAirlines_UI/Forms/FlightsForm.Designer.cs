@@ -30,6 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView = new FitAirlines.UI.BaseDataGridView(this.components);
+            this.Country = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.City = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Offer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MembershipType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Capacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Report = new System.Windows.Forms.DataGridViewButtonColumn();
             this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.startDateTimePickerLabel = new System.Windows.Forms.Label();
@@ -45,15 +54,6 @@
             this.cityComboBox = new FitAirlines.UI.BaseComboBox();
             this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.Country = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.City = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Offer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MembershipType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Capacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Report = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,7 +86,72 @@
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(853, 404);
             this.dataGridView.TabIndex = 0;
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             this.dataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
+            // 
+            // Country
+            // 
+            this.Country.DataPropertyName = "CountryName";
+            this.Country.HeaderText = "Country";
+            this.Country.Name = "Country";
+            this.Country.ReadOnly = true;
+            // 
+            // City
+            // 
+            this.City.DataPropertyName = "City";
+            this.City.HeaderText = "City";
+            this.City.Name = "City";
+            this.City.ReadOnly = true;
+            // 
+            // StartDate
+            // 
+            this.StartDate.DataPropertyName = "StartDate";
+            this.StartDate.HeaderText = "StartDate";
+            this.StartDate.Name = "StartDate";
+            this.StartDate.ReadOnly = true;
+            // 
+            // EndDate
+            // 
+            this.EndDate.DataPropertyName = "EndDate";
+            this.EndDate.HeaderText = "EndDate";
+            this.EndDate.Name = "EndDate";
+            this.EndDate.ReadOnly = true;
+            // 
+            // Offer
+            // 
+            this.Offer.DataPropertyName = "Offer";
+            this.Offer.HeaderText = "Offer";
+            this.Offer.Name = "Offer";
+            this.Offer.ReadOnly = true;
+            // 
+            // MembershipType
+            // 
+            this.MembershipType.DataPropertyName = "AvailableToMemberType";
+            this.MembershipType.HeaderText = "Availability";
+            this.MembershipType.Name = "MembershipType";
+            this.MembershipType.ReadOnly = true;
+            // 
+            // Capacity
+            // 
+            this.Capacity.DataPropertyName = "Capacity";
+            this.Capacity.HeaderText = "Capacity";
+            this.Capacity.Name = "Capacity";
+            this.Capacity.ReadOnly = true;
+            // 
+            // isActive
+            // 
+            this.isActive.DataPropertyName = "isActive";
+            this.isActive.HeaderText = "isActive";
+            this.isActive.Name = "isActive";
+            this.isActive.ReadOnly = true;
+            // 
+            // Report
+            // 
+            this.Report.HeaderText = "Report";
+            this.Report.Name = "Report";
+            this.Report.ReadOnly = true;
+            this.Report.Text = "Report";
+            this.Report.UseColumnTextForButtonValue = true;
             // 
             // editImageButton
             // 
@@ -236,70 +301,6 @@
             this.endDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.endDateTimePicker.TabIndex = 36;
             this.endDateTimePicker.ValueChanged += new System.EventHandler(this.endDateTimePicker_ValueChanged);
-            // 
-            // Country
-            // 
-            this.Country.DataPropertyName = "CountryName";
-            this.Country.HeaderText = "Country";
-            this.Country.Name = "Country";
-            this.Country.ReadOnly = true;
-            // 
-            // City
-            // 
-            this.City.DataPropertyName = "City";
-            this.City.HeaderText = "City";
-            this.City.Name = "City";
-            this.City.ReadOnly = true;
-            // 
-            // StartDate
-            // 
-            this.StartDate.DataPropertyName = "StartDate";
-            this.StartDate.HeaderText = "StartDate";
-            this.StartDate.Name = "StartDate";
-            this.StartDate.ReadOnly = true;
-            // 
-            // EndDate
-            // 
-            this.EndDate.DataPropertyName = "EndDate";
-            this.EndDate.HeaderText = "EndDate";
-            this.EndDate.Name = "EndDate";
-            this.EndDate.ReadOnly = true;
-            // 
-            // Offer
-            // 
-            this.Offer.DataPropertyName = "Offer";
-            this.Offer.HeaderText = "Offer";
-            this.Offer.Name = "Offer";
-            this.Offer.ReadOnly = true;
-            // 
-            // MembershipType
-            // 
-            this.MembershipType.DataPropertyName = "AvailableToMemberType";
-            this.MembershipType.HeaderText = "Availability";
-            this.MembershipType.Name = "MembershipType";
-            this.MembershipType.ReadOnly = true;
-            // 
-            // Capacity
-            // 
-            this.Capacity.DataPropertyName = "Capacity";
-            this.Capacity.HeaderText = "Capacity";
-            this.Capacity.Name = "Capacity";
-            this.Capacity.ReadOnly = true;
-            // 
-            // isActive
-            // 
-            this.isActive.DataPropertyName = "isActive";
-            this.isActive.HeaderText = "isActive";
-            this.isActive.Name = "isActive";
-            this.isActive.ReadOnly = true;
-            // 
-            // Report
-            // 
-            this.Report.HeaderText = "Report";
-            this.Report.Name = "Report";
-            this.Report.ReadOnly = true;
-            this.Report.Text = "Report";
-            this.Report.UseColumnTextForButtonValue = true;
             // 
             // FlightsForm
             // 
