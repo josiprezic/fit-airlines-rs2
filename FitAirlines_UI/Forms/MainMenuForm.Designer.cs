@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.usersButton = new FitAirlines.UI.CustomViews.MainMenuButton();
+            this.reservationsButton = new FitAirlines.UI.CustomViews.MainMenuButton();
             this.offersButton = new FitAirlines.UI.CustomViews.MainMenuButton();
             this.flightsButton = new FitAirlines.UI.CustomViews.MainMenuButton();
-            this.reservationsButton = new FitAirlines.UI.CustomViews.MainMenuButton();
-            this.usersButton = new FitAirlines.UI.CustomViews.MainMenuButton();
             this.button1 = new System.Windows.Forms.Button();
             this.welcomeLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -48,10 +48,10 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34F));
-            this.tableLayoutPanel1.Controls.Add(this.offersButton, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.flightsButton, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.reservationsButton, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.usersButton, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.reservationsButton, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.flightsButton, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.offersButton, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 56);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -61,6 +61,40 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(578, 299);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // usersButton
+            // 
+            this.usersButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.usersButton.BackColor = System.Drawing.Color.Blue;
+            this.usersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.usersButton.ForeColor = System.Drawing.Color.White;
+            this.usersButton.Location = new System.Drawing.Point(5, 5);
+            this.usersButton.Margin = new System.Windows.Forms.Padding(5);
+            this.usersButton.Name = "usersButton";
+            this.usersButton.Size = new System.Drawing.Size(274, 139);
+            this.usersButton.TabIndex = 0;
+            this.usersButton.Text = "USERS";
+            this.usersButton.UseVisualStyleBackColor = false;
+            this.usersButton.Click += new System.EventHandler(this.usersButton_Click);
+            // 
+            // reservationsButton
+            // 
+            this.reservationsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.reservationsButton.BackColor = System.Drawing.Color.Blue;
+            this.reservationsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.reservationsButton.ForeColor = System.Drawing.Color.White;
+            this.reservationsButton.Location = new System.Drawing.Point(289, 154);
+            this.reservationsButton.Margin = new System.Windows.Forms.Padding(5);
+            this.reservationsButton.Name = "reservationsButton";
+            this.reservationsButton.Size = new System.Drawing.Size(284, 140);
+            this.reservationsButton.TabIndex = 3;
+            this.reservationsButton.Text = "RESERVATIONS";
+            this.reservationsButton.UseVisualStyleBackColor = false;
+            this.reservationsButton.Click += new System.EventHandler(this.reservationsButton_Click);
+            // 
             // offersButton
             // 
             this.offersButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -69,11 +103,11 @@
             this.offersButton.BackColor = System.Drawing.Color.Blue;
             this.offersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.offersButton.ForeColor = System.Drawing.Color.White;
-            this.offersButton.Location = new System.Drawing.Point(289, 154);
+            this.offersButton.Location = new System.Drawing.Point(289, 5);
             this.offersButton.Margin = new System.Windows.Forms.Padding(5);
             this.offersButton.Name = "offersButton";
-            this.offersButton.Size = new System.Drawing.Size(284, 140);
-            this.offersButton.TabIndex = 3;
+            this.offersButton.Size = new System.Drawing.Size(284, 139);
+            this.offersButton.TabIndex = 1;
             this.offersButton.Text = "OFFERS";
             this.offersButton.UseVisualStyleBackColor = false;
             this.offersButton.Click += new System.EventHandler(this.offersButton_Click);
@@ -94,40 +128,6 @@
             this.flightsButton.Text = "FLIGHTS";
             this.flightsButton.UseVisualStyleBackColor = false;
             this.flightsButton.Click += new System.EventHandler(this.flightsButton_Click);
-            // 
-            // reservationsButton
-            // 
-            this.reservationsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.reservationsButton.BackColor = System.Drawing.Color.Blue;
-            this.reservationsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.reservationsButton.ForeColor = System.Drawing.Color.White;
-            this.reservationsButton.Location = new System.Drawing.Point(289, 5);
-            this.reservationsButton.Margin = new System.Windows.Forms.Padding(5);
-            this.reservationsButton.Name = "reservationsButton";
-            this.reservationsButton.Size = new System.Drawing.Size(284, 139);
-            this.reservationsButton.TabIndex = 1;
-            this.reservationsButton.Text = "RESERVATIONS";
-            this.reservationsButton.UseVisualStyleBackColor = false;
-            this.reservationsButton.Click += new System.EventHandler(this.reservationsButton_Click);
-            // 
-            // usersButton
-            // 
-            this.usersButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.usersButton.BackColor = System.Drawing.Color.Blue;
-            this.usersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.usersButton.ForeColor = System.Drawing.Color.White;
-            this.usersButton.Location = new System.Drawing.Point(5, 5);
-            this.usersButton.Margin = new System.Windows.Forms.Padding(5);
-            this.usersButton.Name = "usersButton";
-            this.usersButton.Size = new System.Drawing.Size(274, 139);
-            this.usersButton.TabIndex = 0;
-            this.usersButton.Text = "USERS";
-            this.usersButton.UseVisualStyleBackColor = false;
-            this.usersButton.Click += new System.EventHandler(this.usersButton_Click);
             // 
             // button1
             // 
