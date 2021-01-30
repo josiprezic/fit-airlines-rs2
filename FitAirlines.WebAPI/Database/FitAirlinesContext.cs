@@ -343,15 +343,9 @@ namespace FitAirlines.WebAPI.Database
                     .IsRequired()
                     .HasMaxLength(5);
 
-                entity.Property(e => e.FlightId).HasColumnName("FlightID");
 
                 entity.Property(e => e.ReservationId).HasColumnName("ReservationID");
 
-                entity.HasOne(d => d.Flight)
-                    .WithMany(p => p.ReservedSeats)
-                    .HasForeignKey(d => d.FlightId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__ReservedS__Fligh__6383C8BA");
 
                 entity.HasOne(d => d.Reservation)
                     .WithMany(p => p.ReservedSeats)

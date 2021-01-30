@@ -15,6 +15,9 @@ namespace FitAirlines.Model
         public int? CashierId { get; set; }
         public string Notes { get; set; }
 
+        public string SeatDeparture { get; set; }
+        public string SeatReturn { get; set; }
+
         public Users Cashier { get; set; }
         public Flights Flight { get; set; }
         public Users User { get; set; }

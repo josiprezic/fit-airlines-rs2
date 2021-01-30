@@ -47,5 +47,10 @@ namespace FitAirlines.UI
         {
             ShowNewForm<SettingsForm>();
         }
+
+        private void MainMenuForm_Load(object sender, System.EventArgs e)
+        {
+            // TODO: JR
+        }
     }
 }

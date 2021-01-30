@@ -285,7 +285,14 @@ namespace FitAirlines.UI
 
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show("Whoooops!");
+            if (e.ColumnIndex == 8)
+            {
+                var flight = dataGridView.Rows[e.RowIndex].DataBoundItem as Model.Flights;
+
+                var form = new FlightReportForm(flight);
+                form.ShowDialog();
+
+            }
         }
     }
 }

@@ -31,8 +31,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.usersButton = new FitAirlines.UI.CustomViews.MainMenuButton();
             this.reservationsButton = new FitAirlines.UI.CustomViews.MainMenuButton();
-            this.offersButton = new FitAirlines.UI.CustomViews.MainMenuButton();
             this.flightsButton = new FitAirlines.UI.CustomViews.MainMenuButton();
+            this.offersButton = new FitAirlines.UI.CustomViews.MainMenuButton();
             this.button1 = new System.Windows.Forms.Button();
             this.welcomeLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -95,23 +95,6 @@
             this.reservationsButton.UseVisualStyleBackColor = false;
             this.reservationsButton.Click += new System.EventHandler(this.reservationsButton_Click);
             // 
-            // offersButton
-            // 
-            this.offersButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.offersButton.BackColor = System.Drawing.Color.Blue;
-            this.offersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.offersButton.ForeColor = System.Drawing.Color.White;
-            this.offersButton.Location = new System.Drawing.Point(289, 5);
-            this.offersButton.Margin = new System.Windows.Forms.Padding(5);
-            this.offersButton.Name = "offersButton";
-            this.offersButton.Size = new System.Drawing.Size(284, 139);
-            this.offersButton.TabIndex = 1;
-            this.offersButton.Text = "OFFERS";
-            this.offersButton.UseVisualStyleBackColor = false;
-            this.offersButton.Click += new System.EventHandler(this.offersButton_Click);
-            // 
             // flightsButton
             // 
             this.flightsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -128,6 +111,23 @@
             this.flightsButton.Text = "FLIGHTS";
             this.flightsButton.UseVisualStyleBackColor = false;
             this.flightsButton.Click += new System.EventHandler(this.flightsButton_Click);
+            // 
+            // offersButton
+            // 
+            this.offersButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.offersButton.BackColor = System.Drawing.Color.Blue;
+            this.offersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.offersButton.ForeColor = System.Drawing.Color.White;
+            this.offersButton.Location = new System.Drawing.Point(289, 5);
+            this.offersButton.Margin = new System.Windows.Forms.Padding(5);
+            this.offersButton.Name = "offersButton";
+            this.offersButton.Size = new System.Drawing.Size(284, 139);
+            this.offersButton.TabIndex = 1;
+            this.offersButton.Text = "OFFERS";
+            this.offersButton.UseVisualStyleBackColor = false;
+            this.offersButton.Click += new System.EventHandler(this.offersButton_Click);
             // 
             // button1
             // 
@@ -176,6 +176,7 @@
             this.MinimizeBox = false;
             this.Name = "MainMenuForm";
             this.Text = "Fit Airlines";
+            this.Load += new System.EventHandler(this.MainMenuForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

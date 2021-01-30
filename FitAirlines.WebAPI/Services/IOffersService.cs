@@ -12,8 +12,5 @@ namespace FitAirlines.WebAPI.Services
 
         Model.Offers Insert(Model.Requests.OffersInsertRequest request);
         Model.Offers Update(int id, Model.Requests.OffersInsertRequest request);
-
-
-
     }
 }

@@ -71,11 +71,9 @@ namespace FitAirlines.WebAPI.Services
         public Model.Offers Insert(OffersInsertRequest request)
         {
             var entity = _mapper.Map<Database.Offers>(request);
-           
             entity.DateAdded = DateTime.Now;
             _context.Offers.Add(entity);
             _context.SaveChanges();
-
             return _mapper.Map<Model.Offers>(entity);
         }
 
@@ -89,13 +87,9 @@ namespace FitAirlines.WebAPI.Services
 
             _context.Offers.Attach(entity);
             _context.Offers.Update(entity);
-
             _mapper.Map(request, entity);
-
             _context.SaveChanges();
-
             return _mapper.Map<Model.Offers>(entity);
         }
-
     }
 }
