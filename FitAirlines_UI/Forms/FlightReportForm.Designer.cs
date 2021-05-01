@@ -30,20 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.FlightReportModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            ((System.ComponentModel.ISupportInitialize)(this.FlightReportModelBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // FlightReportModelBindingSource
-            // 
-            this.FlightReportModelBindingSource.DataSource = typeof(FitAirlines.Model.FlightReportModel);
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             reportDataSource1.Name = "FlightDataSet";
-            reportDataSource1.Value = this.FlightReportModelBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "FitAirlines.UI.Reports.FlightReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
@@ -58,10 +51,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FlightReportForm";
             this.Text = "FlightReportForm";
             this.Load += new System.EventHandler(this.FlightReportForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.FlightReportModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -69,6 +64,5 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.BindingSource FlightReportModelBindingSource;
     }
 }

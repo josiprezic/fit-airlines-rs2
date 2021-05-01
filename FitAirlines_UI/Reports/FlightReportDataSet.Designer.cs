@@ -279,7 +279,9 @@ namespace FitAirlines.UI.Reports {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class DataTable1DataTable : global::System.Data.TypedTableBase<DataTable1Row> {
             
-            private global::System.Data.DataColumn columnAddedByUserId;
+            private global::System.Data.DataColumn columnPassengerName;
+            
+            private global::System.Data.DataColumn columnReservationDate;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -316,9 +318,17 @@ namespace FitAirlines.UI.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn AddedByUserIdColumn {
+            public global::System.Data.DataColumn PassengerNameColumn {
                 get {
-                    return this.columnAddedByUserId;
+                    return this.columnPassengerName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn ReservationDateColumn {
+                get {
+                    return this.columnReservationDate;
                 }
             }
             
@@ -359,10 +369,11 @@ namespace FitAirlines.UI.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string AddedByUserId) {
+            public DataTable1Row AddDataTable1Row(string PassengerName, System.DateTime ReservationDate) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        AddedByUserId};
+                        PassengerName,
+                        ReservationDate};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -385,14 +396,17 @@ namespace FitAirlines.UI.Reports {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnAddedByUserId = base.Columns["AddedByUserId"];
+                this.columnPassengerName = base.Columns["PassengerName"];
+                this.columnReservationDate = base.Columns["ReservationDate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnAddedByUserId = new global::System.Data.DataColumn("AddedByUserId", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAddedByUserId);
+                this.columnPassengerName = new global::System.Data.DataColumn("PassengerName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPassengerName);
+                this.columnReservationDate = new global::System.Data.DataColumn("ReservationDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReservationDate);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -535,30 +549,58 @@ namespace FitAirlines.UI.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string AddedByUserId {
+            public string PassengerName {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.AddedByUserIdColumn]));
+                        return ((string)(this[this.tableDataTable1.PassengerNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AddedByUserId\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'PassengerName\' in table \'DataTable1\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.AddedByUserIdColumn] = value;
+                    this[this.tableDataTable1.PassengerNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsAddedByUserIdNull() {
-                return this.IsNull(this.tableDataTable1.AddedByUserIdColumn);
+            public System.DateTime ReservationDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableDataTable1.ReservationDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ReservationDate\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.ReservationDateColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetAddedByUserIdNull() {
-                this[this.tableDataTable1.AddedByUserIdColumn] = global::System.Convert.DBNull;
+            public bool IsPassengerNameNull() {
+                return this.IsNull(this.tableDataTable1.PassengerNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetPassengerNameNull() {
+                this[this.tableDataTable1.PassengerNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsReservationDateNull() {
+                return this.IsNull(this.tableDataTable1.ReservationDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetReservationDateNull() {
+                this[this.tableDataTable1.ReservationDateColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FitAirlines.Model;
+using FitAirlines.UI.Reports;
 using Microsoft.Reporting.WinForms;
 
 namespace FitAirlines.UI
@@ -15,34 +16,50 @@ namespace FitAirlines.UI
     public partial class FlightReportForm : BaseForm
     {
         private readonly Flights flight;
+        private readonly List<Reservations> reservations;
 
-        public FlightReportForm(Model.Flights flight)
+        public FlightReportForm(Model.Flights flight, List<Model.Reservations> reservations)
         {
             InitializeComponent();
             this.flight = flight;
+            this.reservations = reservations;
         }
 
         private void FlightReportForm_Load(object sender, EventArgs e)
         {
-            //ReportParameterCollection rpc = new ReportParameterCollection();
-            //rpc.Add(new ReportParameter("ImePrezime", $"{korisnik.Ime} {korisnik.Prezime}"));
-            //rpc.Add(new ReportParameter("Indeks", korisnik.KorisnickoIme));
-            //// Dodaj parametre u report
-            //reportViewer1.LocalReport.SetParameters(rpc);
-
-            // Lista objekata
-            List<object> list = new List<object>();
-            list.Add(new
+            ReportParameterCollection rpc = new ReportParameterCollection
             {
-                AddedByUserId = 1,
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now,
-                Price = 123
-            });
+                new ReportParameter("Country", flight.CountryName),
+                new ReportParameter("CityName", flight.City.CityName),
+                new ReportParameter("DepartureDate", flight.StartDate.ToShortDateString() + " " + flight.StartDate.ToShortTimeString()),
+                new ReportParameter("ReturnDate", flight.EndDate.ToShortDateString() + " " + flight.EndDate.ToShortTimeString()),
+                new ReportParameter("Offer", flight.Offer.OfferName),
+                new ReportParameter("Availability", flight.AvailableToMemberType.Title),
+                new ReportParameter("Capacity", flight.Capacity.ToString()),
+                new ReportParameter("Active", flight.IsActive.HasValue ? (flight.IsActive.Value ? "Yes" : "No") : "No"),
+                new ReportParameter("Plane", flight.Plane.PlaneName),
+                new ReportParameter("PilotFullName", flight.PilotFullName),
+                new ReportParameter("FlightDuration", flight.FlightDuration.ToString()),
+                new ReportParameter("Price", flight.Price.ToString()),
+                new ReportParameter("Notes", !string.IsNullOrEmpty(flight.Notes) ? flight.Notes : "None"),
+                new ReportParameter("NumOfPassengers", reservations.Count.ToString()),
+            };
+            reportViewer1.LocalReport.SetParameters(rpc);
 
-            ReportDataSource rds = new ReportDataSource();
-            rds.Name = "FlightDataSet";
-            rds.Value = list;
+            var tbl = new FlightReportDataSet.DataTable1DataTable();
+            foreach (var reservation in reservations)
+            {
+                var row = tbl.NewDataTable1Row();
+                row.PassengerName = reservation.User.FirstName + " " + reservation.User.LastName;
+                row.ReservationDate = reservation.ReservationDate;
+                tbl.Rows.Add(row);
+            }
+
+            ReportDataSource rds = new ReportDataSource
+            {
+                Name = "FlightDataSet",
+                Value = tbl
+            };
 
             reportViewer1.LocalReport.DataSources.Add(rds);
 

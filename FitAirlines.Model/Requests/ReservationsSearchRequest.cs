@@ -7,6 +7,7 @@ namespace FitAirlines.Model.Requests
         public string UserName { get; set; }
 
         public string FlightName { get; set; }
+        public int FlightId { get; set; }
 
         public DateTime? ReservationDate { get; set; }
 

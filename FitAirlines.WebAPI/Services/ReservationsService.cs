@@ -45,6 +45,10 @@ namespace FitAirlines.WebAPI.Services
             {
                 query = query.Where(x => x.IsValid == true);
             }
+            if (request.FlightId != 0)
+            {
+                query = query.Where(x => x.FlightId == request.FlightId);
+            }
 
             var list = query
                 //.Include(x => x.OfferType)

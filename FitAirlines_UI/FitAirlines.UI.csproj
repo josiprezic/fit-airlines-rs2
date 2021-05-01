@@ -223,6 +223,9 @@
     <Compile Include="Forms\UsersForm.Designer.cs">
       <DependentUpon>UsersForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\FlightReportDataSet.cs">
+      <DependentUpon>FlightReportDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\FlightReportDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
