@@ -20,6 +20,7 @@ namespace FitAirlines.UI
         private readonly APIService _serviceCities = new APIService("Cities");
         private readonly APIService _serviceOffers = new APIService("Offers");
         private readonly APIService _serviceMembershipTypes = new APIService("MembershipTypes");
+        private readonly APIService _serviceReservations = new APIService("Reservations");
 
         private List<Cities> allCities = new List<Cities>();
         private bool isFirstLoad = true;
@@ -280,6 +281,23 @@ namespace FitAirlines.UI
                         Row.DefaultCellStyle.BackColor = Color.LightBlue;
                     }
                 }
+            }
+        }
+
+        private async void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 8)
+            {
+                var flight = dataGridView.Rows[e.RowIndex].DataBoundItem as Model.Flights;
+
+                var reservations = await _serviceReservations.Get<List<Model.Reservations>>(new Model.Requests.ReservationsSearchRequest
+                {
+                    FlightId = flight.FlightId
+                });
+
+                var form = new FlightReportForm(flight, reservations);
+                form.ShowDialog();
+
             }
         }
     }

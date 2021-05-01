@@ -38,6 +38,7 @@
             this.MembershipType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Capacity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Report = new System.Windows.Forms.DataGridViewButtonColumn();
             this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.startDateTimePickerLabel = new System.Windows.Forms.Label();
@@ -75,14 +76,17 @@
             this.Offer,
             this.MembershipType,
             this.Capacity,
-            this.isActive});
+            this.isActive,
+            this.Report});
             this.dataGridView.Location = new System.Drawing.Point(12, 94);
             this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
+            this.dataGridView.RowTemplate.Height = 35;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(853, 404);
             this.dataGridView.TabIndex = 0;
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             this.dataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             // 
             // Country
@@ -140,6 +144,14 @@
             this.isActive.HeaderText = "isActive";
             this.isActive.Name = "isActive";
             this.isActive.ReadOnly = true;
+            // 
+            // Report
+            // 
+            this.Report.HeaderText = "Report";
+            this.Report.Name = "Report";
+            this.Report.ReadOnly = true;
+            this.Report.Text = "Report";
+            this.Report.UseColumnTextForButtonValue = true;
             // 
             // editImageButton
             // 
@@ -349,5 +361,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MembershipType;
         private System.Windows.Forms.DataGridViewTextBoxColumn Capacity;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isActive;
+        private System.Windows.Forms.DataGridViewButtonColumn Report;
     }
 }

@@ -127,11 +127,8 @@ namespace FitAirlines.WebAPI.Services
             {
                 throw new UserException("Email is already taken.");
             }
-
             _mapper.Map(request, entity);
-
             _context.SaveChanges();
-
             return _mapper.Map<Model.Users>(entity);
         }
 

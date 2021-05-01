@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FitAirlines.WebAPI.Database
+namespace FitAirlines.Model
 {
-    public partial class Flights
+    public class FlightReportModel
     {
-        public Flights()
-        {
-            Reservations = new HashSet<Reservations>();
-        }
-
         public int FlightId { get; set; }
         public int CityId { get; set; }
         public int DestinationAirportId { get; set; }
@@ -36,6 +34,9 @@ namespace FitAirlines.WebAPI.Database
         public Airports DestinationAirport { get; set; }
         public Offers Offer { get; set; }
         public Planes Plane { get; set; }
-        public ICollection<Reservations> Reservations { get; set; }
+
+        public int Capacity => Plane?.Capacity ?? 0;
+
+        public string CountryName => City?.Country?.CountryName ?? null;
     }
 }

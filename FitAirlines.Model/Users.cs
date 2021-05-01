@@ -22,5 +22,10 @@ namespace FitAirlines.Model
 
         public MembershipTypes MembershipType { get; set; }
         public UserRoles UserRole { get; set; }
+
+        public override string ToString()
+        {
+            return FirstName + " " + LastName;
+        }
     }
 }

@@ -63,6 +63,7 @@ namespace FitAirlines.UI
             AllowUserToResizeColumns = false;
             AllowUserToAddRows = false;
             AllowDrop = false;
+            RowTemplate.Height = 35;
         }
 
         //

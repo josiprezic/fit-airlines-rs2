@@ -7,13 +7,11 @@ namespace FitAirlines.Model
     {
         public int ReservedSeatId { get; set; }
         public int ReservationId { get; set; }
-        public int FlightId { get; set; }
         public string Direction { get; set; }
         public double SeatPrice { get; set; }
         public int SeatRow { get; set; }
         public int SeatColumn { get; set; }
 
-        public Flights Flight { get; set; }
         public Reservations Reservation { get; set; }
     }
 }
