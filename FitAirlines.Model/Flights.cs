@@ -35,5 +35,10 @@ namespace FitAirlines.Model
         public int Capacity => Plane?.Capacity ?? 0;
 
         public string CountryName => City?.Country?.CountryName ?? null;
+
+        public override string ToString()
+        {
+            return City?.CityName + ", " + CountryName + " (" + StartDate.ToShortDateString() + ")";
+        }
     }
 }

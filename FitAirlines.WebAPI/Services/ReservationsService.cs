@@ -52,36 +52,46 @@ namespace FitAirlines.WebAPI.Services
 
             var list = query
                 //.Include(x => x.OfferType)
-                .Select(x=>new Reservations
+                .Select(x=>new Model.Reservations
                 {
                     ReservationId = x.ReservationId,
                     BaseTicketPrice = x.BaseTicketPrice,
                     IsValid = x.IsValid,
                     FlightId = x.FlightId,
                     Notes = x.Notes,
-                    Flight = new Flights
+                    Flight = new Model.Flights
                     { 
-                        City = new Cities { 
+                        City = new Model.Cities { 
                             CityName = x.Flight.City.CityName,
-                            Country = new Countries
+                            Country = new Model.Countries
                             {
                                 CountryName = x.Flight.City.Country.CountryName
                             }
                         },
+                        Offer = new Model.Offers
+                        {
+                            OfferName = x.Flight.Offer.OfferName
+                        }
                     },
 
                     CashierId = x.CashierId,
-                    Ratings = x.Ratings,
+                    //Ratings = _mapper.Map<List<Model.Ratings>>(x.Ratings),
                     ReservationDate = x.ReservationDate,
                     TotalDiscountPercentage = x.TotalDiscountPercentage,
                     UserId = x.UserId,
-                    User = new Users { 
+                    User = new Model.Users { 
                         FirstName = x.User.FirstName,
-                        LastName = x.User.LastName
-                    }//x.User
+                        LastName = x.User.LastName,
+                        MembershipType = new Model.MembershipTypes
+                        {
+                            Title = x.User.MembershipType.Title
+                        }
+                    },//x.User
+                    SeatDeparture = x.ReservedSeats.Where(y=>y.Direction=="1").FirstOrDefault().Seat ?? "-",
+                    SeatReturn = x.ReservedSeats.Where(y=>y.Direction=="2").FirstOrDefault().Seat ?? "-"
                 })
                 .ToList();
-            return _mapper.Map<List<Model.Reservations>>(list);
+            return list;
         }
 
         public Model.Reservations GetById(int id)

@@ -12,6 +12,8 @@ namespace FitAirlines.WebAPI.Database
         public int SeatRow { get; set; }
         public int SeatColumn { get; set; }
 
+        public string Seat => SeatRow.ToString() + (char)(64 + (char)SeatColumn);
+
         public Reservations Reservation { get; set; }
     }
 }
