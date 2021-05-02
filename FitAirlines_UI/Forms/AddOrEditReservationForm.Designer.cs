@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.clientLabel = new System.Windows.Forms.Label();
             this.clientComboBox = new FitAirlines.UI.BaseComboBox();
             this.offerComboBox = new FitAirlines.UI.BaseComboBox();
@@ -42,9 +41,7 @@
             this.priceLabel = new System.Windows.Forms.Label();
             this.cancelButton = new FitAirlines.UI.BaseButton();
             this.saveButton = new FitAirlines.UI.BaseButton();
-            this.reservationDateLabel = new System.Windows.Forms.Label();
-            this.baseDateTimePicker1 = new FitAirlines.UI.BaseDateTimePicker(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.notesTextBox = new System.Windows.Forms.TextBox();
             this.notesLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.returnSeatComboBox = new FitAirlines.UI.BaseComboBox();
@@ -114,7 +111,7 @@
             // seatStartLabel
             // 
             this.seatStartLabel.AutoSize = true;
-            this.seatStartLabel.Location = new System.Drawing.Point(6, 210);
+            this.seatStartLabel.Location = new System.Drawing.Point(6, 170);
             this.seatStartLabel.Name = "seatStartLabel";
             this.seatStartLabel.Size = new System.Drawing.Size(77, 13);
             this.seatStartLabel.TabIndex = 7;
@@ -123,7 +120,7 @@
             // seatReturnLabel
             // 
             this.seatReturnLabel.AutoSize = true;
-            this.seatReturnLabel.Location = new System.Drawing.Point(6, 256);
+            this.seatReturnLabel.Location = new System.Drawing.Point(6, 216);
             this.seatReturnLabel.Name = "seatReturnLabel";
             this.seatReturnLabel.Size = new System.Drawing.Size(62, 13);
             this.seatReturnLabel.TabIndex = 9;
@@ -163,7 +160,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(6, 226);
+            this.cancelButton.Location = new System.Drawing.Point(6, 192);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(188, 37);
             this.cancelButton.TabIndex = 16;
@@ -173,7 +170,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(6, 270);
+            this.saveButton.Location = new System.Drawing.Point(6, 235);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(188, 37);
             this.saveButton.TabIndex = 17;
@@ -181,29 +178,13 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // reservationDateLabel
+            // notesTextBox
             // 
-            this.reservationDateLabel.AutoSize = true;
-            this.reservationDateLabel.Location = new System.Drawing.Point(6, 164);
-            this.reservationDateLabel.Name = "reservationDateLabel";
-            this.reservationDateLabel.Size = new System.Drawing.Size(88, 13);
-            this.reservationDateLabel.TabIndex = 18;
-            this.reservationDateLabel.Text = "Reservation date";
-            // 
-            // baseDateTimePicker1
-            // 
-            this.baseDateTimePicker1.Location = new System.Drawing.Point(9, 180);
-            this.baseDateTimePicker1.Name = "baseDateTimePicker1";
-            this.baseDateTimePicker1.Size = new System.Drawing.Size(231, 20);
-            this.baseDateTimePicker1.TabIndex = 19;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(9, 101);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(185, 63);
-            this.textBox1.TabIndex = 20;
+            this.notesTextBox.Location = new System.Drawing.Point(9, 101);
+            this.notesTextBox.Multiline = true;
+            this.notesTextBox.Name = "notesTextBox";
+            this.notesTextBox.Size = new System.Drawing.Size(185, 63);
+            this.notesTextBox.TabIndex = 20;
             // 
             // notesLabel
             // 
@@ -221,16 +202,14 @@
             this.groupBox1.Controls.Add(this.clientLabel);
             this.groupBox1.Controls.Add(this.clientComboBox);
             this.groupBox1.Controls.Add(this.offerLabel);
-            this.groupBox1.Controls.Add(this.baseDateTimePicker1);
             this.groupBox1.Controls.Add(this.offerComboBox);
-            this.groupBox1.Controls.Add(this.reservationDateLabel);
             this.groupBox1.Controls.Add(this.flightLabel);
             this.groupBox1.Controls.Add(this.flightComboBox);
             this.groupBox1.Controls.Add(this.seatStartLabel);
             this.groupBox1.Controls.Add(this.seatReturnLabel);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(252, 313);
+            this.groupBox1.Size = new System.Drawing.Size(252, 280);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Basic information";
@@ -239,34 +218,32 @@
             // 
             this.returnSeatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.returnSeatComboBox.FormattingEnabled = true;
-            this.returnSeatComboBox.Location = new System.Drawing.Point(6, 272);
+            this.returnSeatComboBox.Location = new System.Drawing.Point(6, 232);
             this.returnSeatComboBox.Name = "returnSeatComboBox";
             this.returnSeatComboBox.Size = new System.Drawing.Size(234, 21);
             this.returnSeatComboBox.TabIndex = 21;
-            this.returnSeatComboBox.SelectedIndexChanged += new System.EventHandler(this.returnSeatComboBox_SelectedIndexChanged);
             // 
             // departureSeatComboBox
             // 
             this.departureSeatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.departureSeatComboBox.FormattingEnabled = true;
-            this.departureSeatComboBox.Location = new System.Drawing.Point(6, 226);
+            this.departureSeatComboBox.Location = new System.Drawing.Point(6, 186);
             this.departureSeatComboBox.Name = "departureSeatComboBox";
             this.departureSeatComboBox.Size = new System.Drawing.Size(234, 21);
             this.departureSeatComboBox.TabIndex = 20;
-            this.departureSeatComboBox.SelectedIndexChanged += new System.EventHandler(this.departureSeatComboBox_SelectedIndexChanged);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.priceTitleLabel);
             this.groupBox2.Controls.Add(this.notesLabel);
             this.groupBox2.Controls.Add(this.isActiveCheckBox);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.notesTextBox);
             this.groupBox2.Controls.Add(this.saveButton);
             this.groupBox2.Controls.Add(this.priceLabel);
             this.groupBox2.Controls.Add(this.cancelButton);
             this.groupBox2.Location = new System.Drawing.Point(270, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 313);
+            this.groupBox2.Size = new System.Drawing.Size(200, 280);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Payment information";
@@ -275,7 +252,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 339);
+            this.ClientSize = new System.Drawing.Size(482, 300);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -307,9 +284,7 @@
         private System.Windows.Forms.Label priceLabel;
         private BaseButton cancelButton;
         private BaseButton saveButton;
-        private System.Windows.Forms.Label reservationDateLabel;
-        private BaseDateTimePicker baseDateTimePicker1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox notesTextBox;
         private System.Windows.Forms.Label notesLabel;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;

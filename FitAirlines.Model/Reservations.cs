@@ -22,8 +22,8 @@ namespace FitAirlines.Model
         public Flights Flight { get; set; }
         public Users User { get; set; }
 
-        public string ClientType => User.FirstName + " " + User.LastName + " (" + User.MembershipType.Title + ")";
-        public string FlightOffer => Flight.City.CityName + ", " + Flight.CountryName + " (" + Flight.Offer.OfferName + ")";
+        public string ClientType => User?.FirstName + " " + User?.LastName + " (" + User?.MembershipType?.Title + ")";
+        public string FlightOffer => Flight?.City?.CityName + ", " + Flight?.CountryName + " (" + Flight?.Offer?.OfferName + ")";
         public string Discount => TotalDiscountPercentage + "%";
         public string TicketPrice => (BaseTicketPrice * (1 - TotalDiscountPercentage / 100)).ToString("0.00");
     }

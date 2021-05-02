@@ -10,6 +10,6 @@ namespace FitAirlines.WebAPI.Services
         List<Model.Reservations> Get(Model.Requests.ReservationsSearchRequest request);
         Model.Reservations GetById(int id);
         Model.Reservations Insert(Model.Requests.ReservationsInsertRequest request);
-        Model.Reservations Update(int id, Model.Requests.ReservationsInsertRequest request);
+        Model.Reservations Update(int id, Model.Requests.ReservationsUpdateRequest request);
     }
 }

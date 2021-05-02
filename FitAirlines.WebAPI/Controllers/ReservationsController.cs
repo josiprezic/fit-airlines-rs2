@@ -38,7 +38,7 @@ namespace FitAirlines.WebAPI.Controllers
         }
 
         [HttpPut("{Id}")]
-        public Model.Reservations Update(int Id, [FromBody] Model.Requests.ReservationsInsertRequest request)
+        public Model.Reservations Update(int Id, [FromBody] Model.Requests.ReservationsUpdateRequest request)
         {
             return _service.Update(Id, request);
         }

@@ -32,7 +32,7 @@ namespace FitAirlines.WebAPI.Mapper
             CreateMap<Database.Flights, Model.Requests.FlightsInsertRequest>().ReverseMap();
             
             CreateMap<Database.Reservations, Model.Requests.ReservationsInsertRequest>().ReverseMap();
-            // TODO: Szef ReservationsUpdateRequestst? Probably not needed
+            CreateMap<Database.Reservations, Model.Requests.ReservationsUpdateRequest>().ReverseMap();
         }
     }
 }

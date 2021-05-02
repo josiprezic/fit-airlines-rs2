@@ -164,7 +164,6 @@
             this.clientNameTextBox.Name = "clientNameTextBox";
             this.clientNameTextBox.Size = new System.Drawing.Size(178, 20);
             this.clientNameTextBox.TabIndex = 13;
-            this.clientNameTextBox.TextChanged += new System.EventHandler(this.clientNameTextBox_TextChanged);
             // 
             // flightComboBox
             // 

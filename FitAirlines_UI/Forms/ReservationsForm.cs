@@ -63,21 +63,31 @@ namespace FitAirlines.UI
         // MARK: - Actions
         //
 
-        private void searchImageButton_Click(object sender, EventArgs e)
+        private async void searchImageButton_Click(object sender, EventArgs e)
         {
+            await LoadReservations();
+        }
+
+        private async void editImageButton_Click(object sender, EventArgs e)
+        {
+            if (dgvReservations.SelectedRows[0].DataBoundItem is Model.Reservations selectedReservation)
+            {
+                var form = new AddOrEditReservationForm(AddOrEditReservationForm.AddOrEditReservationFormType.Edit, selectedReservation);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadReservations();
+                }
+            }
 
         }
 
-        private void editImageButton_Click(object sender, EventArgs e)
-        {
-            AddOrEditReservationForm form = new AddOrEditReservationForm(AddOrEditReservationForm.AddOrEditReservationFormType.Edit);
-            form.ShowDialog();
-        }
-
-        private void addImageButton_Click(object sender, EventArgs e)
+        private async void addImageButton_Click(object sender, EventArgs e)
         {
             AddOrEditReservationForm form = new AddOrEditReservationForm();
-            form.ShowDialog();
+            if(form.ShowDialog() == DialogResult.OK)
+            {
+                await LoadReservations();
+            }
         }
 
         private async void ReservationsForm_Load(object sender, EventArgs e)
@@ -96,6 +106,10 @@ namespace FitAirlines.UI
         private async Task loadFlights()
         {
             var flList = await _serviceFlights.Get<List<Model.Flights>>(null);
+            flList.Insert(0, new Model.Flights
+            {
+                FlightId = 0
+            });
             flightComboBox.DataSource = flList;
         }
 
@@ -146,10 +160,6 @@ namespace FitAirlines.UI
             await LoadReservations();
         }
 
-        private async void clientNameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            await LoadReservations();
-        }
 
         private async void isActiveCheckBox_CheckedChanged(object sender, EventArgs e)
         {

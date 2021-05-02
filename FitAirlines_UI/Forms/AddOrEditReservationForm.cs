@@ -19,6 +19,7 @@ namespace FitAirlines.UI
         private readonly APIService _serviceUsers = new APIService("Users");
         private readonly APIService _serviceOffers = new APIService("Offers");
         private readonly APIService _serviceFlights = new APIService("Flights");
+        private readonly APIService _serviceReservations = new APIService("Reservations");
 
         private List<Users> allUsers = new List<Users>();
         private List<Offers> allOffers = new List<Offers>();
@@ -41,15 +42,17 @@ namespace FitAirlines.UI
         //
 
         AddOrEditReservationFormType type;
+        private Model.Reservations selectedReservation;
 
 
         //
         // MARK: - Constructors
         //
 
-        public AddOrEditReservationForm(AddOrEditReservationFormType type = AddOrEditReservationFormType.Add)
+        public AddOrEditReservationForm(AddOrEditReservationFormType type = AddOrEditReservationFormType.Add, Model.Reservations selectedReservation = null)
         {
             this.type = type;
+            this.selectedReservation = selectedReservation;
             InitializeComponent();
         }
 
@@ -59,13 +62,46 @@ namespace FitAirlines.UI
 
         private async void AddOrEditReservationForm_Load(object sender, EventArgs e)
         {
+            this.Enabled = false;
+
             await loadData();
+            if (type == AddOrEditReservationFormType.Edit && selectedReservation != null)
+            {
+                this.selectedReservation = await _serviceReservations.GetById<Model.Reservations>(this.selectedReservation.ReservationId);
+                await PopulateFormFields();
+            }
+            else if(type == AddOrEditReservationFormType.Add)
+            {
+                isActiveCheckBox.Checked = true;
+            }
+
+            this.Enabled = true;
+        }
+
+        private async Task PopulateFormFields()
+        {
+            isFirstLoad = true;
+
+            clientComboBox.SetSelectedItem<Model.Users>(x => x.UserId == selectedReservation.UserId);
+
+            offerComboBox.SetSelectedItem<Model.Offers>(x => x.OfferId == selectedReservation.Flight.OfferId);
+
+            flightComboBox.SetSelectedItem<Model.Flights>(x => x.FlightId == selectedReservation.FlightId);
+
+            isActiveCheckBox.Checked = selectedReservation.IsValid.Value;
+
+            notesTextBox.Text = selectedReservation.Notes;
+
+            isFirstLoad = false;
+
+            await RefreshUI();
+
+            departureSeatComboBox.SetSelectedItem<Model.ReservedSeats>(x => x.SeatName == selectedReservation.SeatDeparture);
+            returnSeatComboBox.SetSelectedItem<Model.ReservedSeats>(x => x.SeatName == selectedReservation.SeatReturn);
         }
 
         private async Task loadData()
         {
-            this.Enabled = false;
-
             await Task.WhenAll(
                 loadUsers(),
                 loadOffers(),
@@ -73,9 +109,7 @@ namespace FitAirlines.UI
                 );
 
             isFirstLoad = false;
-            RefreshUI();
-
-            this.Enabled = true;
+            await RefreshUI();
         }
 
         private async Task loadOffers()
@@ -130,38 +164,46 @@ namespace FitAirlines.UI
             this.Close();
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private async void saveButton_Click(object sender, EventArgs e)
         {
+            this.Enabled = false;
 
+            var request = new Model.Requests.ReservationsInsertRequest
+            {
+                FlightId = (flightComboBox.SelectedItem as Model.Flights).FlightId,
+                Notes = notesTextBox.Text,
+                IsActive = isActiveCheckBox.Checked,
+                UserId = (clientComboBox.SelectedItem as Model.Users).UserId,
+                SeatIndexDeparture = (departureSeatComboBox.SelectedItem as Model.ReservedSeats).SeatIndex,
+                SeatIndexReturn = (returnSeatComboBox.SelectedItem as Model.ReservedSeats).SeatIndex,
+            };
+
+            var reservation = await _serviceReservations.Insert<Model.ReservedSeats>(request);
+            if (reservation != null)
+            {
+                DialogResult = DialogResult.OK;
+            }
+            else
+                this.Enabled = true;
         }
 
-        private void clientComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private async void clientComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RefreshUI();
+            await RefreshUI();
         }
 
-        private void offerComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private async void offerComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RefreshUI();
+            await RefreshUI();
         }
 
-        private void flightComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private async void flightComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RefreshUI();
-        }
-
-        private void departureSeatComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            RefreshUI();
-        }
-
-        private void returnSeatComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            RefreshUI();
-        }
+            await RefreshUI();
+        } 
 
         private bool isRefreshing = false;
-        private void RefreshUI()
+        private async Task RefreshUI()
         {
             if (isRefreshing || isFirstLoad) { return; }
             isRefreshing = true;
@@ -187,45 +229,63 @@ namespace FitAirlines.UI
             // Show proper flights
             var selectedOffer = (offerComboBox.SelectedItem as Offers);
 
-            var selectedFlight = (flightComboBox.SelectedItem as Flights);
+            var selectedReservation = (flightComboBox.SelectedItem as Flights);
 
             var offerFlights = allFlights.Where(x => x.AvailableToMemberType.MembershipTypeId <= selectedUser.MembershipTypeId
                                                 && x.OfferId == selectedOffer.OfferId).ToList();
 
             // Prevent reselection of default flight, keep and apply selection info if needed
             flightComboBox.DataSource = offerFlights;
-            if (offerFlights.Contains(selectedFlight))
+            if (offerFlights.Contains(selectedReservation))
             {
-                flightComboBox.SelectedItem = selectedFlight;
+                flightComboBox.SelectedItem = selectedReservation;
             }
 
-            var newSelectedFlight = (flightComboBox.SelectedItem as Flights);
+            var newselectedReservation = (flightComboBox.SelectedItem as Flights);
 
             offerComboBox.Enabled = true;
             flightComboBox.Enabled = true;
 
-            if (newSelectedFlight == null) { return; }
+            if (newselectedReservation == null) { return; }
 
 
-            // TODO: Szef Configure plane seats combo boxes
-            var numberOfSeats = newSelectedFlight.Plane.Capacity;
-            var numberList = Enumerable.Range(1, numberOfSeats).ToList();
+            var numberOfSeats = newselectedReservation.Plane.Capacity;
+            var numberList = Enumerable.Range(0, numberOfSeats - 1).ToList();
+            var reservations = await _serviceReservations.Get<List<Model.Reservations>>(new Model.Requests.ReservationsSearchRequest
+            {
+                ShowOnlyActive = true,
+                FlightId = newselectedReservation.FlightId
+            });
 
-            //var seatList = new List<string>();
-            //foreach (var seatIndex in numberList) {
-            //    seatList.Append(SeatName(seatIndex));
-            //}
-            
-            departureSeatComboBox.DataSource = numberList;
-            returnSeatComboBox.DataSource = numberList;
+            var seatListDeparture = new List<ReservedSeats>();
+            var seatListReturn = new List<ReservedSeats>();
+            foreach (var seatIndex in numberList)
+            {
+                var seat = new ReservedSeats
+                {
+                    SeatIndex = seatIndex
+                };
+
+                if (type == AddOrEditReservationFormType.Edit || reservations.Any(x=>x.SeatDeparture == seat.SeatName) == false)
+                    seatListDeparture.Add(seat);
+
+                if (type == AddOrEditReservationFormType.Edit || reservations.Any(x => x.SeatReturn == seat.SeatName) == false)
+                    seatListReturn.Add(seat);
+            }
+
+            departureSeatComboBox.DataSource = seatListDeparture;
+            departureSeatComboBox.DisplayMember = "SeatName";
+
+            returnSeatComboBox.DataSource = seatListReturn;
+            returnSeatComboBox.DisplayMember = "SeatName";
 
             departureSeatComboBox.Enabled = true;
             returnSeatComboBox.Enabled = true;
 
             // Update price info
-            if (newSelectedFlight != null)
+            if (newselectedReservation != null)
             {
-                var price = Math.Round(newSelectedFlight.Price, 2);
+                var price = Math.Round(newselectedReservation.Price, 2);
                 priceLabel.Text = price.ToString("0.00");
             }
             else
@@ -233,17 +293,7 @@ namespace FitAirlines.UI
                 priceLabel.Text = "0.00";
             }
 
-
             isRefreshing = false;
-        }
-
-
-        // TODO: Szef move to some helper class
-        private string SeatName(int seatIndex) {
-            var numberOfColumns = 6;
-            var seatRow = (seatIndex / numberOfColumns) + 1;
-            var seatColumn = (seatIndex % numberOfColumns) + 1;
-            return seatRow.ToString();// + Convert.ToChar(64 + seatColumn);
         }
 
     }

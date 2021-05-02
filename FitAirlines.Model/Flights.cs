@@ -38,6 +38,9 @@ namespace FitAirlines.Model
 
         public override string ToString()
         {
+            if (FlightId == 0)
+                return "Please select";
+
             return City?.CityName + ", " + CountryName + " (" + StartDate.ToShortDateString() + ")";
         }
     }
