@@ -30,15 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvReservations = new FitAirlines.UI.BaseDataGridView(this.components);
-            this.ClientType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FlightOffer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SeatDeparture = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SeatReturn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Active = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.TicketPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Action = new System.Windows.Forms.DataGridViewButtonColumn();
             this.searchImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.editImageButton = new FitAirlines.UI.ImageButton(this.components);
             this.addImageButton = new FitAirlines.UI.ImageButton(this.components);
@@ -49,6 +40,15 @@
             this.clientNameTextBox = new System.Windows.Forms.TextBox();
             this.flightComboBox = new FitAirlines.UI.BaseComboBox();
             this.flightLabel = new System.Windows.Forms.Label();
+            this.ClientType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FlightOffer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SeatDeparture = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SeatReturn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Active = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.TicketPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Action = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservations)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,72 +81,7 @@
             this.dgvReservations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvReservations.Size = new System.Drawing.Size(853, 407);
             this.dgvReservations.TabIndex = 0;
-            // 
-            // ClientType
-            // 
-            this.ClientType.DataPropertyName = "ClientType";
-            this.ClientType.HeaderText = "Client (Type)";
-            this.ClientType.Name = "ClientType";
-            this.ClientType.ReadOnly = true;
-            // 
-            // FlightOffer
-            // 
-            this.FlightOffer.DataPropertyName = "FlightOffer";
-            this.FlightOffer.HeaderText = "Flight (Offer)";
-            this.FlightOffer.Name = "FlightOffer";
-            this.FlightOffer.ReadOnly = true;
-            // 
-            // Date
-            // 
-            this.Date.DataPropertyName = "ReservationDate";
-            this.Date.HeaderText = "Reservation Date";
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
-            // 
-            // SeatDeparture
-            // 
-            this.SeatDeparture.DataPropertyName = "SeatDeparture";
-            this.SeatDeparture.HeaderText = "Seat (Departure)";
-            this.SeatDeparture.Name = "SeatDeparture";
-            this.SeatDeparture.ReadOnly = true;
-            // 
-            // SeatReturn
-            // 
-            this.SeatReturn.DataPropertyName = "SeatReturn";
-            this.SeatReturn.HeaderText = "Seat (Return)";
-            this.SeatReturn.Name = "SeatReturn";
-            this.SeatReturn.ReadOnly = true;
-            // 
-            // Discount
-            // 
-            this.Discount.DataPropertyName = "Discount";
-            this.Discount.HeaderText = "Discount";
-            this.Discount.Name = "Discount";
-            this.Discount.ReadOnly = true;
-            // 
-            // Active
-            // 
-            this.Active.DataPropertyName = "IsValid";
-            this.Active.HeaderText = "Active";
-            this.Active.Name = "Active";
-            this.Active.ReadOnly = true;
-            this.Active.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Active.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // TicketPrice
-            // 
-            this.TicketPrice.DataPropertyName = "TicketPrice";
-            this.TicketPrice.HeaderText = "Ticket Price";
-            this.TicketPrice.Name = "TicketPrice";
-            this.TicketPrice.ReadOnly = true;
-            // 
-            // Action
-            // 
-            this.Action.HeaderText = "Action";
-            this.Action.Name = "Action";
-            this.Action.ReadOnly = true;
-            this.Action.Text = "Report";
-            this.Action.UseColumnTextForButtonValue = true;
+            this.dgvReservations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservations_CellContentClick);
             // 
             // searchImageButton
             // 
@@ -249,6 +184,72 @@
             this.flightLabel.Size = new System.Drawing.Size(35, 13);
             this.flightLabel.TabIndex = 22;
             this.flightLabel.Text = "label1";
+            // 
+            // ClientType
+            // 
+            this.ClientType.DataPropertyName = "ClientType";
+            this.ClientType.HeaderText = "Client (Type)";
+            this.ClientType.Name = "ClientType";
+            this.ClientType.ReadOnly = true;
+            // 
+            // FlightOffer
+            // 
+            this.FlightOffer.DataPropertyName = "FlightOffer";
+            this.FlightOffer.HeaderText = "Flight (Offer)";
+            this.FlightOffer.Name = "FlightOffer";
+            this.FlightOffer.ReadOnly = true;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "ReservationDate";
+            this.Date.HeaderText = "Reservation Date";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            // 
+            // SeatDeparture
+            // 
+            this.SeatDeparture.DataPropertyName = "SeatDeparture";
+            this.SeatDeparture.HeaderText = "Seat (Departure)";
+            this.SeatDeparture.Name = "SeatDeparture";
+            this.SeatDeparture.ReadOnly = true;
+            // 
+            // SeatReturn
+            // 
+            this.SeatReturn.DataPropertyName = "SeatReturn";
+            this.SeatReturn.HeaderText = "Seat (Return)";
+            this.SeatReturn.Name = "SeatReturn";
+            this.SeatReturn.ReadOnly = true;
+            // 
+            // Discount
+            // 
+            this.Discount.DataPropertyName = "Discount";
+            this.Discount.HeaderText = "Discount";
+            this.Discount.Name = "Discount";
+            this.Discount.ReadOnly = true;
+            // 
+            // Active
+            // 
+            this.Active.DataPropertyName = "IsValid";
+            this.Active.HeaderText = "Active";
+            this.Active.Name = "Active";
+            this.Active.ReadOnly = true;
+            this.Active.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Active.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // TicketPrice
+            // 
+            this.TicketPrice.DataPropertyName = "TicketPrice";
+            this.TicketPrice.HeaderText = "Ticket Price";
+            this.TicketPrice.Name = "TicketPrice";
+            this.TicketPrice.ReadOnly = true;
+            // 
+            // Action
+            // 
+            this.Action.HeaderText = "Action";
+            this.Action.Name = "Action";
+            this.Action.ReadOnly = true;
+            this.Action.Text = "Print";
+            this.Action.UseColumnTextForButtonValue = true;
             // 
             // ReservationsForm
             // 

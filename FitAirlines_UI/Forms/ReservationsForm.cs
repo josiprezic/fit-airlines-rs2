@@ -160,5 +160,19 @@ namespace FitAirlines.UI
         {
             await LoadReservations();
         }
+
+        private void dgvReservations_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 8)
+            {
+                var reservation = dgvReservations.Rows[e.RowIndex].DataBoundItem as Model.Reservations;
+                
+                // TODO: Szef show reservation details report
+                MessageBox.Show("Hello for " + reservation.User.FirstName);
+
+                // var form = new ReservationReportForm(reservation);
+                // form.ShowDialog();
+            }
+        }
     }
 }
