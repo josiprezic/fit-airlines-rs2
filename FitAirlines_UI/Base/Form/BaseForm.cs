@@ -39,10 +39,10 @@ namespace FitAirlines.UI
 
         protected void Logger(String message) { Debug.WriteLine(message); }
         
-        protected void ShowNewForm<T>() where T : BaseForm, new()
+        protected DialogResult ShowNewForm<T>() where T : BaseForm, new()
         {
             T form = new T();
-            form.ShowDialog();
+            return form.ShowDialog();
         }
 
         //

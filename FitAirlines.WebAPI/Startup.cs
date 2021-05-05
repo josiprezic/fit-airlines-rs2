@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FitAirlines.WebAPI.Database;
 using FitAirlines.WebAPI.Filters;
+using FitAirlines.WebAPI.Security;
 using FitAirlines.WebAPI.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -56,8 +58,8 @@ namespace FitAirlines.WebAPI
                 c.DocumentFilter<BasicAuthDocumentFilter>();
             });
 
-            //            services.AddAuthentication("BasicAuthentication")
-            //               .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+            services.AddAuthentication("BasicAuthentication")
+               .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<IMembershipTypesService, MembershipTypesService>();

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FitAirlines.WebAPI.Services
 {
@@ -16,7 +17,7 @@ namespace FitAirlines.WebAPI.Services
         private readonly FitAirlinesContext _context;
 
         private readonly IMapper _mapper;
-        public Users CurrentUser { get; set; }
+        public Model.Users CurrentUser { get; set; }
 
         public UsersService(FitAirlinesContext context, IMapper mapper)
         {
@@ -27,7 +28,7 @@ namespace FitAirlines.WebAPI.Services
         public List<Model.Users> Get(UsersSearchRequest request)
         {
             var query = _context.Users.AsQueryable();
-            if (!string.IsNullOrEmpty(request.Name)) 
+            if (!string.IsNullOrEmpty(request.Name))
             {
                 query = query.Where(x => (x.FirstName + " " + x.LastName).Contains(request.Name));
             }
@@ -88,7 +89,7 @@ namespace FitAirlines.WebAPI.Services
             {
                 throw new UserException("Passwords do not match");
             }
-           
+
             if (CheckEmailExists(request.Email))
             {
                 throw new UserException("Email is already taken.");
@@ -156,6 +157,39 @@ namespace FitAirlines.WebAPI.Services
         public bool CheckEmailExists(string email)
         {
             return _context.Users.Any(x => x.Email == email);
+        }
+
+        public Model.Users MyProfile()
+        {
+            var query = _context.Users.AsQueryable();
+
+            query = query.Where(x => x.UserId == CurrentUser.UserId);
+
+            query = query.Include(x => x.UserRole);
+            query = query.Include(x => x.MembershipType);
+
+            var entity = query.FirstOrDefault();
+
+            return _mapper.Map<Model.Users>(entity);
+        }
+
+        public async Task<Model.Users> Authenticate(string email, string pass)
+        {
+            var user = await _context.Users
+                        .Include(x => x.UserRole)
+                        .Include(x => x.MembershipType)
+                        .FirstOrDefaultAsync(x => x.Email == email);
+
+            if (user != null)
+            {
+                var newHash = GenerateHash(user.PasswordSalt, pass);
+
+                if (newHash == user.PasswordHash)
+                {
+                    return _mapper.Map<Model.Users>(user);
+                }
+            }
+            return null;
         }
     }
 }

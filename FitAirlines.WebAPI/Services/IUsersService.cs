@@ -13,7 +13,10 @@ namespace FitAirlines.WebAPI.Services
         Model.Users Insert(Model.Requests.UsersInsertRequest request);
         Model.Users Update(int id, Model.Requests.UsersUpdateRequest request);
 
-        Database.Users CurrentUser { get; set; }
+        Model.Users MyProfile();
+        Task<Model.Users> Authenticate(string username, string pass);
+
+        Model.Users CurrentUser { get; set; }
 
 
     }

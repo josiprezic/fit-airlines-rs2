@@ -11,7 +11,7 @@ namespace FitAirlines.UI.Helpers
 {
     public class APIService
     {
-        public static string Username { get; set; }
+        public static string Email { get; set; }
         public static string Password { get; set; }
         public static Model.Users CurrentUser { get; set; }
 
@@ -36,7 +36,7 @@ namespace FitAirlines.UI.Helpers
                     url += "?";
                     url += await search.ToQueryString();
                 }
-                return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+                return await url.WithBasicAuth(Email, Password).GetJsonAsync<T>();
             }
             catch (FlurlHttpException ex)
             {
@@ -64,7 +64,7 @@ namespace FitAirlines.UI.Helpers
 
             try
             {
-                return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+                return await url.WithBasicAuth(Email, Password).GetJsonAsync<T>();
             }
             catch (FlurlHttpException ex)
             {
@@ -90,7 +90,7 @@ namespace FitAirlines.UI.Helpers
             }
             try
             {
-                return await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<T>();
+                return await url.WithBasicAuth(Email, Password).PostJsonAsync(request).ReceiveJson<T>();
             }
             catch (FlurlHttpException ex)
             {
@@ -136,7 +136,7 @@ namespace FitAirlines.UI.Helpers
                 }
                 url += $"/{id}";
 
-                return await url.WithBasicAuth(Username, Password).PutJsonAsync(request).ReceiveJson<T>();
+                return await url.WithBasicAuth(Email, Password).PutJsonAsync(request).ReceiveJson<T>();
             }
             catch (FlurlHttpException ex)
             {

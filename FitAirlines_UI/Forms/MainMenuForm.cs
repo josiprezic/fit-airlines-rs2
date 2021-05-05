@@ -1,4 +1,5 @@
-﻿using FitAirlines.UI.Properties;
+﻿using FitAirlines.UI.Helpers;
+using FitAirlines.UI.Properties;
 
 namespace FitAirlines.UI
 {
@@ -45,12 +46,22 @@ namespace FitAirlines.UI
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            ShowNewForm<SettingsForm>();
+            if(ShowNewForm<SettingsForm>() == System.Windows.Forms.DialogResult.OK)
+            {
+                UpdateUI();
+            }
         }
 
         private void MainMenuForm_Load(object sender, System.EventArgs e)
         {
-            // TODO: JR
+            UpdateUI();
         }
+
+        private void UpdateUI()
+        {
+            // TODO: JR Add additional role-specific UI actions
+            welcomeLabel.Text = "Hello, " + APIService.CurrentUser.FirstName + "!";
+        }
+
     }
 }

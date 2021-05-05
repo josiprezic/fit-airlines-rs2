@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitAirlines.UI.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +18,13 @@ namespace FitAirlines.UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             SqlServerTypes.Utilities.LoadNativeAssemblies(AppDomain.CurrentDomain.BaseDirectory);
-            Application.Run(new MainMenuForm());
+
+            var loginForm = new LoginForm();
+            if (loginForm.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new MainMenuForm());
+            }
+
         }
     }
 }

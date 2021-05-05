@@ -1,4 +1,5 @@
 ﻿using FitAirlines.Model;
+using FitAirlines.UI.Forms;
 using FitAirlines.UI.Helpers;
 using FitAirlines.UI.Properties;
 using System;
@@ -41,8 +42,19 @@ namespace FitAirlines.UI
             DialogResult dialogResult = MessageBox.Show("Are you sure?", "Logout", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                // TODO: JR Logout
+                this.Hide();
+
+                var loginForm = new LoginForm();
+                if (loginForm.ShowDialog() == DialogResult.OK)
+                {
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    Application.Exit();
+                }
             }
         }
+
     }
 }
