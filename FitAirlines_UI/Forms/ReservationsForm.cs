@@ -177,11 +177,8 @@ namespace FitAirlines.UI
             {
                 var reservation = dgvReservations.Rows[e.RowIndex].DataBoundItem as Model.Reservations;
                 
-                // TODO: Szef show reservation details report
-                MessageBox.Show("Hello for " + reservation.User.FirstName);
-
-                // var form = new ReservationReportForm(reservation);
-                // form.ShowDialog();
+                var form = new ReservationReportForm(reservation);
+                form.ShowDialog();
             }
         }
     }

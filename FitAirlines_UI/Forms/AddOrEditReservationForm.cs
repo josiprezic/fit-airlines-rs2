@@ -70,7 +70,7 @@ namespace FitAirlines.UI
                 this.selectedReservation = await _serviceReservations.GetById<Model.Reservations>(this.selectedReservation.ReservationId);
                 await PopulateFormFields();
             }
-            else if(type == AddOrEditReservationFormType.Add)
+            else if (type == AddOrEditReservationFormType.Add)
             {
                 isActiveCheckBox.Checked = true;
             }
@@ -167,18 +167,37 @@ namespace FitAirlines.UI
         private async void saveButton_Click(object sender, EventArgs e)
         {
             this.Enabled = false;
+            Reservations reservation;
 
-            var request = new Model.Requests.ReservationsInsertRequest
+            if (type == AddOrEditReservationFormType.Edit)
             {
-                FlightId = (flightComboBox.SelectedItem as Model.Flights).FlightId,
-                Notes = notesTextBox.Text,
-                IsActive = isActiveCheckBox.Checked,
-                UserId = (clientComboBox.SelectedItem as Model.Users).UserId,
-                SeatIndexDeparture = (departureSeatComboBox.SelectedItem as Model.ReservedSeats).SeatIndex,
-                SeatIndexReturn = (returnSeatComboBox.SelectedItem as Model.ReservedSeats).SeatIndex,
-            };
+                // Update existing reservation
+                var request = new Model.Requests.ReservationsUpdateRequest
+                {
+                    IsValid = isActiveCheckBox.Checked,
+                    Notes = notesTextBox.Text,
+                    SeatIndexDeparture = (departureSeatComboBox.SelectedItem as Model.ReservedSeats).SeatIndex,
+                    SeatIndexReturn = (returnSeatComboBox.SelectedItem as Model.ReservedSeats).SeatIndex,
+                };
+                reservation = await _serviceReservations.Update<Model.Reservations>(selectedReservation.ReservationId, request);
+            }
+            else
+            {
 
-            var reservation = await _serviceReservations.Insert<Model.ReservedSeats>(request);
+                // Add new reservation
+                var request = new Model.Requests.ReservationsInsertRequest
+                {
+                    FlightId = (flightComboBox.SelectedItem as Model.Flights).FlightId,
+                    Notes = notesTextBox.Text,
+                    IsValid = isActiveCheckBox.Checked,
+                    UserId = (clientComboBox.SelectedItem as Model.Users).UserId,
+                    SeatIndexDeparture = (departureSeatComboBox.SelectedItem as Model.ReservedSeats).SeatIndex,
+                    SeatIndexReturn = (returnSeatComboBox.SelectedItem as Model.ReservedSeats).SeatIndex,
+                };
+                reservation = await _serviceReservations.Insert<Model.Reservations>(request);
+            }
+
+
             if (reservation != null)
             {
                 DialogResult = DialogResult.OK;
@@ -200,7 +219,7 @@ namespace FitAirlines.UI
         private async void flightComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             await RefreshUI();
-        } 
+        }
 
         private bool isRefreshing = false;
         private async Task RefreshUI()
@@ -243,8 +262,18 @@ namespace FitAirlines.UI
 
             var newselectedReservation = (flightComboBox.SelectedItem as Flights);
 
-            offerComboBox.Enabled = true;
-            flightComboBox.Enabled = true;
+            if(type == AddOrEditReservationFormType.Edit)
+            {
+
+                clientComboBox.Enabled =
+                offerComboBox.Enabled = 
+                flightComboBox.Enabled = false;
+            }
+            else
+            {
+                offerComboBox.Enabled =
+                flightComboBox.Enabled = true;
+            }
 
             if (newselectedReservation == null) { return; }
 
@@ -266,7 +295,7 @@ namespace FitAirlines.UI
                     SeatIndex = seatIndex
                 };
 
-                if (type == AddOrEditReservationFormType.Edit || reservations.Any(x=>x.SeatDeparture == seat.SeatName) == false)
+                if (type == AddOrEditReservationFormType.Edit || reservations.Any(x => x.SeatDeparture == seat.SeatName) == false)
                     seatListDeparture.Add(seat);
 
                 if (type == AddOrEditReservationFormType.Edit || reservations.Any(x => x.SeatReturn == seat.SeatName) == false)

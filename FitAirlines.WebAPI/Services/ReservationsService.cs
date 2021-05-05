@@ -14,7 +14,7 @@ namespace FitAirlines.WebAPI.Services
     public class ReservationsService : IReservationsService
     {
         private readonly FitAirlinesContext _context;
-        
+
         private readonly IMapper _mapper;
 
         public ReservationsService(FitAirlinesContext context, IMapper mapper)
@@ -26,7 +26,7 @@ namespace FitAirlines.WebAPI.Services
         public List<Model.Reservations> Get(ReservationsSearchRequest request)
         {
             var query = _context.Reservations.AsQueryable();
-            if (!string.IsNullOrEmpty(request.UserName)) 
+            if (!string.IsNullOrEmpty(request.UserName))
             {
                 query = query.Where(x => (x.User.FirstName + " " + x.User.LastName).Contains(request.UserName));
             }
@@ -50,54 +50,23 @@ namespace FitAirlines.WebAPI.Services
                 query = query.Where(x => x.FlightId == request.FlightId);
             }
 
-            var list = query
-                //.Include(x => x.OfferType)
-                .Select(x=>new Model.Reservations
-                {
-                    ReservationId = x.ReservationId,
-                    BaseTicketPrice = x.BaseTicketPrice,
-                    IsValid = x.IsValid,
-                    FlightId = x.FlightId,
-                    Notes = x.Notes,
-                    Flight = new Model.Flights
-                    { 
-                        City = new Model.Cities { 
-                            CityName = x.Flight.City.CityName,
-                            Country = new Model.Countries
-                            {
-                                CountryName = x.Flight.City.Country.CountryName
-                            }
-                        },
-                        Offer = new Model.Offers
-                        {
-                            OfferName = x.Flight.Offer.OfferName
-                        }
-                    },
-
-                    CashierId = x.CashierId,
-                    //Ratings = _mapper.Map<List<Model.Ratings>>(x.Ratings),
-                    ReservationDate = x.ReservationDate,
-                    TotalDiscountPercentage = x.TotalDiscountPercentage,
-                    UserId = x.UserId,
-                    User = new Model.Users { 
-                        FirstName = x.User.FirstName,
-                        LastName = x.User.LastName,
-                        MembershipType = new Model.MembershipTypes
-                        {
-                            Title = x.User.MembershipType.Title
-                        }
-                    },//x.User
-                    SeatDeparture = x.ReservedSeats.Where(y=>y.Direction=="1").FirstOrDefault().SeatName ?? "-",
-                    SeatReturn = x.ReservedSeats.Where(y=>y.Direction=="2").FirstOrDefault().SeatName ?? "-"
-                })
+            var list = ExtractReservationData(query)
+                .OrderByDescending(x => x.ReservationDate)
                 .ToList();
             return list;
         }
 
         public Model.Reservations GetById(int id)
         {
-            var entity = _context.Reservations
-                .Where(x => x.ReservationId == id)
+            var entity = ExtractReservationData(_context.Reservations
+                .Where(x => x.ReservationId == id))
+                .FirstOrDefault();
+            return _mapper.Map<Model.Reservations>(entity);
+        }
+
+        IQueryable<Model.Reservations> ExtractReservationData(IQueryable<Reservations> query)
+        {
+            return query
                 .Select(x => new Model.Reservations
                 {
                     ReservationId = x.ReservationId,
@@ -119,10 +88,17 @@ namespace FitAirlines.WebAPI.Services
                         Offer = new Model.Offers
                         {
                             OfferName = x.Flight.Offer.OfferName
-                        }
+                        },
+                        StartDate = x.Flight.StartDate,
+                        EndDate = x.Flight.EndDate,
+                        Price = x.Flight.Price,
                     },
-
                     CashierId = x.CashierId,
+                    Cashier = new Model.Users
+                    {
+                        FirstName = x.Cashier.FirstName,
+                        LastName = x.Cashier.LastName
+                    },
                     //Ratings = _mapper.Map<List<Model.Ratings>>(x.Ratings),
                     ReservationDate = x.ReservationDate,
                     TotalDiscountPercentage = x.TotalDiscountPercentage,
@@ -138,9 +114,7 @@ namespace FitAirlines.WebAPI.Services
                     },//x.User
                     SeatDeparture = x.ReservedSeats.Where(y => y.Direction == "1").FirstOrDefault().SeatName ?? "-",
                     SeatReturn = x.ReservedSeats.Where(y => y.Direction == "2").FirstOrDefault().SeatName ?? "-"
-                })
-                .FirstOrDefault();
-            return _mapper.Map<Model.Reservations>(entity);
+                });
         }
 
         public Model.Reservations Insert(ReservationsInsertRequest request)
@@ -176,8 +150,8 @@ namespace FitAirlines.WebAPI.Services
         public Model.Reservations Update(int id, ReservationsUpdateRequest request)
         {
             var entity = _context.Reservations
-                .Where(x=>x.ReservationId == id)
-                .Include(x=>x.ReservedSeats)
+                .Where(x => x.ReservationId == id)
+                .Include(x => x.ReservedSeats)
                 .FirstOrDefault();
             if (entity == null)
                 return null;
@@ -187,7 +161,7 @@ namespace FitAirlines.WebAPI.Services
             _mapper.Map(request, entity);
 
             var seatDeparture = entity.ReservedSeats.FirstOrDefault(x => x.Direction == "1");
-            if(seatDeparture != null)
+            if (seatDeparture != null)
             {
                 seatDeparture.SeatIndex = request.SeatIndexDeparture;
             }

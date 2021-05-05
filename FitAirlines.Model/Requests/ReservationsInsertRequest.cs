@@ -12,7 +12,7 @@ namespace FitAirlines.Model.Requests
         public int FlightId { get; set; }
 
         [Required]
-        public bool? IsActive { get; set; }
+        public bool? IsValid { get; set; }
 
         // CashierID // TODO: Szef = This should be equal to current (logged in) user ID (can be null if user bought the ticket by himself through the app)
         // BaseTicketPrice = flight price

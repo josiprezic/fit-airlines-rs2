@@ -89,6 +89,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\ReservationReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReservationReportForm.Designer.cs">
+      <DependentUpon>ReservationReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddOrEditUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,6 +238,9 @@
       <DependentUpon>FlightReportDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="Forms\ReservationReportForm.resx">
+      <DependentUpon>ReservationReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddOrEditReservationForm.resx">
       <DependentUpon>AddOrEditReservationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -290,6 +299,7 @@
       <DependentUpon>ReservationsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\FlightReport.rdlc" />
+    <EmbeddedResource Include="Reports\ReservationReport.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\FitAirlines.Model.FlightReportModel.datasource" />
     <None Include="Properties\Settings.settings">

@@ -6,7 +6,7 @@ namespace FitAirlines.Model.Requests
     public class ReservationsUpdateRequest
     {
         [Required]
-        public bool? IsActive { get; set; }
+        public bool? IsValid { get; set; }
 
         public string Notes { get; set; }
 
