@@ -195,7 +195,9 @@ namespace FitAirlines.UI
             Model.Users user;
             if (type == AddOrEditUserFormType.Add)
             {
-                var generatedPasswordString = PasswordHelper.CreatePassword(8);
+
+                // TODO: Szef check
+                var generatedPasswordString = request.BirthDate.Day + "." + request.BirthDate.Month + "." + request.BirthDate.Year + ".";
                 request.Password = generatedPasswordString;
                 request.PasswordConfirmation = generatedPasswordString;
                 request.StartDate = DateTime.Now;

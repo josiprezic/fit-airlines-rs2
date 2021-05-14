@@ -28,7 +28,20 @@ namespace FitAirlines.UI
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            var email = APIService.CurrentUser.Email;
+            var oldPassword = oldPasswordTextBox.Text;
+            var newPassword1 = newPasswordTextBox.Text;
+            var newPassword2 = repeatNewPasswordTextBox.Text;
 
+            // TODO: JR Check new password logic
+            if (newPassword1 == newPassword2) // TODO: JR check password length
+            {
+                // Do something
+            }
+            else 
+            {
+                // Error
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

@@ -448,7 +448,7 @@ namespace FitAirlines.UI
             if (text == null || text == "" || text == "Select city")
             {
                 errorProvider1.SetError(field, "Please select destination airport.");
-                e.Cancel = true; // TODO: JR
+                e.Cancel = true; // TODO: JR check
             }
             else
             {

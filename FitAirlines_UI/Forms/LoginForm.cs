@@ -29,6 +29,11 @@ namespace FitAirlines.UI.Forms
                 APIService.CurrentUser = await _serviceUsers.Get<Model.Users>(null, "MyProfile");
                 if(APIService.CurrentUser != null)
                 {
+                    if(APIService.CurrentUser.UserRole.Title == "FIT Member")
+                    {
+                        MessageBox.Show("You are not permitted to log in as FIT Member!", "Forbidden", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     DialogResult = DialogResult.OK;
                 }
             }
