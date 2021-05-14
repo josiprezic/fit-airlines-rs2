@@ -16,11 +16,13 @@ namespace FitAirlines.WebAPI.Services
         private readonly FitAirlinesContext _context;
 
         private readonly IMapper _mapper;
+        private readonly IUsersService _usersService;
 
-        public ReservationsService(FitAirlinesContext context, IMapper mapper)
+        public ReservationsService(FitAirlinesContext context, IMapper mapper, IUsersService usersService)
         {
             _context = context;
             _mapper = mapper;
+            _usersService = usersService;
         }
 
         public List<Model.Reservations> Get(ReservationsSearchRequest request)
@@ -120,7 +122,8 @@ namespace FitAirlines.WebAPI.Services
         public Model.Reservations Insert(ReservationsInsertRequest request)
         {
             var entity = _mapper.Map<Database.Reservations>(request);
-            entity.CashierId = 1; // TODO: Szef this should be equal to currently logged in user ID
+            if(_usersService.CurrentUser.UserRole.Title != "FIT Member")
+                entity.CashierId = _usersService.CurrentUser.UserId;
             entity.ReservationDate = DateTime.Now;
 
             var flight = _context.Flights.Find(request.FlightId);

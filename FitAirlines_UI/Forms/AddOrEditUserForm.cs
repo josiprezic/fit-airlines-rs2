@@ -47,9 +47,10 @@ namespace FitAirlines.UI
 
         public AddOrEditUserForm(AddOrEditUserFormType type = AddOrEditUserFormType.Add, Users selectedUser = null)
         {
+            InitializeComponent();
             this.type = type;
             this.selectedUser = selectedUser;
-            InitializeComponent();
+            addCreditButton.Visible = APIService.CurrentUser.UserRole.IsAbleToAddUserCredits;
         }
 
         //
@@ -66,6 +67,10 @@ namespace FitAirlines.UI
             {
                 PopulateFormFields(selectedUser);
                 LoadProfilePicture(selectedUser);
+            }
+            else
+            {
+                genderComboBox.SelectedIndex = 0;
             }
 
             fitMembershipComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -98,8 +103,7 @@ namespace FitAirlines.UI
             userRoleComboBox.DataSource = list;
             userRoleComboBox.DisplayMember = "Title";
 
-            // TODO: Szef some hardcoded values here...
-            var fitMemberRole = list.First(x => x.Title.Contains("FIT"));
+            var fitMemberRole = list.First(x => x.Title == "FIT Member");
             if (fitMemberRole != null)
             {
                 userRoleComboBox.SelectedItem = fitMemberRole;
@@ -143,21 +147,12 @@ namespace FitAirlines.UI
 
         private async void addCreditButton_Click(object sender, EventArgs e)
         {
-            // TODO: Szef do I need this message box here?
-            //DialogResult dialogResult = MessageBox.Show("Changes will be saved. Continue?", "Warning", MessageBoxButtons.YesNo);
-            //if (dialogResult == DialogResult.Yes)
-           // {
-                await saveUser();
-                UserCreditForm form = new UserCreditForm(selectedUser);
-                form.ShowDialog();
-                var user = await _serviceUsers.GetById<Model.Users>(selectedUser.UserId);
-                this.selectedUser = user;
-                PopulateFormFields(user);
-            //}
-            //else if (dialogResult == DialogResult.No)
-            //{
-                //do something else
-            //}
+            await saveUser();
+            UserCreditForm form = new UserCreditForm(selectedUser);
+            form.ShowDialog();
+            var user = await _serviceUsers.GetById<Model.Users>(selectedUser.UserId);
+            this.selectedUser = user;
+            PopulateFormFields(user);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -215,7 +210,6 @@ namespace FitAirlines.UI
             {
                 if (user != null)
                 {
-                    selectedUser = user; // TODO: JR TODO: Szef: this should be okay. Just checking
                     DialogResult = DialogResult.OK;
                     return;
                 }
@@ -381,15 +375,12 @@ namespace FitAirlines.UI
             }
         }
 
-        // Gender: Must be selected M/Z
-        // TODO: JR TODO: Szef: Change default text to "Select gender"
-        // TODO: JR TODO: Szef Change this to be full string or at least to "M" and "F"
         private void genderComboBox_Validating(object sender, CancelEventArgs e)
         {
             var field = sender as BaseComboBox;
             var genderText = genderComboBox.Text;
 
-            if (genderText.Length != 1)
+            if (genderText != "M" && genderText != "F")
             {
                 errorProvider1.SetError(field, "Please select gender value.");
                 e.Cancel = true;

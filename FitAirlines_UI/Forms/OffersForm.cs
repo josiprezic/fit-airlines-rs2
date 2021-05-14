@@ -27,6 +27,7 @@ namespace FitAirlines.UI
             InitializeComponent();
 
             baseDataGridView1.AutoGenerateColumns = false;
+            addImageButton.Visible = editImageButton.Visible = APIService.CurrentUser.UserRole.IsAbleToAddNewOffers;
         }
 
         //

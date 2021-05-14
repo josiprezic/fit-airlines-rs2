@@ -33,6 +33,7 @@ namespace FitAirlines.UI
         {
             InitializeComponent();
             dataGridView.AutoGenerateColumns = false;
+            addImageButton.Visible = editImageButton.Visible = APIService.CurrentUser.UserRole.IsAbleToAddNewFlights;
         }
 
 

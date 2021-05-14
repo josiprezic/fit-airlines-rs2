@@ -59,7 +59,6 @@ namespace FitAirlines.UI
 
         private void UpdateUI()
         {
-            // TODO: JR Add additional role-specific UI actions
             welcomeLabel.Text = "Hello, " + APIService.CurrentUser.FirstName + "!";
         }
 

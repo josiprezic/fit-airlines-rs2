@@ -26,7 +26,7 @@ namespace FitAirlines.UI
         {
             InitializeComponent();
             dgvReservations.AutoGenerateColumns = false;
-
+            addImageButton.Visible = editImageButton.Visible = APIService.CurrentUser.UserRole.IsAbleToAddNewReservations;
         }
 
         //

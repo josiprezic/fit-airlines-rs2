@@ -14,7 +14,6 @@ namespace FitAirlines.Model.Requests
         [Required]
         public bool? IsValid { get; set; }
 
-        // CashierID // TODO: Szef = This should be equal to current (logged in) user ID (can be null if user bought the ticket by himself through the app)
         // BaseTicketPrice = flight price
         // TotalDiscountPercentage = 0 for now, should be calculated depending on the user membership type
 

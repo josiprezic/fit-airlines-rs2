@@ -210,8 +210,9 @@
             this.genderComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.genderComboBox.FormattingEnabled = true;
             this.genderComboBox.Items.AddRange(new object[] {
+            "Select gender",
             "M",
-            "Z"});
+            "F"});
             this.genderComboBox.Location = new System.Drawing.Point(84, 128);
             this.genderComboBox.Name = "genderComboBox";
             this.genderComboBox.Size = new System.Drawing.Size(190, 21);

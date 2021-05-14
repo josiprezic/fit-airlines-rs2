@@ -48,14 +48,14 @@
             // 
             this.emailTextbox.Location = new System.Drawing.Point(71, 24);
             this.emailTextbox.Name = "emailTextbox";
-            this.emailTextbox.Size = new System.Drawing.Size(108, 20);
+            this.emailTextbox.Size = new System.Drawing.Size(140, 20);
             this.emailTextbox.TabIndex = 1;
             // 
             // passwordTextBox
             // 
             this.passwordTextBox.Location = new System.Drawing.Point(71, 53);
             this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.Size = new System.Drawing.Size(108, 20);
+            this.passwordTextBox.Size = new System.Drawing.Size(140, 20);
             this.passwordTextBox.TabIndex = 3;
             this.passwordTextBox.UseSystemPasswordChar = true;
             // 
@@ -67,12 +67,13 @@
             this.passwordLabel.Size = new System.Drawing.Size(53, 13);
             this.passwordLabel.TabIndex = 2;
             this.passwordLabel.Text = "Password";
+            this.passwordLabel.Click += new System.EventHandler(this.passwordLabel_Click);
             // 
             // loginButton
             // 
-            this.loginButton.Location = new System.Drawing.Point(80, 89);
+            this.loginButton.Location = new System.Drawing.Point(85, 88);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(75, 23);
+            this.loginButton.Size = new System.Drawing.Size(75, 27);
             this.loginButton.TabIndex = 4;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = true;
@@ -83,7 +84,7 @@
             this.AcceptButton = this.loginButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(212, 133);
+            this.ClientSize = new System.Drawing.Size(244, 133);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.passwordLabel);

@@ -16,13 +16,13 @@ namespace FitAirlines.WebAPI.Services
         private readonly FitAirlinesContext _context;
 
         private readonly IMapper _mapper;
-        private readonly IUsersService usersService;
+        private readonly IUsersService _usersService;
 
         public FlightsService(FitAirlinesContext context, IMapper mapper, IUsersService usersService)
         {
             _context = context;
             _mapper = mapper;
-            this.usersService = usersService;
+            _usersService = usersService;
         }
 
         public List<Model.Flights> Get(FlightsSearchRequest request)
@@ -132,11 +132,7 @@ namespace FitAirlines.WebAPI.Services
             var entity = _mapper.Map<Database.Flights>(request);
 
             entity.AddedDate = DateTime.Now;
-            // TODO: JR // TODO: Szef remove hardcoded value. UserId should be send though the insert request probably?
-            // Nie, trzeba login zrobić
-
-            entity.AddedByUserId = 1;
-            //entity.AddedByUserId = usersService.CurrentUser.UserId;
+            entity.AddedByUserId = _usersService.CurrentUser.UserId;
             _context.Flights.Add(entity);
             _context.SaveChanges();
 
