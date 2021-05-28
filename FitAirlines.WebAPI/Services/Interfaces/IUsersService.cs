@@ -15,6 +15,7 @@ namespace FitAirlines.WebAPI.Services
 
         Model.Users MyProfile();
         Task<Model.Users> Authenticate(string username, string pass);
+        bool UpdatePassword(Model.Requests.UsersUpdatePasswordRequest request);
 
         Model.Users CurrentUser { get; set; }
 

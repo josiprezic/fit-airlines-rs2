@@ -133,6 +133,25 @@ namespace FitAirlines.WebAPI.Services
             return _mapper.Map<Model.Users>(entity);
         }
 
+
+        public bool UpdatePassword(UsersUpdatePasswordRequest request)
+        {
+            var user = _context.Users.Find(CurrentUser.UserId);
+            var oldHash = GenerateHash(user.PasswordSalt, request.OldPassword);
+
+            if (oldHash != user.PasswordHash)
+                throw new UserException("Old password is incorrect.");
+
+            _context.Users.Attach(user);
+            _context.Users.Update(user);
+
+            user.PasswordSalt = GenerateSalt();
+            user.PasswordHash = GenerateHash(user.PasswordSalt, request.NewPassword);
+
+            _context.SaveChanges();
+            return true;
+        }
+
         public static string GenerateSalt()
         {
             var buf = new byte[16];

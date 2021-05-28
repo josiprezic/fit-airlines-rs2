@@ -44,6 +44,13 @@ namespace FitAirlines.WebAPI.Controllers
             return _service.Update(Id, request);
         }
 
+        [HttpPut("UpdatePassword/{id}")]
+        [Authorize]
+        public bool UpdatePassword([FromBody] Model.Requests.UsersUpdatePasswordRequest request)
+        {
+            return _service.UpdatePassword(request);
+        }
+
         [HttpGet("MyProfile")]
         [Authorize]
         public Model.Users MyProfile()
