@@ -20,9 +20,9 @@ namespace FitAirlines.WebAPI.Controllers
         }
 
         [HttpGet]
-        public List<Model.Countries> Get() 
+        public List<Model.Countries> Get([FromQuery] Model.Requests.CountriesSearchRequest request) 
         {
-            return _service.Get();   
+            return _service.Get(request);   
         }
     }
 }

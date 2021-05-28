@@ -19,9 +19,13 @@ namespace FitAirlines.WebAPI.Services
             _mapper = mapper;
         }
 
-        public List<Model.Countries> Get()
+        public List<Model.Countries> Get(Model.Requests.CountriesSearchRequest request)
         {
             var query = _context.Countries.AsQueryable();
+            if(request.HideCountriesWithNoCities)
+            {
+                query = query.Where(x => x.Cities.Any());
+            }
             var list = query.ToList();
             return _mapper.Map<List<Model.Countries>>(list);
         }

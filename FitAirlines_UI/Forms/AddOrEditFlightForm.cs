@@ -171,7 +171,12 @@ namespace FitAirlines.UI
 
         private async Task loadCountries()
         {
-            var list = await _serviceCountries.Get<List<Model.Countries>>(null);
+            var request = new Model.Requests.CountriesSearchRequest
+            {
+                HideCountriesWithNoCities = true
+            };
+
+            var list = await _serviceCountries.Get<List<Model.Countries>>(request);
             list = list.OrderBy(x => x.CountryName).ToList();
             list.Insert(0, new Model.Countries() { CountryId = 0, CountryName = "All" });
 
@@ -448,7 +453,7 @@ namespace FitAirlines.UI
             if (text == null || text == "" || text == "Select city")
             {
                 errorProvider1.SetError(field, "Please select destination airport.");
-                e.Cancel = true; // TODO: JR check
+                e.Cancel = true;
             }
             else
             {
