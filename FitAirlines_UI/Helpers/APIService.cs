@@ -40,11 +40,11 @@ namespace FitAirlines.UI.Helpers
             }
             catch (FlurlHttpException ex)
             {
-                if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+                if (ex.Call.Response.StatusCode == (int)System.Net.HttpStatusCode.Unauthorized)
                 {
                     MessageBox.Show("You are not logged in.");
                 }
-                if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Forbidden)
+                if (ex.Call.Response.StatusCode == (int)System.Net.HttpStatusCode.Forbidden)
                 {
                     MessageBox.Show("You are not authorized.");
                 }
@@ -68,11 +68,11 @@ namespace FitAirlines.UI.Helpers
             }
             catch (FlurlHttpException ex)
             {
-                if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+                if (ex.Call.Response.StatusCode == (int)System.Net.HttpStatusCode.Unauthorized)
                 {
                     MessageBox.Show("You are not logged in.");
                 }
-                if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Forbidden)
+                if (ex.Call.Response.StatusCode == (int)System.Net.HttpStatusCode.Forbidden)
                 {
                     MessageBox.Show("You are not authorized.");
                 }
@@ -94,11 +94,11 @@ namespace FitAirlines.UI.Helpers
             }
             catch (FlurlHttpException ex)
             {
-                if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+                if (ex.Call.Response.StatusCode == (int)System.Net.HttpStatusCode.Unauthorized)
                 {
                     MessageBox.Show("You are not logged in.");
                 }
-                else if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Forbidden)
+                else if (ex.Call.Response.StatusCode == (int)System.Net.HttpStatusCode.Forbidden)
                 {
                     MessageBox.Show("You are not authorized.");
                 }
@@ -140,11 +140,11 @@ namespace FitAirlines.UI.Helpers
             }
             catch (FlurlHttpException ex)
             {
-                if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+                if (ex.Call.Response.StatusCode == (int)System.Net.HttpStatusCode.Unauthorized)
                 {
                     MessageBox.Show("You are not logged in.");
                 }
-                else if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Forbidden)
+                else if (ex.Call.Response.StatusCode == (int)System.Net.HttpStatusCode.Forbidden)
                 {
                     MessageBox.Show("You are not authorized.");
                 }
