@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitAirlines.Mobile.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,19 @@ namespace FitAirlines.Mobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OffersPage : ContentPage
     {
+        private readonly OffersViewModel _viewModel;
+
         public OffersPage()
         {
             InitializeComponent();
+
+            BindingContext = _viewModel = new OffersViewModel();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _viewModel.OnAppearing();
         }
     }
 }

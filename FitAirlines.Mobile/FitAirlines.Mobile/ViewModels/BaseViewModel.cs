@@ -19,6 +19,14 @@ namespace FitAirlines.Mobile.ViewModels
             set { SetProperty(ref isBusy, value); }
         }
 
+        // Double request fixer
+        bool isRequesting = false;
+        public bool IsRequesting
+        {
+            get { return isRequesting; }
+            set { SetProperty(ref isRequesting, value); }
+        }
+
         string title = string.Empty;
         public string Title
         {
