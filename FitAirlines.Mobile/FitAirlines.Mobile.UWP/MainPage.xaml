@@ -4,7 +4,7 @@
     xmlns:forms="using:Xamarin.Forms.Platform.UWP"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FitAirlines.Mobile.UWP"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SizeChanged="WindowsPage_SizeChanged">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 

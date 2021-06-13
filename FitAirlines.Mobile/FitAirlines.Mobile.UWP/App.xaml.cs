@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,6 +23,9 @@ namespace FitAirlines.Mobile.UWP
     /// </summary>
     sealed partial class App : Application
     {
+        private const int WIDTH = 480;
+        private const int HEIGHT = 900;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -29,6 +33,11 @@ namespace FitAirlines.Mobile.UWP
         public App()
         {
             this.InitializeComponent();
+
+            ApplicationView.PreferredLaunchViewSize = new Size(WIDTH, HEIGHT);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+
+
             this.Suspending += OnSuspending;
         }
 
@@ -102,5 +111,6 @@ namespace FitAirlines.Mobile.UWP
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
     }
 }
