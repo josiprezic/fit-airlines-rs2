@@ -16,6 +16,9 @@ namespace FitAirlines.Model
         public int OfferTypeId { get; set; }
 
         public OfferTypes OfferType { get; set; }
+        public int NumberOfDestinations { get; set; }
+        public int ViewportWidth { get; set; }
+        public int ViewportWidthLabel => ViewportWidth - 20;
 
         public override string ToString()
         {

@@ -42,13 +42,15 @@ namespace FitAirlines.Mobile.ViewModels
                 var request = new Model.Requests.OffersSearchRequest
                 {
                     Name = SearchTerm,
-                    ShowOnlyActive = true
+                    ShowOnlyActive = true,
+                    LoadPictures = true
                 };
 
                 var items = await _serviceOffers.Get<List<Offers>>(request);
                 Items.Clear();
                 foreach (var item in items)
                 {
+                    item.ViewportWidth = (int)Math.Truncate(Xamarin.Forms.Application.Current.MainPage.Width); ;
                     Items.Add(item);
                 }
             }

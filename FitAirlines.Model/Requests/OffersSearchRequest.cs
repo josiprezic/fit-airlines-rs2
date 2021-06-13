@@ -12,5 +12,6 @@ namespace FitAirlines.Model.Requests
         public DateTime? Date { get; set; }
 
         public bool ShowOnlyActive { get; set; }
+        public bool LoadPictures { get; set; }
     }
 }

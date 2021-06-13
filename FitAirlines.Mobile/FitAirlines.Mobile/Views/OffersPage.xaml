@@ -1,8 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:FitAirlines.Mobile.ViewModels" xmlns:model="clr-namespace:FitAirlines.Model;assembly=FitAirlines.Model"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:FitAirlines.Mobile.ViewModels" xmlns:model="clr-namespace:FitAirlines.Model;assembly=FitAirlines.Model" xmlns:local="clr-namespace:FitAirlines.Mobile.Converters"
              x:Class="FitAirlines.Mobile.Views.OffersPage">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
 
         <RefreshView x:DataType="vm:OffersViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
@@ -15,26 +20,50 @@
                 SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Padding="10" x:DataType="model:Offers">
-                                <Label Text="{Binding OfferName}" 
+                            <RelativeLayout x:DataType="model:Offers">
+                                <StackLayout VerticalOptions="Center">
+                                    <Image Source="{Binding Picture, Converter={StaticResource imgConv}}" Aspect="AspectFill"  WidthRequest="{Binding ViewportWidth}" HeightRequest="200"/>
+                                </StackLayout>
+
+                                <StackLayout Padding="10" Orientation="Horizontal" TranslationY="160" WidthRequest="{Binding ViewportWidthLabel}">
+                                    <Frame CornerRadius="10"  
+                                       BackgroundColor="#77000000" 
+                                       Padding="2">
+                                            <Label Text="{Binding OfferName}" 
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
                             FontSize="16" />
-                                <Label Text="{Binding StartDate}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer 
+                                    </Frame>
+                                    
+                                    <Frame CornerRadius="10"  
+                                       BackgroundColor="#77000000" 
+                                       Padding="2"
+                                       HorizontalOptions="EndAndExpand"
+                                           >
+                                        <Label Text="{Binding NumberOfDestinations, StringFormat='Number of destinations: {0:F0}'}" 
+                                            HorizontalTextAlignment="End"
+                                            Style="{DynamicResource ListItemTextStyle}"
+                                            FontSize="13" />
+                                    </Frame>
+                                    
+                                   
+                                  
+                                           
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OffersViewModel}}, Path=ItemTapped}"		
                                 CommandParameter="{Binding .}">
-                                    </TapGestureRecognizer>
-                                </StackLayout.GestureRecognizers>
-                            </StackLayout>
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                                
+                            </RelativeLayout>
+                         
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+                
             </StackLayout>
 
         </RefreshView>

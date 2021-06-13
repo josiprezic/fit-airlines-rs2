@@ -14,7 +14,7 @@ namespace FitAirlines.WebAPI.Services
     public class OffersService : IOffersService
     {
         private readonly FitAirlinesContext _context;
-        
+
         private readonly IMapper _mapper;
 
         public OffersService(FitAirlinesContext context, IMapper mapper)
@@ -26,9 +26,9 @@ namespace FitAirlines.WebAPI.Services
         public List<Model.Offers> Get(OffersSearchRequest request)
         {
             var query = _context.Offers.AsQueryable();
-            if (!string.IsNullOrEmpty(request.Name)) 
+            if (!string.IsNullOrEmpty(request.Name))
             {
-                query = query.Where(x => x.OfferName.Contains(request.Name));
+                query = query.Where(x => x.OfferName.ToLower().Contains(request.Name.ToLower()));
             }
 
             if (request.Date != null)
@@ -43,7 +43,7 @@ namespace FitAirlines.WebAPI.Services
 
             var list = query
                 .Include(x => x.OfferType)
-                .Select(x=>new Offers
+                .Select(x => new Offers
                 {
                     DateAdded = x.DateAdded,
                     EndDate = x.EndDate,
@@ -53,10 +53,18 @@ namespace FitAirlines.WebAPI.Services
                     OfferType = x.OfferType,
                     OfferTypeId = x.OfferTypeId,
                     ShortInfo = x.ShortInfo,
-                    StartDate = x.StartDate
+                    StartDate = x.StartDate,
+                    Picture = request.LoadPictures ? x.Picture : new byte[0]
                 })
                 .ToList();
-            return _mapper.Map<List<Model.Offers>>(list);
+
+            var mappedList = _mapper.Map<List<Model.Offers>>(list);
+            foreach (var item in mappedList)
+            {
+                item.NumberOfDestinations = _context.Flights.Count(x => x.OfferId == item.OfferId);
+            }
+
+            return mappedList;
         }
 
         public Model.Offers GetById(int id)
