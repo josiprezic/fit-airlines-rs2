@@ -13,6 +13,7 @@ namespace FitAirlines.Mobile
             InitializeComponent();
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(OfferDetailsPage), typeof(OfferDetailsPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

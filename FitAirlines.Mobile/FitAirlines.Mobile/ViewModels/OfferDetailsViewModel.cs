@@ -12,23 +12,25 @@ using Xamarin.Forms;
 
 namespace FitAirlines.Mobile.ViewModels
 {
-    public class OffersViewModel : BaseViewModel
+    [QueryProperty(nameof(OfferId), nameof(OfferId))]
+    [QueryProperty(nameof(OfferName), nameof(OfferName))]
+    public class OfferDetailsViewModel : BaseViewModel
     {
-        private readonly APIService _serviceOffers = new APIService("Offers");
+        private readonly APIService _serviceFlights = new APIService("Flights");
 
-        public ObservableCollection<Offers> Items { get; }
+        public ObservableCollection<Flights> Items { get; } = new ObservableCollection<Flights>();
         public Command LoadItemsCommand { get; }
         public Command<Offers> ItemTapped { get; }
         public Command SearchCommand { get; }
-        public byte[] DefaultImage { get; set; }
+        private byte[] DefaultImage;
 
-        public OffersViewModel()
+        public OfferDetailsViewModel()
         {
-            Title = "Offers";
-            Items = new ObservableCollection<Offers>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ItemTapped = new Command<Offers>(OnItemSelected);
             SearchCommand = new Command(OnSearch);
+            ViewportWidth = (int)Math.Truncate(Application.Current.MainPage.Width);
+            ViewportWidthLabel = (int)Math.Truncate(Application.Current.MainPage.Width);
             DefaultImage = File.ReadAllBytes("default-destination.jpg");
         }
 
@@ -42,21 +44,20 @@ namespace FitAirlines.Mobile.ViewModels
 
             try
             {
-                var request = new Model.Requests.OffersSearchRequest
+                var request = new Model.Requests.FlightsSearchRequest
                 {
-                    Name = SearchTerm,
-                    ShowOnlyActive = true,
+                    OfferId = int.Parse(OfferId),
+                    CityName = SearchTerm,
+                    IsActive = true,
                     LoadPictures = true
                 };
 
-                var items = await _serviceOffers.Get<List<Offers>>(request);
+                var items = await _serviceFlights.Get<List<Flights>>(request);
                 Items.Clear();
                 foreach (var item in items)
                 {
                     if (item.Picture.Length == 0)
                         item.Picture = DefaultImage;
-
-                    item.ViewportWidth = (int)Math.Truncate(Xamarin.Forms.Application.Current.MainPage.Width); ;
                     Items.Add(item);
                 }
             }
@@ -87,7 +88,7 @@ namespace FitAirlines.Mobile.ViewModels
             }
 
             // This will push the OfferDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(OfferDetailsPage)}?{nameof(OfferDetailsViewModel.OfferId)}={item.OfferId}&{nameof(OfferDetailsViewModel.OfferName)}={item.OfferName}");
+            //await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.OfferId}");
         }
 
         private void OnSearch(object obj)
@@ -95,6 +96,7 @@ namespace FitAirlines.Mobile.ViewModels
             LoadItemsCommand.Execute(null);
         }
 
+        #region Properties
         private string _searchTerm;
 
         public string SearchTerm
@@ -108,6 +110,41 @@ namespace FitAirlines.Mobile.ViewModels
                 }
             }
         }
+        
+
+        private string _offerId;
+
+        public string OfferId
+        {
+            get { return _offerId; }
+            set
+            {
+                if (_offerId != value)
+                {
+                    SetProperty(ref _offerId, value);
+                }
+            }
+        }
+
+
+        private string _offerName;
+
+        public string OfferName
+        {
+            get { return _offerName; }
+            set
+            {
+                if (_offerName != value)
+                {
+                    SetProperty(ref _offerName, value);
+                    Title = value;
+                }
+            }
+        }
+
+        #endregion
+        public static double ViewportWidth { get; set; }
+        public static double ViewportWidthLabel { get; set; }
 
     }
 }

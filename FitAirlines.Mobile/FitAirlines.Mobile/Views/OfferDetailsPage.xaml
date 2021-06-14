@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:FitAirlines.Mobile.ViewModels" xmlns:model="clr-namespace:FitAirlines.Model;assembly=FitAirlines.Model" xmlns:local="clr-namespace:FitAirlines.Mobile.Converters" x:DataType="vm:OffersViewModel"
-             x:Class="FitAirlines.Mobile.Views.OffersPage"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:FitAirlines.Mobile.ViewModels" xmlns:model="clr-namespace:FitAirlines.Model;assembly=FitAirlines.Model" xmlns:local="clr-namespace:FitAirlines.Mobile.Converters" x:DataType="vm:OfferDetailsViewModel"
+             x:Class="FitAirlines.Mobile.Views.OfferDetailsPage"
+             x:Name="MyOfferDetailsPage"
              Title="{Binding Title}">
 
     <ContentPage.Resources>
@@ -11,19 +12,19 @@
     </ContentPage.Resources>
     <ContentPage.Content>
 
-        <RefreshView x:DataType="vm:OffersViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="False">
+        <RefreshView x:DataType="vm:OfferDetailsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="False">
             <StackLayout Orientation="Vertical">
 
-                <SearchBar Placeholder="Search offers..." SearchCommand="{Binding SearchCommand}" Text="{Binding SearchTerm}" />
+                <SearchBar Placeholder="Search destinations..." SearchCommand="{Binding SearchCommand}" Text="{Binding SearchTerm}" />
 
                 <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"
                 SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <RelativeLayout x:DataType="model:Offers" Margin="0,0,0,10">
+                            <RelativeLayout x:DataType="model:Flights" Margin="0,0,0,10">
                                 <StackLayout VerticalOptions="Center">
-                                    <Image Source="{Binding Picture, Converter={StaticResource imgConv}}" Aspect="AspectFill"  WidthRequest="{Binding ViewportWidth}" HeightRequest="200">
+                                    <Image Source="{Binding Picture, Converter={StaticResource imgConv}}" Aspect="AspectFill"  WidthRequest="{x:Static vm:OfferDetailsViewModel.ViewportWidth}" HeightRequest="200">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
@@ -34,11 +35,11 @@
                                     </Image>
                                 </StackLayout>
 
-                                <StackLayout Padding="10" Orientation="Horizontal" TranslationY="160" WidthRequest="{Binding ViewportWidthLabel}">
+                                <StackLayout Padding="10" Orientation="Horizontal" TranslationY="160" WidthRequest="{x:Static vm:OfferDetailsViewModel.ViewportWidth}">
                                     <Frame CornerRadius="10"  
                                        BackgroundColor="#77000000" 
                                        Padding="2">
-                                            <Label Text="{Binding OfferName}" 
+                                            <Label Text="{Binding City.CityName}" 
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
                             FontSize="16" />
@@ -46,17 +47,15 @@
                                     
                                     <Frame CornerRadius="10"  
                                        BackgroundColor="#77000000" 
+                                       Margin="0,0,15,0"
                                        Padding="2"
                                        HorizontalOptions="EndAndExpand"
                                            >
-                                        <Label Text="{Binding NumberOfDestinations, StringFormat='Number of destinations: {0:F0}'}" 
+                                        <Label Text="{Binding Price, StringFormat='Price: Ƒ{0:F2}'}" 
                                             HorizontalTextAlignment="End"
                                             Style="{DynamicResource ListItemTextStyle}"
                                             FontSize="13" />
                                     </Frame>
-                                    
-                                   
-                                  
                                            
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer 
@@ -72,7 +71,18 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-                
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0" Text="Top Destinations"/>
+                    <Button Grid.Row="0" Grid.Column="1" Text="Next Flights"/>
+                </Grid>
             </StackLayout>
 
         </RefreshView>
