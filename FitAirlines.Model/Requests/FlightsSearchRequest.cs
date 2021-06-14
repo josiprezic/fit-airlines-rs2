@@ -20,6 +20,7 @@ namespace FitAirlines.Model.Requests
         public bool? IsActive { get; set; }
 
         public int? AvailableToMemberTypeId { get; set; }
-
+        public string CityName { get; set; }
+        public bool LoadPictures { get; set; }
     }
 }

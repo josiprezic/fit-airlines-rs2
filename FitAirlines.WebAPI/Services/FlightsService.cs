@@ -50,6 +50,11 @@ namespace FitAirlines.WebAPI.Services
                 query = query.Where(x => x.CityId == request.CityId);
             }
 
+            if (!string.IsNullOrEmpty(request.CityName))
+            {
+                query = query.Where(x => x.City.CityName.ToLower().Contains(request.CityName.ToLower()));
+            }
+
             if (request.CountryId != null)
             {
                 query = query.Where(x => x.City.CountryId == request.CountryId);
@@ -109,7 +114,8 @@ namespace FitAirlines.WebAPI.Services
                     {
                         OfferName = x.Offer.OfferName
                     },
-                    DestinationAirportId = x.DestinationAirportId
+                    DestinationAirportId = x.DestinationAirportId,
+                    Picture = request.LoadPictures ? x.Picture : new byte[0]
                 })
                 .ToList();
             return _mapper.Map<List<Model.Flights>>(list);
