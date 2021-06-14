@@ -20,7 +20,7 @@
                 SelectionMode="None">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <RelativeLayout x:DataType="model:Offers">
+                            <RelativeLayout x:DataType="model:Offers" Margin="0,0,0,10">
                                 <StackLayout VerticalOptions="Center">
                                     <Image Source="{Binding Picture, Converter={StaticResource imgConv}}" Aspect="AspectFill"  WidthRequest="{Binding ViewportWidth}" HeightRequest="200"/>
                                 </StackLayout>
