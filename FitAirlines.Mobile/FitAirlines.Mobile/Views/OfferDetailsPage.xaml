@@ -28,7 +28,7 @@
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OffersViewModel}}, Path=ItemTapped}"		
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OfferDetailsViewModel}}, Path=ItemTapped}"		
                                 CommandParameter="{Binding .}">
                                             </TapGestureRecognizer>
                                         </Image.GestureRecognizers>
@@ -41,7 +41,7 @@
                                        Padding="2">
                                             <Label Text="{Binding City.CityName}" 
                             LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
+                            TextColor="White"
                             FontSize="16" />
                                     </Frame>
                                     
@@ -53,14 +53,14 @@
                                            >
                                         <Label Text="{Binding Price, StringFormat='Price: Ƒ{0:F2}'}" 
                                             HorizontalTextAlignment="End"
-                                            Style="{DynamicResource ListItemTextStyle}"
+                                            TextColor="White"
                                             FontSize="13" />
                                     </Frame>
                                            
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OffersViewModel}}, Path=ItemTapped}"		
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OfferDetailsViewModel}}, Path=ItemTapped}"		
                                 CommandParameter="{Binding .}">
                                         </TapGestureRecognizer>
                                     </StackLayout.GestureRecognizers>

@@ -22,7 +22,7 @@ namespace FitAirlines.Mobile.ViewModels
         public ObservableCollection<Flights> Items { get; } = new ObservableCollection<Flights>();
         public Command LoadItemsCommand { get; }
         public Command SetFlightFilterCommand { get; }
-        public Command<Offers> ItemTapped { get; }
+        public Command<Flights> ItemTapped { get; }
         public Command SearchCommand { get; }
         private byte[] DefaultImage;
         private FlightsFilter FlightsFilter;
@@ -31,7 +31,7 @@ namespace FitAirlines.Mobile.ViewModels
         {
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             SetFlightFilterCommand = new Command<string>((filter) => ExecuteSetFlightFilterCommand(filter));
-            ItemTapped = new Command<Offers>(OnItemSelected);
+            ItemTapped = new Command<Flights>(OnItemSelected);
             SearchCommand = new Command(OnSearch);
             ViewportWidth = (int)Math.Truncate(Application.Current.MainPage.Width);
             ViewportWidthLabel = (int)Math.Truncate(Application.Current.MainPage.Width);
@@ -101,7 +101,7 @@ namespace FitAirlines.Mobile.ViewModels
         }
 
 
-        async void OnItemSelected(Offers item)
+        async void OnItemSelected(Flights item)
         {
             if (item == null)
             {
@@ -109,7 +109,8 @@ namespace FitAirlines.Mobile.ViewModels
             }
 
             // This will push the OfferDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.OfferId}");
+            await Shell.Current.GoToAsync($"{nameof(FlightDetailsPage)}");
+            //await Shell.Current.GoToAsync($"{nameof(FlightDetailsPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.OfferId}");
         }
 
         private void OnSearch(object obj)

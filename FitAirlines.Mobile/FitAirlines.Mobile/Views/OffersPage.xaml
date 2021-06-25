@@ -40,7 +40,7 @@
                                        Padding="2">
                                             <Label Text="{Binding OfferName}" 
                             LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
+                            TextColor="White"
                             FontSize="16" />
                                     </Frame>
                                     
@@ -51,7 +51,7 @@
                                            >
                                         <Label Text="{Binding NumberOfDestinations, StringFormat='Number of destinations: {0:F0}'}" 
                                             HorizontalTextAlignment="End"
-                                            Style="{DynamicResource ListItemTextStyle}"
+                                            TextColor="White"
                                             FontSize="13" />
                                     </Frame>
                                     
