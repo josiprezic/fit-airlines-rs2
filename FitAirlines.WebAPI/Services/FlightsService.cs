@@ -116,9 +116,15 @@ namespace FitAirlines.WebAPI.Services
                     },
                     DestinationAirportId = x.DestinationAirportId,
                     Picture = request.LoadPictures ? x.Picture : new byte[0]
-                })
-                .ToList();
-            return _mapper.Map<List<Model.Flights>>(list);
+                });
+
+            if(request.FlightsFilter == FlightsFilter.NextFlights)
+            {
+                list = list.Where(x => x.StartDate.Date >= DateTime.Today)
+                           .OrderBy(x => x.StartDate);
+            }
+                
+            return _mapper.Map<List<Model.Flights>>(list.ToList());
         }
 
         public Model.Flights GetById(int id)

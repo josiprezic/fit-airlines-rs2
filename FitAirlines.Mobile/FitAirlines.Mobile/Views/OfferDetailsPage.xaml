@@ -80,8 +80,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0" Text="Top Destinations"/>
-                    <Button Grid.Row="0" Grid.Column="1" Text="Next Flights"/>
+                    <Button Grid.Row="0" Grid.Column="0" Text="Top Destinations" Command="{Binding SetFlightFilterCommand}" CommandParameter="0" FontAttributes="{Binding TopDestinationsIsActive}"/>
+                    <Button Grid.Row="0" Grid.Column="1" Text="Next Flights" Command="{Binding SetFlightFilterCommand}" CommandParameter="1" FontAttributes="{Binding NextFlightsIsActive}"/>
                 </Grid>
             </StackLayout>
 

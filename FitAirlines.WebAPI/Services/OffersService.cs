@@ -61,7 +61,7 @@ namespace FitAirlines.WebAPI.Services
             var mappedList = _mapper.Map<List<Model.Offers>>(list);
             foreach (var item in mappedList)
             {
-                item.NumberOfDestinations = _context.Flights.Count(x => x.OfferId == item.OfferId);
+                item.NumberOfDestinations = _context.Flights.Count(x => x.OfferId == item.OfferId && x.IsActive == request.ShowOnlyActive);
             }
 
             return mappedList;

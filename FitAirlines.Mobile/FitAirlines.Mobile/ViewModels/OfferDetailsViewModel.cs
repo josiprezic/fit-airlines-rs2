@@ -2,6 +2,7 @@
 using FitAirlines.Mobile.Services;
 using FitAirlines.Mobile.Views;
 using FitAirlines.Model;
+using FitAirlines.Model.Requests;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,13 +21,16 @@ namespace FitAirlines.Mobile.ViewModels
 
         public ObservableCollection<Flights> Items { get; } = new ObservableCollection<Flights>();
         public Command LoadItemsCommand { get; }
+        public Command SetFlightFilterCommand { get; }
         public Command<Offers> ItemTapped { get; }
         public Command SearchCommand { get; }
         private byte[] DefaultImage;
+        private FlightsFilter FlightsFilter;
 
         public OfferDetailsViewModel()
         {
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            SetFlightFilterCommand = new Command<string>((filter) => ExecuteSetFlightFilterCommand(filter));
             ItemTapped = new Command<Offers>(OnItemSelected);
             SearchCommand = new Command(OnSearch);
             ViewportWidth = (int)Math.Truncate(Application.Current.MainPage.Width);
@@ -49,7 +53,8 @@ namespace FitAirlines.Mobile.ViewModels
                     OfferId = int.Parse(OfferId),
                     CityName = SearchTerm,
                     IsActive = true,
-                    LoadPictures = true
+                    LoadPictures = true,
+                    FlightsFilter = FlightsFilter // TODO HERE ! SZEF
                 };
 
                 var items = await _serviceFlights.Get<List<Flights>>(request);
@@ -70,6 +75,22 @@ namespace FitAirlines.Mobile.ViewModels
                 IsBusy = false;
                 IsRequesting = false;
             }
+        }
+
+        private void ExecuteSetFlightFilterCommand(string filter)
+        {
+            FlightsFilter = (FlightsFilter)Enum.Parse(typeof(FlightsFilter), filter);
+            if(FlightsFilter == FlightsFilter.NextFlights)
+            {
+                NextFlightsIsActive = FontAttributes.Bold;
+                TopDestinationsIsActive = FontAttributes.None;
+            }
+            else
+            {
+                NextFlightsIsActive = FontAttributes.None;
+                TopDestinationsIsActive = FontAttributes.Bold;
+            }
+            LoadItemsCommand.Execute(null);
         }
 
         public void OnAppearing()
@@ -141,6 +162,37 @@ namespace FitAirlines.Mobile.ViewModels
                 }
             }
         }
+
+        private FontAttributes _topDestinationsIsActive;
+
+        public FontAttributes TopDestinationsIsActive
+        {
+            get { return _topDestinationsIsActive; }
+            set
+            {
+                if (_topDestinationsIsActive != value)
+                {
+                    SetProperty(ref _topDestinationsIsActive, value);
+                    TopDestinationsIsActive = value;
+                }
+            }
+        }
+
+        private FontAttributes _nextFlightsIsActive;
+
+        public FontAttributes NextFlightsIsActive
+        {
+            get { return _nextFlightsIsActive; }
+            set
+            {
+                if (_nextFlightsIsActive != value)
+                {
+                    SetProperty(ref _nextFlightsIsActive, value);
+                    NextFlightsIsActive = value;
+                }
+            }
+        }
+
 
         #endregion
         public static double ViewportWidth { get; set; }
