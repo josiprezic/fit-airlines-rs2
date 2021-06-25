@@ -109,8 +109,7 @@ namespace FitAirlines.Mobile.ViewModels
             }
 
             // This will push the OfferDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(FlightDetailsPage)}");
-            //await Shell.Current.GoToAsync($"{nameof(FlightDetailsPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.OfferId}");
+            await Shell.Current.GoToAsync($"{nameof(FlightDetailsPage)}?{nameof(FlightDetailsViewModel.FlightId)}={item.FlightId}");
         }
 
         private void OnSearch(object obj)
