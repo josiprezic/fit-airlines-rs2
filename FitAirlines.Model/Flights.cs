@@ -33,6 +33,8 @@ namespace FitAirlines.Model
         public Planes Plane { get; set; }
 
         public int Capacity => Plane?.Capacity ?? 0;
+        public int AvailableSeats { get; set; }
+        public double AverageRating { get; set; }
 
         public string CountryName => City?.Country?.CountryName ?? null;
 

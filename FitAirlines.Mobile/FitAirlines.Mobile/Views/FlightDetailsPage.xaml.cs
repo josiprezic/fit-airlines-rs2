@@ -14,7 +14,7 @@ namespace FitAirlines.Mobile.Views
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = new FlightDetailsViewModel();
+            BindingContext = _viewModel = new FlightDetailsViewModel(Star1, Star2, Star3, Star4, Star5);
         }
 
         protected override void OnAppearing()

@@ -136,7 +136,13 @@ namespace FitAirlines.WebAPI.Services
                 .Include(x => x.AvailableToMemberType)
                 .Include(x => x.Plane)
                 .FirstOrDefault();
-            return _mapper.Map<Model.Flights>(entity);
+
+            var mappedEntity = _mapper.Map<Model.Flights>(entity);
+            // TODO: szef fixuj AvailableToMembershipTypeID sprawdz
+            mappedEntity.AvailableSeats = mappedEntity.Capacity - _context.Reservations.Count(x => x.FlightId == id);
+            mappedEntity.AverageRating = _context.Ratings.Where(x => x.Reservation.FlightId == id).Average(a => (double?)a.RatingValue) ?? 5;
+            
+            return mappedEntity;
         }
 
         public Model.Flights Insert(FlightsInsertRequest request)
