@@ -19,12 +19,18 @@
     <Compile Update="Views\FlightDetailsPage.xaml.cs">
       <DependentUpon>FlightDetailsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\FlightReservationPage.xaml.cs">
+      <DependentUpon>FlightReservationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\OfferDetailsPage.xaml.cs">
       <DependentUpon>OfferDetailsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\FlightReservationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\OffersPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

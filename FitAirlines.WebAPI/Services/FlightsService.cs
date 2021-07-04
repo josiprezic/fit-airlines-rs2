@@ -135,6 +135,7 @@ namespace FitAirlines.WebAPI.Services
                 .Include(x => x.City.Country)
                 .Include(x => x.AvailableToMemberType)
                 .Include(x => x.Plane)
+                .Include(x => x.DestinationAirport)
                 .FirstOrDefault();
 
             var mappedEntity = _mapper.Map<Model.Flights>(entity);

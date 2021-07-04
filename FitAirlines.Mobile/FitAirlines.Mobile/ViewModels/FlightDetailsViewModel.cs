@@ -18,8 +18,9 @@ namespace FitAirlines.Mobile.ViewModels
     {
         private readonly APIService _serviceFlights = new APIService("Flights");
 
-        public ObservableCollection<Flights> Items { get; } = new ObservableCollection<Flights>();
         public Command LoadItemsCommand { get; }
+        public Command BookNowCommand { get; }
+
         private byte[] DefaultImage;
 
         public FlightDetailsViewModel(Image star1, Image star2, Image star3, Image star4, Image star5)
@@ -31,6 +32,7 @@ namespace FitAirlines.Mobile.ViewModels
             this.star5 = star5;
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            BookNowCommand = new Command(async () => await ExecuteBookNowCommand());
             DefaultImage = File.ReadAllBytes("default-destination.jpg");
             Title = "Details";
         }
@@ -103,6 +105,12 @@ namespace FitAirlines.Mobile.ViewModels
                 star5.Source = Star_half;
         }
 
+        private async Task ExecuteBookNowCommand()
+        {
+            await Shell.Current.GoToAsync($"{nameof(FlightReservationPage)}?{nameof(FlightReservationViewModel.FlightId)}={FlightId}");
+        }
+
+
         public void OnAppearing()
         {
             IsBusy = true;
@@ -111,9 +119,8 @@ namespace FitAirlines.Mobile.ViewModels
         }
 
 
-
         #region Properties
-       
+
         private string _flightId;
 
         public string FlightId

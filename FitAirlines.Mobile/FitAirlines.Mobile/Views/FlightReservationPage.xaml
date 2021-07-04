@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FitAirlines.Mobile.Views.FlightReservationPage"
+             xmlns:vm="clr-namespace:FitAirlines.Mobile.ViewModels"
+             x:DataType="vm:FlightReservationViewModel"
+             Title="{Binding Title}"
+             >
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <StackLayout Orientation="Horizontal">
+                <Label FontSize="20" FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="{Binding Flight.City.CityName}"/>
+                                <Span Text=", "/>
+                                <Span Text="{Binding Flight.City.Country.CountryName}"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+            <BoxView BackgroundColor="Gray" HeightRequest="3" CornerRadius="25"></BoxView>
+
+            <StackLayout Orientation="Horizontal">
+                <Label FontSize="16" Text="Departure date:"/>
+                <Label FontSize="16" Text="{Binding Flight.StartDate, StringFormat='{}{0:dd MMM yyyy}'}"/>
+            </StackLayout>
+            <BoxView BackgroundColor="Gray" HeightRequest="3" CornerRadius="25"></BoxView>
+
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="departure_plane.png" WidthRequest="50"/>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="FIT Mostar"/>
+                        <Label Text="{Binding Flight.StartDate, StringFormat='{}{0:HH:mm}'}"/>
+                    </StackLayout>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="arrival_plane.png" WidthRequest="50"/>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding Flight.DestinationAirport.AirportName}"/>
+                        <Label Text="{Binding Flight.StartDateArrival, StringFormat='{}{0:HH:mm}'}"/>
+                    </StackLayout>
+                </StackLayout>
+                
+            </StackLayout>
+            <BoxView BackgroundColor="Gray" HeightRequest="3" CornerRadius="25"></BoxView>
+
+            <StackLayout Orientation="Horizontal">
+                <Label FontSize="16" Text="Arrival date:"/>
+                <Label FontSize="16" Text="{Binding Flight.EndDate, StringFormat='{}{0:dd MMM yyyy}'}"/>
+            </StackLayout>
+            <BoxView BackgroundColor="Gray" HeightRequest="3" CornerRadius="25"></BoxView>
+            
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="departure_plane.png" WidthRequest="50"/>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding Flight.DestinationAirport.AirportName}"/>
+                        <Label Text="{Binding Flight.EndDate, StringFormat='{}{0:HH:mm}'}"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="arrival_plane.png" WidthRequest="50"/>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="FIT Mostar"/>
+                        <Label Text="{Binding Flight.EndDateArrival, StringFormat='{}{0:HH:mm}'}"/>
+                    </StackLayout>
+                </StackLayout>
+
+            </StackLayout>
+            <BoxView BackgroundColor="Gray" HeightRequest="3" CornerRadius="25"></BoxView>
+
+            <Button Text="Choose Seats"/>
+
+            <Label FontAttributes="Bold" Text="Additional information:"/>
+            <Label Text="{Binding Flight.ShortInfo}"/>
+            <BoxView BackgroundColor="Gray" HeightRequest="3" CornerRadius="25"></BoxView>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" FontSize="20" Text="Price:" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
+                <Label Grid.Column="1" FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="End">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="{Binding Flight.Price}"/>
+                                <Span Text=" €"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+
+            <Button Text="Confirm Booking"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

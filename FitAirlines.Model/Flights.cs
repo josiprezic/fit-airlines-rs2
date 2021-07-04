@@ -15,7 +15,9 @@ namespace FitAirlines.Model
         public string VoucherCode { get; set; }
         public double? VoucherDiscountPercentage { get; set; }
         public DateTime StartDate { get; set; }
+        public DateTime StartDateArrival => StartDate.Add(FlightDuration);
         public DateTime EndDate { get; set; }
+        public DateTime EndDateArrival => EndDate.Add(FlightDuration);
         public string PilotFullName { get; set; }
         public TimeSpan FlightDuration { get; set; }
         public double Price { get; set; }
