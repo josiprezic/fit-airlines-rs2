@@ -39,14 +39,14 @@ namespace FitAirlines.Mobile.Views
 
         public int SeatStringToIndex(string seat)
         {
-            var row = (int.Parse(seat.Substring(0, seat.Length - 1)) - 1);
-            var column = (Convert.ToChar(seat.Substring(seat.Length - 1)) - 65);
+            int row = int.Parse(seat.Substring(0, seat.Length - 1)) - 1;
+            int column = Convert.ToChar(seat.Substring(seat.Length - 1)) - 65;
 
             return (row * columns) + column;
         }
         public string SeatIndexToString(int row, int column)
         {
-            return (row + 1) + Convert.ToChar(65 + column).ToString();
+            return row + 1 + Convert.ToChar(65 + column).ToString();
         }
 
         private void AddRowOfSeats(int currentRow, int columns)
