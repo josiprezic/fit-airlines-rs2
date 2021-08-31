@@ -23,6 +23,9 @@ namespace FitAirlines.Mobile.ViewModels
 
         public FlightReservationViewModel()
         {
+            SeatDeparture = -1;
+            SeatArrival = -1;
+
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ChooseSeatsCommand = new Command(async () => await OnClickChooseSeats());
             Title = "Flight Reservation";
