@@ -66,7 +66,7 @@ namespace FitAirlines.WebAPI.Services
             return _mapper.Map<Model.Reservations>(entity);
         }
 
-        IQueryable<Model.Reservations> ExtractReservationData(IQueryable<Reservations> query)
+        private IQueryable<Model.Reservations> ExtractReservationData(IQueryable<Reservations> query)
         {
             return query
                 .Select(x => new Model.Reservations
