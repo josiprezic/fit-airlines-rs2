@@ -386,13 +386,13 @@ GO
 /**********************************************************************************
 									USERS
 **********************************************************************************/
-INSERT INTO Users(FirstName, LastName, BirthDate, Gender, Username, Email, ContactNumber, Picture, Credit, StartDate, isActive, UserRoleID, MembershipTypeID)
+INSERT INTO Users(FirstName, LastName, BirthDate, Gender, Email, ContactNumber, Picture, Credit, StartDate, isActive, UserRoleID, MembershipTypeID)
 VALUES
-('Josip', 'Rezic', GETDATE(), 'M', 'josiprezic', 'josip.rezic@edu.fit.ba', '063124542', NULL, 0, GETDATE(), 1, 1, 5),
-('Bosko', 'Bossovic', GETDATE(), 'M', 'boskobossovic', 'bosko.bossovic@edu.fit.ba', '312123534', NULL, 0, GETDATE(), 1, 2, 5),
-('Letelko', 'Naletilic', GETDATE(), 'M', 'naletilic990', 'letelko@edu.fit.ba', '112343237', NULL, 0, GETDATE(), 1, 3, 1),
-('Blagajka', 'Blagajevic', GETDATE(), 'Z', 'blagajka123', 'blagajka@edu.fit.ba', '653866555', NULL, 0, GETDATE(), 1, 4, 1),
-('Fitovac', 'Studentovic', GETDATE(), 'M', 'fitovac111', 'fitovac@edu.fit.ba', '999966555', NULL, 0, GETDATE(), 1, 5, 1)
+('Josip', 'Rezic', GETDATE(), 'M', 'josip.rezic@edu.fit.ba', '063124542', NULL, 0, GETDATE(), 1, 1, 5),
+('Bosko', 'Bossovic', GETDATE(), 'M', 'bosko.bossovic@edu.fit.ba', '312123534', NULL, 0, GETDATE(), 1, 2, 5),
+('Letelko', 'Naletilic', GETDATE(), 'M', 'letelko@edu.fit.ba', '112343237', NULL, 0, GETDATE(), 1, 3, 1),
+('Blagajka', 'Blagajevic', GETDATE(), 'Z', 'blagajka@edu.fit.ba', '653866555', NULL, 0, GETDATE(), 1, 4, 1),
+('Fitovac', 'Studentovic', GETDATE(), 'M', 'fitovac@edu.fit.ba', '999966555', NULL, 0, GETDATE(), 1, 5, 1)
 GO
 
 /**********************************************************************************
