@@ -100,7 +100,7 @@
                 </Label>
             </Grid>
 
-            <Button Text="Confirm Booking"/>
+            <Button Text="Confirm Booking" Command="{Binding ConfirmBookingCommand}"/>
 
         </StackLayout>
     </ContentPage.Content>

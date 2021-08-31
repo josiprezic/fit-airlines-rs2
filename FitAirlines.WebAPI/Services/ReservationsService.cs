@@ -122,7 +122,7 @@ namespace FitAirlines.WebAPI.Services
         public Model.Reservations Insert(ReservationsInsertRequest request)
         {
             var entity = _mapper.Map<Database.Reservations>(request);
-            if(_usersService.CurrentUser.UserRole.Title != "FIT Member")
+            if(_usersService.CurrentUser != null && _usersService.CurrentUser.UserRole.Title != "FIT Member") // TODO: SZEF FIX
                 entity.CashierId = _usersService.CurrentUser.UserId;
             entity.ReservationDate = DateTime.Now;
 

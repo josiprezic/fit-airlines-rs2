@@ -17,6 +17,7 @@ namespace FitAirlines.Mobile.ViewModels
     public class FlightReservationViewModel : BaseViewModel
     {
         private readonly APIService _serviceFlights = new APIService("Flights");
+        private readonly APIService _serviceReservations = new APIService("Reservations");
 
         public static int SeatDeparture = -1;
         public static int SeatArrival = -1;
@@ -28,8 +29,17 @@ namespace FitAirlines.Mobile.ViewModels
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ChooseSeatsCommand = new Command(async () => await OnClickChooseSeats());
+            ConfirmBookingCommand = new Command(async () => await OnClickConfirmBooking());
             Title = "Flight Reservation";
         }
+
+        public void OnAppearing()
+        {
+            IsBusy = true;
+            IsRequesting = false;
+            LoadItemsCommand.Execute(null);
+        }
+
 
         private async Task ExecuteLoadItemsCommand()
         {
@@ -56,18 +66,30 @@ namespace FitAirlines.Mobile.ViewModels
             }
         }
 
-        public void OnAppearing()
-        {
-            IsBusy = true;
-            IsRequesting = false;
-            LoadItemsCommand.Execute(null);
-        }
-
-        
         private async Task OnClickChooseSeats()
         {
             await Shell.Current.GoToAsync($"{nameof(ChooseSeatsPage)}?{nameof(ChooseSeatsViewModel.FlightId)}={FlightId}");
         }
+
+        private async Task OnClickConfirmBooking()
+        {
+            var request = new ReservationsInsertRequest
+            {
+                FlightId = int.Parse(FlightId),
+                IsValid = true,
+                UserId = 1, // TODO: SZEF
+                SeatIndexDeparture = SeatDeparture,
+                SeatIndexReturn = SeatArrival
+            };
+
+            var entity = await _serviceReservations.Insert<Model.Reservations>(request);
+            if(entity != null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Success", "Your reservation was created successfully.", "OK");
+                await Shell.Current.Navigation.PopAsync();
+            }
+        }
+
 
 
         #region Properties
@@ -99,10 +121,14 @@ namespace FitAirlines.Mobile.ViewModels
                 }
             }
         }
+        #endregion
 
+        #region Commands
         public Command LoadItemsCommand { get; }
 
         public Command ChooseSeatsCommand { get; }
+
+        public Command ConfirmBookingCommand { get; }
 
 
         #endregion
