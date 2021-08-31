@@ -1,4 +1,5 @@
-﻿using FitAirlines.WebAPI.Database;
+﻿using FitAirlines.WebAPI.Converters;
+using FitAirlines.WebAPI.Database;
 using FitAirlines.WebAPI.Filters;
 using FitAirlines.WebAPI.Security;
 using FitAirlines.WebAPI.Services;
@@ -31,6 +32,10 @@ namespace FitAirlines.WebAPI
                 x.Filters.Add<ErrorFilter>();
                 x.EnableEndpointRouting = false;
             });
+
+            services.AddControllers()
+            .AddJsonOptions(options =>
+                options.JsonSerializerOptions.Converters.Add(new TimeSpanToStringConverter()));
 
             services.AddAutoMapper(typeof(Startup));
 
