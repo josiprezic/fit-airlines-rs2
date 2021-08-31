@@ -10,6 +10,8 @@ namespace FitAirlines.WebAPI.Migrations
                 name: "FK__ReservedS__Fligh__6383C8BA",
                 table: "ReservedSeats");
 
+            migrationBuilder.DropIndex("IX_ReservedSeats_FlightID", "ReservedSeats");
+
             migrationBuilder.DropColumn(
                 name: "FlightID",
                 table: "ReservedSeats");

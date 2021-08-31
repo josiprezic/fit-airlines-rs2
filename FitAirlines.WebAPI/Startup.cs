@@ -1,38 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using FitAirlines.WebAPI.Database;
+﻿using FitAirlines.WebAPI.Database;
 using FitAirlines.WebAPI.Filters;
 using FitAirlines.WebAPI.Security;
 using FitAirlines.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace FitAirlines.WebAPI
 {
-    public class BasicAuthDocumentFilter : IDocumentFilter
-    {
-        public void Apply(SwaggerDocument swaggerDoc, DocumentFilterContext context)
-        {
-            var securityRequirements = new Dictionary<string, IEnumerable<string>>()
-        {
-            { "basic", new string[] { } }  // in swagger you specify empty list unless using OAuth2 scopes
-        };
-
-            swaggerDoc.Security = new[] { securityRequirements };
-        }
-    }
 
     public class Startup
     {
@@ -46,18 +26,36 @@ namespace FitAirlines.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(x => x.Filters.Add<ErrorFilter>()).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-#pragma warning disable CS0618 // Type or member is obsolete
-            services.AddAutoMapper();
-#pragma warning restore CS0618 // Type or member is obsolete
+            services.AddMvc(x =>
+            {
+                x.Filters.Add<ErrorFilter>();
+                x.EnableEndpointRouting = false;
+            });
+
+            services.AddAutoMapper(typeof(Startup));
+
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "FitAirlines API v1", Version = "v1" });
-                c.AddSecurityDefinition("basic", new BasicAuthScheme() { Type = "basic" });
-                c.DocumentFilter<BasicAuthDocumentFilter>();
-            });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FitAirlines API", Version = "v1" });
 
+                c.AddSecurityDefinition("basicAuth", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "basic"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "basicAuth" }
+                        },
+                        new string[]{}
+                    }
+                });
+            });
             services.AddAuthentication("BasicAuthentication")
                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
@@ -78,7 +76,7 @@ namespace FitAirlines.WebAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
