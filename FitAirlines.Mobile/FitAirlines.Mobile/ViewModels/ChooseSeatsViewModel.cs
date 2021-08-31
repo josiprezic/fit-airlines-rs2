@@ -14,18 +14,20 @@ using Xamarin.Forms;
 namespace FitAirlines.Mobile.ViewModels
 {
     [QueryProperty(nameof(FlightId), nameof(FlightId))]
-    public class FlightReservationViewModel : BaseViewModel
+    public class ChooseSeatsViewModel : BaseViewModel
     {
         private readonly APIService _serviceFlights = new APIService("Flights");
+        private readonly APIService _serviceReservations = new APIService("Reservations");
 
-        public static int SeatDeparture = -1;
-        public static int SeatArrival = -1;
+        public Command LoadItemsCommand { get; }
+        public Command BookNowCommand { get; }
 
-        public FlightReservationViewModel()
+
+        public ChooseSeatsViewModel()
         {
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            ChooseSeatsCommand = new Command(async () => await OnClickChooseSeats());
-            Title = "Flight Reservation";
+            BookNowCommand = new Command(async () => await ExecuteBookNowCommand());
+            Title = "Reserve Seats";
         }
 
         private async Task ExecuteLoadItemsCommand()
@@ -33,39 +35,30 @@ namespace FitAirlines.Mobile.ViewModels
             if (IsRequesting)
                 return;
 
-            IsRequesting = true;
-            IsBusy = true;
+            //IsRequesting = true;
+            //IsBusy = true;
 
-            try
-            {
-                var item = await _serviceFlights.GetById<Flights>(_flightId);
+            //try
+            //{
+            //    var item = await _serviceFlights.GetById<Flights>(_flightId);
 
-                Flight = item;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-                IsRequesting = false;
-            }
+            //    Flight = item;
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.WriteLine(ex);
+            //}
+            //finally
+            //{
+            //    IsBusy = false;
+            //    IsRequesting = false;
+            //}
         }
 
-        public void OnAppearing()
+        private async Task ExecuteBookNowCommand()
         {
-            IsBusy = true;
-            IsRequesting = false;
-            LoadItemsCommand.Execute(null);
+            
         }
-
-        
-        private async Task OnClickChooseSeats()
-        {
-            await Shell.Current.GoToAsync($"{nameof(ChooseSeatsPage)}?{nameof(ChooseSeatsViewModel.FlightId)}={FlightId}");
-        }
-
 
         #region Properties
 
@@ -79,11 +72,13 @@ namespace FitAirlines.Mobile.ViewModels
                 if (_flightId != value)
                 {
                     SetProperty(ref _flightId, value);
+                    LoadItemsCommand.Execute(null);
                 }
             }
         }
 
         private Flights _flight;
+       
 
         public Flights Flight
         {
@@ -97,9 +92,14 @@ namespace FitAirlines.Mobile.ViewModels
             }
         }
 
-        public Command LoadItemsCommand { get; }
+        private string _chosenSeat = "N/A";
 
-        public Command ChooseSeatsCommand { get; }
+        public string ChosenSeat
+        {
+            get { return _chosenSeat; }
+            set { SetProperty(ref _chosenSeat, value); }
+        }
+
 
 
         #endregion

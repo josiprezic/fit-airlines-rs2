@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\ChooseSeatsPage.xaml.cs">
+      <DependentUpon>ChooseSeatsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\FlightDetailsPage.xaml.cs">
       <DependentUpon>FlightDetailsPage.xaml</DependentUpon>
     </Compile>

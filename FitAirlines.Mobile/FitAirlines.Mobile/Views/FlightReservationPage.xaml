@@ -75,7 +75,7 @@
             </StackLayout>
             <BoxView BackgroundColor="Gray" HeightRequest="3" CornerRadius="25"></BoxView>
 
-            <Button Text="Choose Seats"/>
+            <Button Text="Choose Seats" Command="{Binding ChooseSeatsCommand}"/>
 
             <Label FontAttributes="Bold" Text="Additional information:"/>
             <Label Text="{Binding Flight.ShortInfo}"/>
