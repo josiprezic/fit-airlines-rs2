@@ -17,50 +17,40 @@ namespace FitAirlines.Mobile.ViewModels
     public class ChooseSeatsViewModel : BaseViewModel
     {
         private readonly APIService _serviceFlights = new APIService("Flights");
-        private readonly APIService _serviceReservations = new APIService("Reservations");
-
-        public Command LoadItemsCommand { get; }
-        public Command BookNowCommand { get; }
-
+        private readonly APIService _serviceReservedSeats = new APIService("ReservedSeats");
 
         public ChooseSeatsViewModel()
         {
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            BookNowCommand = new Command(async () => await ExecuteBookNowCommand());
             Title = "Reserve Seats";
         }
 
-        private async Task ExecuteLoadItemsCommand()
+
+        public async Task LoadFlight()
         {
-            if (IsRequesting)
-                return;
-
-            //IsRequesting = true;
-            //IsBusy = true;
-
-            //try
-            //{
-            //    var item = await _serviceFlights.GetById<Flights>(_flightId);
-
-            //    Flight = item;
-            //}
-            //catch (Exception ex)
-            //{
-            //    Debug.WriteLine(ex);
-            //}
-            //finally
-            //{
-            //    IsBusy = false;
-            //    IsRequesting = false;
-            //}
+            Flight = await _serviceFlights.GetById<Model.Flights>(_flightId);
         }
 
-        private async Task ExecuteBookNowCommand()
+        public async Task<List<Model.ReservedSeats>> GetReservedSeats()
         {
-            
+            var request = new Model.Requests.ReservedSeatsSearchRequest
+            {
+                FlightId = int.Parse(_flightId)
+            };
+
+            return await _serviceReservedSeats.Get<List<Model.ReservedSeats>>(request);
         }
+
 
         #region Properties
+
+        private Model.Flights _flight;
+
+        public Model.Flights Flight
+        {
+            get { return _flight; }
+            set { SetProperty(ref _flight, value); }
+        }
+
 
         private string _flightId;
 
@@ -72,26 +62,11 @@ namespace FitAirlines.Mobile.ViewModels
                 if (_flightId != value)
                 {
                     SetProperty(ref _flightId, value);
-                    LoadItemsCommand.Execute(null);
                 }
             }
         }
 
-        private Flights _flight;
        
-
-        public Flights Flight
-        {
-            get { return _flight; }
-            set
-            {
-                if (_flight != value)
-                {
-                    SetProperty(ref _flight, value);
-                }
-            }
-        }
-
         private string _chosenSeat = "N/A";
 
         public string ChosenSeat

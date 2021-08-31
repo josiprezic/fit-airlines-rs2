@@ -1,6 +1,11 @@
-﻿using FitAirlines.Mobile.ViewModels;
+﻿using FitAirlines.Mobile.Services;
+using FitAirlines.Mobile.ViewModels;
+using FitAirlines.Model;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,10 +13,14 @@ namespace FitAirlines.Mobile.Views
 {
     public partial class ChooseSeatsPage : ContentPage
     {
+
         private readonly ChooseSeatsViewModel _viewModel;
 
         private Button seatDeparture;
         private Button seatArrival;
+        private List<Button> buttonList = new List<Button>();
+        private List<ReservedSeats> reservedSeats;
+
         private bool isDeparture = true;
 
         const int columns = 6;
@@ -24,8 +33,44 @@ namespace FitAirlines.Mobile.Views
 
             BindingContext = _viewModel = new ChooseSeatsViewModel();
 
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            await _viewModel.LoadFlight();
+
             SetupHeaderGrid();
             SetupSeatsGrid();
+
+            reservedSeats = await _viewModel.GetReservedSeats();
+            UpdateSeatAvailabilty();
+        }
+
+        private void UpdateSeatAvailabilty()
+        {
+            foreach (var btn in buttonList)
+            {
+                if ((isDeparture && btn != seatDeparture) || (!isDeparture && btn != seatArrival))
+                    btn.BackgroundColor = Color.Gray;
+            }
+
+            foreach (var btn in buttonList)
+            {
+                var currentSeatIndex = SeatStringToIndex(btn.ClassId);
+
+                var query = reservedSeats.AsQueryable();
+                if (isDeparture)
+                    query = query.Where(x => x.Direction == "1");
+                else
+                    query = query.Where(x => x.Direction == "2");
+
+                if (query.Any(x => x.SeatIndex == currentSeatIndex))
+                {
+                    btn.BackgroundColor = Color.Red;
+                }
+            }
         }
 
         private void SetupSeatsGrid()
@@ -70,6 +115,7 @@ namespace FitAirlines.Mobile.Views
                     HeightRequest = 50,
 
                 };
+                buttonList.Add(btn);
                 btn.Clicked += Btn_Clicked;
                 seatsGrid.Children.Add(btn, i >= half ? i + 1 : i, currentRow);
 
@@ -89,7 +135,7 @@ namespace FitAirlines.Mobile.Views
                     int SelectedSeatRow = FlightReservationViewModel.SeatDeparture / columns;
                     int SelectedSeatColumn = FlightReservationViewModel.SeatDeparture % columns;
 
-                    if(SelectedSeatRow == currentRow && SelectedSeatColumn == i)
+                    if (SelectedSeatRow == currentRow && SelectedSeatColumn == i)
                     {
                         seatDeparture = btn;
                         ActivateSeat(seatDeparture);
@@ -106,9 +152,11 @@ namespace FitAirlines.Mobile.Views
 
         }
 
-        private async void Btn_Clicked(object sender, EventArgs e)
+        private void Btn_Clicked(object sender, EventArgs e)
         {
             var btn = sender as Button;
+            if (btn.BackgroundColor == Color.Red)
+                return;
 
             if (isDeparture)
             {
@@ -139,6 +187,7 @@ namespace FitAirlines.Mobile.Views
                 return;
 
             isDeparture = true;
+            UpdateSeatAvailabilty();
             ResetSeat(seatArrival);
             ActivateSeat(seatDeparture);
         }
@@ -149,6 +198,7 @@ namespace FitAirlines.Mobile.Views
                 return;
 
             isDeparture = false;
+            UpdateSeatAvailabilty();
             ResetSeat(seatDeparture);
             ActivateSeat(seatArrival);
         }
