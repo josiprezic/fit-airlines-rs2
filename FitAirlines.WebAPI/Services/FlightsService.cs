@@ -60,7 +60,11 @@ namespace FitAirlines.WebAPI.Services
                 query = query.Where(x => x.City.CountryId == request.CountryId);
             }
 
-            if (request.AvailableToMemberTypeId != null)
+            if(_usersService.CurrentUser.UserRole.Title == "FIT Member")
+            {
+                query = query.Where(x => x.AvailableToMemberType.MembershipPrice <= _usersService.CurrentUser.MembershipType.MembershipPrice);
+            }
+            else if (request.AvailableToMemberTypeId != null)
             {
                 var SelectedMembershipType = _context.MembershipTypes.Find(request.AvailableToMemberTypeId);
                 if (SelectedMembershipType != null)
@@ -143,7 +147,7 @@ namespace FitAirlines.WebAPI.Services
                 .FirstOrDefault();
 
             var mappedEntity = _mapper.Map<Model.Flights>(entity);
-            // TODO: szef fixuj AvailableToMembershipTypeID sprawdz
+
             mappedEntity.AvailableSeats = mappedEntity.Capacity - _context.Reservations.Count(x => x.FlightId == id);
             mappedEntity.AverageRating = _context.Ratings.Where(x => x.Reservation.FlightId == id).Average(a => (double?)a.RatingValue) ?? 5;
             
