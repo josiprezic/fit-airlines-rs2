@@ -23,9 +23,8 @@ namespace FitAirlines.Mobile.Views
 
         private bool isDeparture = true;
 
-        const int columns = 6;
-        const int rows = 15;
-        const int capacity = rows * columns;
+        private const int NumberOfColumns = 6;
+        private int NumberOfRows = 0;
 
         public ChooseSeatsPage()
         {
@@ -40,6 +39,7 @@ namespace FitAirlines.Mobile.Views
             base.OnAppearing();
 
             await _viewModel.LoadFlight();
+            NumberOfRows = (int)Math.Ceiling(_viewModel.Flight.Capacity / (double)NumberOfColumns);
 
             SetupHeaderGrid();
             SetupSeatsGrid();
@@ -75,9 +75,9 @@ namespace FitAirlines.Mobile.Views
 
         private void SetupSeatsGrid()
         {
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < NumberOfRows; i++)
             {
-                AddRowOfSeats(i, columns);
+                AddRowOfSeats(i, NumberOfColumns);
             }
 
         }
@@ -87,7 +87,7 @@ namespace FitAirlines.Mobile.Views
             int row = int.Parse(seat.Substring(0, seat.Length - 1)) - 1;
             int column = Convert.ToChar(seat.Substring(seat.Length - 1)) - 65;
 
-            return (row * columns) + column;
+            return (row * NumberOfColumns) + column;
         }
         public string SeatIndexToString(int row, int column)
         {
