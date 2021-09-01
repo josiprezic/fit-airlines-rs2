@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:converter="clr-namespace:FitAirlines.Mobile.Converters" xmlns:viewmodels="clr-namespace:FitAirlines.Mobile.ViewModels"
+             mc:Ignorable="d"
+             x:Class="FitAirlines.Mobile.Views.MyProfilePage"
+             Title="My Profile"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ImageConverter x:Key="imgConv"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView x:DataType="viewmodels:MyProfileViewModel">
+            <StackLayout Padding="30,20,30,0">
+
+                <StackLayout Orientation="Horizontal">
+
+                    <StackLayout Orientation="Vertical">
+                        <Image x:Name="ProfilePicture"
+                               Source="{Binding ProfilePicture, Converter={StaticResource imgConv}}" 
+                               WidthRequest="220"
+                               HeightRequest="220" />
+                        <Button x:Name="btnSelectPic" Text="Upload photo" Clicked="btnSelectPic_Clicked"  />
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" Padding="0,60,0,0">
+                        <Label Text="Credit:" FontSize="Large" HorizontalTextAlignment="Center"/>
+                        <Label FontAttributes="Bold" FontSize="Large"  HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding User.Credit}"/>
+                                    <Span Text=" PLN"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+
+
+                <Label Margin="0,20,0,0" Text="First Name"/>
+                <Entry
+                    HeightRequest="35"
+                    FontSize="15"
+                    Text="{Binding User.FirstName}">
+
+                </Entry>
+
+                <Label Margin="0,10,0,0" Text="Last Name"/>
+
+                <Entry
+                    HeightRequest="35"
+                    FontSize="15"
+                    Text="{Binding User.LastName}">
+
+                </Entry>
+
+                <Label Margin="0,10,0,0" Text="Birth Date"/>
+
+                <DatePicker
+                    HeightRequest="35"
+                    FontSize="15"
+                    Date="{Binding User.BirthDate}">
+
+                </DatePicker>
+
+                <Label Margin="0,10,0,0" Text="New Password"/>
+
+
+                <Entry
+                    HeightRequest="35"
+                    Placeholder="New Password..."
+                    FontSize="15"
+                    IsPassword="True"
+                    Text="{Binding User.Password}">
+                </Entry>
+
+                <Label Margin="0,10,0,0" Text="Password Confirmation"/>
+
+
+                <Entry
+                    HeightRequest="35"
+                    Placeholder="Password Confirmation..."
+                    FontSize="15"
+                    IsPassword="True"
+                    Text="{Binding User.PasswordConfirmation}">
+                </Entry>
+
+                <Button Margin="0,20,0,0" CornerRadius="4" VerticalOptions="Center" Text="Save Changes" Command="{Binding SaveCommand}"/>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+        
+        
