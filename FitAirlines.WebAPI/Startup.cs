@@ -3,6 +3,7 @@ using FitAirlines.WebAPI.Database;
 using FitAirlines.WebAPI.Filters;
 using FitAirlines.WebAPI.Security;
 using FitAirlines.WebAPI.Services;
+using FitAirlines.WebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -76,6 +77,7 @@ namespace FitAirlines.WebAPI
             services.AddScoped<IPlanesService, PlanesService>();
             services.AddScoped<IReservationsService, ReservationsService>();
             services.AddScoped<IReservedSeatsService, ReservedSeatsService>();
+            services.AddScoped<IRatingsService, RatingsService>();
 
             var connection = Configuration.GetConnectionString("docker");
             services.AddDbContext<FitAirlinesContext>(options => options.UseSqlServer(connection));

@@ -17,8 +17,11 @@ namespace FitAirlines.Mobile.ViewModels
     public class FlightDetailsViewModel : BaseViewModel
     {
         private readonly APIService _serviceFlights = new APIService("Flights");
+        private readonly APIService _serviceRatings = new APIService("Ratings");
 
         public Command LoadItemsCommand { get; }
+        public Command LoadUserRatingCommand { get; }
+        public Command UpdateRatingCommand { get; }
         public Command BookNowCommand { get; }
 
         private byte[] DefaultImage;
@@ -32,10 +35,13 @@ namespace FitAirlines.Mobile.ViewModels
             this.star5 = star5;
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadUserRatingCommand = new Command(async () => await ExecuteLoadUserRatingCommand());
+            UpdateRatingCommand = new Command(async () => await ExecuteUpdateRatingCommand());
             BookNowCommand = new Command(async () => await ExecuteBookNowCommand());
             DefaultImage = File.ReadAllBytes("default-destination.jpg");
             Title = "Details";
         }
+
 
         private async Task ExecuteLoadItemsCommand()
         {
@@ -55,6 +61,7 @@ namespace FitAirlines.Mobile.ViewModels
 
                 Flight = item;
                 UpdateRatingStars();
+                LoadUserRatingCommand.Execute(null);
             }
             catch (Exception ex)
             {
@@ -66,6 +73,53 @@ namespace FitAirlines.Mobile.ViewModels
                 IsRequesting = false;
             }
         }
+
+        private async Task ExecuteLoadUserRatingCommand()
+        {
+            var request = new Model.Requests.RatingsSearchRequest
+            {
+                FlightId = Flight.FlightId
+            };
+
+            var existingRating = await _serviceRatings.Get<List<Ratings>>(request);
+
+            if (existingRating.Count > 0)
+            {
+                foreach (var rating in RatingsList)
+                {
+                    if (rating == existingRating[0].RatingValue.ToString())
+                    {
+                        UserRating = rating;
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        private async Task ExecuteUpdateRatingCommand()
+        {
+            if (string.IsNullOrEmpty(UserRating))
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "PLease select a rating from the list.", "OK");
+                return;
+            }
+
+            var request = new Model.Requests.RatingsInsertRequest
+            {
+                FlightId = Flight.FlightId,
+                Rating = int.Parse(UserRating)
+            };
+
+            var entity = await _serviceRatings.Insert<Ratings>(request, "RateFlight");
+            if(entity != null)
+            {
+                LoadItemsCommand.Execute(null);
+                await Application.Current.MainPage.DisplayAlert("Success", "Rating has been updated successfully.", "OK");
+            }
+        }
+
+
 
         private void UpdateRatingStars()
         {
@@ -152,6 +206,18 @@ namespace FitAirlines.Mobile.ViewModels
                     SetProperty(ref _flight, value);
                 }
             }
+        }
+
+        public ObservableCollection<string> RatingsList { get; set; } = new ObservableCollection<string>()
+        {
+            "1", "2", "3", "4", "5"
+        };
+        private string userRating;
+
+        public string UserRating
+        {
+            get { return userRating; }
+            set { SetProperty(ref userRating, value); }
         }
 
 

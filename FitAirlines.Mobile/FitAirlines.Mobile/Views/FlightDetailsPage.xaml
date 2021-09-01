@@ -74,7 +74,10 @@
                         <Image x:Name="Star3" WidthRequest="32" Source="star_filled.png" />
                         <Image x:Name="Star4" WidthRequest="32" Source="star_half.png" />
                         <Image x:Name="Star5" WidthRequest="32" Source="star_empty.png" />
-
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Picker Title="Rate destination" ItemsSource="{Binding RatingsList}" SelectedItem="{Binding UserRating}" WidthRequest="150"/>
+                        <Button Text="Update rating" Command="{Binding UpdateRatingCommand}" />
                     </StackLayout>
                     <Button Margin="0,10,0,0" Text="Book Now"
                         Command="{Binding BookNowCommand}"
