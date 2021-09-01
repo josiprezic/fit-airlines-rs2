@@ -39,7 +39,7 @@ namespace FitAirlines.Mobile.ViewModels
             }
         }
 
-        public async void LoadItemId(string itemId)
+        public void LoadItemId(string itemId)
         {
             //try
             //{

@@ -187,7 +187,7 @@ namespace FitAirlines.Mobile.ViewModels
                 stripeToken = Tokenservice.Create(Tokenoptions);
                 return stripeToken.Id;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }

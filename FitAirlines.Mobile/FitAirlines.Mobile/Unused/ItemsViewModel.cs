@@ -72,7 +72,7 @@ namespace FitAirlines.Mobile.ViewModels
             await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
-        async void OnItemSelected(Item item)
+        void OnItemSelected(Item item)
         {
             if (item == null)
                 return;
