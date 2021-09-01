@@ -51,6 +51,13 @@ namespace FitAirlines.WebAPI.Controllers
             return _service.UpdatePassword(request);
         }
 
+        [HttpPut("AddCredits/{id}")]
+        [Authorize]
+        public double AddCredits([FromBody] Model.Requests.UsersAddCreditsRequest request)
+        {
+            return _service.AddCredits(request);
+        }
+
         [HttpGet("MyProfile")]
         [Authorize]
         public Model.Users MyProfile()

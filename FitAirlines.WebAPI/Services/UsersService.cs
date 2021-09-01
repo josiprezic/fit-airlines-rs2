@@ -210,5 +210,22 @@ namespace FitAirlines.WebAPI.Services
             }
             return null;
         }
+
+        public double AddCredits(UsersAddCreditsRequest request)
+        {
+            var query = _context.Users.AsQueryable();
+
+            query = query.Where(x => x.UserId == CurrentUser.UserId);
+
+            var entity = query.FirstOrDefault();
+
+            if (request.AddCredits > 0)
+            {
+                entity.Credit += request.AddCredits;
+                _context.SaveChanges();
+            }
+
+            return entity.Credit;
+        }
     }
 }

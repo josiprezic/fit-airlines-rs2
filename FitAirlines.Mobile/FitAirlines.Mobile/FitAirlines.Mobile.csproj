@@ -6,7 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.514" />
     <PackageReference Include="Flurl.Http" Version="3.2.0" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+    <PackageReference Include="Prism.Forms" Version="8.1.97" />
+    <PackageReference Include="Stripe.net" Version="39.65.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
@@ -16,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\StripePaymentGatewayPage.xaml.cs">
+      <DependentUpon>StripePaymentGatewayPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ChooseSeatsPage.xaml.cs">
       <DependentUpon>ChooseSeatsPage.xaml</DependentUpon>
     </Compile>

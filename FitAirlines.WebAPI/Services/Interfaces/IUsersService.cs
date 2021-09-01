@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitAirlines.Model.Requests;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,6 +20,6 @@ namespace FitAirlines.WebAPI.Services
 
         Model.Users CurrentUser { get; set; }
 
-
+        double AddCredits(UsersAddCreditsRequest request);
     }
 }
