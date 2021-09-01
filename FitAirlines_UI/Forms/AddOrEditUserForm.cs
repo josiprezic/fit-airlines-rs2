@@ -63,6 +63,17 @@ namespace FitAirlines.UI
             await loadMembershipTypes();
             await loadUserRoles();
 
+            if (!APIService.CurrentUser.UserRole.IsAbleToAddUserCredits)
+            {
+                addCreditButton.Enabled = false;
+            }
+
+            if (!APIService.CurrentUser.UserRole.IsAbleToAddNewUsers)
+            {
+                profilePictureGroupBox.Enabled = false;
+                personalDataGroupBox.Enabled = false;
+            }
+
             if (type == AddOrEditUserFormType.Edit && selectedUser != null)
             {
                 PopulateFormFields(selectedUser);

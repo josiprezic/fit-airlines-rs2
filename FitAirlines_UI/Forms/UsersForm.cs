@@ -24,7 +24,8 @@ namespace FitAirlines.UI
         {
             InitializeComponent();
             baseDataGridView1.AutoGenerateColumns = false;
-            addImageButton.Visible = editImageButton.Visible = APIService.CurrentUser.UserRole.IsAbleToAddNewUsers;
+            addImageButton.Visible = APIService.CurrentUser.UserRole.IsAbleToAddNewUsers;
+            editImageButton.Visible = APIService.CurrentUser.UserRole.IsAbleToAddNewUsers || APIService.CurrentUser.UserRole.IsAbleToAddUserCredits;
         }
 
         private void UsersForm_Load(object sender, EventArgs e)

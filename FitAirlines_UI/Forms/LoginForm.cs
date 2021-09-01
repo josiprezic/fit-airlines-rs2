@@ -41,13 +41,5 @@ namespace FitAirlines.UI.Forms
             {
             }
         }
-
-        private void passwordLabel_Click(object sender, EventArgs e)
-        {
-            emailTextbox.Text = "josip.rezic@edu.fit.ba";
-            passwordTextBox.Text = "Password1!";
-            loginButton.PerformClick();
-            // TODO: JR Remove this
-        }
     }
 }

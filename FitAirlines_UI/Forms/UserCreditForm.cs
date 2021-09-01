@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-// TODO: JR fix isAbleToAddUserCredits feature flag issue
 
 namespace FitAirlines.UI.Forms
 {
