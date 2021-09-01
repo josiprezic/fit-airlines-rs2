@@ -77,7 +77,7 @@ namespace FitAirlines.WebAPI
             services.AddScoped<IReservationsService, ReservationsService>();
             services.AddScoped<IReservedSeatsService, ReservedSeatsService>();
 
-            var connection = Configuration.GetConnectionString("local");
+            var connection = Configuration.GetConnectionString("docker");
             services.AddDbContext<FitAirlinesContext>(options => options.UseSqlServer(connection));
         }
 
