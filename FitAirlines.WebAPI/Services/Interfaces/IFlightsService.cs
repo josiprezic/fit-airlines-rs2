@@ -8,6 +8,7 @@ namespace FitAirlines.WebAPI.Services
     public interface IFlightsService
     {
         List<Model.Flights> Get(Model.Requests.FlightsSearchRequest request);
+        List<Model.Flights> GetRecommendedFlights();
         Model.Flights GetById(int id);
 
         Model.Flights Insert(Model.Requests.FlightsInsertRequest request);

@@ -60,7 +60,7 @@ namespace FitAirlines.WebAPI.Services
                 query = query.Where(x => x.City.CountryId == request.CountryId);
             }
 
-            if(_usersService.CurrentUser.UserRole.Title == "FIT Member")
+            if (_usersService.CurrentUser.UserRole.Title == "FIT Member")
             {
                 query = query.Where(x => x.AvailableToMemberType.MembershipPrice <= _usersService.CurrentUser.MembershipType.MembershipPrice);
             }
@@ -122,18 +122,90 @@ namespace FitAirlines.WebAPI.Services
                     Picture = request.LoadPictures ? x.Picture : new byte[0]
                 });
 
-            if(request.FlightsFilter == FlightsFilter.NextFlights)
+            if (request.FlightsFilter == FlightsFilter.NextFlights)
             {
                 list = list.Where(x => x.StartDate.Date >= DateTime.Today)
                            .OrderBy(x => x.StartDate);
             }
-            else if(request.FlightsFilter == FlightsFilter.TopOffers)
+            else if (request.FlightsFilter == FlightsFilter.TopOffers)
             {
-                list = list.OrderByDescending(x => _context.Reservations.Count(y=>y.FlightId == x.FlightId && y.IsValid.Value));
+                list = list.OrderByDescending(x => _context.Reservations.Count(y => y.FlightId == x.FlightId && y.IsValid.Value));
             }
-                
+
             return _mapper.Map<List<Model.Flights>>(list.ToList());
         }
+
+        private readonly int ResultsLimit = 5;
+        private readonly int PositiveRatingMin = 3;
+
+        public List<Model.Flights> GetRecommendedFlights()
+        {
+            int UserId = _usersService.CurrentUser.UserId;
+
+            List<Flights> ListOfRecommendedFlights = new List<Flights>();
+
+            List<Ratings> ListOfRatings = _context.Ratings.Where(x => x.Reservation.UserId == UserId)
+                .Include(m => m.Reservation.Flight.DestinationAirport.City.Country)
+                .ToList();
+
+            List<Ratings> ListOfPositiveRatings = ListOfRatings
+                .Where(x => x.RatingValue >= PositiveRatingMin)
+                .ToList();
+
+            if (ListOfPositiveRatings.Count() > 0)
+            {
+                List<Countries> uniqueCountries = new List<Countries>();
+                foreach (var Rating in ListOfPositiveRatings)
+                {
+                    var flightCountry = Rating.Reservation.Flight.DestinationAirport.City.Country;
+
+                    bool add = uniqueCountries.Any(x => x.CountryId == flightCountry.CountryId) == false;
+
+                    if (add)
+                    {
+                        uniqueCountries.Add(flightCountry);
+                    }
+                }
+
+                foreach (var Country in uniqueCountries)
+                {
+                    var FlightsInCountry = _context.Flights
+                        .Include(x => x.City)
+                        .Where(n => n.City.CountryId == Country.CountryId)
+                        .ToList();
+
+                    foreach (var Flight in FlightsInCountry)
+                    {
+                        bool add =
+                            ListOfRecommendedFlights.Any(x => x.FlightId == Flight.FlightId) == false &&
+                            ListOfRatings.Any(x => x.Reservation.FlightId == Flight.FlightId) == false;
+
+                        if (add)
+                        {
+                            ListOfRecommendedFlights.Add(Flight);
+                        }
+                    }
+                }
+
+            }
+
+            if (ListOfRecommendedFlights.Count == 0)
+            {
+                ListOfRecommendedFlights = _context.Flights
+                                         .Include(x => x.City)
+                                         .OrderBy(media => Guid.NewGuid())
+                                         .Take(ResultsLimit)
+                                         .ToList();
+            }
+            else
+            {
+                ListOfRecommendedFlights = ListOfRecommendedFlights.OrderBy(media => Guid.NewGuid()).Take(ResultsLimit).ToList();
+            }
+
+            return _mapper.Map<List<Model.Flights>>(ListOfRecommendedFlights);
+        }
+
+
 
         public Model.Flights GetById(int id)
         {
@@ -150,7 +222,7 @@ namespace FitAirlines.WebAPI.Services
 
             mappedEntity.AvailableSeats = mappedEntity.Capacity - _context.Reservations.Count(x => x.FlightId == id);
             mappedEntity.AverageRating = _context.Ratings.Where(x => x.Reservation.FlightId == id).Average(a => (double?)a.RatingValue) ?? 5;
-            
+
             return mappedEntity;
         }
 

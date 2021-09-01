@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FitAirlines.WebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +24,13 @@ namespace FitAirlines.WebAPI.Controllers
         public List<Model.Flights> Get([FromQuery] Model.Requests.FlightsSearchRequest request) 
         {
             return _service.Get(request);   
+        }
+
+        [HttpGet("GetRecommendedFlights")]
+        [Authorize]
+        public List<Model.Flights> GetRecommendedFlights() 
+        {
+            return _service.GetRecommendedFlights();   
         }
 
         [HttpGet("{Id}")]

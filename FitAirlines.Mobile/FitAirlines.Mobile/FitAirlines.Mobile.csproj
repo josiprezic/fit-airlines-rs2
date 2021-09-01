@@ -24,6 +24,9 @@
     <Compile Update="Views\MyProfilePage.xaml.cs">
       <DependentUpon>MyProfilePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\RecommendedDestinationsPage.xaml.cs">
+      <DependentUpon>RecommendedDestinationsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\StripePaymentGatewayPage.xaml.cs">
       <DependentUpon>StripePaymentGatewayPage.xaml</DependentUpon>
     </Compile>
