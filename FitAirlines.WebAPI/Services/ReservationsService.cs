@@ -122,13 +122,39 @@ namespace FitAirlines.WebAPI.Services
         public Model.Reservations Insert(ReservationsInsertRequest request)
         {
             var entity = _mapper.Map<Database.Reservations>(request);
-            if(_usersService.CurrentUser != null && _usersService.CurrentUser.UserRole.Title != "FIT Member") // TODO: SZEF FIX
-                entity.CashierId = _usersService.CurrentUser.UserId;
-            entity.ReservationDate = DateTime.Now;
+
+            var existingReservation = _context.Reservations.Where(x => x.FlightId == request.FlightId && x.UserId == request.UserId && x.IsValid.Value).FirstOrDefault();
+            if(existingReservation != null)
+            {
+                throw new UserException("You already reserved a ticket for this flight.");
+            }
+
+            if(request.SeatIndexDeparture == -1 || request.SeatIndexReturn == -1)
+            {
+                throw new UserException("You need to pick both departure and arrival seats.");
+            }
 
             var flight = _context.Flights.Find(request.FlightId);
             entity.BaseTicketPrice = flight.Price;
 
+            bool isMobileUser = _usersService.CurrentUser.UserRole.Title == "FIT Member";
+            if (isMobileUser)
+            {
+                var TicketPrice = entity.BaseTicketPrice * (1 - (entity.TotalDiscountPercentage / 100));
+
+                if (_usersService.CurrentUser.Credit < TicketPrice)
+                {
+                    throw new UserException("You don't have enough credits, please refill your credits.");
+                }
+
+                var LoggedInUser = _context.Users.Find(_usersService.CurrentUser.UserId);
+                LoggedInUser.Credit -= TicketPrice;
+            }
+
+            if (!isMobileUser)
+                entity.CashierId = _usersService.CurrentUser.UserId;
+
+            entity.ReservationDate = DateTime.Now;
             _context.Reservations.Add(entity);
 
             // Add Departure Seat
@@ -136,14 +162,14 @@ namespace FitAirlines.WebAPI.Services
             {
                 Direction = "1",
                 SeatIndex = request.SeatIndexDeparture,
-                SeatPrice = 0
+                SeatPrice = 5
             });
             // Add Return Seat
             entity.ReservedSeats.Add(new ReservedSeats
             {
                 Direction = "2",
                 SeatIndex = request.SeatIndexReturn,
-                SeatPrice = 0
+                SeatPrice = 5
             });
 
             _context.SaveChanges();

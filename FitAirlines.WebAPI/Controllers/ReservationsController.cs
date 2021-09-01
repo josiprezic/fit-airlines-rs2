@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FitAirlines.WebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,12 +33,14 @@ namespace FitAirlines.WebAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public Model.Reservations Insert([FromBody] Model.Requests.ReservationsInsertRequest request)
         {
             return _service.Insert(request);
         }
 
         [HttpPut("{Id}")]
+        [Authorize]
         public Model.Reservations Update(int Id, [FromBody] Model.Requests.ReservationsUpdateRequest request)
         {
             return _service.Update(Id, request);
