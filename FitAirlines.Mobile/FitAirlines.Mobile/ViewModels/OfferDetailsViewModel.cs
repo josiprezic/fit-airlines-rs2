@@ -54,7 +54,7 @@ namespace FitAirlines.Mobile.ViewModels
                     CityName = SearchTerm,
                     IsActive = true,
                     LoadPictures = true,
-                    FlightsFilter = FlightsFilter // TODO HERE ! SZEF
+                    FlightsFilter = FlightsFilter
                 };
 
                 var items = await _serviceFlights.Get<List<Flights>>(request);

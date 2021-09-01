@@ -123,6 +123,10 @@ namespace FitAirlines.WebAPI.Services
                 list = list.Where(x => x.StartDate.Date >= DateTime.Today)
                            .OrderBy(x => x.StartDate);
             }
+            else if(request.FlightsFilter == FlightsFilter.TopOffers)
+            {
+                list = list.OrderByDescending(x => _context.Reservations.Count(y=>y.FlightId == x.FlightId && y.IsValid.Value));
+            }
                 
             return _mapper.Map<List<Model.Flights>>(list.ToList());
         }

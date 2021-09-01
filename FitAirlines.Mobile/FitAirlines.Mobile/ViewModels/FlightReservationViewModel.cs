@@ -77,7 +77,7 @@ namespace FitAirlines.Mobile.ViewModels
             {
                 FlightId = int.Parse(FlightId),
                 IsValid = true,
-                UserId = 1, // TODO: SZEF
+                UserId = APIService.CurrentUser.UserId,
                 SeatIndexDeparture = SeatDeparture,
                 SeatIndexReturn = SeatArrival
             };
