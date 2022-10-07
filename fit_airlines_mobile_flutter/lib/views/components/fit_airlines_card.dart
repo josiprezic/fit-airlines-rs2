@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 
 class FitAirlinesCard extends StatelessWidget {
   String title;
+  String rightTitle;
   Image image;
   Function onCardClick;
 
   FitAirlinesCard({
     required this.title,
+    this.rightTitle = '',
     required this.image,
     required this.onCardClick,
   });
@@ -62,6 +64,21 @@ class FitAirlinesCard extends StatelessWidget {
                     padding: EdgeInsets.all(10),
                     child: Text(
                       title,
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      rightTitle,
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   )

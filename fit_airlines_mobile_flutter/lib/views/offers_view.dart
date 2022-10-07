@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import '../models/offer.dart';
 
 import 'components/fit_airlines_card.dart';
 
@@ -15,27 +16,20 @@ class _OffersViewState extends State<OffersView> {
     Offer('Offer 1'),
     Offer('Offer 2'),
     Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 3'),
-    Offer('Offer 23'),
+    Offer('Offer 4'),
+    Offer('Offer 5'),
+    Offer('Offer 6'),
+    Offer('Offer 7'),
+    Offer('Offer 8'),
+    Offer('Offer 9'),
+    Offer('Offer 10'),
   ];
 
-  void handleItemSelected() {}
+  void handleItemSelected(int itemIndex) {
+    print('Offer item clicked');
+    Navigator.of(context)
+        .pushNamed('/flights', arguments: {'offer': offers[itemIndex]});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,17 +46,11 @@ class _OffersViewState extends State<OffersView> {
               fit: BoxFit.cover,
             ),
             onCardClick: () {
-              print('Offer item clicked');
+              handleItemSelected(index);
             },
           );
         },
       ),
     );
   }
-}
-
-class Offer {
-  String name;
-
-  Offer(this.name);
 }
