@@ -46,11 +46,14 @@ class _OffersViewState extends State<OffersView> {
           Offer item = offers[index];
 
           return FitAirlinesCard(
-            item.name,
-            Image.asset(
+            title: item.name,
+            image: Image.asset(
               'assets/images/offer-placeholder.png',
               fit: BoxFit.cover,
             ),
+            onCardClick: () {
+              print('Offer item clicked');
+            },
           );
         },
       ),
