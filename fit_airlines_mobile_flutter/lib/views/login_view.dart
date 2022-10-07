@@ -1,3 +1,4 @@
+import 'package:fit_airlines_mobile_flutter/services/APIService.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatefulWidget {
@@ -8,6 +9,9 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +28,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: usernameController,
                 decoration: InputDecoration(
                   hintText: 'Username',
                   border: OutlineInputBorder(
@@ -33,6 +38,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: passwordController,
                 decoration: InputDecoration(
                   hintText: 'Password',
                   border: OutlineInputBorder(
@@ -49,7 +55,16 @@ class _LoginViewState extends State<LoginView> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    print(usernameController.text +
+                        ' ' +
+                        passwordController.text);
+
+                    APIService.username = usernameController.text;
+                    APIService.password = passwordController.text;
+
+                    await APIService.get('/airports');
+                  },
                   child: Text('Login'),
                 ),
               )
