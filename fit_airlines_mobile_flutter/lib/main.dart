@@ -1,3 +1,4 @@
+import 'package:fit_airlines_mobile_flutter/views/flight_details_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/flights_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/offers_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/profile_view.dart';
@@ -18,6 +19,7 @@ void main() {
         //'/loading':(context) =? Loading();
         '/offers': (context) => OffersView(),
         '/flights': (context) => FlightsView(),
+        '/flight_details': (context) => FlightDetailsView(),
         '/settings': (context) => SettingsView(),
         '/profile': (context) => ProfileView(),
       },

@@ -13,9 +13,10 @@ class FlightsView extends StatefulWidget {
 
 enum FlightTabs { bestDeals, nextFlights }
 
-FlightTabs _selectedSegment = FlightTabs.nextFlights;
-
 class _FlightsViewState extends State<FlightsView> {
+  List<Flight> displayedFlights = [];
+  FlightTabs _selectedSegment = FlightTabs.nextFlights;
+
   Offer? offer;
 
   List<Flight> getFlightsForOffer(Offer offer) {
@@ -35,8 +36,8 @@ class _FlightsViewState extends State<FlightsView> {
 
   void handleItemSelected(int itemIndex) {
     print('Flight item clicked $itemIndex');
-    //Navigator.of(context)
-    //    .pushNamed('/flights', arguments: {'offer': offers[itemIndex]});
+    Navigator.of(context).pushNamed('/flight_details',
+        arguments: {'flight': displayedFlights[itemIndex]});
   }
 
   @override
@@ -45,8 +46,6 @@ class _FlightsViewState extends State<FlightsView> {
         <String, dynamic>{}) as Map;
 
     offer = arguments['offer'];
-
-    List<Flight> displayedFlights = [];
 
     if (offer == null) {
       // TODO: Show all flights
@@ -85,7 +84,6 @@ class _FlightsViewState extends State<FlightsView> {
                     rightTitle: item.price,
                     image: Image.asset(
                       'assets/images/flight-placeholder.jpg',
-                      // TODO: JR change flights default image
                       fit: BoxFit.cover,
                     ),
                     onCardClick: () {
