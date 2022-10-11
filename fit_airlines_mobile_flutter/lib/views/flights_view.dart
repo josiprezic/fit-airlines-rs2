@@ -1,3 +1,4 @@
+import 'package:fit_airlines_mobile_flutter/models/flight.dart';
 import 'package:fit_airlines_mobile_flutter/models/offer.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_airlines_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,9 +11,9 @@ class FlightsView extends StatefulWidget {
   State<FlightsView> createState() => _FlightsViewState();
 }
 
-enum FlightTabs { midnight, viridian }
+enum FlightTabs { bestDeals, nextFlights }
 
-FlightTabs _selectedSegment = FlightTabs.viridian;
+FlightTabs _selectedSegment = FlightTabs.nextFlights;
 
 class _FlightsViewState extends State<FlightsView> {
   Offer? offer;
@@ -105,19 +106,20 @@ class _FlightsViewState extends State<FlightsView> {
                 onValueChanged: (FlightTabs? value) {
                   if (value != null) {
                     setState(() {
+                      print('TODO: Handle tab changed');
                       _selectedSegment = value;
                     });
                   }
                 },
                 children: const <FlightTabs, Widget>{
-                  FlightTabs.midnight: Padding(
+                  FlightTabs.bestDeals: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                     child: Text(
                       'Best deals',
                       style: TextStyle(color: CupertinoColors.white),
                     ),
                   ),
-                  FlightTabs.viridian: Padding(
+                  FlightTabs.nextFlights: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
                       'Next flights',
@@ -132,11 +134,4 @@ class _FlightsViewState extends State<FlightsView> {
       ),
     );
   }
-}
-
-class Flight {
-  String name;
-  String price;
-
-  Flight(this.name, this.price);
 }
