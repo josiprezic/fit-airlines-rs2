@@ -66,7 +66,7 @@ class _HomeViewWithDrawerState extends State<HomeViewWithDrawer> {
                 onTap: () {
                   Navigator.pop(context);
 
-                  Navigator.of(context).pushNamed('/offers');
+                  // Navigator.of(context).pushNamed('/offers'); // TODO: JR the home screen could show recommended flights insted of offers view?
                 },
               ),
               ListTile(

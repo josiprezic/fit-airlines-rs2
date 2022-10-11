@@ -1,5 +1,6 @@
 import 'package:fit_airlines_mobile_flutter/models/offer.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_airlines_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FlightsView extends StatefulWidget {
@@ -8,6 +9,10 @@ class FlightsView extends StatefulWidget {
   @override
   State<FlightsView> createState() => _FlightsViewState();
 }
+
+enum FlightTabs { midnight, viridian }
+
+FlightTabs _selectedSegment = FlightTabs.viridian;
 
 class _FlightsViewState extends State<FlightsView> {
   Offer? offer;
@@ -55,25 +60,75 @@ class _FlightsViewState extends State<FlightsView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flights'),
+        title: Text((offer?.name ?? '') + ' flights'),
       ),
-      body: ListView.builder(
-        itemCount: displayedFlights.length,
-        itemBuilder: (context, index) {
-          Flight item = displayedFlights[index];
+      body: CupertinoPageScaffold(
+        backgroundColor: Colors.white,
+        //navigationBar: CupertinoNavigationBar(
+        //  automaticallyImplyLeading: false,
+        // This Cupertino segmented control has the enum "Sky" as the type.
+        //middle: SizedBox(width: double.infinity, child: Text('Siema')),
+        //),
+        child: Column(
+          children: [
+            // TODO: SZEF JR TUTAJ MAMY _selectedSegment i preko toga mijenjamo sta zelimo prikazati
 
-          return FitAirlinesCard(
-            title: item.name,
-            rightTitle: item.price,
-            image: Image.asset(
-              'assets/images/offer-placeholder.png', // TODO: JR change flights default image
-              fit: BoxFit.cover,
+            Expanded(
+              child: ListView.builder(
+                itemCount: displayedFlights.length,
+                itemBuilder: (context, index) {
+                  Flight item = displayedFlights[index];
+
+                  return FitAirlinesCard(
+                    title: item.name,
+                    rightTitle: item.price,
+                    image: Image.asset(
+                      'assets/images/offer-placeholder.png',
+                      // TODO: JR change flights default image
+                      fit: BoxFit.cover,
+                    ),
+                    onCardClick: () {
+                      handleItemSelected(index);
+                    },
+                  );
+                },
+              ),
             ),
-            onCardClick: () {
-              handleItemSelected(index);
-            },
-          );
-        },
+            SizedBox(
+              width: double.infinity,
+              child: CupertinoSlidingSegmentedControl<FlightTabs>(
+                backgroundColor: CupertinoColors.systemGrey2,
+                thumbColor: Colors.green,
+                // This represents the currently selected segmented control.
+                groupValue: _selectedSegment,
+                // Callback that sets the selected segmented control.
+                onValueChanged: (FlightTabs? value) {
+                  if (value != null) {
+                    setState(() {
+                      _selectedSegment = value;
+                    });
+                  }
+                },
+                children: const <FlightTabs, Widget>{
+                  FlightTabs.midnight: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                    child: Text(
+                      'Best deals',
+                      style: TextStyle(color: CupertinoColors.white),
+                    ),
+                  ),
+                  FlightTabs.viridian: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      'Next flights',
+                      style: TextStyle(color: CupertinoColors.white),
+                    ),
+                  ),
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
