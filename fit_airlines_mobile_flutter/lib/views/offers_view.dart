@@ -42,7 +42,7 @@ class _OffersViewState extends State<OffersView> {
           return FitAirlinesCard(
             title: item.name,
             image: Image.asset(
-              'assets/images/offer-placeholder.png',
+              'assets/images/offer-placeholder.jpg',
               fit: BoxFit.cover,
             ),
             onCardClick: () {

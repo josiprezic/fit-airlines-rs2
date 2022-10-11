@@ -39,10 +39,8 @@ class FitAirlinesCard extends StatelessWidget {
               child: Container(
                 height: 120,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
-                  ),
+                  border: Border.all(color: Colors.black54, width: 1.0),
+                  borderRadius: BorderRadius.circular(10),
                   gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.topCenter,

@@ -64,7 +64,7 @@ class _FlightsViewState extends State<FlightsView> {
         title: Text((offer?.name ?? '') + ' flights'),
       ),
       body: CupertinoPageScaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey,
         //navigationBar: CupertinoNavigationBar(
         //  automaticallyImplyLeading: false,
         // This Cupertino segmented control has the enum "Sky" as the type.
@@ -84,7 +84,7 @@ class _FlightsViewState extends State<FlightsView> {
                     title: item.name,
                     rightTitle: item.price,
                     image: Image.asset(
-                      'assets/images/offer-placeholder.png',
+                      'assets/images/flight-placeholder.jpg',
                       // TODO: JR change flights default image
                       fit: BoxFit.cover,
                     ),
