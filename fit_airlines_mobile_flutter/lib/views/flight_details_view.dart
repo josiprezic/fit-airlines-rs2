@@ -29,7 +29,7 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
     String test = (flight?.name ?? '');
 
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      //backgroundColor: Colors.blueGrey,
       appBar: AppBar(
         title: Text(flight?.name ?? 'Selected flight'),
       ),
@@ -169,7 +169,7 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
               padding: const EdgeInsets.all(8.0),
               child: TextButton(
                 style: TextButton.styleFrom(
-                  foregroundColor: Colors.purpleAccent,
+                  foregroundColor: Colors.white,
                   backgroundColor: Colors.blue,
                 ),
                 onPressed: () {
