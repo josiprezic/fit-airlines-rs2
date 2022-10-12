@@ -1,4 +1,5 @@
 import 'package:fit_airlines_mobile_flutter/models/flight.dart';
+import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 
@@ -12,6 +13,12 @@ class FlightDetailsView extends StatefulWidget {
 class _FlightDetailsViewState extends State<FlightDetailsView> {
   Flight? flight;
   double ratingStarsValue = 0.0;
+
+  void handleMakeReservationButtonPressed() {
+    print('TODO: handleMakeReservationButtonPressed');
+    Navigator.of(context)
+        .pushNamed('/seat_reservation', arguments: {'flight': flight});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,12 +107,7 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
                     ),
                   ),
                 ),
-                Divider(
-                  indent: 10,
-                  endIndent: 10,
-                  color: Colors.black45,
-                  thickness: 1,
-                ),
+                FitHorizontalDivider(),
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.all(10),
@@ -196,7 +198,7 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
                   backgroundColor: Colors.blue,
                 ),
                 onPressed: () {
-                  print('Make reservation button pressed!');
+                  handleMakeReservationButtonPressed();
                 },
                 child: Text('Make reservation'),
               ),
