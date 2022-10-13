@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:fit_airlines_mobile_flutter/models/flight.dart';
+import 'package:fit_airlines_mobile_flutter/models/flight_seat.dart';
+import 'package:fit_airlines_mobile_flutter/views/components/fit_flight_seat_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,43 +15,6 @@ class SeatReservationView extends StatefulWidget {
 }
 
 enum FlightDirection { outbound, inbound }
-
-class FlightSeat {
-  int row;
-  int column;
-  bool available;
-  bool selected;
-
-  FlightSeat(this.row, this.column, this.available, {this.selected = false});
-
-  int getSeatNumber() {
-    int seatNumber = ((row) * 6) + column;
-    return seatNumber;
-  }
-
-  String getSeatString() {
-    return getSeatColumnString() + row.toString();
-  }
-
-  String getSeatColumnString() {
-    switch (column) {
-      case 1:
-        return 'A';
-      case 2:
-        return 'B';
-      case 3:
-        return 'C';
-      case 4:
-        return 'D';
-      case 5:
-        return 'E';
-      case 6:
-        return 'F';
-      default:
-        return 'COL';
-    }
-  }
-}
 
 class _SeatReservationViewState extends State<SeatReservationView> {
   Flight? flight;
@@ -257,7 +222,8 @@ class _SeatReservationViewState extends State<SeatReservationView> {
 
     // Left and right site seats
     List<Widget> rowItems = Iterable<int>.generate(6)
-        .map((e) => getSeat(seats[rowIndex][e]))
+        .map((columnIndex) => seats[rowIndex][columnIndex])
+        .map((flightSeat) => getSeat(flightSeat))
         .toList();
 
     // Empty space in the middle of the left and right part of the row
@@ -266,46 +232,10 @@ class _SeatReservationViewState extends State<SeatReservationView> {
     return Row(children: rowItems);
   }
 
-  Widget getSeat(FlightSeat flightSeat, {bool selected = false}) {
-    Color seatColor = Colors.red;
-    Color foregroundColor = Colors.black45;
-    double borderWidth = 2;
-
-    if (flightSeat.available) {
-      if (flightSeat.selected) {
-        seatColor = Colors.yellow;
-        foregroundColor = Colors.black;
-        borderWidth = 6;
-      } else {
-        seatColor = Colors.green;
-        foregroundColor = Colors.black54;
-      }
-    } else {
-      seatColor = Colors.red;
-      foregroundColor = Colors.black54;
-    }
-
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(3.0),
-        child: AspectRatio(
-          aspectRatio: 1,
-          child: OutlinedButton(
-            onPressed: () {
-              handleSeatSelected(flightSeat);
-            },
-            style: OutlinedButton.styleFrom(
-              backgroundColor: seatColor,
-              side: BorderSide(color: Colors.black, width: borderWidth),
-            ),
-            child: Icon(
-              Icons.event_seat,
-              color: foregroundColor,
-            ),
-          ),
-        ),
-      ),
-    );
+  Widget getSeat(FlightSeat flightSeat) {
+    return FitFlightSeatView(flightSeat, (flightSeat) {
+      handleSeatSelected(flightSeat);
+    });
   }
 }
 
