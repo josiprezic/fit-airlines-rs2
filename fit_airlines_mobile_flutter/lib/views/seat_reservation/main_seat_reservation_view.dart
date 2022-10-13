@@ -28,6 +28,8 @@ class _SeatReservationViewState extends State<SeatReservationView> {
   FlightDirection selectedTab = FlightDirection.outbound;
   bool get isOutboundTab =>
       displayedFlightDirection == FlightDirection.outbound;
+  bool get isReserveButtonEnabled =>
+      selectedSeatInbound != null && selectedSeatOutbound != null;
 
   // seats
   late List<List<FlightSeat>> _outboundSeats = getRandomlyGeneratedMockSeats();
@@ -56,10 +58,8 @@ class _SeatReservationViewState extends State<SeatReservationView> {
   // MARK - HANDLERS
   //
 
-  void handleSelectedTabChanged(FlightDirection flightDirection) {
-    setState(() {
-      selectedTab = flightDirection;
-    });
+  void handleReserveSeatsButtonPressed() {
+    print('TODO: JR SZEF handleReserveSeatsButtonPressed');
   }
 
   void handleSeatSelected(FlightSeat selectedSeat) {
@@ -79,6 +79,12 @@ class _SeatReservationViewState extends State<SeatReservationView> {
         selectedSeatInbound = selectedSeat;
         _inboundSeats[rowIndex][colIndex].selected = true;
       }
+    });
+  }
+
+  void handleSelectedTabChanged(FlightDirection flightDirection) {
+    setState(() {
+      selectedTab = flightDirection;
     });
   }
 
@@ -112,6 +118,18 @@ class _SeatReservationViewState extends State<SeatReservationView> {
         return FlightSeat(rowIndex + 1, columnIndex + 1, isSeatAvailable);
       });
     });
+  }
+
+  String getReserveButtonText() {
+    if (selectedSeatInbound == null && selectedSeatOutbound == null) {
+      return 'Please select seats';
+    } else if (selectedSeatOutbound == null) {
+      return 'Please select outbound seat';
+    } else if (selectedSeatInbound == null) {
+      return 'Please select inbound seat';
+    } else {
+      return 'Reserve selected seats';
+    }
   }
 
   //
@@ -149,6 +167,7 @@ class _SeatReservationViewState extends State<SeatReservationView> {
         getTabButtonsView(),
         getSeatLayoutHeaderView(),
         getFitSeatLayoutView(),
+        getReserveSelectedSeatsButtonView(),
       ],
     );
   }
@@ -184,6 +203,26 @@ class _SeatReservationViewState extends State<SeatReservationView> {
     return FitSeatLayoutView(
       displayedSeats,
       (selectedSeat) => handleSeatSelected(selectedSeat),
+    );
+  }
+
+  Widget getReserveSelectedSeatsButtonView() {
+    return SizedBox(
+      height: 60,
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextButton(
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: isReserveButtonEnabled ? Colors.blue : Colors.grey,
+          ),
+          onPressed: this.isReserveButtonEnabled
+              ? handleReserveSeatsButtonPressed
+              : null,
+          child: Text(getReserveButtonText()),
+        ),
+      ),
     );
   }
 }
