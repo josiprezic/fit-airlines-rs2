@@ -2,8 +2,9 @@ import 'dart:math';
 
 import 'package:fit_airlines_mobile_flutter/models/flight.dart';
 import 'package:fit_airlines_mobile_flutter/models/flight_seat.dart';
-import 'package:fit_airlines_mobile_flutter/views/components/fit_flight_seat_view.dart';
+import 'package:fit_airlines_mobile_flutter/views/seat_reservation/fit_flight_seat_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
+import 'package:fit_airlines_mobile_flutter/views/seat_reservation/fit_seat_reservation_tab_buttons_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -37,6 +38,13 @@ class _SeatReservationViewState extends State<SeatReservationView> {
 
   FlightSeat? selectedSeat;
   String selectedSeatString = 'N/A';
+
+  void handleSelectedTabChanged(FlightDirection flightDirection) {
+    setState(() {
+      print('TODO: Handle tab changed');
+      _selectedSegment = flightDirection;
+    });
+  }
 
   void handleSeatSelected(FlightSeat selectedSeat) {
     print('handleSeatSelected');
@@ -94,71 +102,45 @@ class _SeatReservationViewState extends State<SeatReservationView> {
   Widget getTabContentView() {
     return Column(
       children: [
-        // TODO: SZEF JR TUTAJ MAMY _selectedSegment i preko toga mijenjamo sta zelimo prikazati
-
-        SizedBox(
-          width: double.infinity,
-          child: getTabButtonsView(),
-        ),
-
-        SizedBox(
-          width: double.infinity,
-          child: Column(
-            children: [
-              getSelectedSeatRowView(),
-              FitHorizontalDivider(),
-              getSeatRowHeader(),
-              FitHorizontalDivider(),
-            ],
-          ),
-        ),
-
-        Expanded(
-          child: ListView.builder(
-            itemCount: seats.length,
-            itemBuilder: (context, rowIndex) {
-              return Container(
-                width: double.maxFinite,
-                child: getSeatRow(rowIndex),
-              );
-            },
-          ),
-        ),
+        getTabButtonsView(),
+        getSeatLayoutHeaderView(),
+        getSeatsLayoutView()
       ],
     );
   }
 
   Widget getTabButtonsView() {
-    return CupertinoSlidingSegmentedControl<FlightDirection>(
-      backgroundColor: CupertinoColors.systemGrey2,
-      thumbColor: Colors.green,
-      // This represents the currently selected segmented control.
-      groupValue: _selectedSegment,
-      // Callback that sets the selected segmented control.
-      onValueChanged: (FlightDirection? value) {
-        if (value != null) {
-          setState(() {
-            print('TODO: Handle tab changed');
-            _selectedSegment = value;
-          });
-        }
-      },
-      children: const <FlightDirection, Widget>{
-        FlightDirection.outbound: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-          child: Text(
-            'Outbound',
-            style: TextStyle(color: CupertinoColors.white),
-          ),
-        ),
-        FlightDirection.inbound: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Text(
-            'Inbound',
-            style: TextStyle(color: CupertinoColors.white),
-          ),
-        ),
-      },
+    return FitSeatReservationTabButtonsView(
+      _selectedSegment,
+      handleSelectedTabChanged,
+    );
+  }
+
+  Widget getSeatLayoutHeaderView() {
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        children: [
+          getSelectedSeatRowView(),
+          FitHorizontalDivider(),
+          getSeatColumnHeader(),
+          FitHorizontalDivider(),
+        ],
+      ),
+    );
+  }
+
+  Widget getSeatsLayoutView() {
+    return Expanded(
+      child: ListView.builder(
+        itemCount: seats.length,
+        itemBuilder: (context, rowIndex) {
+          return Container(
+            width: double.maxFinite,
+            child: getSeatRow(rowIndex),
+          );
+        },
+      ),
     );
   }
 
@@ -183,21 +165,15 @@ class _SeatReservationViewState extends State<SeatReservationView> {
     );
   }
 
-  Widget getSeatRowHeader() {
-    return Row(
-      children: [
-        getSeatRowHeaderItem('A'),
-        getSeatRowHeaderItem('B'),
-        getSeatRowHeaderItem('C'),
-        getSeatSpacer(),
-        getSeatRowHeaderItem('D'),
-        getSeatRowHeaderItem('E'),
-        getSeatRowHeaderItem('F'),
-      ],
-    );
+  Widget getSeatColumnHeader() {
+    List<Widget> columnHeaderItems = ['A', 'B', 'C', 'D', 'E', 'F']
+        .map((columnName) => getSeatColumnHeaderItem(columnName))
+        .toList();
+    columnHeaderItems.insert(3, getSeatSpacer());
+    return Row(children: columnHeaderItems);
   }
 
-  Widget getSeatRowHeaderItem(String rowName) {
+  Widget getSeatColumnHeaderItem(String columnName) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.only(
@@ -208,7 +184,7 @@ class _SeatReservationViewState extends State<SeatReservationView> {
         ),
         child: Center(
           child: Text(
-            rowName,
+            columnName,
             style: TextStyle(fontSize: 18),
           ),
         ),

@@ -2,7 +2,7 @@ import 'package:fit_airlines_mobile_flutter/views/flight_details_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/flights_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/offers_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/profile_view.dart';
-import 'package:fit_airlines_mobile_flutter/views/seat_reservation_view.dart';
+import 'package:fit_airlines_mobile_flutter/views/seat_reservation/seat_reservation_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'views/home_view.dart';
