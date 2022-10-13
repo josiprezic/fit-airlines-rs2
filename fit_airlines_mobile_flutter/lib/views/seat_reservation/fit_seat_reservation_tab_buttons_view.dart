@@ -1,4 +1,4 @@
-import 'package:fit_airlines_mobile_flutter/views/seat_reservation/seat_reservation_view.dart';
+import 'package:fit_airlines_mobile_flutter/views/seat_reservation/main_seat_reservation_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

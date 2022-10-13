@@ -21,16 +21,16 @@ class _FlightsViewState extends State<FlightsView> {
 
   List<Flight> getFlightsForOffer(Offer offer) {
     return [
-      Flight('Flight 1 (' + offer.name + ')', '123.45 BAM'),
-      Flight('Flight 2 (' + offer.name + ')', '123.45 BAM'),
-      Flight('Flight 3 (' + offer.name + ')', '123.45 BAM'),
-      Flight('Flight 4 (' + offer.name + ')', '123.45 BAM'),
-      Flight('Flight 5 (' + offer.name + ')', '123.45 BAM'),
-      Flight('Flight 6 (' + offer.name + ')', '123.45 BAM'),
-      Flight('Flight 7 (' + offer.name + ')', '123.45 BAM'),
-      Flight('Flight 8 (' + offer.name + ')', '123.45 BAM'),
-      Flight('Flight 9 (' + offer.name + ')', '123.45 BAM'),
-      Flight('Flight 10 (' + offer.name + ')', '123.45 BAM'),
+      Flight('Flight 1 (' + offer.name + ')', '123.45 BAM', 90),
+      Flight('Flight 2 (' + offer.name + ')', '123.45 BAM', 12),
+      Flight('Flight 3 (' + offer.name + ')', '123.45 BAM', 18),
+      Flight('Flight 4 (' + offer.name + ')', '123.45 BAM', 900),
+      Flight('Flight 5 (' + offer.name + ')', '123.45 BAM', 180),
+      Flight('Flight 6 (' + offer.name + ')', '123.45 BAM', 180),
+      Flight('Flight 7 (' + offer.name + ')', '123.45 BAM', 180),
+      Flight('Flight 8 (' + offer.name + ')', '123.45 BAM', 180),
+      Flight('Flight 9 (' + offer.name + ')', '123.45 BAM', 180),
+      Flight('Flight 10 (' + offer.name + ')', '123.45 BAM', 180),
     ];
   }
 
