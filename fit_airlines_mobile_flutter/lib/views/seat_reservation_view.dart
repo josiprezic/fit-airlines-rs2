@@ -75,9 +75,24 @@ class _SeatReservationViewState extends State<SeatReservationView> {
 
   void handleSeatSelected(FlightSeat selectedSeat) {
     print('handleSeatSelected');
+    if (!selectedSeat.available) {
+      return;
+    }
     setState(() {
+      int rowIndex = selectedSeat.row - 1;
+      int colIndex = selectedSeat.column - 1;
+      unselectAllSeats();
+      this.seats[rowIndex][colIndex].selected = true;
       this.selectedSeat = selectedSeat;
       this.selectedSeatString = selectedSeat.getSeatString();
+    });
+  }
+
+  void unselectAllSeats() {
+    seats.forEach((seatRow) {
+      seatRow.forEach((seat) {
+        seat.selected = false;
+      });
     });
   }
 
@@ -99,7 +114,7 @@ class _SeatReservationViewState extends State<SeatReservationView> {
     return Scaffold(
       appBar: appBar(),
       body: CupertinoPageScaffold(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.white,
         child: getTabContentView(),
       ),
     );
@@ -252,6 +267,24 @@ class _SeatReservationViewState extends State<SeatReservationView> {
   }
 
   Widget getSeat(FlightSeat flightSeat, {bool selected = false}) {
+    Color seatColor = Colors.red;
+    Color foregroundColor = Colors.black45;
+    double borderWidth = 2;
+
+    if (flightSeat.available) {
+      if (flightSeat.selected) {
+        seatColor = Colors.yellow;
+        foregroundColor = Colors.black;
+        borderWidth = 6;
+      } else {
+        seatColor = Colors.green;
+        foregroundColor = Colors.black54;
+      }
+    } else {
+      seatColor = Colors.red;
+      foregroundColor = Colors.black54;
+    }
+
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(3.0),
@@ -262,10 +295,13 @@ class _SeatReservationViewState extends State<SeatReservationView> {
               handleSeatSelected(flightSeat);
             },
             style: OutlinedButton.styleFrom(
-              backgroundColor: flightSeat.available ? Colors.blue : Colors.red,
-              side: BorderSide(color: Colors.black, width: 2),
+              backgroundColor: seatColor,
+              side: BorderSide(color: Colors.black, width: borderWidth),
             ),
-            child: Icon(Icons.event_seat),
+            child: Icon(
+              Icons.event_seat,
+              color: foregroundColor,
+            ),
           ),
         ),
       ),
