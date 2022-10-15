@@ -1,4 +1,5 @@
 import 'package:fit_airlines_mobile_flutter/services/APIService.dart';
+import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatefulWidget {
@@ -47,6 +48,14 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
               SizedBox(height: 20),
+              FitStyleButton('Login', () async {
+                print(usernameController.text + ' ' + passwordController.text);
+
+                APIService.username = usernameController.text;
+                APIService.password = passwordController.text;
+
+                await APIService.get('/airports');
+              }),
               Container(
                 height: 60,
                 width: 500,

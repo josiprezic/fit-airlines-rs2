@@ -1,5 +1,6 @@
 import 'package:fit_airlines_mobile_flutter/models/flight.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
+import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 
@@ -17,7 +18,7 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
   void handleMakeReservationButtonPressed() {
     print('TODO: handleMakeReservationButtonPressed');
     Navigator.of(context)
-        .pushNamed('/seat_reservation', arguments: {'flight': flight});
+        .pushNamed('/ticket_reservation', arguments: {'flight': flight});
   }
 
   @override
@@ -187,22 +188,9 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
               ],
             ),
           ),
-          SizedBox(
-            height: 60,
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue,
-                ),
-                onPressed: () {
-                  handleMakeReservationButtonPressed();
-                },
-                child: Text('Make reservation'),
-              ),
-            ),
+          FitStyleButton(
+            'Make reservation',
+            handleMakeReservationButtonPressed,
           ),
         ],
       ),
