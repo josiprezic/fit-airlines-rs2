@@ -35,9 +35,16 @@ class _TicketPurchaseConfirmationViewState
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
+                SizedBox(height: 50),
+                Image(
+                  image: AssetImage('assets/images/all-done.png'),
+                  //height: 00,
+                  width: double.maxFinite,
+                ),
+                SizedBox(height: 50),
                 getDescriptionRow('First name', 'Joe'),
                 getDescriptionRow('Last name', 'Joeseen'),
                 getDescriptionRow('Destination', reservation!.flight.name),
