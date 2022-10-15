@@ -37,6 +37,11 @@ class _TicketReservationViewState extends State<TicketReservationView> {
 
   void handleBuyTicketButtonPressed() {
     print('handleBuyTicketButtonPressed');
+
+    Navigator.of(context)
+        .pushNamed('/ticket_purchase_confirmation', arguments: {
+      'reservation': reservation,
+    });
   }
 
   @override
