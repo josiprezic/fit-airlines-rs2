@@ -1,4 +1,5 @@
 import 'package:fit_airlines_mobile_flutter/models/flight.dart';
+import 'package:fit_airlines_mobile_flutter/models/reservation.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
 import 'package:flutter/material.dart';
@@ -12,18 +13,24 @@ class TicketReservationView extends StatefulWidget {
 
 class _TicketReservationViewState extends State<TicketReservationView> {
   Flight? flight; // set by previous screen
+  late Reservation reservation;
 
-  void handleSeatsSelected(Flight flight) {
+  void handleSeatsSelected(Reservation reservation) {
     print('Selected Seats: ' +
-        flight.selectedSeatOutbound +
+        (reservation.outboundSeat?.getSeatString() ?? 'N/A') +
         ' ' +
-        flight.selectedSeatInbound);
+        (reservation.inboundSeat?.getSeatString() ?? 'N/A'));
+
+    print('Selected Seats: ' +
+        (this.reservation.outboundSeat?.getSeatString() ?? 'N/A') +
+        ' ' +
+        (this.reservation.inboundSeat?.getSeatString() ?? 'N/A'));
   }
 
   void handleReserveSeatsButtonPressed() {
     print('handleReserveSeatsButtonPressed');
     Navigator.of(context).pushNamed('/seat_reservation', arguments: {
-      'flight': flight,
+      'reservation': reservation,
       'seatSelectionHandler': handleSeatsSelected,
     });
   }
@@ -46,6 +53,7 @@ class _TicketReservationViewState extends State<TicketReservationView> {
       );
     } else {
       // Handle flight available
+      reservation = Reservation(flight!);
 
       return Scaffold(
         appBar: AppBar(

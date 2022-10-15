@@ -1,6 +1,8 @@
 import 'dart:math';
+import 'package:fit_airlines_mobile_flutter/constants/constants.dart';
 import 'package:fit_airlines_mobile_flutter/models/flight.dart';
 import 'package:fit_airlines_mobile_flutter/models/flight_seat.dart';
+import 'package:fit_airlines_mobile_flutter/models/reservation.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
 import 'package:fit_airlines_mobile_flutter/views/seat_reservation/fit_seat_layout_column_header_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/seat_reservation/fit_seat_layout_view.dart';
@@ -24,8 +26,8 @@ class _SeatReservationViewState extends State<SeatReservationView> {
   //
 
   // general
-  Flight? flight; // set by previous screen
-  late Function(Flight)
+  Reservation? reservation; // set by previous screen
+  late Function(Reservation)
       seatSelectionCompletionHandler; // set by previous screen
 
   FlightDirection selectedTab = FlightDirection.outbound;
@@ -35,13 +37,15 @@ class _SeatReservationViewState extends State<SeatReservationView> {
       selectedSeatInbound != null && selectedSeatOutbound != null;
 
   // seats
-  late List<List<FlightSeat>> _outboundSeats = getRandomlyGeneratedMockSeats();
-  late List<List<FlightSeat>> _inboundSeats = getRandomlyGeneratedMockSeats();
+  late List<List<FlightSeat>> _outboundSeats =
+      getRandomlyGeneratedMockSeats(true);
+  late List<List<FlightSeat>> _inboundSeats =
+      getRandomlyGeneratedMockSeats(false);
   FlightSeat? selectedSeatOutbound;
   FlightSeat? selectedSeatInbound;
 
   // plane
-  late int flightCapacity = flight?.capacity ?? 0;
+  late int flightCapacity = reservation?.flight.capacity ?? 0;
   int numberOfSeatsInRow = 6; // TODO: Move to Constants
   late int numberOfRows = flightCapacity ~/ numberOfSeatsInRow;
 
@@ -63,32 +67,44 @@ class _SeatReservationViewState extends State<SeatReservationView> {
 
   void handleReserveSeatsButtonPressed() {
     print('TODO: JR SZEF handleReserveSeatsButtonPressed');
-    if (flight != null &&
-        flight!.selectedSeatOutbound.isNotEmpty &&
-        flight!.selectedSeatInbound.isNotEmpty) {
+    if (reservation != null &&
+        reservation!.outboundSeat != null &&
+        reservation!.inboundSeat != null) {
       Navigator.of(context).pop();
-      seatSelectionCompletionHandler(flight!);
+      seatSelectionCompletionHandler(reservation!);
     }
   }
 
-  void handleSeatSelected(FlightSeat selectedSeat) {
+  void handleSeatSelected(FlightSeat selectedSeat, FlightDirection? direction) {
+    // set initial value
+    bool isOutboundValue = isOutboundTab;
+
+    // override if required (used for initial values if seats are already chosen by that user)
+    if (direction != null) {
+      isOutboundValue = direction == FlightDirection.outbound;
+    } else {
+      // handle new seat selection triggered by the used on the currently opened tab
+      unselectAllSeatsForCurrentTab();
+    }
+
+    // blocks selecting seats that are already taken (red ones)
     if (!selectedSeat.available) {
       return;
     }
+
+    // all checks passed, selecting seats ...
     setState(() {
       int rowIndex = selectedSeat.row - 1;
       int colIndex = selectedSeat.column - 1;
-      unselectAllSeatsForCurrentTab();
-      this.displayedSeats[rowIndex][colIndex].selected = true;
 
-      if (this.isOutboundTab) {
+      if (isOutboundValue) {
         selectedSeatOutbound = selectedSeat;
         _outboundSeats[rowIndex][colIndex].selected = true;
-        flight?.selectedSeatOutbound = selectedSeat.getSeatString();
+        reservation?.outboundSeat = selectedSeat;
       } else {
         selectedSeatInbound = selectedSeat;
         _inboundSeats[rowIndex][colIndex].selected = true;
-        flight?.selectedSeatInbound = selectedSeat.getSeatString();
+        reservation?.inboundSeat = selectedSeat;
       }
     });
   }
@@ -120,15 +136,12 @@ class _SeatReservationViewState extends State<SeatReservationView> {
   }
 
   // TODO: JR SZEF TO BE REMOVED
-  List<List<FlightSeat>> getRandomlyGeneratedMockSeats() {
-    return List<List<FlightSeat>>.generate(numberOfRows, (rowIndex) {
-      return List<FlightSeat>.generate(numberOfSeatsInRow, (columnIndex) {
-        // TODO: JR SZEF remove random seat selection
-        final randomBoolean = Random().nextBool();
-        bool isSeatAvailable = randomBoolean;
-        return FlightSeat(rowIndex + 1, columnIndex + 1, isSeatAvailable);
-      });
-    });
+  List<List<FlightSeat>> getRandomlyGeneratedMockSeats(bool isOutbound) {
+    if (isOutbound) {
+      return FitTemp.mockOutboundSeats;
+    } else {
+      return FitTemp.mockInboundSeats;
+    }
   }
 
   String getReserveButtonText() {
@@ -152,13 +165,28 @@ class _SeatReservationViewState extends State<SeatReservationView> {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
 
-    flight = arguments['flight'];
-    seatSelectionCompletionHandler = arguments['seatSelectionHandler'];
+    reservation = arguments['reservation'];
 
-    if (flight == null) {
-      // Handle flight not available
-      return Center(
-        child: Text('Error: flight = null'),
+    if (reservation?.outboundSeat != null && reservation?.inboundSeat != null) {
+      setState(() {
+        handleSeatSelected(
+          reservation!.inboundSeat!,
+          FlightDirection.inbound,
+        );
+        handleSeatSelected(
+          reservation!.outboundSeat!,
+          FlightDirection.outbound,
+        );
+        seatSelectionCompletionHandler = arguments['seatSelectionHandler'];
+      });
+    }
+
+    if (reservation == null) {
+      // Handle reservation not available
+      return Scaffold(
+        body: Center(
+          child: Text('Error: reservation = null'),
+        ),
       );
     } else {
       // Handle flight available
@@ -214,7 +242,10 @@ class _SeatReservationViewState extends State<SeatReservationView> {
   Widget getFitSeatLayoutView() {
     return FitSeatLayoutView(
       displayedSeats,
-      (selectedSeat) => handleSeatSelected(selectedSeat),
+      (selectedSeat) => handleSeatSelected(
+        selectedSeat,
+        null,
+      ),
     );
   }
 
