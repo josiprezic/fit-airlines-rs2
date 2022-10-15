@@ -25,6 +25,9 @@ class _SeatReservationViewState extends State<SeatReservationView> {
 
   // general
   Flight? flight; // set by previous screen
+  late Function(Flight)
+      seatSelectionCompletionHandler; // set by previous screen
+
   FlightDirection selectedTab = FlightDirection.outbound;
   bool get isOutboundTab =>
       displayedFlightDirection == FlightDirection.outbound;
@@ -60,6 +63,12 @@ class _SeatReservationViewState extends State<SeatReservationView> {
 
   void handleReserveSeatsButtonPressed() {
     print('TODO: JR SZEF handleReserveSeatsButtonPressed');
+    if (flight != null &&
+        flight!.selectedSeatOutbound.isNotEmpty &&
+        flight!.selectedSeatInbound.isNotEmpty) {
+      Navigator.of(context).pop();
+      seatSelectionCompletionHandler(flight!);
+    }
   }
 
   void handleSeatSelected(FlightSeat selectedSeat) {
@@ -75,9 +84,11 @@ class _SeatReservationViewState extends State<SeatReservationView> {
       if (this.isOutboundTab) {
         selectedSeatOutbound = selectedSeat;
         _outboundSeats[rowIndex][colIndex].selected = true;
+        flight?.selectedSeatOutbound = selectedSeat.getSeatString();
       } else {
         selectedSeatInbound = selectedSeat;
         _inboundSeats[rowIndex][colIndex].selected = true;
+        flight?.selectedSeatInbound = selectedSeat.getSeatString();
       }
     });
   }
@@ -142,6 +153,7 @@ class _SeatReservationViewState extends State<SeatReservationView> {
         <String, dynamic>{}) as Map;
 
     flight = arguments['flight'];
+    seatSelectionCompletionHandler = arguments['seatSelectionHandler'];
 
     if (flight == null) {
       // Handle flight not available

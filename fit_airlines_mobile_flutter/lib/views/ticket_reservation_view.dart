@@ -13,8 +13,19 @@ class TicketReservationView extends StatefulWidget {
 class _TicketReservationViewState extends State<TicketReservationView> {
   Flight? flight; // set by previous screen
 
+  void handleSeatsSelected(Flight flight) {
+    print('Selected Seats: ' +
+        flight.selectedSeatOutbound +
+        ' ' +
+        flight.selectedSeatInbound);
+  }
+
   void handleReserveSeatsButtonPressed() {
     print('handleReserveSeatsButtonPressed');
+    Navigator.of(context).pushNamed('/seat_reservation', arguments: {
+      'flight': flight,
+      'seatSelectionHandler': handleSeatsSelected,
+    });
   }
 
   void handleBuyTicketButtonPressed() {
@@ -77,6 +88,7 @@ class _TicketReservationViewState extends State<TicketReservationView> {
                 'Confirm and buy ticket',
                 handleBuyTicketButtonPressed,
               ),
+              SizedBox(height: 50),
             ],
           ),
         ),
