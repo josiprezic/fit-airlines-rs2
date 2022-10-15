@@ -62,18 +62,10 @@ class _HomeViewWithDrawerState extends State<HomeViewWithDrawer> {
                 decoration: BoxDecoration(color: Colors.blue),
               ),
               ListTile(
-                title: Text('Offers'),
+                title: Text('My Flights'),
                 onTap: () {
                   Navigator.pop(context);
-
-                  // Navigator.of(context).pushNamed('/offers'); // TODO: JR the home screen could show recommended flights insted of offers view?
-                },
-              ),
-              ListTile(
-                title: Text('Flights'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.of(context).pushNamed('/flights');
+                  Navigator.of(context).pushNamed('/my_flights');
                 },
               ),
               ListTile(
@@ -88,6 +80,13 @@ class _HomeViewWithDrawerState extends State<HomeViewWithDrawer> {
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).pushNamed('/settings');
+                },
+              ),
+              ListTile(
+                title: Text('About'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).pushNamed('/about');
                 },
               ),
               ListTile(

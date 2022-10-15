@@ -1,6 +1,7 @@
 import 'package:fit_airlines_mobile_flutter/constants/constants.dart';
 import 'package:fit_airlines_mobile_flutter/models/reservation.dart';
-import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
+import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
+import 'package:fit_airlines_mobile_flutter/views/home_view.dart';
 import 'package:flutter/material.dart';
 
 class TicketPurchaseConfirmationView extends StatefulWidget {
@@ -15,12 +16,20 @@ class _TicketPurchaseConfirmationViewState
     extends State<TicketPurchaseConfirmationView> {
   Reservation? reservation;
 
+  void handleDoneButtonPressed() {
+    makeRoutePage(
+      context: context,
+      pageRef: HomeViewWithDrawer(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
 
     reservation = arguments['reservation'];
+    bool showBackButton = arguments['show_back_button'] ?? false;
 
     if (reservation == null) {
       return Scaffold(
@@ -32,6 +41,7 @@ class _TicketPurchaseConfirmationViewState
       return Scaffold(
         appBar: AppBar(
           title: Text('Happy travelling'),
+          automaticallyImplyLeading: showBackButton,
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -66,6 +76,7 @@ class _TicketPurchaseConfirmationViewState
                 getDescriptionRow('Test row title', FitTemp.loremIpsum),
                 getDescriptionRow('Test row title', FitTemp.loremIpsum),
                 getDescriptionRow('Test row title', 'Test row description'),
+                FitStyleButton('Done', handleDoneButtonPressed),
               ],
             ),
           ),
@@ -116,5 +127,12 @@ class _TicketPurchaseConfirmationViewState
         ),
       ],
     );
+  }
+
+  void makeRoutePage({required BuildContext context, required Widget pageRef}) {
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => pageRef),
+        (Route<dynamic> route) => false);
   }
 }

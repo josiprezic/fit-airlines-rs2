@@ -1,7 +1,10 @@
 import 'dart:math';
+import 'package:fit_airlines_mobile_flutter/models/flight.dart';
 
 import 'package:fit_airlines_mobile_flutter/models/flight_seat.dart';
 import 'package:flutter/material.dart';
+
+import '../models/reservation.dart';
 
 class FitConstant {
   static FitColor color = FitColor();
@@ -24,6 +27,8 @@ class FitFontSize {
 
 // TODO: JR SZEF to be removed
 class FitTemp {
+  static List<Reservation> mockedReservations = getMockReservations();
+
   static List<List<FlightSeat>> mockOutboundSeats =
       getRandomlyGeneratedMockSeats(numberOfRows: 100);
   static List<List<FlightSeat>> mockInboundSeats =
@@ -39,6 +44,44 @@ class FitTemp {
         return FlightSeat(rowIndex + 1, columnIndex + 1, isSeatAvailable);
       });
     });
+  }
+
+  static List<Reservation> getMockReservations() {
+    var result = [
+      Reservation(
+          Flight('Flight 1 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 90)),
+      Reservation(
+          Flight('Flight 2 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 12)),
+      Reservation(
+          Flight('Flight 3 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 18)),
+      Reservation(
+          Flight('Flight 4 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 900)),
+      Reservation(
+          Flight('Flight 5 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 180)),
+      Reservation(
+          Flight('Flight 6 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 180)),
+      Reservation(
+          Flight('Flight 1 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 90)),
+      Reservation(
+          Flight('Flight 2 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 12)),
+      Reservation(
+          Flight('Flight 3 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 18)),
+      Reservation(
+          Flight('Flight 4 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 900)),
+      Reservation(
+          Flight('Flight 5 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 180)),
+      Reservation(
+          Flight('Flight 6 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 180)),
+    ];
+
+    result.map((e) {
+      e.isPaymentSuccessful = Random().nextBool();
+      e.outboundSeat = FlightSeat(2, 3, false);
+      e.inboundSeat = FlightSeat(4, 5, false);
+      return e;
+    });
+
+    return result;
   }
 
   static String loremIpsum =
