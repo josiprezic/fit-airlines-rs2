@@ -1,3 +1,4 @@
+import 'package:fit_airlines_mobile_flutter/constants/constants.dart';
 import 'package:fit_airlines_mobile_flutter/models/flight.dart';
 import 'package:fit_airlines_mobile_flutter/models/offer.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_airlines_card.dart';
@@ -36,6 +37,7 @@ class _FlightsViewState extends State<FlightsView> {
 
   void handleItemSelected(int itemIndex) {
     print('Flight item clicked $itemIndex');
+
     Navigator.of(context).pushNamed('/flight_details',
         arguments: {'flight': displayedFlights[itemIndex]});
   }

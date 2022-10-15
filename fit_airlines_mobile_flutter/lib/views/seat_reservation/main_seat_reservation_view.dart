@@ -37,10 +37,8 @@ class _SeatReservationViewState extends State<SeatReservationView> {
       selectedSeatInbound != null && selectedSeatOutbound != null;
 
   // seats
-  late List<List<FlightSeat>> _outboundSeats =
-      getRandomlyGeneratedMockSeats(true);
-  late List<List<FlightSeat>> _inboundSeats =
-      getRandomlyGeneratedMockSeats(false);
+  late List<List<FlightSeat>> _outboundSeats = FitTemp.mockOutboundSeats;
+  late List<List<FlightSeat>> _inboundSeats = FitTemp.mockInboundSeats;
   FlightSeat? selectedSeatOutbound;
   FlightSeat? selectedSeatInbound;
 
@@ -132,15 +130,6 @@ class _SeatReservationViewState extends State<SeatReservationView> {
           seat.selected = false;
         });
       });
-    }
-  }
-
-  // TODO: JR SZEF TO BE REMOVED
-  List<List<FlightSeat>> getRandomlyGeneratedMockSeats(bool isOutbound) {
-    if (isOutbound) {
-      return FitTemp.mockOutboundSeats;
-    } else {
-      return FitTemp.mockInboundSeats;
     }
   }
 

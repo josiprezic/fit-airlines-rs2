@@ -1,3 +1,4 @@
+import 'package:fit_airlines_mobile_flutter/constants/constants.dart';
 import 'package:fit_airlines_mobile_flutter/models/flight.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
@@ -17,6 +18,17 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
 
   void handleMakeReservationButtonPressed() {
     print('TODO: handleMakeReservationButtonPressed');
+
+    // TODO: JR SZEF - MOCKING - TO BE REMOVED
+    print('Creating new mock objects ... ');
+    int numberOfRows = (flight?.capacity ?? 6) ~/ 6;
+    FitTemp.mockOutboundSeats =
+        FitTemp.getRandomlyGeneratedMockSeats(numberOfRows: numberOfRows);
+    FitTemp.mockInboundSeats =
+        FitTemp.getRandomlyGeneratedMockSeats(numberOfRows: numberOfRows);
+    print('Done - mocked!');
+    // ------------ Mocking end ------------
+
     Navigator.of(context)
         .pushNamed('/ticket_reservation', arguments: {'flight': flight});
   }
