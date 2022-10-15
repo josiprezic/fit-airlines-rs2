@@ -56,27 +56,6 @@ class _LoginViewState extends State<LoginView> {
 
                 await APIService.get('/airports');
               }),
-              Container(
-                height: 60,
-                width: 500,
-                decoration: BoxDecoration(
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: TextButton(
-                  onPressed: () async {
-                    print(usernameController.text +
-                        ' ' +
-                        passwordController.text);
-
-                    APIService.username = usernameController.text;
-                    APIService.password = passwordController.text;
-
-                    await APIService.get('/airports');
-                  },
-                  child: Text('Login'),
-                ),
-              )
             ],
           ),
         ),

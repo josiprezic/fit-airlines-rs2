@@ -1,6 +1,7 @@
 import 'package:fit_airlines_mobile_flutter/views/about.dart';
 import 'package:fit_airlines_mobile_flutter/views/flight_details_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/flights_view.dart';
+import 'package:fit_airlines_mobile_flutter/views/login_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/my_flights.dart';
 import 'package:fit_airlines_mobile_flutter/views/offers_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/profile_view.dart';
@@ -32,6 +33,7 @@ void main() {
         '/profile': (context) => ProfileView(),
         '/about': (context) => AboutView(),
         '/my_flights': (context) => MyFlightsView(),
+        '/login': (context) => LoginView(),
       },
     ),
   );

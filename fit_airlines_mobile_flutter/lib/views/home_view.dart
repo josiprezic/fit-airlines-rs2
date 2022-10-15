@@ -62,6 +62,7 @@ class _HomeViewWithDrawerState extends State<HomeViewWithDrawer> {
                 decoration: BoxDecoration(color: Colors.blue),
               ),
               ListTile(
+                leading: Icon(Icons.airplane_ticket),
                 title: Text('My Flights'),
                 onTap: () {
                   Navigator.pop(context);
@@ -69,6 +70,7 @@ class _HomeViewWithDrawerState extends State<HomeViewWithDrawer> {
                 },
               ),
               ListTile(
+                leading: Icon(Icons.person),
                 title: Text('My Profile'),
                 onTap: () {
                   Navigator.pop(context);
@@ -76,6 +78,7 @@ class _HomeViewWithDrawerState extends State<HomeViewWithDrawer> {
                 },
               ),
               ListTile(
+                leading: Icon(Icons.settings),
                 title: Text('Settings'),
                 onTap: () {
                   Navigator.pop(context);
@@ -83,6 +86,7 @@ class _HomeViewWithDrawerState extends State<HomeViewWithDrawer> {
                 },
               ),
               ListTile(
+                leading: Icon(Icons.info),
                 title: Text('About FIT'),
                 onTap: () {
                   Navigator.pop(context);
@@ -90,9 +94,11 @@ class _HomeViewWithDrawerState extends State<HomeViewWithDrawer> {
                 },
               ),
               ListTile(
+                leading: Icon(Icons.logout),
                 title: Text('Logout'),
                 onTap: () {
                   Navigator.pop(context);
+                  showAlertDialog(context);
                   // TODO: show log out dialog
                 },
               ),
@@ -100,6 +106,47 @@ class _HomeViewWithDrawerState extends State<HomeViewWithDrawer> {
           ),
         ),
         body: OffersView());
+  }
+
+  showAlertDialog(BuildContext context) {
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: Text("Cancel"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text(
+        "Log out",
+        style: TextStyle(color: Colors.red),
+      ),
+      onPressed: () {
+        Navigator.pop(context);
+
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => LoginView()),
+            (Route<dynamic> route) => false);
+
+        // Navigator.of(context).pushReplacementNamed('/login');
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Log out"),
+      content: Text("Are you sure you want to logout?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }
 
