@@ -27,7 +27,9 @@ class FitFontSize {
 
 // TODO: JR SZEF to be removed
 class FitTemp {
-  static List<Reservation> mockedReservations = getMockReservations();
+  static List<Reservation> mockedUpcomingReservations = getMockReservations();
+  static List<Reservation> mockedPreviousReservations =
+      getMockReservations().sublist(3, 6);
 
   static List<List<FlightSeat>> mockOutboundSeats =
       getRandomlyGeneratedMockSeats(numberOfRows: 100);

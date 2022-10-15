@@ -1,10 +1,7 @@
 import 'package:fit_airlines_mobile_flutter/constants/constants.dart';
-import 'package:fit_airlines_mobile_flutter/models/flight.dart';
-import 'package:fit_airlines_mobile_flutter/models/offer.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_airlines_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../models/reservation.dart';
 
 class MyFlightsView extends StatefulWidget {
@@ -17,9 +14,15 @@ class MyFlightsView extends StatefulWidget {
 enum MyFlightsTabs { upcoming, previous }
 
 class _MyFlightsViewState extends State<MyFlightsView> {
-  // TODO: JR SZEF to be set
-  List<Reservation> displayedReservations = FitTemp.mockedReservations;
   MyFlightsTabs _selectedSegment = MyFlightsTabs.upcoming;
+  bool get isUpcomingShown => _selectedSegment == MyFlightsTabs.upcoming;
+
+  List<Reservation> upcomingReservations = FitTemp.mockedUpcomingReservations;
+  List<Reservation> previousReservations = FitTemp.mockedPreviousReservations;
+
+  // TODO: JR SZEF to be set
+  List<Reservation> get displayedReservations =>
+      isUpcomingShown ? upcomingReservations : previousReservations;
 
   void handleItemSelected(int index) {
     print('handleItemSelected');
@@ -71,8 +74,8 @@ class _MyFlightsViewState extends State<MyFlightsView> {
                 // Callback that sets the selected segmented control.
                 onValueChanged: (MyFlightsTabs? value) {
                   if (value != null) {
+                    print('TODO: Handle tab changed');
                     setState(() {
-                      print('TODO: Handle tab changed');
                       _selectedSegment = value;
                     });
                   }
