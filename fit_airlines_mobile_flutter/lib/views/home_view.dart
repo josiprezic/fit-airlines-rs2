@@ -69,7 +69,7 @@ class _HomeViewWithDrawerState extends State<HomeViewWithDrawer> {
                 },
               ),
               ListTile(
-                title: Text('Profile'),
+                title: Text('My Profile'),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).pushNamed('/profile');
@@ -83,7 +83,7 @@ class _HomeViewWithDrawerState extends State<HomeViewWithDrawer> {
                 },
               ),
               ListTile(
-                title: Text('About'),
+                title: Text('About FIT'),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).pushNamed('/about');
