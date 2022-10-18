@@ -14,7 +14,8 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    return HomeViewWithDrawer();
+    //return HomeViewWithDrawer();
+    return LoginView();
   }
 }
 
@@ -67,6 +68,14 @@ class _HomeViewWithDrawerState extends State<HomeViewWithDrawer> {
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).pushNamed('/my_flights');
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.auto_graph),
+                title: Text('My Stats'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).pushNamed('/stats');
                 },
               ),
               ListTile(

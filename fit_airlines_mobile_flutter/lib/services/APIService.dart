@@ -17,7 +17,7 @@ class APIService {
 
   static Future<String> get(String route) async {
     String baseUrl =
-        'http://10.0.2.2:2137/api/airports'; // + route; // TODO: Szef base url
+        'http://192.168.0.171:2137/api/airports'; // + route; // TODO: Szef base url
     final String basicAuth =
         'Basic ' + base64Encode(utf8.encode('$username:$password'));
 
