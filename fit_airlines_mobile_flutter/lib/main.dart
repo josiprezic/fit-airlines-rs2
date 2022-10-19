@@ -1,9 +1,10 @@
 import 'package:fit_airlines_mobile_flutter/views/about.dart';
+import 'package:fit_airlines_mobile_flutter/views/change_membership_type_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/change_password_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/flight_details_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/flights_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/login_view.dart';
-import 'package:fit_airlines_mobile_flutter/views/my_flights.dart';
+import 'package:fit_airlines_mobile_flutter/views/my_flights_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/my_stats_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/offers_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/profile_view.dart';
@@ -38,6 +39,7 @@ void main() {
         '/my_flights': (context) => MyFlightsView(),
         '/login': (context) => LoginView(),
         '/change_password': (context) => ChangePasswordView(),
+        '/change_membership_type': (context) => ChangeMembershipTypeView(),
       },
     ),
   );

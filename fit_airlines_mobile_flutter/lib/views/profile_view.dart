@@ -1,3 +1,4 @@
+import 'package:fit_airlines_mobile_flutter/views/components/fit_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -29,6 +30,7 @@ class _ProfileViewState extends State<ProfileView> {
 
   void handleChangeMembershipTypeButtonPressed() {
     print('handleChangeMembershipTypeButtonPressed');
+    Navigator.of(context).pushNamed('/change_membership_type');
   }
 
   @override
@@ -136,29 +138,11 @@ class _ProfileViewState extends State<ProfileView> {
           ),
         ),
         SizedBox(height: 20),
-        TextField(
-          decoration: InputDecoration(
-            hintText: 'First name',
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 3, color: Colors.grey)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 3, color: Colors.blue)),
-            errorBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 3, color: Colors.red)),
-          ),
-        ),
+        FitTextField('First name'),
+
         SizedBox(height: 20),
-        TextField(
-          decoration: InputDecoration(
-            hintText: 'Last name',
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 3, color: Colors.grey)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 3, color: Colors.blue)),
-            errorBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 3, color: Colors.red)),
-          ),
-        ),
+        FitTextField('Last name'),
+
         SizedBox(height: 20),
 
         TextField(
