@@ -6,10 +6,7 @@ class FitDrawer {
     return Drawer(
       child: ListView(
         children: [
-          DrawerHeader(
-            child: Text('My drawer header'),
-            decoration: BoxDecoration(color: Colors.blue),
-          ),
+          drawerHeader(),
           ListTile(
             leading: Icon(Icons.airplane_ticket),
             title: Text('My Flights'),
@@ -60,6 +57,29 @@ class FitDrawer {
           ),
         ],
       ),
+    );
+  }
+
+  DrawerHeader drawerHeader() {
+    return DrawerHeader(
+      child: Column(
+        children: [
+          Image(
+            image: AssetImage('assets/images/logo.png'),
+            height: 80,
+            width: 80,
+          ),
+          SizedBox(height: 10),
+          Text(
+            'FIT Airlines',
+            style: TextStyle(
+              fontSize: 26,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+      decoration: BoxDecoration(color: Colors.blue),
     );
   }
 }

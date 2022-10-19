@@ -100,13 +100,6 @@ class _TicketPurchaseConfirmationViewState
                 ),
               ),
             ),
-            // DecoratedBox(
-            //   decoration: BoxDecoration(color: Colors.grey),
-            //   child: SizedBox(
-            //     width: 1,
-            //     height: 40,
-            //   ),
-            // ),
             SizedBox(width: 10),
             Flexible(
               child: Text(
