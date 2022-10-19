@@ -146,6 +146,15 @@ namespace FitAirlines.WebAPI.Database
             modelBuilder.Entity<MembershipTypes>().HasData(new MembershipTypes() { MembershipTypeId = 4, Title = "Platinum", IsPriorityAvailable = true, IsExtraBaggageAvailable = true, IsFitsandwichAvailable = true, IsSeatChangeAvailable = true, IsBonusDrinkAvailable = true, IsBonusMealAvailable = true, BasicTicketDiscount = 0, BasicFoodDrinkDiscount = 0, ShortInfo = "With Platinum FIT membership you will get one extra meal and one extra drink for free." });
             modelBuilder.Entity<MembershipTypes>().HasData(new MembershipTypes() { MembershipTypeId = 5, Title = "Diamond", IsPriorityAvailable = true, IsExtraBaggageAvailable = true, IsFitsandwichAvailable = true, IsSeatChangeAvailable = true, IsBonusDrinkAvailable = true, IsBonusMealAvailable = true, BasicTicketDiscount = 1, BasicFoodDrinkDiscount = 1, ShortInfo = "With Diamond FIT membership you will get an additional discount for your ticket as long as for all meals and drinks in the FIT menu." });
 
+            // UserRoles
+            modelBuilder.Entity<UserRoles>().HasData(new UserRoles() { UserRoleId = 1, Title = "Administrator", IsAbleToAddNewUsers = true, IsAbleToAddNewOffers = true, IsAbleToAddNewFlights = true, IsAbleToAddNewPlanes = true, IsAbleToAddUserCredits = true, IsAbleToAddNewReservations = true, IsAbleToAddNewPlaces = true, IsSuperUser = true });
+            modelBuilder.Entity<UserRoles>().HasData(new UserRoles() { UserRoleId = 2, Title = "Boss", IsAbleToAddNewUsers = true, IsAbleToAddNewOffers = false, IsAbleToAddNewFlights = false, IsAbleToAddNewPlanes = false, IsAbleToAddUserCredits = false, IsAbleToAddNewReservations = false, IsAbleToAddNewPlaces = false, IsSuperUser = false });
+            modelBuilder.Entity<UserRoles>().HasData(new UserRoles() { UserRoleId = 3, Title = "Flight Offers Manager", IsAbleToAddNewUsers = false, IsAbleToAddNewOffers = true, IsAbleToAddNewFlights = true, IsAbleToAddNewPlanes = true, IsAbleToAddUserCredits = false, IsAbleToAddNewReservations = false, IsAbleToAddNewPlaces = true, IsSuperUser = false });
+            modelBuilder.Entity<UserRoles>().HasData(new UserRoles() { UserRoleId = 4, Title = "Cashier", IsAbleToAddNewUsers = false, IsAbleToAddNewOffers = false, IsAbleToAddNewFlights = false, IsAbleToAddNewPlanes = false, IsAbleToAddUserCredits = true, IsAbleToAddNewReservations = true, IsAbleToAddNewPlaces = false, IsSuperUser = false });
+            modelBuilder.Entity<UserRoles>().HasData(new UserRoles() { UserRoleId = 5, Title = "FIT Member", IsAbleToAddNewUsers = false, IsAbleToAddNewOffers = false, IsAbleToAddNewFlights = false, IsAbleToAddNewPlanes = false, IsAbleToAddUserCredits = false, IsAbleToAddNewReservations = true, IsAbleToAddNewPlaces = false, IsSuperUser = false });
+
+
+
 
 
             //modelBuilder.Entity<Countries>().HasData(new Countries()
