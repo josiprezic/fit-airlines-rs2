@@ -153,9 +153,12 @@ namespace FitAirlines.WebAPI.Database
             modelBuilder.Entity<UserRoles>().HasData(new UserRoles() { UserRoleId = 4, Title = "Cashier", IsAbleToAddNewUsers = false, IsAbleToAddNewOffers = false, IsAbleToAddNewFlights = false, IsAbleToAddNewPlanes = false, IsAbleToAddUserCredits = true, IsAbleToAddNewReservations = true, IsAbleToAddNewPlaces = false, IsSuperUser = false });
             modelBuilder.Entity<UserRoles>().HasData(new UserRoles() { UserRoleId = 5, Title = "FIT Member", IsAbleToAddNewUsers = false, IsAbleToAddNewOffers = false, IsAbleToAddNewFlights = false, IsAbleToAddNewPlanes = false, IsAbleToAddUserCredits = false, IsAbleToAddNewReservations = true, IsAbleToAddNewPlaces = false, IsSuperUser = false });
 
-
-
-
+            // Users
+            modelBuilder.Entity<Users>().HasData(new Users() { UserId = 1, Picture = File.ReadAllBytes("Assets/user1.jpg"), FirstName = "Josip", LastName = "Rezic", BirthDate = new System.DateTime(1996, 8, 15), Gender = "M", PasswordHash = "6Pl/upEE0epQR5SObftn+s2fW3M=", Email = "admin@fit.ba", ContactNumber = "063-124-542", Credit = 300, StartDate = new System.DateTime(2021, 8, 31), IsActive = true, UserRoleId = 1, MembershipTypeId = 5 });
+            modelBuilder.Entity<Users>().HasData(new Users() { UserId = 2, Picture = File.ReadAllBytes("Assets/user2.jpg"), FirstName = "Bosko", LastName = "Bossovic", BirthDate = new System.DateTime(1995, 8, 14), Gender = "M", PasswordHash = "6Pl/upEE0epQR5SObftn+s2fW3M=", Email = "boss@fit.ba", ContactNumber = "312123534", Credit = 0, StartDate = new System.DateTime(2021, 8, 31), IsActive = true, UserRoleId = 2, MembershipTypeId = 5 });
+            modelBuilder.Entity<Users>().HasData(new Users() { UserId = 3, Picture = File.ReadAllBytes("Assets/user3.jpg"), FirstName = "Letelko", LastName = "Naletilic", BirthDate = new System.DateTime(1994, 8, 13), Gender = "M", PasswordHash = "6Pl/upEE0epQR5SObftn+s2fW3M=", Email = "manager@fit.ba", ContactNumber = "112343237", Credit = 0, StartDate = new System.DateTime(2021, 8, 31), IsActive = true, UserRoleId = 3, MembershipTypeId = 1 });
+            modelBuilder.Entity<Users>().HasData(new Users() { UserId = 4, Picture = File.ReadAllBytes("Assets/user4.jpg"), FirstName = "Blagajka", LastName = "Blagajevic", BirthDate = new System.DateTime(1993, 8, 12), Gender = "F", PasswordHash = "6Pl/upEE0epQR5SObftn+s2fW3M=", Email = "cashier@fit.ba", ContactNumber = "653-866-555", Credit = 300, StartDate = new System.DateTime(2021, 8, 31), IsActive = true, UserRoleId = 4, MembershipTypeId = 1 });
+            modelBuilder.Entity<Users>().HasData(new Users() { UserId = 5, Picture = File.ReadAllBytes("Assets/user5.jpg"), FirstName = "Fitovac", LastName = "Studentovic", BirthDate = new System.DateTime(1992, 1, 11), Gender = "M", PasswordHash = "6Pl/upEE0epQR5SObftn+s2fW3M=", Email = "member@fit.ba", ContactNumber = "999-966-555", Credit = 1534, StartDate = new System.DateTime(2021, 8, 31), IsActive = true, UserRoleId = 5, MembershipTypeId = 1 });
 
             //modelBuilder.Entity<Countries>().HasData(new Countries()
             //{
