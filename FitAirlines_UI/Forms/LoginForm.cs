@@ -41,5 +41,10 @@ namespace FitAirlines.UI.Forms
             {
             }
         }
+
+        private void emailTextbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
