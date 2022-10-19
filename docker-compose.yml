@@ -17,7 +17,7 @@ services:
     build:
       context: .
     environment:
-      - ConnectionStrings:DefaultConnection=Server=fitairlines-sql,1433;Database=150076;User=sa;Password=QWElkj132!;ConnectRetryCount=0
+      - ConnectionStrings:DefaultConnection=Server=fitairlines-sql,1433;Database=210402;User=sa;Password=QWElkj132!;ConnectRetryCount=0
     ports:
       - 25001:80
     networks:

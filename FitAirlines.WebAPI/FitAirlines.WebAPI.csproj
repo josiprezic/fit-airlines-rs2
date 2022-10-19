@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\countrytest.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.18">
       <PrivateAssets>all</PrivateAssets>
@@ -31,6 +35,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FitAirlines.Model\FitAirlines.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\countrytest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

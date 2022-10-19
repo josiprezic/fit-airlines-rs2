@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_rating_stars: ^1.0.3+4
   intl: ^0.17.0
+  syncfusion_flutter_charts: ^20.3.50
 
 dev_dependencies:
   flutter_test:

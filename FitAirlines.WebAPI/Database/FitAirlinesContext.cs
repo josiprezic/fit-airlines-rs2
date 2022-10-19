@@ -437,6 +437,9 @@ namespace FitAirlines.WebAPI.Database
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Users__UserRoleI__49C3F6B7");
             });
+            OnModelCreatingPartial(modelBuilder);
         }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
