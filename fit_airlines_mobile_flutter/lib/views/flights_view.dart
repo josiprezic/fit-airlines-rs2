@@ -63,6 +63,17 @@ class _FlightsViewState extends State<FlightsView> {
     return Scaffold(
       appBar: AppBar(
         title: Text((offer?.name ?? '') + ' flights'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: FlightSearchDelegate(),
+              );
+            },
+            icon: Icon(Icons.search),
+          )
+        ],
       ),
       body: CupertinoPageScaffold(
         backgroundColor: Colors.grey,
@@ -133,5 +144,46 @@ class _FlightsViewState extends State<FlightsView> {
         ),
       ),
     );
+  }
+}
+
+class FlightSearchDelegate extends SearchDelegate {
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          if (query.isNotEmpty) {
+            query = '';
+          } else {
+            close(context, null);
+          }
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    // TODO: implement buildResults
+    return Text('BUILD RESULTS');
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    // This method is called everytime the search term changes.
+    // If you want to add search suggestions as the user enters their search term, this is the place to do that.
+    return Column();
   }
 }
