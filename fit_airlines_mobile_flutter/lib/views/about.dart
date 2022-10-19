@@ -13,7 +13,7 @@ class _AboutViewState extends State<AboutView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('About FIT'),
+          title: Text('FIT'),
         ),
         body: SingleChildScrollView(
           child: Padding(

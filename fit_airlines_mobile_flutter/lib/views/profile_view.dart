@@ -2,7 +2,6 @@ import 'package:fit_airlines_mobile_flutter/views/components/fit_textfield.dart'
 import 'package:fit_airlines_mobile_flutter/views/dialogs/logout_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 import 'components/fit_style_button.dart';
 
@@ -100,9 +99,6 @@ class _ProfileViewState extends State<ProfileView> {
           decoration: BoxDecoration(
             border: Border.all(color: Colors.black54, width: 3.0),
           ),
-          //color: Colors.blue,
-          //height: 100,
-          //width: 100,
           child: Column(
             children: [
               Spacer(),
@@ -240,10 +236,9 @@ class _ProfileViewState extends State<ProfileView> {
             ),
             style: ElevatedButton.styleFrom(
               shape: CircleBorder(),
-
               padding: EdgeInsets.all(20),
-              backgroundColor: Colors.green, // <-- Button color
-              foregroundColor: Colors.red, // <-- Splash color
+              backgroundColor: Colors.green,
+              foregroundColor: Colors.red,
             ),
           ),
         )

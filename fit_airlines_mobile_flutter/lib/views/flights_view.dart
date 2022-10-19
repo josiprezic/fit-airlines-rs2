@@ -1,4 +1,3 @@
-import 'package:fit_airlines_mobile_flutter/constants/constants.dart';
 import 'package:fit_airlines_mobile_flutter/models/flight.dart';
 import 'package:fit_airlines_mobile_flutter/models/offer.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_airlines_card.dart';
@@ -77,11 +76,6 @@ class _FlightsViewState extends State<FlightsView> {
       ),
       body: CupertinoPageScaffold(
         backgroundColor: Colors.grey,
-        //navigationBar: CupertinoNavigationBar(
-        //  automaticallyImplyLeading: false,
-        // This Cupertino segmented control has the enum "Sky" as the type.
-        //middle: SizedBox(width: double.infinity, child: Text('Siema')),
-        //),
         child: Column(
           children: [
             // TODO: SZEF JR TUTAJ MAMY _selectedSegment i preko toga mijenjamo sta zelimo prikazati

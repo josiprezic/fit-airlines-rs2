@@ -20,8 +20,6 @@ showLogoutAlertDialog(BuildContext context) {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => LoginView()),
           (Route<dynamic> route) => false);
-
-      // Navigator.of(context).pushReplacementNamed('/login');
     },
   );
   // set up the AlertDialog

@@ -1,23 +1,6 @@
-import 'package:fit_airlines_mobile_flutter/views/dialogs/logout_alert_dialog.dart';
+import 'package:fit_airlines_mobile_flutter/views/drawer/fit_drawer.dart';
 import 'package:fit_airlines_mobile_flutter/views/offers_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'login_view.dart';
-
-class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
-
-  @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
-  @override
-  Widget build(BuildContext context) {
-    return HomeViewWithDrawer();
-    //return LoginView();
-  }
-}
 
 class HomeViewWithDrawer extends StatefulWidget {
   const HomeViewWithDrawer({Key? key}) : super(key: key);
@@ -27,17 +10,6 @@ class HomeViewWithDrawer extends StatefulWidget {
 }
 
 class _HomeViewWithDrawerState extends State<HomeViewWithDrawer> {
-  StatefulWidget currentScreen = LoginView();
-
-  void rebuildAllChildren(BuildContext context) {
-    void rebuild(Element el) {
-      el.markNeedsBuild();
-      el.visitChildren(rebuild);
-    }
-
-    (context as Element).visitChildren(rebuild);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,64 +27,7 @@ class _HomeViewWithDrawerState extends State<HomeViewWithDrawer> {
             )
           ],
         ),
-        drawer: Drawer(
-          child: ListView(
-            children: [
-              DrawerHeader(
-                child: Text('My drawer header'),
-                decoration: BoxDecoration(color: Colors.blue),
-              ),
-              ListTile(
-                leading: Icon(Icons.airplane_ticket),
-                title: Text('My Flights'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.of(context).pushNamed('/my_flights');
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.auto_graph),
-                title: Text('My Stats'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.of(context).pushNamed('/stats');
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.person),
-                title: Text('My Profile'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.of(context).pushNamed('/profile');
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Settings'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.of(context).pushNamed('/settings');
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.info),
-                title: Text('About FIT'),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.of(context).pushNamed('/about');
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.logout),
-                title: Text('Logout'),
-                onTap: () {
-                  Navigator.pop(context);
-                  showLogoutAlertDialog(context);
-                },
-              ),
-            ],
-          ),
-        ),
+        drawer: FitDrawer().getView(context),
         body: OffersView());
   }
 }
@@ -146,7 +61,7 @@ class OfferSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
+    // TODO: JR implement buildResults
     return Text('BUILD RESULTS');
   }
 

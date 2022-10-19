@@ -1,6 +1,4 @@
-import 'dart:math';
 import 'package:fit_airlines_mobile_flutter/constants/constants.dart';
-import 'package:fit_airlines_mobile_flutter/models/flight.dart';
 import 'package:fit_airlines_mobile_flutter/models/flight_seat.dart';
 import 'package:fit_airlines_mobile_flutter/models/reservation.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';

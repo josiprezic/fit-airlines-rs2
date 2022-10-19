@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import '../models/offer.dart';
 
 import 'components/fit_airlines_card.dart';

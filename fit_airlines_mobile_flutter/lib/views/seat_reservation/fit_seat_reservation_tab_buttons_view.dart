@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FitSeatReservationTabButtonsView extends StatelessWidget {
-  //const TabButtonsView({Key? key}) : super(key: key);
-
   FlightDirection _selectedSegment;
   Function(FlightDirection) handleSelectedTabChanged;
 
