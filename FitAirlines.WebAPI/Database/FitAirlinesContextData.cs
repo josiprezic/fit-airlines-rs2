@@ -75,6 +75,47 @@ namespace FitAirlines.WebAPI.Database
             modelBuilder.Entity<Cities>().HasData(new Cities() { CityId = 30, CityName = "Nagoya", ShortInfo = "Nagoya has long been the center of Japan’s automotive and aviation manufacturing, as well as a technological hub with a growing robotics industry.", Picture = File.ReadAllBytes("Assets/nagoya.jpg"), CountryId = 5 });
             modelBuilder.Entity<Cities>().HasData(new Cities() { CityId = 31, CityName = "Kyoto", ShortInfo = "Kyoto was the official capital of Japan for over 1,000 years and remains one of the foremost destinations to experience traditional Japanese culture.", Picture = File.ReadAllBytes("Assets/kyoto.jpg"), CountryId = 5 });
 
+            //airports
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 1, AirportName = "Kielce Lotnisko Glowne", IsAvailable = true, CityId = 1 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 2, AirportName = "Kielce-Cminsk Lotnisko", IsAvailable = true, CityId = 1 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 3, AirportName = "Kielce Lotnisko Narodowe", IsAvailable = true, CityId = 1 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 4, AirportName = "Wroclaw Lotnisko Biskupin", IsAvailable = true, CityId = 2 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 5, AirportName = "Lotnisko Morskie Oko", IsAvailable = true, CityId = 2 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 6, AirportName = "Lotnisko Hala Stulecia", IsAvailable = true, CityId = 2 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 7, AirportName = "Krakow Lotnisko Narodowe", IsAvailable = true, CityId = 3 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 8, AirportName = "Gdansk Lotnisko", IsAvailable = true, CityId = 4 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 9, AirportName = "Warsaw Lotnisko Glowne Narodowe", IsAvailable = true, CityId = 5 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 10, AirportName = "Lodz Airport", IsAvailable = true, CityId = 6 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 11, AirportName = "Gdynia Airport", IsAvailable = true, CityId = 7 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 12, AirportName = "Katowice Airport", IsAvailable = true, CityId = 8 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 13, AirportName = "Gliwice Airport", IsAvailable = true, CityId = 9 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 14, AirportName = "Bialystok Airport", IsAvailable = true, CityId = 10 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 15, AirportName = "Zagreb Main Airport", IsAvailable = true, CityId = 11 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 16, AirportName = "Dubrava Airport", IsAvailable = true, CityId = 11 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 17, AirportName = "Jelacic Airport", IsAvailable = true, CityId = 11 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 18, AirportName = "Split Airport", IsAvailable = true, CityId = 12 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 19, AirportName = "Cilipi Airport", IsAvailable = true, CityId = 13 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 20, AirportName = "Rijeka Airport", IsAvailable = true, CityId = 14 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 21, AirportName = "Hvar Airport", IsAvailable = true, CityId = 15 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 22, AirportName = "Osijek Airport", IsAvailable = true, CityId = 16 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 23, AirportName = "Makarska Airport", IsAvailable = true, CityId = 17 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 24, AirportName = "Zadar Airport", IsAvailable = true, CityId = 18 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 25, AirportName = "Auckland Airport", IsAvailable = true, CityId = 19 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 26, AirportName = "Wellington Airport", IsAvailable = true, CityId = 20 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 27, AirportName = "Christchurch Airport", IsAvailable = true, CityId = 21 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 28, AirportName = "Hamilton Airport", IsAvailable = true, CityId = 22 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 29, AirportName = "Gold Coast Airport", IsAvailable = true, CityId = 23 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 30, AirportName = "Cairns Airport", IsAvailable = true, CityId = 24 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 31, AirportName = "Darwin Airport", IsAvailable = true, CityId = 25 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 32, AirportName = "Adelaide Airport", IsAvailable = true, CityId = 26 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 33, AirportName = "Hobart Airport", IsAvailable = true, CityId = 27 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 34, AirportName = "Tokyo Main Airport", IsAvailable = true, CityId = 28 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 35, AirportName = "Tokyo Oyo Airport", IsAvailable = true, CityId = 28 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 36, AirportName = "Tokyo Takahuma Airport", IsAvailable = true, CityId = 28 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 37, AirportName = "Yokohama Airport", IsAvailable = true, CityId = 29 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 38, AirportName = "Nagoya Airport", IsAvailable = true, CityId = 30 });
+            modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 39, AirportName = "Kyoto Airport", IsAvailable = true, CityId = 31 });
+
 
             //modelBuilder.Entity<Countries>().HasData(new Countries()
             //{
