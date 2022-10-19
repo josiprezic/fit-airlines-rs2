@@ -4,14 +4,16 @@ using FitAirlines.WebAPI.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FitAirlines.WebAPI.Migrations
 {
     [DbContext(typeof(FitAirlinesContext))]
-    partial class FitAirlinesContextModelSnapshot : ModelSnapshot
+    [Migration("20221019163314_seedOfferTypes")]
+    partial class seedOfferTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

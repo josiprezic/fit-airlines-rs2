@@ -75,7 +75,7 @@ namespace FitAirlines.WebAPI.Database
             modelBuilder.Entity<Cities>().HasData(new Cities() { CityId = 30, CityName = "Nagoya", ShortInfo = "Nagoya has long been the center of Japan’s automotive and aviation manufacturing, as well as a technological hub with a growing robotics industry.", Picture = File.ReadAllBytes("Assets/nagoya.jpg"), CountryId = 5 });
             modelBuilder.Entity<Cities>().HasData(new Cities() { CityId = 31, CityName = "Kyoto", ShortInfo = "Kyoto was the official capital of Japan for over 1,000 years and remains one of the foremost destinations to experience traditional Japanese culture.", Picture = File.ReadAllBytes("Assets/kyoto.jpg"), CountryId = 5 });
 
-            //airports
+            // Airports
             modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 1, AirportName = "Kielce Lotnisko Glowne", IsAvailable = true, CityId = 1 });
             modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 2, AirportName = "Kielce-Cminsk Lotnisko", IsAvailable = true, CityId = 1 });
             modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 3, AirportName = "Kielce Lotnisko Narodowe", IsAvailable = true, CityId = 1 });
@@ -116,6 +116,10 @@ namespace FitAirlines.WebAPI.Database
             modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 38, AirportName = "Nagoya Airport", IsAvailable = true, CityId = 30 });
             modelBuilder.Entity<Airports>().HasData(new Airports() { AirportId = 39, AirportName = "Kyoto Airport", IsAvailable = true, CityId = 31 });
 
+            // Offer Types
+            modelBuilder.Entity<OfferTypes>().HasData(new OfferTypes() { OfferTypeId = 1, TypeName = "Regional", TypeDescription = "This offer type reffers to offers containing flights which share the same regional part of the specific area/continent." });
+            modelBuilder.Entity<OfferTypes>().HasData(new OfferTypes() { OfferTypeId = 2, TypeName = "Seasonal", TypeDescription = "This offer type reffers to offers containing flights which belongs to the same season of the year" });
+            modelBuilder.Entity<OfferTypes>().HasData(new OfferTypes() { OfferTypeId = 3, TypeName = "Special", TypeDescription = "This offer type reffers to offers containing flights which belongs to the offers of special/uncategorized types." });
 
             //modelBuilder.Entity<Countries>().HasData(new Countries()
             //{
