@@ -32,14 +32,6 @@ class FitDrawer {
             },
           ),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.of(context).pushNamed('/settings');
-            },
-          ),
-          ListTile(
             leading: Icon(Icons.info),
             title: Text('About FIT'),
             onTap: () {
