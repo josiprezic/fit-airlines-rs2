@@ -1,4 +1,5 @@
 import 'package:fit_airlines_mobile_flutter/views/about.dart';
+import 'package:fit_airlines_mobile_flutter/views/change_password_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/flight_details_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/flights_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/login_view.dart';
@@ -36,6 +37,7 @@ void main() {
         '/about': (context) => AboutView(),
         '/my_flights': (context) => MyFlightsView(),
         '/login': (context) => LoginView(),
+        '/change_password': (context) => ChangePasswordView(),
       },
     ),
   );

@@ -24,6 +24,7 @@ class _ProfileViewState extends State<ProfileView> {
 
   void handleChangePasswordButtonPressed() {
     print('handleChangePasswordButtonPressed');
+    Navigator.of(context).pushNamed('/change_password');
   }
 
   void handleChangeMembershipTypeButtonPressed() {
