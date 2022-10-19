@@ -1,4 +1,5 @@
 import 'package:fit_airlines_mobile_flutter/views/components/fit_textfield.dart';
+import 'package:fit_airlines_mobile_flutter/views/dialogs/logout_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -38,6 +39,14 @@ class _ProfileViewState extends State<ProfileView> {
     return Scaffold(
       appBar: AppBar(
         title: Text('My Profile'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showLogoutAlertDialog(context);
+            },
+            icon: Icon(Icons.power_settings_new),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -128,6 +137,7 @@ class _ProfileViewState extends State<ProfileView> {
 
   Widget personalInfo() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 20),
         Text(
@@ -216,19 +226,25 @@ class _ProfileViewState extends State<ProfileView> {
           padding: 0,
         ),
 
-        ElevatedButton(
-          onPressed: () {},
-          child: Icon(
-            Icons.done,
-            color: Colors.black,
-            size: 40,
-          ),
-          style: ElevatedButton.styleFrom(
-            shape: CircleBorder(),
+        SizedBox(
+          height: 10,
+        ),
 
-            padding: EdgeInsets.all(20),
-            backgroundColor: Colors.green, // <-- Button color
-            foregroundColor: Colors.red, // <-- Splash color
+        Center(
+          child: ElevatedButton(
+            onPressed: () {},
+            child: Icon(
+              Icons.done,
+              color: Colors.black,
+              size: 40,
+            ),
+            style: ElevatedButton.styleFrom(
+              shape: CircleBorder(),
+
+              padding: EdgeInsets.all(20),
+              backgroundColor: Colors.green, // <-- Button color
+              foregroundColor: Colors.red, // <-- Splash color
+            ),
           ),
         )
       ],
