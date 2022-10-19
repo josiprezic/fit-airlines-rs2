@@ -129,6 +129,18 @@ namespace FitAirlines.WebAPI.Database
             modelBuilder.Entity<Offers>().HasData(new Offers() { OfferId = 5, OfferName = "FITable journey", ShortInfo = "Travel takes us out of our comfort zones and inspires us to see, taste and try new things.", Picture = File.ReadAllBytes("Assets/offer5.jpg"), StartDate = new System.DateTime(2022, 6, 1), EndDate = new System.DateTime(2023, 9, 1), IsActive = true, DateAdded = new System.DateTime(2022, 9, 10), OfferTypeId = 1 });
             modelBuilder.Entity<Offers>().HasData(new Offers() { OfferId = 6, OfferName = "FIT Special", ShortInfo = "It constantly challenges us, not only to adapt to and explore new surroundings, but also to engage with different people, to embrace adventures as they come and to share new and meaningful experiences with friends and loved ones.", Picture = File.ReadAllBytes("Assets/offer6.jpg"), StartDate = new System.DateTime(2022, 4, 1), EndDate = new System.DateTime(2022, 12, 31), IsActive = true, DateAdded = new System.DateTime(2022, 10, 10), OfferTypeId = 1 });
 
+            // Planes
+            modelBuilder.Entity<Planes>().HasData(new Planes() { PlaneId = 1, PlaneName = "Fitovac M20", Capacity = 300, NumberOfColumns = 6, IsAvailable = true });
+            modelBuilder.Entity<Planes>().HasData(new Planes() { PlaneId = 2, PlaneName = "DLearningovac M60", Capacity = 150, NumberOfColumns = 6, IsAvailable = true });
+            modelBuilder.Entity<Planes>().HasData(new Planes() { PlaneId = 3, PlaneName = "Mrezar 443", Capacity = 84, NumberOfColumns = 6, IsAvailable = true });
+            modelBuilder.Entity<Planes>().HasData(new Planes() { PlaneId = 4, PlaneName = "Sistemac 1010", Capacity = 306, NumberOfColumns = 6, IsAvailable = true });
+            modelBuilder.Entity<Planes>().HasData(new Planes() { PlaneId = 5, PlaneName = "Coder 17", Capacity = 150, NumberOfColumns = 6, IsAvailable = true });
+            modelBuilder.Entity<Planes>().HasData(new Planes() { PlaneId = 6, PlaneName = "Mostarac 1000", Capacity = 180, NumberOfColumns = 6, IsAvailable = true });
+            modelBuilder.Entity<Planes>().HasData(new Planes() { PlaneId = 7, PlaneName = "Studentovic 21", Capacity = 90, NumberOfColumns = 6, IsAvailable = true });
+            modelBuilder.Entity<Planes>().HasData(new Planes() { PlaneId = 8, PlaneName = "Apsolvent 333", Capacity = 150, NumberOfColumns = 6, IsAvailable = true });
+
+
+
 
 
             //modelBuilder.Entity<Countries>().HasData(new Countries()
