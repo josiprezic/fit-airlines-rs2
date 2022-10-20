@@ -79,9 +79,9 @@ namespace FitAirlines.WebAPI
             services.AddScoped<IReservedSeatsService, ReservedSeatsService>();
             services.AddScoped<IRatingsService, RatingsService>();
 
-            // TODO: SZEF
-            //var connection = Configuration.GetConnectionString("docker");
-            var connection = Configuration.GetConnectionString("local");
+            
+            var connection = Configuration.GetConnectionString("docker");
+            //var connection = Configuration.GetConnectionString("local");
 
             services.AddDbContext<FitAirlinesContext>(options => options.UseSqlServer(connection));
         }

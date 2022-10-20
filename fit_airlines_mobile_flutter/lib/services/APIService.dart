@@ -13,9 +13,10 @@ class APIService {
     APIService.password = password;
   }
 
-  static Future<String> get(String route) async {
-    String baseUrl =
-        'http://192.168.0.171:2137/api/airports'; // + route; // TODO: Szef base url
+  static Future<List?> get(String route) async {
+    String baseUrl = 'http://172.25.208.1:25001/api/Countries';
+    //String baseUrl =
+    //    'http://192.168.0.171:2137/api/airports'; // + route; // TODO: Szef base url
     final String basicAuth =
         'Basic ' + base64Encode(utf8.encode('$username:$password'));
 
@@ -26,12 +27,15 @@ class APIService {
 
     if (response.statusCode == 200) {
       print('WOOOHOOOO');
-      return JsonDecoder().convert(response.body);
+      var responseeee = JsonDecoder().convert(response.body);
+      print(responseeee);
+      return responseeee;
     } else {
       print('DUPA DUPA');
       print(response.statusCode);
       print(response.body);
-      return ''; // TODO: JR
+      //return ''; // TODO: JR
+      return null;
     }
   }
 }

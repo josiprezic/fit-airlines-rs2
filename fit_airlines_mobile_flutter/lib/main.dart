@@ -22,7 +22,7 @@ void main() {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeViewWithDrawer(),
+      home: const LoginView(), //HomeViewWithDrawer(),
       routes: {
         '/offers': (context) => OffersView(),
         '/flights': (context) => FlightsView(),
