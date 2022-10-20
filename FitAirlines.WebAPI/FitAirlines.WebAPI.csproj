@@ -36,10 +36,21 @@
     <None Remove="Assets\lodz.jpg" />
     <None Remove="Assets\makarska.jpg" />
     <None Remove="Assets\nagoya.jpg" />
+    <None Remove="Assets\offer1.jpg" />
+    <None Remove="Assets\offer2.jpg" />
+    <None Remove="Assets\offer3.jpg" />
+    <None Remove="Assets\offer4.jpg" />
+    <None Remove="Assets\offer5.jpg" />
+    <None Remove="Assets\offer6.jpg" />
     <None Remove="Assets\osijek.jpg" />
     <None Remove="Assets\rijeka.jpg" />
     <None Remove="Assets\split.jpg" />
     <None Remove="Assets\tokyo.jpg" />
+    <None Remove="Assets\user1.jpg" />
+    <None Remove="Assets\user2.jpg" />
+    <None Remove="Assets\user3.jpg" />
+    <None Remove="Assets\user4.jpg" />
+    <None Remove="Assets\user5.jpg" />
     <None Remove="Assets\warsaw.jpg" />
     <None Remove="Assets\wellington.jpg" />
     <None Remove="Assets\wroclaw.jpg" />
@@ -137,6 +148,24 @@
     <Content Include="Assets\nagoya.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\offer1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\offer2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\offer3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\offer4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\offer5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\offer6.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\osijek.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -147,6 +176,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\tokyo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\user1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\user2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\user3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\user4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\user5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\warsaw.jpg">
