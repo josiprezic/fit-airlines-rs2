@@ -32,43 +32,29 @@ class APIService {
   }
 
   Future<List<dynamic>> getObjectList({Map<String, dynamic> queryParams = const {}}) async {
-    // print('DUPAra');
-    // final queryParameters = {'loadPictures': true};
-    // print('DUPAra 2');
-    // // final uri = ;
-    // print('DUPAra 3');
-    // //print('URI: ' + uri.path);
-    // //final response = await http.get(Uri.http('172.25.208.1:25001', '/api/offers/', queryParameters), headers: headers);
-    // final response = await http.get(Uri.http(baseRouteUrl + '?loadPictures=true', ''), headers: headers);
-    // if (response.statusCode == 200) {
-    //   final List<dynamic> data = json.decode(response.body);
-    //   print('HTTP RETURNED ' + data.length.toString() + ' objects.');
-    //   return data;
-    // } else {
-    //   print('DUPA');
-    //   // TODO: JR
-    //   throw Exception('ERROR: STATUS CODE:' + response.statusCode.toString());
-    // }
+    var uriWithParams = baseRouteUrl + buildQueryString(queryParams);
 
-    print('PARAMS:' + queryParams.toString());
-
-    var testPic = baseRouteUrl + '?loadPictures=true';
-
-    //var finalRouteUrl = Uri.parse(baseRouteUrl).replace(queryParameters: queryParams);
-    var workingFineUrl = Uri.parse(baseRouteUrl);
-    print('BASE: ' + baseRouteUrl);
-    //print('finalRouteUrl: ' + finalRouteUrl.toString());
-    print('TEST: ' + testPic);
-
-    final response = await http.get(Uri.parse(testPic), headers: headers);
+    final response = await http.get(Uri.parse(uriWithParams), headers: headers);
     print(response.request.toString());
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
-      print('HTTP RETURNED ' + data.length.toString() + ' objects.');
+      print('API SERVICE: returned ' + data.length.toString() + ' objects.');
       return data;
     } else {
       // TODO: JR
       throw Exception('ERROR: STATUS CODE:' + response.statusCode.toString());
     }
+  }
+
+  String buildQueryString(Map<String, dynamic> params) {
+    if (params.isEmpty) {
+      return '';
+    }
+    var result = '?';
+    params.forEach((key, value) {
+      result = result + key + '=' + value.toString() + '&';
+    });
+    result = result.substring(0, result.length - 1);
+    return result;
   }
 }
