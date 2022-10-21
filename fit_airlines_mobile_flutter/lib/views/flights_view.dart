@@ -14,18 +14,39 @@ class FlightsView extends StatefulWidget {
   State<FlightsView> createState() => _FlightsViewState();
 }
 
-enum FlightTabs { bestDeals, nextFlights }
+enum FlightTabs { recommendedFlights, nextFlights }
 
 class _FlightsViewState extends State<FlightsView> {
-  List<TransportFlight> displayedFlights = [];
   FlightTabs _selectedSegment = FlightTabs.nextFlights;
+  bool get isNextFlightsShown => (_selectedSegment == FlightTabs.nextFlights);
 
-  TransportOffer? offer;
+  List<TransportFlight> get displayedFlights => isNextFlightsShown ? nextFlights : recommendedFlights;
+  List<TransportFlight> nextFlights = [];
+  List<TransportFlight> recommendedFlights = [];
+
   FlightService flightService = FlightService();
+  TransportOffer? offer;
+  var isLoading = false;
 
   void handleItemSelected(int itemIndex) {
     print('Flight item clicked $itemIndex');
     Navigator.of(context).pushNamed('/flight_details', arguments: {'flight': displayedFlights[itemIndex]});
+  }
+
+  Future<List<TransportFlight>> getData() async {
+    isLoading = true;
+    var resultR = await flightService.getRecommendedFlights(loadPictures: true);
+    this.recommendedFlights = resultR;
+    List<TransportFlight> resultF = [];
+    if (offer?.offerId == null) {
+      resultF = await flightService.getAllObjects(loadPictures: true);
+    } else {
+      resultF = await flightService.getFutureFlights(offer!.offerId!);
+    }
+
+    this.nextFlights = resultF;
+    isLoading = false;
+    return [];
   }
 
   @override
@@ -36,23 +57,12 @@ class _FlightsViewState extends State<FlightsView> {
 
     if (offer == null) {
       // TODO: Show all flights
-      displayedFlights = [];
+      //displayedFlights = [];
+
     } else {
       // TODO: Show flighs for this offer
-      displayedFlights = [];
+      //displayedFlights = [];
     }
-
-    var isLoading = false;
-    Future<List<TransportFlight>> getData() async {
-      // TODO: JR
-      isLoading = true;
-      var result = await flightService.getAllObjects(loadPictures: true);
-      isLoading = false;
-      this.displayedFlights = result;
-      return result;
-    }
-
-    String test = 'Flights for ' + (offer?.offerName ?? '');
 
     return Scaffold(
       appBar: AppBar(
@@ -92,7 +102,7 @@ class _FlightsViewState extends State<FlightsView> {
 
                       return FitAirlinesCard(
                         title: item.city?.cityName ?? 'TODO',
-                        rightTitle: item.price?.toString() ?? 'Unknown',
+                        rightTitle: (item.price?.toString() ?? 'Unknown') + ' KM',
                         image: itemImage ??
                             Image.asset(
                               'assets/images/flight-placeholder.jpg',
@@ -109,7 +119,7 @@ class _FlightsViewState extends State<FlightsView> {
                   width: double.infinity,
                   child: CupertinoSlidingSegmentedControl<FlightTabs>(
                     backgroundColor: CupertinoColors.systemGrey2,
-                    thumbColor: Colors.green,
+                    thumbColor: Colors.blue,
                     // This represents the currently selected segmented control.
                     groupValue: _selectedSegment,
                     // Callback that sets the selected segmented control.
@@ -122,17 +132,17 @@ class _FlightsViewState extends State<FlightsView> {
                       }
                     },
                     children: const <FlightTabs, Widget>{
-                      FlightTabs.bestDeals: Padding(
+                      FlightTabs.recommendedFlights: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                         child: Text(
-                          'Best deals',
+                          'Recommended 🔥',
                           style: TextStyle(color: CupertinoColors.white),
                         ),
                       ),
                       FlightTabs.nextFlights: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
-                          'Next flights',
+                          'Next flights ⏰',
                           style: TextStyle(color: CupertinoColors.white),
                         ),
                       ),

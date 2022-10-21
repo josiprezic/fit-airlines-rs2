@@ -28,16 +28,18 @@ class APIService {
     }
   }
 
-  Future<List<dynamic>> getObjectList({Map<String, dynamic> queryParams = const {}}) async {
-    var uriWithParams = baseRouteUrl + buildQueryString(queryParams);
-    print('URI with PMS: ' + uriWithParams);
-    print('Authorisation: ' + headers.toString());
+  bool shouldLog = true;
+
+  Future<List<dynamic>> getObjectList({String path = '', Map<String, dynamic> queryParams = const {}}) async {
+    var uriWithParams = baseRouteUrl + path + buildQueryString(queryParams);
+    logger('URI with PMS: ' + uriWithParams);
+    logger('Authorisation: ' + headers.toString());
     final response = await http.get(Uri.parse(uriWithParams), headers: headers);
-    print('RESPONSE: ' + response.statusCode.toString());
+    logger('RESPONSE: ' + response.statusCode.toString());
 
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
-      print('API SERVICE: returned ' + data.length.toString() + ' objects.');
+      logger('API SERVICE: returned ' + data.length.toString() + ' objects.');
       return data;
     } else {
       // TODO: JR
@@ -55,5 +57,11 @@ class APIService {
     });
     result = result.substring(0, result.length - 1);
     return result;
+  }
+
+  void logger(String message) {
+    if (shouldLog) {
+      print(message);
+    }
   }
 }
