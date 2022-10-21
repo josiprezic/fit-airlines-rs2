@@ -1,5 +1,6 @@
 import 'package:fit_airlines_mobile_flutter/models/flight.dart';
 import 'package:fit_airlines_mobile_flutter/models/reservation.dart';
+import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_flight.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
 import 'package:flutter/material.dart';
@@ -16,15 +17,9 @@ class _TicketReservationViewState extends State<TicketReservationView> {
   late Reservation reservation;
 
   void handleSeatsSelected(Reservation reservation) {
-    print('Selected Seats: ' +
-        (reservation.outboundSeat?.getSeatString() ?? 'N/A') +
-        ' ' +
-        (reservation.inboundSeat?.getSeatString() ?? 'N/A'));
+    print('Selected Seats: ' + (reservation.outboundSeat?.getSeatString() ?? 'N/A') + ' ' + (reservation.inboundSeat?.getSeatString() ?? 'N/A'));
 
-    print('Selected Seats: ' +
-        (this.reservation.outboundSeat?.getSeatString() ?? 'N/A') +
-        ' ' +
-        (this.reservation.inboundSeat?.getSeatString() ?? 'N/A'));
+    print('Selected Seats: ' + (this.reservation.outboundSeat?.getSeatString() ?? 'N/A') + ' ' + (this.reservation.inboundSeat?.getSeatString() ?? 'N/A'));
   }
 
   void handleReserveSeatsButtonPressed() {
@@ -38,16 +33,14 @@ class _TicketReservationViewState extends State<TicketReservationView> {
   void handleBuyTicketButtonPressed() {
     print('handleBuyTicketButtonPressed');
 
-    Navigator.of(context)
-        .pushNamed('/ticket_purchase_confirmation', arguments: {
+    Navigator.of(context).pushNamed('/ticket_purchase_confirmation', arguments: {
       'reservation': reservation,
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final arguments = (ModalRoute.of(context)?.settings.arguments ??
-        <String, dynamic>{}) as Map;
+    final arguments = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
 
     flight = arguments['flight'];
 
@@ -211,8 +204,7 @@ class _TicketReservationViewState extends State<TicketReservationView> {
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: Colors.black,
-            borderRadius: BorderRadius.vertical(
-                top: Radius.circular(10), bottom: Radius.circular(10)),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(10), bottom: Radius.circular(10)),
           ),
         ),
       ),
