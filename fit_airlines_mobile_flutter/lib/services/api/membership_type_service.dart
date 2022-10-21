@@ -2,7 +2,7 @@ import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_me
 import 'package:fit_airlines_mobile_flutter/services/api/api_service.dart';
 
 class MembershipTypeService {
-  APIService apiService = APIService(route: 'cities');
+  APIService apiService = APIService(route: 'membershipTypes');
 
   Future<List<TransportMembershipType>> getAllObjects() async {
     var response = await apiService.getObjectList();
