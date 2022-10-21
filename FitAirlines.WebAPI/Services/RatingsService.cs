@@ -38,6 +38,19 @@ namespace FitAirlines.WebAPI.Services
             return _mapper.Map<List<Model.Ratings>>(list);
         }
 
+        public List<Model.Ratings> GetAllRatings(RatingsSearchRequest request)
+        {
+            var query = _context.Ratings.AsQueryable();
+
+            if (request?.FlightId != 0) 
+            { 
+                query = query.Where(x => x.Reservation.FlightId == request.FlightId);
+            }
+
+            var list = query.ToList();
+            return _mapper.Map<List<Model.Ratings>>(list);
+        }
+
 
         public Model.Ratings RateFlight(RatingsInsertRequest request)
         {

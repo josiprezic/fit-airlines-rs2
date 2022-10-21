@@ -28,6 +28,12 @@ namespace FitAirlines.WebAPI.Controllers
             return _service.Get(request);
         }
 
+        [HttpGet("GetAllRatings")]
+        public List<Model.Ratings> GetAllRatings([FromQuery] Model.Requests.RatingsSearchRequest request)
+        {
+            return _service.GetAllRatings(request);
+        }
+
         [HttpPost("RateFlight")]
         public Model.Ratings RateFlight([FromBody] Model.Requests.RatingsInsertRequest request)
         {

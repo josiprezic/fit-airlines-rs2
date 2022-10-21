@@ -11,5 +11,6 @@ namespace FitAirlines.WebAPI.Services.Interfaces
     {
         List<Ratings> Get(Model.Requests.RatingsSearchRequest request);
         Ratings RateFlight(RatingsInsertRequest request);
+        List<Ratings> GetAllRatings(RatingsSearchRequest request);
     }
 }
