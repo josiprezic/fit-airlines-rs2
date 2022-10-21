@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:fit_airlines_mobile_flutter/services/api/airport_service.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/api_service.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/city_service.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/country_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/flight_service.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -54,13 +58,18 @@ class _LoginViewState extends State<LoginView> {
               FitStyleButton('Login', () async {
                 print(usernameController.text + ' ' + passwordController.text);
 
-                APIService.username = 'admin@fit.ba'; //usernameController.text;
+                APIService.username =
+                    'member@fit.ba'; //usernameController.text;
                 APIService.password = 'password'; //passwordController.text;va
-                var service = AirportService();
+                var service = FlightService();
 
                 var objects = await service.getAllObjects();
-                print(objects.first);
-                print(objects.first.airportName);
+                print(objects.first.toString());
+                var jsonn = json.encode(objects.first);
+
+                var spaces = ' ' * 4;
+                var encoder = JsonEncoder.withIndent(spaces);
+                print(encoder.convert(jsonn));
                 //print(objects.first.picture);
 
                 // var cos = await api.getObjectList();
