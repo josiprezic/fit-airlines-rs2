@@ -1,4 +1,8 @@
+import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_user.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/user_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/image_service.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_textfield.dart';
+import 'package:fit_airlines_mobile_flutter/views/components/loading_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/dialogs/logout_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -33,6 +37,17 @@ class _ProfileViewState extends State<ProfileView> {
     Navigator.of(context).pushNamed('/change_membership_type');
   }
 
+  var userService = UserService();
+  TransportUser? myProfile;
+  var isLoading = false;
+  Future<TransportUser> getData() async {
+    isLoading = true;
+    var result = await userService.getMyProfile();
+    myProfile = result;
+    isLoading = false;
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,24 +62,33 @@ class _ProfileViewState extends State<ProfileView> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  avatar(),
-                  SizedBox(width: 20),
-                  credit(),
-                ],
+      body: FutureBuilder<TransportUser>(
+          future: getData(),
+          initialData: null,
+          builder: (context, snapshot) {
+            if (isLoading) {
+              return LoadingView();
+            }
+
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        avatar(),
+                        SizedBox(width: 20),
+                        credit(),
+                      ],
+                    ),
+                    personalInfo(),
+                  ],
+                ),
               ),
-              personalInfo(),
-            ],
-          ),
-        ),
-      ),
+            );
+          }),
     );
   }
 
@@ -79,9 +103,10 @@ class _ProfileViewState extends State<ProfileView> {
           child: InkWell(
             onTap: () {},
             child: Ink.image(
-                image: AssetImage(
-                  'assets/images/profile-photo-placeholder.png',
-                ),
+                image: ImageService.getImageFromByteData(myProfile?.picture)?.image ??
+                    AssetImage(
+                      'assets/images/profile-photo-placeholder.png',
+                    ),
                 height: 100,
                 width: 100,
                 fit: BoxFit.cover),
@@ -117,7 +142,7 @@ class _ProfileViewState extends State<ProfileView> {
               ),
               SizedBox(height: 20),
               Text(
-                '1234,56 KM',
+                (myProfile?.credit?.toDouble().toString() ?? '0') + ' KM',
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.black,
@@ -154,27 +179,19 @@ class _ProfileViewState extends State<ProfileView> {
         TextField(
           controller: dateinput, //editing controller of this TextField
           decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 3, color: Colors.grey)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 3, color: Colors.blue)),
-              errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 3, color: Colors.red)),
+              enabledBorder: OutlineInputBorder(borderSide: BorderSide(width: 3, color: Colors.grey)),
+              focusedBorder: OutlineInputBorder(borderSide: BorderSide(width: 3, color: Colors.blue)),
+              errorBorder: OutlineInputBorder(borderSide: BorderSide(width: 3, color: Colors.red)),
               suffixIcon: Icon(Icons.calendar_today),
               labelText: "Enter Date" //label text of field
               ),
           readOnly: true, //set it true, so that user will not able to edit text
           onTap: () async {
-            DateTime? pickedDate = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime(2000),
-                lastDate: DateTime(2101));
+            DateTime? pickedDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2000), lastDate: DateTime(2101));
 
             if (pickedDate != null) {
               print(pickedDate);
-              String formattedDate =
-                  DateFormat('dd/MM/yyyy').format(pickedDate);
+              String formattedDate = DateFormat('dd/MM/yyyy').format(pickedDate);
               print(formattedDate);
 
               setState(() {

@@ -17,8 +17,10 @@ class APIService {
 
   APIService({required this.route});
 
-  Future<Map<String, dynamic>> getObject({required int id}) async {
-    final response = await http.get(Uri.parse(baseRouteUrl), headers: headers);
+  Future<Map<String, dynamic>> getObject({String path = '', Map<String, dynamic> queryParams = const {}}) async {
+    var uriWithParams = baseRouteUrl + path + buildQueryString(queryParams);
+
+    final response = await http.get(Uri.parse(uriWithParams), headers: headers);
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       return data;
