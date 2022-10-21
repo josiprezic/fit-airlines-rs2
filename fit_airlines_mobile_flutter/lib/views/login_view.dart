@@ -5,6 +5,7 @@ import 'package:fit_airlines_mobile_flutter/services/api/api_service.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/city_service.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/country_service.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/flight_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/offer_service.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
@@ -61,7 +62,7 @@ class _LoginViewState extends State<LoginView> {
                 APIService.username =
                     'member@fit.ba'; //usernameController.text;
                 APIService.password = 'password'; //passwordController.text;va
-                var service = FlightService();
+                var service = OfferService();
 
                 var objects = await service.getAllObjects();
                 print(objects.first.toString());
