@@ -1,10 +1,11 @@
 import 'dart:core';
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 
 class APIService {
-  static String username = '';
-  static String password = '';
+  static String username = 'member@fit.ba';
+  static String password = 'password';
 
   static String socketAddress = "172.25.208.1:25001";
   static String baseUrl = "http://" + socketAddress + "/api/";
@@ -29,7 +30,11 @@ class APIService {
 
   Future<List<dynamic>> getObjectList({Map<String, dynamic> queryParams = const {}}) async {
     var uriWithParams = baseRouteUrl + buildQueryString(queryParams);
+    print('URI with PMS: ' + uriWithParams);
+    print('Authorisation: ' + headers.toString());
     final response = await http.get(Uri.parse(uriWithParams), headers: headers);
+    print('RESPONSE: ' + response.statusCode.toString());
+
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
       print('API SERVICE: returned ' + data.length.toString() + ' objects.');

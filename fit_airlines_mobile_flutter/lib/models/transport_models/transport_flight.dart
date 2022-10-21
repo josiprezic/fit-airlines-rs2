@@ -1,3 +1,5 @@
+import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_city.dart';
+
 class TransportFlight {
   int? flightId;
   int? cityId;
@@ -25,6 +27,7 @@ class TransportFlight {
   int? availableSeats;
   int? averageRating;
   String? countryName;
+  TransportCity? city;
 
   TransportFlight(
       {this.flightId,
@@ -52,7 +55,8 @@ class TransportFlight {
       this.capacity,
       this.availableSeats,
       this.averageRating,
-      this.countryName});
+      this.countryName,
+      this.city});
 
   TransportFlight.fromJson(Map<String, dynamic> json) {
     flightId = json['flightId'];
@@ -81,6 +85,7 @@ class TransportFlight {
     availableSeats = json['availableSeats'];
     averageRating = json['averageRating'];
     countryName = json['countryName'];
+    city = json['city'] != null ? TransportCity.fromJson(json['city']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -111,6 +116,7 @@ class TransportFlight {
     data['availableSeats'] = this.availableSeats;
     data['averageRating'] = this.averageRating;
     data['countryName'] = this.countryName;
+    // data['city'] ?
     return data;
   }
 }

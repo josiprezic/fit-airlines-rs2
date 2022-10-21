@@ -1,11 +1,9 @@
 import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_offer.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/offer_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/image_service.dart';
+import 'package:fit_airlines_mobile_flutter/views/components/loading_view.dart';
 import 'package:flutter/material.dart';
-import '../models/offer.dart';
-import 'dart:developer';
 import 'components/fit_airlines_card.dart';
 
 class OffersView extends StatefulWidget {
@@ -18,9 +16,12 @@ class OffersView extends StatefulWidget {
 class _OffersViewState extends State<OffersView> {
   OfferService offerService = OfferService();
   List<TransportOffer> offers = [];
+  bool isLoading = false;
 
   Future<List<TransportOffer>> getData() async {
-    offers = await offerService.getAllObjects(loadPictures: false);
+    isLoading = true;
+    offers = await offerService.getAllObjects(loadPictures: true);
+    isLoading = false;
     return offers;
   }
 
@@ -35,9 +36,9 @@ class _OffersViewState extends State<OffersView> {
       future: getData(),
       initialData: [],
       builder: (context, snapshot) {
-        // if (snapshot.data.isNotEmpty) {
-        //   return Text('Loading');
-        // }
+        if (snapshot.hasData == false) {
+          return LoadingView();
+        }
 
         return Scaffold(
           body: ListView.builder(
@@ -60,16 +61,10 @@ class _OffersViewState extends State<OffersView> {
   }
 
   Image getImage(TransportOffer item) {
-    if (item.picture == null) {
-      return Image.asset(
-        'assets/images/offer-placeholder.jpg',
-        fit: BoxFit.cover,
-      );
-    } else {
-      return Image.memory(
-        base64.decode(item.picture!),
-        fit: BoxFit.cover,
-      );
-    }
+    return ImageService.getImageFromByteData(item.picture) ??
+        Image.memory(
+          base64.decode(item.picture!),
+          fit: BoxFit.cover,
+        );
   }
 }

@@ -1,6 +1,9 @@
-import 'package:fit_airlines_mobile_flutter/models/flight.dart';
-import 'package:fit_airlines_mobile_flutter/models/offer.dart';
+import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_flight.dart';
+import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_offer.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/flight_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/image_service.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_airlines_card.dart';
+import 'package:fit_airlines_mobile_flutter/views/components/loading_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,37 +17,20 @@ class FlightsView extends StatefulWidget {
 enum FlightTabs { bestDeals, nextFlights }
 
 class _FlightsViewState extends State<FlightsView> {
-  List<Flight> displayedFlights = [];
+  List<TransportFlight> displayedFlights = [];
   FlightTabs _selectedSegment = FlightTabs.nextFlights;
 
-  Offer? offer;
-
-  List<Flight> getFlightsForOffer(Offer offer) {
-    return [
-      Flight('Flight 1 (' + offer.name + ')', '123.45 BAM', 90),
-      Flight('Flight 2 (' + offer.name + ')', '123.45 BAM', 12),
-      Flight('Flight 3 (' + offer.name + ')', '123.45 BAM', 18),
-      Flight('Flight 4 (' + offer.name + ')', '123.45 BAM', 900),
-      Flight('Flight 5 (' + offer.name + ')', '123.45 BAM', 180),
-      Flight('Flight 6 (' + offer.name + ')', '123.45 BAM', 180),
-      Flight('Flight 7 (' + offer.name + ')', '123.45 BAM', 180),
-      Flight('Flight 8 (' + offer.name + ')', '123.45 BAM', 180),
-      Flight('Flight 9 (' + offer.name + ')', '123.45 BAM', 180),
-      Flight('Flight 10 (' + offer.name + ')', '123.45 BAM', 180),
-    ];
-  }
+  TransportOffer? offer;
+  FlightService flightService = FlightService();
 
   void handleItemSelected(int itemIndex) {
     print('Flight item clicked $itemIndex');
-
-    Navigator.of(context).pushNamed('/flight_details',
-        arguments: {'flight': displayedFlights[itemIndex]});
+    Navigator.of(context).pushNamed('/flight_details', arguments: {'flight': displayedFlights[itemIndex]});
   }
 
   @override
   Widget build(BuildContext context) {
-    final arguments = (ModalRoute.of(context)?.settings.arguments ??
-        <String, dynamic>{}) as Map;
+    final arguments = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
 
     offer = arguments['offer'];
 
@@ -53,15 +39,24 @@ class _FlightsViewState extends State<FlightsView> {
       displayedFlights = [];
     } else {
       // TODO: Show flighs for this offer
-      List<Flight> flights = getFlightsForOffer(offer!);
-      displayedFlights = flights;
+      displayedFlights = [];
     }
 
-    String test = 'Flights for ' + (offer?.name ?? '');
+    var isLoading = false;
+    Future<List<TransportFlight>> getData() async {
+      // TODO: JR
+      isLoading = true;
+      var result = await flightService.getAllObjects(loadPictures: true);
+      isLoading = false;
+      this.displayedFlights = result;
+      return result;
+    }
+
+    String test = 'Flights for ' + (offer?.offerName ?? '');
 
     return Scaffold(
       appBar: AppBar(
-        title: Text((offer?.name ?? '') + ' flights'),
+        title: Text((offer?.offerName ?? '') + ' flights'),
         actions: [
           IconButton(
             onPressed: () {
@@ -74,68 +69,80 @@ class _FlightsViewState extends State<FlightsView> {
           )
         ],
       ),
-      body: CupertinoPageScaffold(
-        backgroundColor: Colors.grey,
-        child: Column(
-          children: [
-            // TODO: SZEF JR TUTAJ MAMY _selectedSegment i preko toga mijenjamo sta zelimo prikazati
+      body: FutureBuilder<List<TransportFlight>>(
+        future: getData(),
+        initialData: [],
+        builder: (context, response) {
+          if (isLoading) {
+            return LoadingView();
+          }
 
-            Expanded(
-              child: ListView.builder(
-                itemCount: displayedFlights.length,
-                itemBuilder: (context, index) {
-                  Flight item = displayedFlights[index];
+          return CupertinoPageScaffold(
+            backgroundColor: Colors.white,
+            child: Column(
+              children: [
+                // TODO: SZEF JR TUTAJ MAMY _selectedSegment i preko toga mijenjamo sta zelimo prikazati
 
-                  return FitAirlinesCard(
-                    title: item.name,
-                    rightTitle: item.price,
-                    image: Image.asset(
-                      'assets/images/flight-placeholder.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                    onCardClick: () {
-                      handleItemSelected(index);
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: displayedFlights.length,
+                    itemBuilder: (context, index) {
+                      TransportFlight item = displayedFlights[index];
+                      Image? itemImage = ImageService.getImageFromByteData(item.picture);
+
+                      return FitAirlinesCard(
+                        title: item.city?.cityName ?? 'TODO',
+                        rightTitle: item.price?.toString() ?? 'Unknown',
+                        image: itemImage ??
+                            Image.asset(
+                              'assets/images/flight-placeholder.jpg',
+                              fit: BoxFit.cover,
+                            ),
+                        onCardClick: () {
+                          handleItemSelected(index);
+                        },
+                      );
                     },
-                  );
-                },
-              ),
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: CupertinoSlidingSegmentedControl<FlightTabs>(
-                backgroundColor: CupertinoColors.systemGrey2,
-                thumbColor: Colors.green,
-                // This represents the currently selected segmented control.
-                groupValue: _selectedSegment,
-                // Callback that sets the selected segmented control.
-                onValueChanged: (FlightTabs? value) {
-                  if (value != null) {
-                    setState(() {
-                      print('TODO: Handle tab changed');
-                      _selectedSegment = value;
-                    });
-                  }
-                },
-                children: const <FlightTabs, Widget>{
-                  FlightTabs.bestDeals: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                    child: Text(
-                      'Best deals',
-                      style: TextStyle(color: CupertinoColors.white),
-                    ),
                   ),
-                  FlightTabs.nextFlights: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(
-                      'Next flights',
-                      style: TextStyle(color: CupertinoColors.white),
-                    ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: CupertinoSlidingSegmentedControl<FlightTabs>(
+                    backgroundColor: CupertinoColors.systemGrey2,
+                    thumbColor: Colors.green,
+                    // This represents the currently selected segmented control.
+                    groupValue: _selectedSegment,
+                    // Callback that sets the selected segmented control.
+                    onValueChanged: (FlightTabs? value) {
+                      if (value != null) {
+                        setState(() {
+                          print('TODO: Handle tab changed');
+                          _selectedSegment = value;
+                        });
+                      }
+                    },
+                    children: const <FlightTabs, Widget>{
+                      FlightTabs.bestDeals: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                        child: Text(
+                          'Best deals',
+                          style: TextStyle(color: CupertinoColors.white),
+                        ),
+                      ),
+                      FlightTabs.nextFlights: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Text(
+                          'Next flights',
+                          style: TextStyle(color: CupertinoColors.white),
+                        ),
+                      ),
+                    },
                   ),
-                },
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

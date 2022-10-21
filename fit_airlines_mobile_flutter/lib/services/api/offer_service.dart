@@ -6,8 +6,8 @@ import 'package:fit_airlines_mobile_flutter/services/api/api_service.dart';
 class OfferService {
   APIService apiService = APIService(route: 'offers');
 
-  Future<List<TransportOffer>> getAllObjects({bool loadPictures = true}) async {
-    var params = {'loadPictures': true};
+  Future<List<TransportOffer>> getAllObjects({bool loadPictures = false}) async {
+    var params = {'loadPictures': loadPictures};
     var response = await apiService.getObjectList(queryParams: params);
     var result = response.map((e) => TransportOffer.fromJson(e)).toList();
     return result;
