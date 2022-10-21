@@ -119,4 +119,14 @@ class TransportFlight {
     // data['city'] ?
     return data;
   }
+
+  bool get isInFuture {
+    return startDate?.asDateTime().isAfter(DateTime.now()) ?? false;
+  }
+}
+
+extension on String {
+  DateTime asDateTime() {
+    return DateTime.parse(this);
+  }
 }

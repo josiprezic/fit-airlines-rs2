@@ -13,6 +13,14 @@ class OfferService {
     return result;
   }
 
+  Future<List<TransportOffer>> getFutureOffers({bool loadPictures = false}) async {
+    var params = {'loadPictures': loadPictures};
+    var response = await apiService.getObjectList(queryParams: params);
+    var result = response.map((e) => TransportOffer.fromJson(e)).toList();
+    result.removeWhere((element) => !element.isInFuture);
+    return result;
+  }
+
   // Future<List<Offer>> getAllOffers() async {
   //   var transportOffers = await getAllObjects();
   //   return transportOffers.map((e) {

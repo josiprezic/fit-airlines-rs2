@@ -5,12 +5,14 @@ class FitAirlinesCard extends StatelessWidget {
   String title;
   String rightTitle;
   Image image;
+  bool isActive;
   Function onCardClick;
 
   FitAirlinesCard({
     required this.title,
     this.rightTitle = '',
     required this.image,
+    this.isActive = true,
     required this.onCardClick,
   });
 
@@ -18,7 +20,7 @@ class FitAirlinesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        this.onCardClick();
+        isActive ? this.onCardClick() : null;
       },
       child: Container(
         height: 150,
@@ -82,7 +84,23 @@ class FitAirlinesCard extends StatelessWidget {
                   )
                 ],
               ),
-            )
+            ),
+            Positioned.fill(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  color: isActive ? Colors.transparent : Colors.black54,
+                  child: isActive
+                      ? null
+                      : Center(
+                          child: Text(
+                            'Expired',
+                            style: TextStyle(fontSize: 30, color: Colors.pink),
+                          ),
+                        ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

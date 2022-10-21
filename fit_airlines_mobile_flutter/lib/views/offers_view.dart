@@ -49,6 +49,7 @@ class _OffersViewState extends State<OffersView> {
               return FitAirlinesCard(
                 title: item.offerName ?? 'Unknown',
                 image: getImage(item),
+                isActive: item.isInFuture,
                 onCardClick: () {
                   handleItemSelected(index);
                 },

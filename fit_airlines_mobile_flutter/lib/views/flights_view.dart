@@ -108,6 +108,7 @@ class _FlightsViewState extends State<FlightsView> {
                               'assets/images/flight-placeholder.jpg',
                               fit: BoxFit.cover,
                             ),
+                        isActive: item.isInFuture,
                         onCardClick: () {
                           handleItemSelected(index);
                         },

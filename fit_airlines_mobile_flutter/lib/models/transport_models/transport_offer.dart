@@ -59,4 +59,14 @@ class TransportOffer {
     data['viewportWidthLabel'] = this.viewportWidthLabel;
     return data;
   }
+
+  bool get isInFuture {
+    return startDate?.asDateTime().isAfter(DateTime.now()) ?? false;
+  }
+}
+
+extension on String {
+  DateTime asDateTime() {
+    return DateTime.parse(this);
+  }
 }
