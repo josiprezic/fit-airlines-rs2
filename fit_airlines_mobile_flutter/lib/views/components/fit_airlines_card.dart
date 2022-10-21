@@ -95,7 +95,11 @@ class FitAirlinesCard extends StatelessWidget {
                       : Center(
                           child: Text(
                             'Expired',
-                            style: TextStyle(fontSize: 30, color: Colors.pink),
+                            style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.pink,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
                 ),
