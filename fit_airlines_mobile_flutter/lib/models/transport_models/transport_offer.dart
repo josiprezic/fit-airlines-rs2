@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 class TransportOffer {
   int? offerId;
   String? offerName;

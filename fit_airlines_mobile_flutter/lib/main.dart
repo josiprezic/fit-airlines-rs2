@@ -3,6 +3,7 @@ import 'package:fit_airlines_mobile_flutter/views/change_membership_type_view.da
 import 'package:fit_airlines_mobile_flutter/views/change_password_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/flight_details_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/flights_view.dart';
+import 'package:fit_airlines_mobile_flutter/views/home_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/login_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/my_flights_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/my_stats_view.dart';
@@ -21,7 +22,7 @@ void main() {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginView(), //HomeViewWithDrawer(),
+      home: HomeViewWithDrawer(), // LoginView(),
       routes: {
         '/offers': (context) => OffersView(),
         '/flights': (context) => FlightsView(),
