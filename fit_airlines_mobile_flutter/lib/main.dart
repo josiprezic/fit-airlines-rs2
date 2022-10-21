@@ -12,7 +12,6 @@ import 'package:fit_airlines_mobile_flutter/views/seat_reservation/main_seat_res
 import 'package:fit_airlines_mobile_flutter/views/ticket_purchase_confirmation_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/ticket_reservation_view.dart';
 import 'package:flutter/material.dart';
-import 'views/home_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
