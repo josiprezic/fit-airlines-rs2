@@ -12,8 +12,12 @@ class CountryService {
 
   // not used
   Future<TransportCountry> getObject({required int id}) async {
-    var response = await apiService.getObject(id: id);
-    var result = TransportCountry.fromJson(response);
+    var list = await getAllObjects();
+    var result = list.firstWhere((element) => element.countryId == id);
     return result;
+
+    // var response = await apiService.getObject(id: id);
+    // var result = TransportCountry.fromJson(response);
+    // return result;
   }
 }
