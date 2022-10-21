@@ -20,9 +20,7 @@ class _OffersViewState extends State<OffersView> {
   List<TransportOffer> offers = [];
 
   Future<List<TransportOffer>> getData() async {
-    print('START');
     offers = await offerService.getAllObjects(loadPictures: false);
-    print('Offers count:' + offers.length.toString());
     return offers;
   }
 

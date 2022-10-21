@@ -10,18 +10,14 @@ class APIService {
   static String baseUrl = "http://" + socketAddress + "/api/";
 
   String get baseRouteUrl => baseUrl + route + '/';
-
   String get basicAuth => 'Basic ' + base64.encode(utf8.encode('$username:$password'));
-
   Map<String, String> get headers => {'authorization': basicAuth};
-
   String route;
 
   APIService({required this.route});
 
   Future<Map<String, dynamic>> getObject({required int id}) async {
     final response = await http.get(Uri.parse(baseRouteUrl), headers: headers);
-
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       return data;
@@ -33,9 +29,7 @@ class APIService {
 
   Future<List<dynamic>> getObjectList({Map<String, dynamic> queryParams = const {}}) async {
     var uriWithParams = baseRouteUrl + buildQueryString(queryParams);
-
     final response = await http.get(Uri.parse(uriWithParams), headers: headers);
-    print(response.request.toString());
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
       print('API SERVICE: returned ' + data.length.toString() + ' objects.');
