@@ -17,7 +17,10 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  TextEditingController dateinput = TextEditingController();
+  TextEditingController dateInputTextEditingController = TextEditingController();
+  TextEditingController firstNameInputTextEditingController = TextEditingController();
+  TextEditingController lastNameTextEditingController = TextEditingController();
+
   String genderSelectedValue = "M";
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
@@ -44,6 +47,10 @@ class _ProfileViewState extends State<ProfileView> {
     isLoading = true;
     var result = await userService.getMyProfile();
     myProfile = result;
+    firstNameInputTextEditingController.text = myProfile?.firstName ?? '';
+    lastNameTextEditingController.text = myProfile?.lastName ?? '';
+    this.dateInputTextEditingController.text = DateFormat('dd/MM/yyyy').format(DateTime.parse(myProfile?.birthDate ?? ''));
+    this.genderSelectedValue = myProfile?.gender ?? 'M';
     isLoading = false;
     return result;
   }
@@ -101,7 +108,7 @@ class _ProfileViewState extends State<ProfileView> {
           clipBehavior: Clip.antiAliasWithSaveLayer,
           elevation: 8,
           child: InkWell(
-            onTap: () {},
+            //onTap: () {},
             child: Ink.image(
                 image: ImageService.getImageFromByteData(myProfile?.picture)?.image ??
                     AssetImage(
@@ -169,15 +176,21 @@ class _ProfileViewState extends State<ProfileView> {
           ),
         ),
         SizedBox(height: 20),
-        FitTextField('First name'),
+        FitTextField(
+          controller: firstNameInputTextEditingController,
+          hintText: 'First name',
+        ),
 
         SizedBox(height: 20),
-        FitTextField('Last name'),
+        FitTextField(
+          controller: lastNameTextEditingController,
+          hintText: 'Last name',
+        ),
 
         SizedBox(height: 20),
 
         TextField(
-          controller: dateinput, //editing controller of this TextField
+          controller: dateInputTextEditingController, //editing controller of this TextField
           decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(borderSide: BorderSide(width: 3, color: Colors.grey)),
               focusedBorder: OutlineInputBorder(borderSide: BorderSide(width: 3, color: Colors.blue)),
@@ -195,7 +208,7 @@ class _ProfileViewState extends State<ProfileView> {
               print(formattedDate);
 
               setState(() {
-                dateinput.text = formattedDate;
+                dateInputTextEditingController.text = formattedDate;
               });
             } else {
               print("Date is not selected");

@@ -26,11 +26,13 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            FitTextField('Old password'),
+            FitTextField(
+              hintText: 'Old password',
+            ),
             SizedBox(height: elementMargin),
-            FitTextField('New password'),
+            FitTextField(hintText: 'New password'),
             SizedBox(height: elementMargin),
-            FitTextField('Re-type new password'),
+            FitTextField(hintText: 'Re-type new password'),
             SizedBox(height: elementMargin),
             FitStyleButton(
               'Update password',

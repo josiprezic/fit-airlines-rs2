@@ -7,7 +7,7 @@ class APIService {
   static String username = 'member@fit.ba';
   static String password = 'password';
 
-  static String socketAddress = "172.25.208.1:25001";
+  static String socketAddress = "172.19.112.1:25001";
   static String baseUrl = "http://" + socketAddress + "/api/";
 
   String get baseRouteUrl => baseUrl + route + '/';
