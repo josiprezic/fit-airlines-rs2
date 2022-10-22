@@ -9,6 +9,7 @@ import 'package:fit_airlines_mobile_flutter/services/date_converter.dart';
 import 'package:fit_airlines_mobile_flutter/services/image_service.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
+import 'package:fit_airlines_mobile_flutter/views/seat_reservation/main_seat_reservation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 
@@ -34,6 +35,7 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
     print('Done - mocked!');
     // ------------ Mocking end ------------
 
+    SeatReservationView.currentFlightId = flight?.flightId ?? 0;
     Navigator.of(context).pushNamed('/ticket_reservation', arguments: {'flight': flight});
   }
 

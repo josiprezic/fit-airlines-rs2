@@ -1,6 +1,9 @@
 import 'package:fit_airlines_mobile_flutter/constants/constants.dart';
 import 'package:fit_airlines_mobile_flutter/models/flight_seat.dart';
 import 'package:fit_airlines_mobile_flutter/models/reservation.dart';
+import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_reservation.dart';
+import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_reserved_seat.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/reserved_seat_service.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
 import 'package:fit_airlines_mobile_flutter/views/seat_reservation/fit_seat_layout_column_header_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/seat_reservation/fit_seat_layout_view.dart';
@@ -14,6 +17,7 @@ class SeatReservationView extends StatefulWidget {
 
   @override
   State<SeatReservationView> createState() => _SeatReservationViewState();
+  static int currentFlightId = 0;
 }
 
 enum FlightDirection { outbound, inbound }
@@ -24,38 +28,32 @@ class _SeatReservationViewState extends State<SeatReservationView> {
   //
 
   // general
-  Reservation? reservation; // set by previous screen
-  late Function(Reservation)
-      seatSelectionCompletionHandler; // set by previous screen
+  TransportReservation? reservation; // set by previous screen
+  late Function(TransportReservation) seatSelectionCompletionHandler; // set by previous screen
 
   FlightDirection selectedTab = FlightDirection.outbound;
-  bool get isOutboundTab =>
-      displayedFlightDirection == FlightDirection.outbound;
-  bool get isReserveButtonEnabled =>
-      selectedSeatInbound != null && selectedSeatOutbound != null;
+  bool get isOutboundTab => displayedFlightDirection == FlightDirection.outbound;
+  bool get isReserveButtonEnabled => selectedSeatInbound != null && selectedSeatOutbound != null;
 
   // seats
-  late List<List<FlightSeat>> _outboundSeats = FitTemp.mockOutboundSeats;
-  late List<List<FlightSeat>> _inboundSeats = FitTemp.mockInboundSeats;
+  late List<List<FlightSeat>> _outboundSeats = [];
+  late List<List<FlightSeat>> _inboundSeats = [];
   FlightSeat? selectedSeatOutbound;
   FlightSeat? selectedSeatInbound;
 
   // plane
-  late int flightCapacity = reservation?.flight.capacity ?? 0;
+  late int flightCapacity = reservation?.flight?.capacity ?? 0;
   int numberOfSeatsInRow = 6; // TODO: Move to Constants
   late int numberOfRows = flightCapacity ~/ numberOfSeatsInRow;
 
   // computed properties
-  List<List<FlightSeat>> get displayedSeats =>
-      isOutboundTab ? _outboundSeats : _inboundSeats;
+  List<List<FlightSeat>> get displayedSeats => isOutboundTab ? _outboundSeats : _inboundSeats;
 
   FlightDirection get displayedFlightDirection => selectedTab;
 
-  FlightSeat? get displayedSelectedSeat =>
-      isOutboundTab ? selectedSeatOutbound : selectedSeatInbound;
+  FlightSeat? get displayedSelectedSeat => isOutboundTab ? selectedSeatOutbound : selectedSeatInbound;
 
-  String get displayedSelectedSeatString =>
-      displayedSelectedSeat?.getSeatString() ?? 'N/A';
+  String get displayedSelectedSeatString => displayedSelectedSeat?.getSeatString() ?? 'N/A';
 
   //
   // MARK - HANDLERS
@@ -63,9 +61,7 @@ class _SeatReservationViewState extends State<SeatReservationView> {
 
   void handleReserveSeatsButtonPressed() {
     print('TODO: JR SZEF handleReserveSeatsButtonPressed');
-    if (reservation != null &&
-        reservation!.outboundSeat != null &&
-        reservation!.inboundSeat != null) {
+    if (reservation != null && reservation!.seatDeparture != null && reservation!.seatReturn != null) {
       Navigator.of(context).pop();
       seatSelectionCompletionHandler(reservation!);
     }
@@ -96,11 +92,12 @@ class _SeatReservationViewState extends State<SeatReservationView> {
       if (isOutboundValue) {
         selectedSeatOutbound = selectedSeat;
         _outboundSeats[rowIndex][colIndex].selected = true;
-        reservation?.outboundSeat = selectedSeat;
+        reservation?.seatDeparture = selectedSeat.getSeatString();
+        //TransportReservedSeat.from(selectedSeat, reservation?.reservationId? ?? 0, this.displayedFlightDirection);
       } else {
         selectedSeatInbound = selectedSeat;
         _inboundSeats[rowIndex][colIndex].selected = true;
-        reservation?.inboundSeat = selectedSeat;
+        reservation?.seatReturn = selectedSeat.getSeatString();
       }
     });
   }
@@ -114,6 +111,40 @@ class _SeatReservationViewState extends State<SeatReservationView> {
   //
   // MARK: - HELPERS
   //
+
+  var isLoading = false;
+  var reservedSeatService = ReservedSeatService();
+
+  late final Future<List<List<FlightSeat>>> myFuture;
+
+  @override
+  void initState() {
+    myFuture = getData();
+  }
+
+  Future<List<List<FlightSeat>>> getData() async {
+    isLoading = true;
+    var flightReservedSeats = await reservedSeatService.getReservedSeatsForFlight(SeatReservationView.currentFlightId);
+    print('NUMBER OF RESERVED SEATS: ' + flightReservedSeats.length.toString());
+
+    flightReservedSeats.forEach((element) {
+      print('--------------- RESERVED SEAT: ' + (element.seatName ?? 'NO NAME'));
+    });
+
+    var outboundSeatReservations = List<TransportReservedSeat>.from(flightReservedSeats);
+    var inboundSeatReservations = List<TransportReservedSeat>.from(flightReservedSeats);
+
+    outboundSeatReservations.removeWhere((element) => element.direction == '2');
+    inboundSeatReservations.removeWhere((element) => element.direction == '1');
+
+    // setState(() {
+    this._inboundSeats = FitHelper.generateReservedSeatsTable(capacity: flightCapacity, seatReservations: inboundSeatReservations);
+    this._outboundSeats = FitHelper.generateReservedSeatsTable(capacity: flightCapacity, seatReservations: outboundSeatReservations);
+    // });
+
+    isLoading = false;
+    return displayedSeats;
+  }
 
   void unselectAllSeatsForCurrentTab() {
     if (isOutboundTab) {
@@ -143,30 +174,43 @@ class _SeatReservationViewState extends State<SeatReservationView> {
     }
   }
 
+  bool shouldExecuteOnlyOnceMethod = true;
+  void onlyOnceMethod() {
+    if (shouldExecuteOnlyOnceMethod == false) {
+      return;
+    }
+    shouldExecuteOnlyOnceMethod = false;
+
+    final arguments = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
+
+    reservation = arguments['reservation'];
+
+    if (reservation?.seatDeparture != null && reservation?.seatReturn != null) {
+      print('WHOOOOOPS');
+      setState(() {
+        FlightSeat seatDeparture = FlightSeat.getFrom(reservation?.seatDeparture ?? 'A1');
+        FlightSeat seatReturn = FlightSeat.getFrom(reservation?.seatReturn ?? 'A1');
+
+        handleSeatSelected(
+          seatReturn,
+          FlightDirection.inbound,
+        );
+        handleSeatSelected(
+          seatDeparture,
+          FlightDirection.outbound,
+        );
+        seatSelectionCompletionHandler = arguments['seatSelectionHandler'];
+      });
+    }
+  }
+
   //
   // MARK: - WIDGETS
   //
 
   @override
   Widget build(BuildContext context) {
-    final arguments = (ModalRoute.of(context)?.settings.arguments ??
-        <String, dynamic>{}) as Map;
-
-    reservation = arguments['reservation'];
-
-    if (reservation?.outboundSeat != null && reservation?.inboundSeat != null) {
-      setState(() {
-        handleSeatSelected(
-          reservation!.inboundSeat!,
-          FlightDirection.inbound,
-        );
-        handleSeatSelected(
-          reservation!.outboundSeat!,
-          FlightDirection.outbound,
-        );
-        seatSelectionCompletionHandler = arguments['seatSelectionHandler'];
-      });
-    }
+    onlyOnceMethod();
 
     if (reservation == null) {
       // Handle reservation not available
@@ -180,10 +224,15 @@ class _SeatReservationViewState extends State<SeatReservationView> {
 
       return Scaffold(
         appBar: appBar(),
-        body: CupertinoPageScaffold(
-          backgroundColor: Colors.white,
-          child: getTabContentView(),
-        ),
+        body: FutureBuilder<List<List<FlightSeat>>>(
+            future: myFuture,
+            initialData: [],
+            builder: (context, snapshot) {
+              return CupertinoPageScaffold(
+                backgroundColor: Colors.white,
+                child: getTabContentView(),
+              );
+            }),
       );
     }
   }
@@ -247,9 +296,7 @@ class _SeatReservationViewState extends State<SeatReservationView> {
             foregroundColor: Colors.white,
             backgroundColor: isReserveButtonEnabled ? Colors.blue : Colors.grey,
           ),
-          onPressed: this.isReserveButtonEnabled
-              ? handleReserveSeatsButtonPressed
-              : null,
+          onPressed: this.isReserveButtonEnabled ? handleReserveSeatsButtonPressed : null,
           child: Text(getReserveButtonText()),
         ),
       ),

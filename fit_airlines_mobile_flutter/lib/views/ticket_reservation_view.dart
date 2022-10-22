@@ -4,6 +4,7 @@ import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_ai
 import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_flight.dart';
 import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_reservation.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/airport_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/flight_service.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
 import 'package:flutter/material.dart';
@@ -48,9 +49,11 @@ class _TicketReservationViewState extends State<TicketReservationView> {
 
   var isLoading = false;
   var airportService = AirportService();
+  var flightService = FlightService();
   Future<TransportAirport> getData() async {
     isLoading = true;
     var result = await airportService.getObject(id: flight?.destinationAirportId ?? 0);
+
     this.airport = result;
     isLoading = false;
     return result;
@@ -69,7 +72,8 @@ class _TicketReservationViewState extends State<TicketReservationView> {
       );
     } else {
       // Handle flight available
-      reservation = TransportReservation(flight: flight!);
+      reservation = TransportReservation(flightId: flight!.flightId, flight: flight!);
+      print('RESERVATION TEST: ' + flight!.flightId.toString());
 
       return Scaffold(
         appBar: AppBar(

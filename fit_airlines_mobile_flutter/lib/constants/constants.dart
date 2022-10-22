@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:fit_airlines_mobile_flutter/models/flight.dart';
 
 import 'package:fit_airlines_mobile_flutter/models/flight_seat.dart';
+import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_reserved_seat.dart';
 import 'package:flutter/material.dart';
 
 import '../models/reservation.dart';
@@ -25,19 +26,39 @@ class FitFontSize {
   double description = 10;
 }
 
+class FitHelper {
+  static List<List<FlightSeat>> generateReservedSeatsTable(
+      {required int capacity, required List<TransportReservedSeat> seatReservations, int numberOfSeatsInRow = 6}) {
+    int numberOfRows = (capacity / numberOfSeatsInRow).floor();
+
+    var seatTable = List<List<FlightSeat>>.generate(numberOfRows, (rowIndex) {
+      return List<FlightSeat>.generate(numberOfSeatsInRow, (columnIndex) {
+        bool isSeatAvailable = true;
+        return FlightSeat(rowIndex + 1, columnIndex + 1, isSeatAvailable);
+      });
+    });
+
+    print('NUMBER OF TAKEN SEATS: ' + seatReservations.length.toString());
+
+    seatReservations.forEach((taken) {
+      var takenSeatRowIndex = (taken?.seatRow ?? 0) - 1;
+      var takenSeatColumnIndex = (taken?.seatColumn ?? 0) - 1;
+      seatTable[takenSeatRowIndex][takenSeatColumnIndex].available = false;
+    });
+
+    return seatTable;
+  }
+}
+
 // TODO: JR SZEF to be removed
 class FitTemp {
   static List<Reservation> mockedUpcomingReservations = getMockReservations();
-  static List<Reservation> mockedPreviousReservations =
-      getMockReservations().sublist(3, 6);
+  static List<Reservation> mockedPreviousReservations = getMockReservations().sublist(3, 6);
 
-  static List<List<FlightSeat>> mockOutboundSeats =
-      getRandomlyGeneratedMockSeats(numberOfRows: 100);
-  static List<List<FlightSeat>> mockInboundSeats =
-      getRandomlyGeneratedMockSeats(numberOfRows: 100);
+  static List<List<FlightSeat>> mockOutboundSeats = getRandomlyGeneratedMockSeats(numberOfRows: 100);
+  static List<List<FlightSeat>> mockInboundSeats = getRandomlyGeneratedMockSeats(numberOfRows: 100);
 
-  static List<List<FlightSeat>> getRandomlyGeneratedMockSeats(
-      {required int numberOfRows, int numberOfSeatsInRow = 6}) {
+  static List<List<FlightSeat>> getRandomlyGeneratedMockSeats({required int numberOfRows, int numberOfSeatsInRow = 6}) {
     return List<List<FlightSeat>>.generate(numberOfRows, (rowIndex) {
       return List<FlightSeat>.generate(numberOfSeatsInRow, (columnIndex) {
         // TODO: JR SZEF remove random seat selection
@@ -50,30 +71,18 @@ class FitTemp {
 
   static List<Reservation> getMockReservations() {
     var result = [
-      Reservation(
-          Flight('Flight 1 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 90)),
-      Reservation(
-          Flight('Flight 2 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 12)),
-      Reservation(
-          Flight('Flight 3 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 18)),
-      Reservation(
-          Flight('Flight 4 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 900)),
-      Reservation(
-          Flight('Flight 5 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 180)),
-      Reservation(
-          Flight('Flight 6 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 180)),
-      Reservation(
-          Flight('Flight 1 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 90)),
-      Reservation(
-          Flight('Flight 2 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 12)),
-      Reservation(
-          Flight('Flight 3 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 18)),
-      Reservation(
-          Flight('Flight 4 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 900)),
-      Reservation(
-          Flight('Flight 5 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 180)),
-      Reservation(
-          Flight('Flight 6 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 180)),
+      Reservation(Flight('Flight 1 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 90)),
+      Reservation(Flight('Flight 2 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 12)),
+      Reservation(Flight('Flight 3 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 18)),
+      Reservation(Flight('Flight 4 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 900)),
+      Reservation(Flight('Flight 5 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 180)),
+      Reservation(Flight('Flight 6 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 180)),
+      Reservation(Flight('Flight 1 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 90)),
+      Reservation(Flight('Flight 2 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 12)),
+      Reservation(Flight('Flight 3 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 18)),
+      Reservation(Flight('Flight 4 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 900)),
+      Reservation(Flight('Flight 5 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 180)),
+      Reservation(Flight('Flight 6 (' + 'Barcelona, Spain' + ')', '123.45 BAM', 180)),
     ];
 
     result.map((e) {
