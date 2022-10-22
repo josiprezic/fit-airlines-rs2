@@ -16,11 +16,15 @@ class OffersView extends StatefulWidget {
 class _OffersViewState extends State<OffersView> {
   OfferService offerService = OfferService();
   List<TransportOffer> offers = [];
+
+  List<TransportOffer> filteredOffers = [];
+
   bool isLoading = false;
 
   Future<List<TransportOffer>> getData() async {
     isLoading = true;
     offers = await offerService.getAllObjects(loadPictures: true);
+    filteredOffers = List<TransportOffer>.from(offers);
     isLoading = false;
     return offers;
   }
@@ -47,7 +51,7 @@ class _OffersViewState extends State<OffersView> {
                 onPressed: () {
                   showSearch(
                     context: context,
-                    delegate: OfferSearchDelegate(),
+                    delegate: OfferSearchDelegate(filteredOffers, handleItemSelected),
                   );
                 },
                 icon: Icon(Icons.search),
@@ -92,6 +96,29 @@ class _OffersViewState extends State<OffersView> {
 //
 
 class OfferSearchDelegate extends SearchDelegate {
+  OfferSearchDelegate(this.offers, this.selectionHandler);
+
+  List<TransportOffer> offers = [];
+  Function(int) selectionHandler;
+
+  List<TransportOffer> filteredOffers = [];
+
+  void updateFilteredOffers() {
+    if (query.isEmpty) {
+      filteredOffers = List.from(offers);
+    }
+
+    List<TransportOffer> tempOffers = List.from(offers);
+
+    tempOffers.removeWhere((element) {
+      var lowQuery = query.toLowerCase();
+      var lowOfferName = element.offerName?.toLowerCase();
+      return !(lowOfferName?.contains(lowQuery) ?? false);
+    });
+
+    filteredOffers = tempOffers;
+  }
+
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -120,31 +147,39 @@ class OfferSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
+    return getResult();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return getResult();
+  }
+
+  Widget getResult() {
+    updateFilteredOffers();
+
     return ListView.builder(
-      itemCount: 3,
+      itemCount: filteredOffers.length,
       itemBuilder: (context, index) {
+        var item = filteredOffers[index];
         return FitAirlinesCard(
-          title: 'Titleeeee',
-          image: Image.asset('assets/images/offer-placeholder.png'),
-          onCardClick: () {},
+          title: item.offerName ?? 'Unknown',
+          image: getImage(item),
+          isActive: item.isInFuture,
+          onCardClick: () {
+            var realIndex = offers.indexWhere((element) => element.offerId == filteredOffers[index].offerId);
+            selectionHandler(realIndex);
+          },
         );
       },
     );
   }
 
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    // This method is called everytime the search term changes.
-    // If you want to add search suggestions as the user enters their search term, this is the place to do that.
-    return ListView.builder(
-      itemCount: 3,
-      itemBuilder: (context, index) {
-        return FitAirlinesCard(
-          title: 'Titleeeee',
-          image: Image.asset('assets/images/offer-placeholder.png'),
-          onCardClick: () {},
+  Image getImage(TransportOffer item) {
+    return ImageService.getImageFromByteData(item.picture) ??
+        Image.memory(
+          base64.decode(item.picture!),
+          fit: BoxFit.cover,
         );
-      },
-    );
   }
 }
