@@ -125,22 +125,13 @@ class _SeatReservationViewState extends State<SeatReservationView> {
   Future<List<List<FlightSeat>>> getData() async {
     isLoading = true;
     var flightReservedSeats = await reservedSeatService.getReservedSeatsForFlight(SeatReservationView.currentFlightId);
-    print('NUMBER OF RESERVED SEATS: ' + flightReservedSeats.length.toString());
-
-    flightReservedSeats.forEach((element) {
-      print('--------------- RESERVED SEAT: ' + (element.seatName ?? 'NO NAME'));
-    });
-
     var outboundSeatReservations = List<TransportReservedSeat>.from(flightReservedSeats);
     var inboundSeatReservations = List<TransportReservedSeat>.from(flightReservedSeats);
-
     outboundSeatReservations.removeWhere((element) => element.direction == '2');
     inboundSeatReservations.removeWhere((element) => element.direction == '1');
 
-    // setState(() {
     this._inboundSeats = FitHelper.generateReservedSeatsTable(capacity: flightCapacity, seatReservations: inboundSeatReservations);
     this._outboundSeats = FitHelper.generateReservedSeatsTable(capacity: flightCapacity, seatReservations: outboundSeatReservations);
-    // });
 
     isLoading = false;
     return displayedSeats;

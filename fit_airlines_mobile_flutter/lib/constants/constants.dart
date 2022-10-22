@@ -38,11 +38,19 @@ class FitHelper {
       });
     });
 
-    print('NUMBER OF TAKEN SEATS: ' + seatReservations.length.toString());
-
     seatReservations.forEach((taken) {
       var takenSeatRowIndex = (taken?.seatRow ?? 0) - 1;
       var takenSeatColumnIndex = (taken?.seatColumn ?? 0) - 1;
+
+      // flight assistant (hack)
+      if (seatTable[takenSeatRowIndex][takenSeatColumnIndex].available == false) {
+        takenSeatColumnIndex += 1;
+        if (takenSeatColumnIndex > (numberOfSeatsInRow - 1)) {
+          takenSeatColumnIndex -= 2;
+        }
+      }
+      // hack end
+
       seatTable[takenSeatRowIndex][takenSeatColumnIndex].available = false;
     });
 

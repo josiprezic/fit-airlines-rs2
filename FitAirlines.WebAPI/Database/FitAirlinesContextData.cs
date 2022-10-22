@@ -296,7 +296,7 @@ namespace FitAirlines.WebAPI.Database
             modelBuilder.Entity<ReservedSeats>().HasData(new ReservedSeats() { ReservedSeatId = 54, ReservationId = 27, Direction = "2", SeatPrice = 0, SeatIndex = 19 });
             modelBuilder.Entity<ReservedSeats>().HasData(new ReservedSeats() { ReservedSeatId = 55, ReservationId = 28, Direction = "1", SeatPrice = 0, SeatIndex = 3 });
             modelBuilder.Entity<ReservedSeats>().HasData(new ReservedSeats() { ReservedSeatId = 56, ReservationId = 28, Direction = "2", SeatPrice = 0, SeatIndex = 5 });
-            modelBuilder.Entity<ReservedSeats>().HasData(new ReservedSeats() { ReservedSeatId = 57, ReservationId = 29, Direction = "1", SeatPrice = 0, SeatIndex = 22 });
+            modelBuilder.Entity<ReservedSeats>().HasData(new ReservedSeats() { ReservedSeatId = 57, ReservationId = 29, Direction = "1", SeatPrice = 0, SeatIndex = 23 });
             modelBuilder.Entity<ReservedSeats>().HasData(new ReservedSeats() { ReservedSeatId = 58, ReservationId = 29, Direction = "2", SeatPrice = 0, SeatIndex = 60 });
             modelBuilder.Entity<ReservedSeats>().HasData(new ReservedSeats() { ReservedSeatId = 59, ReservationId = 30, Direction = "1", SeatPrice = 0, SeatIndex = 82 });
             modelBuilder.Entity<ReservedSeats>().HasData(new ReservedSeats() { ReservedSeatId = 60, ReservationId = 30, Direction = "2", SeatPrice = 0, SeatIndex = 7 });
