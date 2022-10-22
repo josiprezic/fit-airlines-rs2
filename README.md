@@ -5,11 +5,13 @@ Faculty project
 
 ### Uputstvo za pokretanje projekta
 
-1. Pokrenuti komandu `docker-compose up` unutar glavnog direktorija projekta.
+1. Pokrenuti komandu `docker-compose build & docker-compose up` unutar glavnog direktorija projekta.
 2. Spojiti se na SQL Server koristeći `.,1401` kao adresu servera.
 3. Unijeti username `sa` i password `QWElkj132!`
-4. Importati skriptu `fitAirlinesDBscript.sql`
-5. Pokrenuti WinUI i UWP aplikaciju putem Visual Studio-a
+4. Otvoriti `FitAirlines.sln` projekt u Visual Studio-u i promijeniti IP adresu u FitAirlines.UI -> Properties -> Settings.settings
+4. Pokrenuti i testirati WinUI aplikaciju.
+5. Otvoriti Flutter projekt i promijeniti IP adresu u fit_airlines_mobile_flutter -> lib -> app_settings.dart
+6. Pokrenuti i testirati Flutter aplikaciju.
 
 ### Administrator (WinUI aplikacija)
 * Email: **admin@fit.ba**
