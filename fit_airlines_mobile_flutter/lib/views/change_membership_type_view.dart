@@ -19,6 +19,8 @@ class _ChangeMembershipTypeViewState extends State<ChangeMembershipTypeView> {
   int? membershipSelectedValue;
   List<DropdownMenuItem<int>> dropdownItems = [];
 
+  String buttonTitleExtension = '';
+
   void handleUpdateButtonPressed() {
     print('handleUpdateButtonPressed');
   }
@@ -132,6 +134,7 @@ class _ChangeMembershipTypeViewState extends State<ChangeMembershipTypeView> {
                         if (value == null) {
                           return;
                         }
+                        buttonTitleExtension = membershipTypes.firstWhere((element) => element.membershipTypeId == value).membershipPrice.toString();
                         this.setState(() {
                           membershipSelectedValue = value;
                         });
@@ -143,7 +146,7 @@ class _ChangeMembershipTypeViewState extends State<ChangeMembershipTypeView> {
                   height: 20,
                 ),
                 FitStyleButton(
-                  'Update',
+                  'Update' + buttonTitleExtension,
                   handleUpdateButtonPressed,
                   padding: 0,
                 )
