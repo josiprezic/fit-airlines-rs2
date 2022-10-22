@@ -16,7 +16,7 @@ class ChangeMembershipTypeView extends StatefulWidget {
 }
 
 class _ChangeMembershipTypeViewState extends State<ChangeMembershipTypeView> {
-  int? membershipSelectedValue; // = membershipTypes.first;
+  int? membershipSelectedValue;
   List<DropdownMenuItem<int>> dropdownItems = [];
 
   void handleUpdateButtonPressed() {
@@ -28,7 +28,14 @@ class _ChangeMembershipTypeViewState extends State<ChangeMembershipTypeView> {
   TransportMembershipType? currentMembershipType;
   var isLoading = false;
 
+  var executed = false;
   Future<List<TransportMembershipType>> getData() async {
+    if (executed) {
+      return [];
+    } else {
+      executed = true;
+    }
+
     isLoading = true;
     var result = await membershipTypeService.getAllObjects();
     var currentMemTypeId = await AppUserService.membershipTypeId;
@@ -40,7 +47,7 @@ class _ChangeMembershipTypeViewState extends State<ChangeMembershipTypeView> {
     membershipSelectedValue = membershipTypes.first?.membershipTypeId;
 
     dropdownItems = membershipTypes.map((e) {
-      return DropdownMenuItem(child: Text(e.title ?? 'No title'), value: e.membershipTypeId);
+      return DropdownMenuItem(child: Text(e.title ?? 'No title' + ' (' + (e.membershipPrice ?? 0).toString() + ' KM)'), value: e.membershipTypeId);
     }).toList();
 
     isLoading = false;
@@ -76,8 +83,9 @@ class _ChangeMembershipTypeViewState extends State<ChangeMembershipTypeView> {
                 Text(
                   currentMembershipType?.title ?? '-',
                   style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
+                    fontSize: 30,
+                    color: Colors.green,
+                    fontWeight: FontWeight.w900,
                   ),
                 ),
                 SizedBox(height: 20),
