@@ -1,12 +1,13 @@
 import 'dart:core';
 import 'dart:convert';
+import 'package:fit_airlines_mobile_flutter/app_settings.dart';
 import 'package:http/http.dart' as http;
 
 class APIService {
   static String username = '';
   static String password = '';
 
-  static String socketAddress = "172.19.112.1:25001";
+  static String socketAddress = AppSettings.socketAddress;
   static String baseUrl = "http://" + socketAddress + "/api/";
 
   String get baseRouteUrl => baseUrl + route + '/';

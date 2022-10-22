@@ -1,5 +1,3 @@
-import 'package:fit_airlines_mobile_flutter/models/flight.dart';
-import 'package:fit_airlines_mobile_flutter/models/reservation.dart';
 import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_airport.dart';
 import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_flight.dart';
 import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_reservation.dart';
@@ -25,12 +23,8 @@ class _TicketReservationViewState extends State<TicketReservationView> {
   late TransportReservation reservation;
 
   void handleSeatsSelected(TransportReservation reservation) {
-    print('Selected Seats: ' + (this.reservation.seatDeparture ?? 'N/A')); // + ' ' + (reservation.inboundSeat?.getSeatString() ?? 'N/A'));
-    print('Selected Seats: ' + (this.reservation.seatReturn ?? 'N/A')); // + ' ' + (this.reservation.inboundSeat?.getSeatString() ?? 'N/A'));
-
-    // print('Selected Seats: ' + (reservation.outboundSeat?.getSeatString() ?? 'N/A') + ' ' + (reservation.inboundSeat?.getSeatString() ?? 'N/A'));
-    //
-    // print('Selected Seats: ' + (this.reservation.outboundSeat?.getSeatString() ?? 'N/A') + ' ' + (this.reservation.inboundSeat?.getSeatString() ?? 'N/A'));
+    print('Selected Seats: ' + (this.reservation.seatDeparture ?? 'N/A'));
+    print('Selected Seats: ' + (this.reservation.seatReturn ?? 'N/A'));
   }
 
   void handleReserveSeatsButtonPressed() {
@@ -58,9 +52,9 @@ class _TicketReservationViewState extends State<TicketReservationView> {
     var params = reservation.toJson();
     var postResult = await service.postReservation(params);
 
-    // Navigator.of(context).pushNamed('/ticket_purchase_confirmation', arguments: {
-    //   'reservation': reservation,
-    // });
+    Navigator.of(context).pushNamed('/ticket_purchase_confirmation', arguments: {
+      'reservation': reservation,
+    });
   }
 
   var isLoading = false;

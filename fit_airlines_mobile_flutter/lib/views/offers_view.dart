@@ -24,6 +24,7 @@ class _OffersViewState extends State<OffersView> {
   Future<List<TransportOffer>> getData() async {
     isLoading = true;
     offers = await offerService.getAllObjects(loadPictures: true);
+    offers.removeWhere((element) => element.isInFuture == false);
     filteredOffers = List<TransportOffer>.from(offers);
     isLoading = false;
     return offers;
