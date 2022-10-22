@@ -1,9 +1,13 @@
 import 'package:fit_airlines_mobile_flutter/models/flight.dart';
 import 'package:fit_airlines_mobile_flutter/models/reservation.dart';
+import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_airport.dart';
 import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_flight.dart';
+import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_reservation.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/airport_service.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TicketReservationView extends StatefulWidget {
   const TicketReservationView({Key? key}) : super(key: key);
@@ -13,13 +17,17 @@ class TicketReservationView extends StatefulWidget {
 }
 
 class _TicketReservationViewState extends State<TicketReservationView> {
-  Flight? flight; // set by previous screen
-  late Reservation reservation;
+  TransportFlight? flight; // set by previous screen
+  TransportAirport? airport;
+  late TransportReservation reservation;
 
-  void handleSeatsSelected(Reservation reservation) {
-    print('Selected Seats: ' + (reservation.outboundSeat?.getSeatString() ?? 'N/A') + ' ' + (reservation.inboundSeat?.getSeatString() ?? 'N/A'));
+  void handleSeatsSelected(TransportReservation reservation) {
+    print('Selected Seats: ' + (this.reservation.seatDeparture ?? 'N/A')); // + ' ' + (reservation.inboundSeat?.getSeatString() ?? 'N/A'));
+    print('Selected Seats: ' + (this.reservation.seatReturn ?? 'N/A')); // + ' ' + (this.reservation.inboundSeat?.getSeatString() ?? 'N/A'));
 
-    print('Selected Seats: ' + (this.reservation.outboundSeat?.getSeatString() ?? 'N/A') + ' ' + (this.reservation.inboundSeat?.getSeatString() ?? 'N/A'));
+    // print('Selected Seats: ' + (reservation.outboundSeat?.getSeatString() ?? 'N/A') + ' ' + (reservation.inboundSeat?.getSeatString() ?? 'N/A'));
+    //
+    // print('Selected Seats: ' + (this.reservation.outboundSeat?.getSeatString() ?? 'N/A') + ' ' + (this.reservation.inboundSeat?.getSeatString() ?? 'N/A'));
   }
 
   void handleReserveSeatsButtonPressed() {
@@ -38,6 +46,16 @@ class _TicketReservationViewState extends State<TicketReservationView> {
     });
   }
 
+  var isLoading = false;
+  var airportService = AirportService();
+  Future<TransportAirport> getData() async {
+    isLoading = true;
+    var result = await airportService.getObject(id: flight?.destinationAirportId ?? 0);
+    this.airport = result;
+    isLoading = false;
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
@@ -51,53 +69,61 @@ class _TicketReservationViewState extends State<TicketReservationView> {
       );
     } else {
       // Handle flight available
-      reservation = Reservation(flight!);
+      reservation = TransportReservation(flight: flight!);
 
       return Scaffold(
         appBar: AppBar(
           title: const Text('Ticket Reservation'),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  flight?.name ?? 'Error flight name',
-                  style: const TextStyle(
-                    fontSize: 20,
-                  ),
+        body: FutureBuilder<TransportAirport>(
+            future: getData(),
+            initialData: null,
+            builder: (context, snapshot) {
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        (flight?.city?.cityName ?? 'Error flight name') + ', ' + (flight?.countryName ?? 'Error country name'),
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ),
+                    const FitHorizontalDivider(),
+                    getFlightDatesSectionHeader('Outbound date: ' + DateFormat('yyyy-MM-dd').format(DateTime.parse(flight?.startDate ?? ''))),
+                    const FitHorizontalDivider(),
+                    getFlightInfoView(true, DateFormat.Hm().format(DateTime.parse(flight?.startDate ?? '')), 'Mostar Airport, BiH'),
+                    getVerticalLine(),
+                    getFlightInfoView(false, DateFormat.Hm().format(DateTime.parse(flight?.startDateArrival ?? '')),
+                        (airport?.airportName ?? 'Error airport name') + ', ' + (flight?.city?.cityName ?? 'Error city name')),
+                    const FitHorizontalDivider(),
+                    getFlightDatesSectionHeader('Inbound date: ' + DateFormat('yyyy-MM-dd').format(DateTime.parse(flight?.endDate ?? ''))),
+                    const FitHorizontalDivider(),
+                    getFlightInfoView(true, DateFormat.Hm().format(DateTime.parse(flight?.endDate ?? '')),
+                        (airport?.airportName ?? 'Error airport name') + ', ' + (flight?.city?.cityName ?? 'Error city name')),
+                    getVerticalLine(),
+                    getFlightInfoView(false, DateFormat.Hm().format(DateTime.parse(flight?.endDateArrival ?? '')), 'Mostar Airport, BiH'),
+                    const FitHorizontalDivider(),
+                    FitStyleButton(
+                      'Reserve seats',
+                      handleReserveSeatsButtonPressed,
+                    ),
+                    getAdditionalFlightInfoView(),
+                    const FitHorizontalDivider(),
+                    getPriceRowView(),
+                    FitStyleButton(
+                      'Confirm and buy ticket',
+                      handleBuyTicketButtonPressed,
+                    ),
+                    SizedBox(height: 50),
+                  ],
                 ),
-              ),
-              const FitHorizontalDivider(),
-              getFlightDatesSectionHeader('Outbound date: DATE'),
-              const FitHorizontalDivider(),
-              getFlightInfoView(true, 'HH:MM', 'Mostar, BiH'),
-              getVerticalLine(),
-              getFlightInfoView(false, 'HH:MM', 'Mostar, BiH'),
-              const FitHorizontalDivider(),
-              getFlightDatesSectionHeader('Inbound date: DATE'),
-              const FitHorizontalDivider(),
-              getFlightInfoView(true, 'HH:MM', 'Mostar, BiH'),
-              getVerticalLine(),
-              getFlightInfoView(false, 'HH:MM', 'Mostar, BiH'),
-              const FitHorizontalDivider(),
-              FitStyleButton(
-                'Reserve seats',
-                handleReserveSeatsButtonPressed,
-              ),
-              getAdditionalFlightInfoView(),
-              const FitHorizontalDivider(),
-              getPriceRowView(),
-              FitStyleButton(
-                'Confirm and buy ticket',
-                handleBuyTicketButtonPressed,
-              ),
-              SizedBox(height: 50),
-            ],
-          ),
-        ),
+              );
+            }),
       );
     }
   }
@@ -116,11 +142,8 @@ class _TicketReservationViewState extends State<TicketReservationView> {
           ),
           Spacer(),
           Text(
-            '120 PLN',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black,
-            ),
+            (flight?.price?.toString() ?? '--') + ' KM',
+            style: TextStyle(fontSize: 16, color: Colors.green, fontWeight: FontWeight.w900),
           ),
         ],
       ),
@@ -135,16 +158,13 @@ class _TicketReservationViewState extends State<TicketReservationView> {
         children: [
           Text(
             'Additional flight info:',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black,
-            ),
+            style: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w500),
           ),
           SizedBox(
             height: 10,
           ),
           Text(
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            flight?.notes ?? 'No notes',
             style: TextStyle(
               fontSize: 16,
               color: Colors.black,
@@ -165,6 +185,7 @@ class _TicketReservationViewState extends State<TicketReservationView> {
         title,
         style: const TextStyle(
           fontSize: 16,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );
