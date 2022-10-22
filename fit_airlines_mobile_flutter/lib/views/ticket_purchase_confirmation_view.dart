@@ -1,5 +1,6 @@
 import 'package:fit_airlines_mobile_flutter/constants/constants.dart';
 import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_reservation.dart';
+import 'package:fit_airlines_mobile_flutter/services/date_converter.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
 import 'package:fit_airlines_mobile_flutter/views/home_view.dart';
 import 'package:flutter/material.dart';
@@ -55,18 +56,17 @@ class _TicketPurchaseConfirmationViewState extends State<TicketPurchaseConfirmat
                 getDescriptionRow('First name', 'Joe'),
                 getDescriptionRow('Last name', 'Joeseen'),
                 getDescriptionRow('Destination', reservation!.flight?.city?.cityName ?? 'No city name'),
-                getDescriptionRow('Price', (reservation!.flight?.price?.toString() ?? '-') + ' KM'),
+                getDescriptionRow('Flight duration', reservation?.flight?.flightDuration?.toString() ?? '-'),
                 getDescriptionRow('Outbound seat', reservation!.seatDeparture ?? 'Not selected'),
                 getDescriptionRow('Inbound seat', reservation!.seatReturn ?? 'Not selected'),
-                getDescriptionRow('TEST', reservation?.flight?.city?.shortInfo ?? '-'),
-                getDescriptionRow('Test row title', FitTemp.loremIpsum),
-                getDescriptionRow('Test row title', FitTemp.loremIpsum),
-                getDescriptionRow('Test row title', 'Test row description'),
-                getDescriptionRow('Test row title', FitTemp.loremIpsum),
-                getDescriptionRow('Test row title', 'Test row description'),
-                getDescriptionRow('Test row title', FitTemp.loremIpsum),
-                getDescriptionRow('Test row title', FitTemp.loremIpsum),
-                getDescriptionRow('Test row title', 'Test row description'),
+                getDescriptionRow('Destination', reservation?.flight?.city?.cityName ?? '-'),
+                getDescriptionRow('About city', reservation?.flight?.city?.shortInfo ?? '-'),
+                getDescriptionRow('Outbound date', DateDecorator.decorateMinDay(reservation?.flight?.startDate)),
+                getDescriptionRow('Inbound date', DateDecorator.decorateMinDay(reservation?.flight?.endDate)),
+                getDescriptionRow('Reservation notes', reservation?.notes ?? 'No additional notes are provided.'),
+                getDescriptionRow('Pilot', (reservation!.flight?.pilotFullName?.toString() ?? '-')),
+                getDescriptionRow('Additional info', reservation?.flight?.shortInfo ?? '-'),
+                getDescriptionRow('Price', (reservation!.flight?.price?.toString() ?? '-') + ' KM'),
                 FitStyleButton('Done', handleDoneButtonPressed),
               ],
             ),

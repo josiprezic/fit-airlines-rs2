@@ -48,6 +48,8 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
     var result = await cityService.getObject(id: flight?.cityId ?? 0);
     this.destinationCountry = await countryService.getObject(id: result?.countryId ?? 0);
     destinationCity = result;
+    flight?.city = result;
+
     return result;
   }
 
@@ -90,8 +92,6 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
                         child: Stack(
                           children: [
                             Positioned.fill(
-                              //child: ClipRRect(
-                              //borderRadius: BorderRadius.circular(10),
                               child: ImageService.getImageFromByteData(this.flight?.picture) ??
                                   Image.asset(
                                     'assets/images/flight-placeholder.jpg',
@@ -215,12 +215,13 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
                       ),
                       RatingStars(
                         value: ratingStarsValue,
-                        onValueChanged: (v) {
-                          //
-                          setState(() {
-                            ratingStarsValue = v;
-                          });
-                        },
+                        onValueChanged: null,
+                        // (v) {
+                        //   //
+                        //   setState(() {
+                        //     ratingStarsValue = v;
+                        //   });
+                        // },
                         starBuilder: (index, color) => Icon(
                           Icons.star,
                           color: color,
