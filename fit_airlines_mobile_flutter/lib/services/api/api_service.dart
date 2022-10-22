@@ -12,6 +12,7 @@ class APIService {
   String get baseRouteUrl => baseUrl + route + '/';
   String get basicAuth => 'Basic ' + base64.encode(utf8.encode('$username:$password'));
   Map<String, String> get headers => {'authorization': basicAuth};
+  Map<String, String> get postHeaders => {'authorization': basicAuth, 'Content-Type': 'application/json'};
   String route;
 
   APIService({required this.route});
@@ -69,7 +70,7 @@ class APIService {
 
     http.Response response = await http.post(
       uri,
-      headers: headers,
+      headers: postHeaders,
       body: jsonBody,
       encoding: encoding,
     );

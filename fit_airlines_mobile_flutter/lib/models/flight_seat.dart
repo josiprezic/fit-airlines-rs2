@@ -7,13 +7,8 @@ class FlightSeat {
   FlightSeat(this.row, this.column, this.available, {this.selected = false});
 
   static FlightSeat getFrom(String seatString) {
-    // seatString.substring(0, 0);
-    print('START!!!!!');
-    print(seatString);
     var rowCalc = seatString.substring(1);
     var colCalc = seatString[0];
-    //List parts = [seatString.substring(0, 0), seatString.substring(1, seatString.length - 1)];
-    //print(parts[0] + ' ' + parts[1]);
     return FlightSeat(int.parse(rowCalc), FlightSeat.getSeatColumnNumber(colCalc), true, selected: true);
   }
 

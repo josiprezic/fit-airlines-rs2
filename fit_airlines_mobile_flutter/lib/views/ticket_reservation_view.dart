@@ -5,6 +5,8 @@ import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_fl
 import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_reservation.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/airport_service.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/flight_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/reservation_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/app_user_service.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
 import 'package:flutter/material.dart';
@@ -39,12 +41,26 @@ class _TicketReservationViewState extends State<TicketReservationView> {
     });
   }
 
-  void handleBuyTicketButtonPressed() {
+  void handleBuyTicketButtonPressed() async {
     print('handleBuyTicketButtonPressed');
+    reservation.userId = await AppUserService.userId;
+    reservation.flightId = reservation?.flight?.flightId;
+    reservation.isValid = true;
 
-    Navigator.of(context).pushNamed('/ticket_purchase_confirmation', arguments: {
-      'reservation': reservation,
-    });
+    print('RESERVATION' + reservation.userId.toString());
+    print('RESERVATION' + reservation.flightId.toString());
+    print('RESERVATION' + reservation.isValid.toString());
+    print('RESERVATION' + reservation.seatReturn.toString());
+    print('RESERVATION' + reservation.seatDeparture.toString());
+
+    var service = ReservationService();
+
+    var params = reservation.toJson();
+    var postResult = await service.postReservation(params);
+
+    // Navigator.of(context).pushNamed('/ticket_purchase_confirmation', arguments: {
+    //   'reservation': reservation,
+    // });
   }
 
   var isLoading = false;

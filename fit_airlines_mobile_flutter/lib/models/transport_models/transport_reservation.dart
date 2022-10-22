@@ -1,3 +1,4 @@
+import 'package:fit_airlines_mobile_flutter/models/flight_seat.dart';
 import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_flight.dart';
 import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_user.dart';
 
@@ -64,30 +65,26 @@ class TransportReservation {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['reservationId'] = this.reservationId;
+
+    if (seatDeparture != null) {
+      String seatString = seatDeparture!;
+      var rowCalc = int.parse(seatString.substring(1));
+      var colCalc = FlightSeat.getSeatColumnNumber(seatString[0]);
+      data['seatIndexDeparture'] = colCalc - 1 + ((rowCalc - 1) * 6);
+    }
+
+    if (seatReturn != null) {
+      String seatString = seatReturn!;
+      var rowCalc = int.parse(seatString.substring(1));
+      var colCalc = FlightSeat.getSeatColumnNumber(seatString[0]);
+      data['seatIndexReturn'] = colCalc - 1 + ((rowCalc - 1) * 6);
+    }
+
+    data['isValid'] = true;
+
     data['userId'] = this.userId;
     data['flightId'] = this.flightId;
-    data['reservationDate'] = this.reservationDate;
-    data['baseTicketPrice'] = this.baseTicketPrice;
-    data['totalDiscountPercentage'] = this.totalDiscountPercentage;
-    data['isValid'] = this.isValid;
-    data['cashierId'] = this.cashierId;
-    data['notes'] = this.notes;
-    data['seatDeparture'] = this.seatDeparture;
-    data['seatReturn'] = this.seatReturn;
-    if (this.cashier != null) {
-      data['cashier'] = this.cashier!.toJson();
-    }
-    if (this.flight != null) {
-      data['flight'] = this.flight!.toJson();
-    }
-    if (this.user != null) {
-      data['user'] = this.user!.toJson();
-    }
-    data['clientType'] = this.clientType;
-    data['flightOffer'] = this.flightOffer;
-    data['discount'] = this.discount;
-    data['ticketPrice'] = this.ticketPrice;
+    data['notes'] = 'Mobile reservation';
     return data;
   }
 }
