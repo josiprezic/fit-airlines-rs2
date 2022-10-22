@@ -48,11 +48,8 @@ class _SeatReservationViewState extends State<SeatReservationView> {
 
   // computed properties
   List<List<FlightSeat>> get displayedSeats => isOutboundTab ? _outboundSeats : _inboundSeats;
-
   FlightDirection get displayedFlightDirection => selectedTab;
-
   FlightSeat? get displayedSelectedSeat => isOutboundTab ? selectedSeatOutbound : selectedSeatInbound;
-
   String get displayedSelectedSeatString => displayedSelectedSeat?.getSeatString() ?? 'N/A';
 
   //
@@ -78,7 +75,6 @@ class _SeatReservationViewState extends State<SeatReservationView> {
       // handle new seat selection triggered by the used on the currently opened tab
       unselectAllSeatsForCurrentTab();
     }
-
     // blocks selecting seats that are already taken (red ones)
     if (!selectedSeat.available) {
       return;
@@ -88,7 +84,6 @@ class _SeatReservationViewState extends State<SeatReservationView> {
     setState(() {
       int rowIndex = selectedSeat.row - 1;
       int colIndex = selectedSeat.column - 1;
-
       if (isOutboundValue) {
         selectedSeatOutbound = selectedSeat;
         _outboundSeats[rowIndex][colIndex].selected = true;
@@ -133,6 +128,7 @@ class _SeatReservationViewState extends State<SeatReservationView> {
     this._inboundSeats = FitHelper.generateReservedSeatsTable(capacity: flightCapacity, seatReservations: inboundSeatReservations);
     this._outboundSeats = FitHelper.generateReservedSeatsTable(capacity: flightCapacity, seatReservations: outboundSeatReservations);
 
+    selectPreviouslySelectedSeats();
     isLoading = false;
     return displayedSeats;
   }
@@ -173,11 +169,13 @@ class _SeatReservationViewState extends State<SeatReservationView> {
     shouldExecuteOnlyOnceMethod = false;
 
     final arguments = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
-
     reservation = arguments['reservation'];
+    seatSelectionCompletionHandler = arguments['seatSelectionHandler'];
+    //selectPreviouslySelectedSeats();
+  }
 
+  void selectPreviouslySelectedSeats() {
     if (reservation?.seatDeparture != null && reservation?.seatReturn != null) {
-      print('WHOOOOOPS');
       setState(() {
         FlightSeat seatDeparture = FlightSeat.getFrom(reservation?.seatDeparture ?? 'A1');
         FlightSeat seatReturn = FlightSeat.getFrom(reservation?.seatReturn ?? 'A1');
@@ -186,11 +184,11 @@ class _SeatReservationViewState extends State<SeatReservationView> {
           seatReturn,
           FlightDirection.inbound,
         );
+
         handleSeatSelected(
           seatDeparture,
           FlightDirection.outbound,
         );
-        seatSelectionCompletionHandler = arguments['seatSelectionHandler'];
       });
     }
   }
