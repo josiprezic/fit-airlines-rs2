@@ -1,8 +1,6 @@
 # fit-airlines-rs2
 Faculty project
 
-### Trello board: https://trello.com/b/9rnzMl26/fit-airlines
-
 ### Uputstvo za pokretanje projekta
 
 1. Pokrenuti komandu `docker-compose build & docker-compose up` unutar glavnog direktorija projekta.
