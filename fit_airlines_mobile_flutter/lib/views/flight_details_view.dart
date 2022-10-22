@@ -9,6 +9,7 @@ import 'package:fit_airlines_mobile_flutter/services/date_converter.dart';
 import 'package:fit_airlines_mobile_flutter/services/image_service.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_horizontal_divider.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
+import 'package:fit_airlines_mobile_flutter/views/components/loading_view.dart';
 import 'package:fit_airlines_mobile_flutter/views/seat_reservation/main_seat_reservation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
@@ -43,13 +44,15 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
   CountryService countryService = CountryService();
   TransportCity? destinationCity;
   TransportCountry? destinationCountry;
+  var isLoading = false;
 
   Future<TransportCity> getData() async {
+    isLoading = true;
     var result = await cityService.getObject(id: flight?.cityId ?? 0);
     this.destinationCountry = await countryService.getObject(id: result?.countryId ?? 0);
     destinationCity = result;
     flight?.city = result;
-
+    isLoading = false;
     return result;
   }
 
@@ -81,6 +84,10 @@ class _FlightDetailsViewState extends State<FlightDetailsView> {
           future: getData(),
           initialData: null,
           builder: (context, snapshot) {
+            if (isLoading) {
+              return LoadingView();
+            }
+
             return Column(
               children: [
                 Expanded(

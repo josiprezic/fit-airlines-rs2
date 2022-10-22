@@ -1,6 +1,5 @@
 import 'dart:core';
 import 'dart:convert';
-import 'dart:io';
 import 'package:http/http.dart' as http;
 
 class APIService {
@@ -59,6 +58,24 @@ class APIService {
     });
     result = result.substring(0, result.length - 1);
     return result;
+  }
+
+  Future<http.Response> makePostRequest({String path = '', Map<String, dynamic> body = const {}}) async {
+    var uriWithParams = baseRouteUrl + path;
+    final uri = Uri.parse(uriWithParams);
+    //final headers = {'Content-Type': 'application/json'};
+    String jsonBody = json.encode(body);
+    final encoding = Encoding.getByName('utf-8');
+
+    http.Response response = await http.post(
+      uri,
+      headers: headers,
+      body: jsonBody,
+      encoding: encoding,
+    );
+
+    logger('POST: Response status code: ' + response.statusCode.toString() + ': ' + response.body);
+    return response;
   }
 
   void logger(String message) {

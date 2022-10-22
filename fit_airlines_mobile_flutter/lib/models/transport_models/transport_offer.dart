@@ -61,7 +61,7 @@ class TransportOffer {
   }
 
   bool get isInFuture {
-    return startDate?.asDateTime().isAfter(DateTime.now()) ?? false;
+    return endDate?.asDateTime().isAfter(DateTime.now()) ?? false;
   }
 }
 
