@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FitAirlines_UI.Forms {
+namespace FitAirlines.UI.Forms {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace FitAirlines_UI.Forms {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FitAirlines_UI.Forms.MainMenuForm", typeof(MainMenuForm).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FitAirlines.UI.Forms.MainMenuForm", typeof(MainMenuForm).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,51 +57,6 @@ namespace FitAirlines_UI.Forms {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to DO.
-        /// </summary>
-        public static string FormTitle {
-            get {
-                return ResourceManager.GetString("FormTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to RE.
-        /// </summary>
-        public static string Offers {
-            get {
-                return ResourceManager.GetString("Offers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to MI.
-        /// </summary>
-        public static string Reservations {
-            get {
-                return ResourceManager.GetString("Reservations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to FA.
-        /// </summary>
-        public static string Settings {
-            get {
-                return ResourceManager.GetString("Settings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string Users {
-            get {
-                return ResourceManager.GetString("Users", resourceCulture);
             }
         }
     }

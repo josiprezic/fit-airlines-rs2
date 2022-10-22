@@ -8,25 +8,48 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FitAirlines_UI
+namespace FitAirlines.UI
 {
     public partial class BaseButton : Button
     {
+        
+        //
+        // MARK: - Constructors
+        //
+
         public BaseButton()
         {
             InitializeComponent();
-            setupStyling();
         }
 
-        protected override void OnPaint(PaintEventArgs pe)
+        //
+        // MARK: - Protected methods
+        //
+
+        protected override void OnCreateControl()
         {
-            base.OnPaint(pe);
+            base.OnCreateControl();
+            Configure();
         }
 
-        private void setupStyling() 
+        protected virtual void SetupStyling()
         {
-            // TODO: Add base button styling
-            //BackColor = Color.Green;
+            
+        }
+
+        //
+        // MARK: - Private methods
+        //
+
+        void Configure()
+        {
+            BaseSetup();
+            SetupStyling();
+        }
+
+        void BaseSetup()
+        {
+           
         }
     }
 }

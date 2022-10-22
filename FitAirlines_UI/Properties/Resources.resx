@@ -117,6 +117,193 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddFlight_FormName" xml:space="preserve">
+    <value>Add new flight</value>
+  </data>
+  <data name="AddOffer_FormName" xml:space="preserve">
+    <value>Add new offer</value>
+  </data>
+  <data name="AddOrEditFlight_BasicInfo" xml:space="preserve">
+    <value>Basic info</value>
+  </data>
+  <data name="AddOrEditFlight_Capacity" xml:space="preserve">
+    <value>Capacity</value>
+  </data>
+  <data name="AddOrEditFlight_City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="AddOrEditFlight_Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="AddOrEditFlight_EndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="AddOrEditFlight_FlightDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="AddOrEditFlight_FlightName" xml:space="preserve">
+    <value>Flight name</value>
+  </data>
+  <data name="AddOrEditFlight_FlightOffer" xml:space="preserve">
+    <value>Flight offer</value>
+  </data>
+  <data name="AddOrEditFlight_StartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="AddOrEditOffer_ImageOptions" xml:space="preserve">
+    <value>Image Options</value>
+  </data>
+  <data name="AddOrEditOffer_OfferDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="AddOrEditOFfer_OfferMembershipLevel" xml:space="preserve">
+    <value>Min membership level</value>
+  </data>
+  <data name="AddOrEditOffer_OfferName" xml:space="preserve">
+    <value>Offer title</value>
+  </data>
+  <data name="AddOrEditOffer_PersonalInfo" xml:space="preserve">
+    <value>Personal info</value>
+  </data>
+  <data name="AddOrEditReservation_Client" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="AddOrEditReservation_Discount" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="AddOrEditReservation_Flight" xml:space="preserve">
+    <value>Flight</value>
+  </data>
+  <data name="AddOrEditReservation_Offer" xml:space="preserve">
+    <value>Offer</value>
+  </data>
+  <data name="AddOrEditReservation_Paid" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="AddOrEditReservation_Price" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="AddOrEditReservation_PriceTitle" xml:space="preserve">
+    <value>Total price</value>
+  </data>
+  <data name="AddOrEditReservation_SeatReturn" xml:space="preserve">
+    <value>Seat (return)</value>
+  </data>
+  <data name="AddOrEditReservation_SeatStart" xml:space="preserve">
+    <value>Seat (start)</value>
+  </data>
+  <data name="AddOrEditUser_AccountBalance" xml:space="preserve">
+    <value>Credit</value>
+  </data>
+  <data name="AddOrEditUser_Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="AddOrEditUser_AddCredit" xml:space="preserve">
+    <value>Add credit</value>
+  </data>
+  <data name="AddOrEditUser_BirthDate" xml:space="preserve">
+    <value>Date of birth</value>
+  </data>
+  <data name="AddOrEditUser_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="AddOrEditUser_ChangeProfilePicture" xml:space="preserve">
+    <value>Change Picture</value>
+  </data>
+  <data name="AddOrEditUser_FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="AddOrEditUser_FitMembership" xml:space="preserve">
+    <value>FIT membership</value>
+  </data>
+  <data name="AddOrEditUser_Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="AddOrEditUser_IsActive" xml:space="preserve">
+    <value>is active</value>
+  </data>
+  <data name="AddOrEditUser_LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="AddOrEditUser_PersonalInfoGroupBox" xml:space="preserve">
+    <value>Personal info</value>
+  </data>
+  <data name="AddOrEditUser_ProfilePictureGroupBox" xml:space="preserve">
+    <value>Profile picture</value>
+  </data>
+  <data name="AddOrEditUser_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="AddReservation_FormName" xml:space="preserve">
+    <value>Add new reservation</value>
+  </data>
+  <data name="AddUser_FormName" xml:space="preserve">
+    <value>Add user</value>
+  </data>
+  <data name="EditFlight_FormName" xml:space="preserve">
+    <value>Edit flight</value>
+  </data>
+  <data name="EditOffer_FormName" xml:space="preserve">
+    <value>Edit offer</value>
+  </data>
+  <data name="EditReservation_FormName" xml:space="preserve">
+    <value>Edit reservation</value>
+  </data>
+  <data name="EditUser_FormName" xml:space="preserve">
+    <value>Edit user</value>
+  </data>
+  <data name="Flights_FlightDate" xml:space="preserve">
+    <value>Flight date</value>
+  </data>
+  <data name="Flights_FlightName" xml:space="preserve">
+    <value>Flight name</value>
+  </data>
+  <data name="Flights_FormName" xml:space="preserve">
+    <value>Flights</value>
+  </data>
+  <data name="Flights_Offer" xml:space="preserve">
+    <value>Offer</value>
+  </data>
+  <data name="Generic_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Generic_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Generic_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Generic_ImageOptions" xml:space="preserve">
+    <value>Image options</value>
+  </data>
+  <data name="Generic_IsActive" xml:space="preserve">
+    <value>Show only active items</value>
+  </data>
+  <data name="Generic_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Generic_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Generic_UploadImage" xml:space="preserve">
+    <value>Upload image...</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="hand" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hand.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon_Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon_Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Settings-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Image_Placeholder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BaseImagePlaceholder.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainMenu_Flights" xml:space="preserve">
+    <value>Flights</value>
+  </data>
   <data name="MainMenu_FormName" xml:space="preserve">
     <value>Main Menu</value>
   </data>
@@ -131,5 +318,50 @@
   </data>
   <data name="MainMenu_Users" xml:space="preserve">
     <value>Users</value>
+  </data>
+  <data name="Offers_FormName" xml:space="preserve">
+    <value>Offers</value>
+  </data>
+  <data name="Offers_OfferDate" xml:space="preserve">
+    <value>Offer date:</value>
+  </data>
+  <data name="Offers_OfferName" xml:space="preserve">
+    <value>Offer name:</value>
+  </data>
+  <data name="Reservations_ClientName" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="Reservations_Flight" xml:space="preserve">
+    <value>Flight</value>
+  </data>
+  <data name="Reservations_FlightDate" xml:space="preserve">
+    <value>Flight date</value>
+  </data>
+  <data name="Reservations_FormName" xml:space="preserve">
+    <value>Reservations</value>
+  </data>
+  <data name="Reservations_ReservationDate" xml:space="preserve">
+    <value>Reservation date</value>
+  </data>
+  <data name="Users_FormName" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Users_Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Users_MemberLevel" xml:space="preserve">
+    <value>Member Level</value>
+  </data>
+  <data name="Users_NameSurname" xml:space="preserve">
+    <value>First name / Last name</value>
+  </data>
+  <data name="Validation_EmailInvalid" xml:space="preserve">
+    <value>The email address is not in valid format.</value>
+  </data>
+  <data name="Validation_FieldRequired" xml:space="preserve">
+    <value>This field is required.</value>
+  </data>
+  <data name="Validation_PhoneNumberInvalid" xml:space="preserve">
+    <value>The phone number is not in valid format.</value>
   </data>
 </root>
