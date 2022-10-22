@@ -1,5 +1,5 @@
 import 'package:fit_airlines_mobile_flutter/constants/constants.dart';
-import 'package:fit_airlines_mobile_flutter/models/reservation.dart';
+import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_reservation.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
 import 'package:fit_airlines_mobile_flutter/views/home_view.dart';
 import 'package:flutter/material.dart';
@@ -8,13 +8,11 @@ class TicketPurchaseConfirmationView extends StatefulWidget {
   const TicketPurchaseConfirmationView({Key? key}) : super(key: key);
 
   @override
-  State<TicketPurchaseConfirmationView> createState() =>
-      _TicketPurchaseConfirmationViewState();
+  State<TicketPurchaseConfirmationView> createState() => _TicketPurchaseConfirmationViewState();
 }
 
-class _TicketPurchaseConfirmationViewState
-    extends State<TicketPurchaseConfirmationView> {
-  Reservation? reservation;
+class _TicketPurchaseConfirmationViewState extends State<TicketPurchaseConfirmationView> {
+  TransportReservation? reservation;
 
   void handleDoneButtonPressed() {
     makeRoutePage(
@@ -25,8 +23,7 @@ class _TicketPurchaseConfirmationViewState
 
   @override
   Widget build(BuildContext context) {
-    final arguments = (ModalRoute.of(context)?.settings.arguments ??
-        <String, dynamic>{}) as Map;
+    final arguments = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
 
     reservation = arguments['reservation'];
     bool showBackButton = arguments['show_back_button'] ?? false;
@@ -57,17 +54,11 @@ class _TicketPurchaseConfirmationViewState
                 SizedBox(height: 50),
                 getDescriptionRow('First name', 'Joe'),
                 getDescriptionRow('Last name', 'Joeseen'),
-                getDescriptionRow('Destination', reservation!.flight.name),
-                getDescriptionRow('Price', reservation!.flight.price + ' BAM'),
-                getDescriptionRow(
-                    'Outbound seat',
-                    reservation!.outboundSeat?.getSeatString() ??
-                        'Not selected'),
-                getDescriptionRow(
-                    'Inbound seat',
-                    reservation!.inboundSeat?.getSeatString() ??
-                        'Not selected'),
-                getDescriptionRow('Test row title', 'Test row description'),
+                getDescriptionRow('Destination', reservation!.flight?.city?.cityName ?? 'No city name'),
+                getDescriptionRow('Price', (reservation!.flight?.price?.toString() ?? '-') + ' KM'),
+                getDescriptionRow('Outbound seat', reservation!.seatDeparture ?? 'Not selected'),
+                getDescriptionRow('Inbound seat', reservation!.seatReturn ?? 'Not selected'),
+                getDescriptionRow('TEST', reservation?.flight?.city?.shortInfo ?? '-'),
                 getDescriptionRow('Test row title', FitTemp.loremIpsum),
                 getDescriptionRow('Test row title', FitTemp.loremIpsum),
                 getDescriptionRow('Test row title', 'Test row description'),
@@ -123,9 +114,6 @@ class _TicketPurchaseConfirmationViewState
   }
 
   void makeRoutePage({required BuildContext context, required Widget pageRef}) {
-    Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => pageRef),
-        (Route<dynamic> route) => false);
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => pageRef), (Route<dynamic> route) => false);
   }
 }
