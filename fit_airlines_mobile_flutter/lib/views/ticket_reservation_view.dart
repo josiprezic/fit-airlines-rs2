@@ -100,7 +100,7 @@ class _TicketReservationViewState extends State<TicketReservationView> {
                     const FitHorizontalDivider(),
                     getFlightDatesSectionHeader('Outbound date: ' + DateFormat('yyyy-MM-dd').format(DateTime.parse(flight?.startDate ?? ''))),
                     const FitHorizontalDivider(),
-                    getFlightInfoView(true, DateFormat.Hm().format(DateTime.parse(flight?.startDate ?? '')), 'Mostar Airport, BiH'),
+                    getFlightInfoView(true, DateFormat.Hm().format(DateTime.parse(flight?.startDate ?? '')), 'Mostar Airport, Mostar'),
                     getVerticalLine(),
                     getFlightInfoView(false, DateFormat.Hm().format(DateTime.parse(flight?.startDateArrival ?? '')),
                         (airport?.airportName ?? 'Error airport name') + ', ' + (flight?.city?.cityName ?? 'Error city name')),
@@ -110,7 +110,7 @@ class _TicketReservationViewState extends State<TicketReservationView> {
                     getFlightInfoView(true, DateFormat.Hm().format(DateTime.parse(flight?.endDate ?? '')),
                         (airport?.airportName ?? 'Error airport name') + ', ' + (flight?.city?.cityName ?? 'Error city name')),
                     getVerticalLine(),
-                    getFlightInfoView(false, DateFormat.Hm().format(DateTime.parse(flight?.endDateArrival ?? '')), 'Mostar Airport, BiH'),
+                    getFlightInfoView(false, DateFormat.Hm().format(DateTime.parse(flight?.endDateArrival ?? '')), 'Mostar Airport, Mostar'),
                     const FitHorizontalDivider(),
                     FitStyleButton(
                       'Reserve seats',

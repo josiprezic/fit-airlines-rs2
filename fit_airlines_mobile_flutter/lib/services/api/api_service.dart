@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class APIService {
-  static String username = 'member@fit.ba';
-  static String password = 'password';
+  static String username = '';
+  static String password = '';
 
   static String socketAddress = "172.19.112.1:25001";
   static String baseUrl = "http://" + socketAddress + "/api/";

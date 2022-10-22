@@ -7,11 +7,15 @@ class AppUserService {
   static var userService = UserService();
   static final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-  static Future<TransportUser> refreshUserProfile() async {
+  static Future<bool> refreshUserProfile() async {
     APIService.username = await AppUserService.username;
     APIService.password = await AppUserService.password;
 
     var currentUser = await userService.getMyProfile();
+
+    if (currentUser.userId == null) {
+      return false;
+    }
 
     final SharedPreferences prefs = await _prefs;
     prefs.setString('username', currentUser.email ?? '');
@@ -25,30 +29,41 @@ class AppUserService {
     prefs.setString('lastName', currentUser.lastName ?? '');
     prefs.setInt('credit', currentUser.credit ?? 0);
 
-    return currentUser;
+    return true;
   }
 
-  static void login(String username, String password) async {
+  static Future<bool> login(String username, String password) async {
     final SharedPreferences prefs = await _prefs;
     prefs.setString('username', username ?? '');
     prefs.setString('password', password ?? '');
     APIService.username = username;
     APIService.password = password;
-    refreshUserProfile();
+    var result = await refreshUserProfile();
+    return result;
   }
 
   static Future<bool> refreshLoggedInUser() async {
     var prefUsername = await username;
     if (prefUsername.isNotEmpty) {
       refreshUserProfile();
+      return true;
     }
-    return true;
+    return false;
+  }
+
+  static Future<bool> isUserLoggedIn() async {
+    var prefUsername = await username;
+    if (prefUsername.isNotEmpty) {
+      return true;
+    }
+    return false;
   }
 
   static void logout() async {
     final SharedPreferences prefs = await _prefs;
     prefs.setString('username', '');
     prefs.setString('password', '');
+    prefs.setInt('userId', 0);
     APIService.username = '';
     APIService.password = '';
   }

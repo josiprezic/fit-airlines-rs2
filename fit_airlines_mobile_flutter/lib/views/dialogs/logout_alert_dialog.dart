@@ -1,3 +1,4 @@
+import 'package:fit_airlines_mobile_flutter/services/app_user_service.dart';
 import 'package:fit_airlines_mobile_flutter/views/login_view.dart';
 import 'package:flutter/material.dart';
 
@@ -16,10 +17,8 @@ showLogoutAlertDialog(BuildContext context) {
     ),
     onPressed: () {
       Navigator.pop(context);
-
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => LoginView()),
-          (Route<dynamic> route) => false);
+      AppUserService.logout();
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginView()), (Route<dynamic> route) => false);
     },
   );
   // set up the AlertDialog

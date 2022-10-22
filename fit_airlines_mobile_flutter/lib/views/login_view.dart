@@ -6,6 +6,9 @@ import 'package:fit_airlines_mobile_flutter/services/api/city_service.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/country_service.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/flight_service.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/offer_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/user_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/app_user_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/snackbar_manager.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
@@ -48,6 +51,7 @@ class _LoginViewState extends State<LoginView> {
               SizedBox(height: 20),
               TextField(
                 controller: passwordController,
+                obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Password',
                   border: OutlineInputBorder(
@@ -59,24 +63,17 @@ class _LoginViewState extends State<LoginView> {
               FitStyleButton('Login', () async {
                 print(usernameController.text + ' ' + passwordController.text);
 
-                APIService.username =
-                    'member@fit.ba'; //usernameController.text;
-                APIService.password = 'password'; //passwordController.text;va
-                var service = OfferService();
-
-                var objects = await service.getAllObjects();
-                print(objects.first.toString());
-                var jsonn = json.encode(objects.first);
-
-                var spaces = ' ' * 4;
-                var encoder = JsonEncoder.withIndent(spaces);
-                print(encoder.convert(jsonn));
-                //print(objects.first.picture);
-
-                // var cos = await api.getObjectList();
-                // print(cos.first);
-
-                //await APIService.get('/airports');
+                try {
+                  var isSuccessfulLogin = await AppUserService.login(usernameController.text, passwordController.text);
+                  if (isSuccessfulLogin) {
+                    Navigator.of(context).pushNamed('/home');
+                  } else {
+                    SnackbarManager.showSnackbar('Ups! Wrong credentials.', context);
+                    passwordController.text = '';
+                  }
+                } on Exception {
+                  SnackbarManager.showSnackbar('Ups! Wrong credentials.', context);
+                }
               }),
             ],
           ),
