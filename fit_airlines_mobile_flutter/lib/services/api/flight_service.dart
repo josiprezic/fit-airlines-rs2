@@ -1,4 +1,8 @@
+import 'dart:ffi';
+
 import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_flight.dart';
+import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_reservation.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/reservation_service.dart';
 import 'package:fit_airlines_mobile_flutter/services/date_converter.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/api_service.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +41,21 @@ class FlightService {
       return true;
     });
     return flights;
+  }
+
+  Future<List<TransportReservation>> getReservationsWithFlightsForCurrentUser() async {
+    var reservationsService = ReservationService();
+    var currentUserReservations = await reservationsService.getAllReservationsForCurrentUser();
+    print('NUMBER OF RESERVATIONS FOR CURRENT USER: ' + currentUserReservations.length.toString());
+
+    var flightIds = currentUserReservations.map((e) => e.flightId);
+    var flightObjects = await getAllObjects(loadPictures: true);
+
+    currentUserReservations.forEach((reservation) {
+      reservation.flight = flightObjects.firstWhere((flight) => flight?.flightId == reservation?.flightId);
+    });
+
+    return currentUserReservations;
   }
 
   Future<List<TransportFlight>> getRecommendedFlights({bool loadPictures = false}) async {
