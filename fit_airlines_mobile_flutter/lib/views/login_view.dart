@@ -1,6 +1,17 @@
-import 'package:fit_airlines_mobile_flutter/services/APIService.dart';
+import 'dart:convert';
+
+import 'package:fit_airlines_mobile_flutter/services/api/airport_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/api_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/city_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/country_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/flight_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/offer_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/api/user_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/app_user_service.dart';
+import 'package:fit_airlines_mobile_flutter/services/snackbar_manager.dart';
 import 'package:fit_airlines_mobile_flutter/views/components/fit_style_button.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -40,6 +51,7 @@ class _LoginViewState extends State<LoginView> {
               SizedBox(height: 20),
               TextField(
                 controller: passwordController,
+                obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Password',
                   border: OutlineInputBorder(
@@ -51,10 +63,17 @@ class _LoginViewState extends State<LoginView> {
               FitStyleButton('Login', () async {
                 print(usernameController.text + ' ' + passwordController.text);
 
-                APIService.username = usernameController.text;
-                APIService.password = passwordController.text;
-
-                await APIService.get('/airports');
+                try {
+                  var isSuccessfulLogin = await AppUserService.login(usernameController.text, passwordController.text);
+                  if (isSuccessfulLogin) {
+                    Navigator.of(context).pushNamed('/home');
+                  } else {
+                    SnackbarManager.showSnackbar('Ups! Wrong credentials.', context);
+                    passwordController.text = '';
+                  }
+                } on Exception {
+                  SnackbarManager.showSnackbar('Ups! Wrong credentials.', context);
+                }
               }),
             ],
           ),

@@ -25,7 +25,7 @@ namespace FitAirlines.UI.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://172.25.208.1:25001/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://172.17.208.1:25001/api")]
         public string APIUrl {
             get {
                 return ((string)(this["APIUrl"]));
