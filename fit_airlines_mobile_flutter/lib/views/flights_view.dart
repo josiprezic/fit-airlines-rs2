@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_flight.dart';
 import 'package:fit_airlines_mobile_flutter/models/transport_models/transport_offer.dart';
 import 'package:fit_airlines_mobile_flutter/services/api/flight_service.dart';
@@ -67,17 +69,23 @@ class _FlightsViewState extends State<FlightsView> {
     return Scaffold(
       appBar: AppBar(
         title: Text((offer?.offerName ?? '') + ' flights'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              showSearch(
-                context: context,
-                delegate: FlightSearchDelegate(),
-              );
-            },
-            icon: Icon(Icons.search),
-          )
-        ],
+        actions: _selectedSegment != FlightTabs.nextFlights
+            ? null
+            : [
+                IconButton(
+                  onPressed: () {
+                    showSearch(
+                      context: context,
+                      delegate: FlightSearchDelegate(
+                        nextFlights,
+                        handleItemSelected,
+                        this._selectedSegment,
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.search),
+                )
+              ],
       ),
       body: FutureBuilder<List<TransportFlight>>(
         future: getData(),
@@ -159,9 +167,45 @@ class _FlightsViewState extends State<FlightsView> {
   }
 }
 
+//
+// MARK: - SEARCH DELEGATE
+//
+
 class FlightSearchDelegate extends SearchDelegate {
+  FlightSearchDelegate(this.nextFlights, this.selectionHandler, this.currentTab);
+
+  List<TransportFlight> nextFlights = [];
+  Function(int) selectionHandler;
+  FlightTabs currentTab;
+
+  List<TransportFlight> filteredFlights = [];
+
+  void updateFilteredOffers() {
+    if (currentTab == FlightTabs.recommendedFlights) {
+      filteredFlights = [];
+    }
+
+    if (query.isEmpty) {
+      filteredFlights = List.from(nextFlights);
+    }
+
+    List<TransportFlight> tempFlights = List.from(nextFlights);
+
+    tempFlights.removeWhere((element) {
+      var lowQuery = query.toLowerCase();
+      var lowCityName = element.city?.cityName?.toLowerCase();
+      return !(lowCityName?.contains(lowQuery) ?? false);
+    });
+
+    filteredFlights = tempFlights;
+  }
+
   @override
   List<Widget> buildActions(BuildContext context) {
+    if (currentTab == FlightTabs.recommendedFlights) {
+      return [];
+    }
+
     return [
       IconButton(
         icon: Icon(Icons.clear),
@@ -178,6 +222,10 @@ class FlightSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildLeading(BuildContext context) {
+    if (currentTab == FlightTabs.recommendedFlights) {
+      return Container(); // TODO: JR
+    }
+
     return IconButton(
       icon: Icon(Icons.arrow_back),
       onPressed: () {
@@ -188,14 +236,48 @@ class FlightSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    return Text('BUILD RESULTS');
+    if (currentTab == FlightTabs.recommendedFlights) {
+      return Container();
+    }
+    return getResult();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // This method is called everytime the search term changes.
-    // If you want to add search suggestions as the user enters their search term, this is the place to do that.
-    return Column();
+    if (currentTab == FlightTabs.recommendedFlights) {
+      return Container();
+    }
+    return getResult();
+  }
+
+  Widget getResult() {
+    if (currentTab == FlightTabs.recommendedFlights) {
+      return Container();
+    }
+    updateFilteredOffers();
+
+    return ListView.builder(
+      itemCount: filteredFlights.length,
+      itemBuilder: (context, index) {
+        var item = filteredFlights[index];
+        return FitAirlinesCard(
+          title: item.city?.cityName ?? 'Unknown',
+          image: getImage(item),
+          isActive: item.isInFuture,
+          onCardClick: () {
+            var realIndex = nextFlights.indexWhere((element) => element.flightId == filteredFlights[index].flightId);
+            selectionHandler(realIndex);
+          },
+        );
+      },
+    );
+  }
+
+  Image getImage(TransportFlight item) {
+    return ImageService.getImageFromByteData(item.picture) ??
+        Image.memory(
+          base64.decode(item.picture!),
+          fit: BoxFit.cover,
+        );
   }
 }
